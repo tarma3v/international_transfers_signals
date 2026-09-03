@@ -1,0 +1,57 @@
+{
+  "sources": [
+    {
+      "file": "data/external_dcoilbrenteu.csv",
+      "sha256": "0fc2b14586317a473196eb12a6c3f708ba1ed1f19e3dd9b8cd25c2b1ba38f7c4",
+      "url": "https://fred.stlouisfed.org/series/DCOILBRENTEU",
+      "publisher": "U.S. Energy Information Administration via FRED"
+    },
+    {
+      "file": "data/external_dtwexbgs.csv",
+      "sha256": "b20c5bd9504f3c2af41ab42cac69d4220d5e43f3577688a7d60ce63e8a85eebd",
+      "url": "https://fred.stlouisfed.org/series/DTWEXBGS",
+      "publisher": "Federal Reserve Board via FRED"
+    },
+    {
+      "file": "data/external_ruonia.xlsx",
+      "sha256": "cc11ddd457680578fab182196f7cd36f281b223d36b36503a3e64bbbbf08c5a1",
+      "url": "https://www.cbr.ru/hd_base/ruonia/dynamics/",
+      "publisher": "Bank of Russia",
+      "availability": "explicit DateUpdate"
+    },
+    {
+      "file": "data/external_keyrate.html",
+      "sha256": "ae02b605716ca097e4d5f34a182a75def6df5a1f7b0af72438ff844a1bb08c99",
+      "url": "https://www.cbr.ru/hd_base/keyrate/",
+      "publisher": "Bank of Russia",
+      "availability": "effective-date table"
+    }
+  ],
+  "sensitivity_files": [
+    {
+      "file": "external_features_b2_d7.csv",
+      "brent_availability_lag_calendar_days": 2,
+      "broad_dollar_availability_lag_calendar_days": 7,
+      "rows": 6090,
+      "first": "2010-01-01",
+      "last": "2026-09-03"
+    },
+    {
+      "file": "external_features_b5_d10.csv",
+      "brent_availability_lag_calendar_days": 5,
+      "broad_dollar_availability_lag_calendar_days": 10,
+      "rows": 6090,
+      "first": "2010-01-01",
+      "last": "2026-09-03"
+    },
+    {
+      "file": "external_features_b7_d14.csv",
+      "brent_availability_lag_calendar_days": 7,
+      "broad_dollar_availability_lag_calendar_days": 14,
+      "rows": 6090,
+      "first": "2010-01-01",
+      "last": "2026-09-03"
+    }
+  ],
+  "limitation": "FRED latest-vintage CSVs lack row-level historical release timestamps; fixed conservative lags are sensitivity assumptions, not exact vintages."
+}

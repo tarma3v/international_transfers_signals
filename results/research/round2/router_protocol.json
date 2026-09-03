@@ -1,0 +1,67 @@
+{
+  "experts": [
+    "global_compact_extra",
+    "global_path_knn300",
+    "local_spline_logit",
+    "global_gmm3_hist",
+    "local_floor_q35",
+    "global_survival_logit"
+  ],
+  "modes": [
+    "equal",
+    "global_soft",
+    "currency_soft",
+    "regime_soft",
+    "regime_hard",
+    "ridge_soft",
+    "extra_soft",
+    "extra_hard"
+  ],
+  "state_features": [
+    "ret_5",
+    "ret_20",
+    "ret_60",
+    "range_pos_20",
+    "range_pos_60",
+    "slope_z_20",
+    "slope_z_60",
+    "raw_vol_20",
+    "raw_vol_60",
+    "vol_ratio_20_120",
+    "positive_share_20",
+    "ret_ac1_20",
+    "common_ret_5",
+    "common_ret_20",
+    "common_ret_60",
+    "common_ret1_vol20",
+    "residual_ret_5",
+    "residual_ret_20",
+    "peer_dispersion_5",
+    "rel_to_peers_5",
+    "annual_sin_1",
+    "annual_cos_1",
+    "dow_sin",
+    "dow_cos",
+    "gap_days",
+    "currency_AMD",
+    "currency_KGS",
+    "currency_KZT",
+    "currency_TJS",
+    "currency_UZS"
+  ],
+  "general_years": [
+    2019,
+    2020
+  ],
+  "shock_years": [
+    2022,
+    2023
+  ],
+  "final_years": [
+    2024,
+    2025,
+    2026
+  ],
+  "gate_train_rule": "expert test OOF years < forecast_year - 1",
+  "score_normalization": "within-currency percentile vs preceding calibration fold"
+}

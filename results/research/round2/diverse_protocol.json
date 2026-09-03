@@ -1,0 +1,264 @@
+{
+  "general_years": [
+    2017,
+    2018,
+    2019,
+    2020
+  ],
+  "shock_years": [
+    2022,
+    2023
+  ],
+  "final_years": [
+    2024,
+    2025,
+    2026
+  ],
+  "candidates": [
+    {
+      "name": "local_compact_logit",
+      "factory": null,
+      "feature_set": "compact",
+      "local": true,
+      "window_years": null,
+      "mode": "binary"
+    },
+    {
+      "name": "global_compact_logit",
+      "factory": null,
+      "feature_set": "compact",
+      "local": false,
+      "window_years": null,
+      "mode": "binary"
+    },
+    {
+      "name": "local_spline_logit",
+      "factory": null,
+      "feature_set": "spline",
+      "local": true,
+      "window_years": null,
+      "mode": "binary"
+    },
+    {
+      "name": "global_spline_logit",
+      "factory": null,
+      "feature_set": "spline",
+      "local": false,
+      "window_years": null,
+      "mode": "binary"
+    },
+    {
+      "name": "local_path_knn150",
+      "factory": null,
+      "feature_set": "compact",
+      "local": true,
+      "window_years": 7,
+      "mode": "binary"
+    },
+    {
+      "name": "local_path_knn300",
+      "factory": null,
+      "feature_set": "compact",
+      "local": true,
+      "window_years": 7,
+      "mode": "binary"
+    },
+    {
+      "name": "global_path_knn300",
+      "factory": null,
+      "feature_set": "compact",
+      "local": false,
+      "window_years": 7,
+      "mode": "binary"
+    },
+    {
+      "name": "local_shrinkage_lda",
+      "factory": null,
+      "feature_set": "compact",
+      "local": true,
+      "window_years": null,
+      "mode": "binary"
+    },
+    {
+      "name": "global_shrinkage_lda",
+      "factory": null,
+      "feature_set": "compact",
+      "local": false,
+      "window_years": null,
+      "mode": "binary"
+    },
+    {
+      "name": "local_compact_hist",
+      "factory": null,
+      "feature_set": "compact",
+      "local": true,
+      "window_years": 7,
+      "mode": "binary"
+    },
+    {
+      "name": "global_compact_hist",
+      "factory": null,
+      "feature_set": "compact",
+      "local": false,
+      "window_years": 7,
+      "mode": "binary"
+    },
+    {
+      "name": "local_compact_extra",
+      "factory": null,
+      "feature_set": "compact",
+      "local": true,
+      "window_years": 7,
+      "mode": "binary"
+    },
+    {
+      "name": "global_compact_extra",
+      "factory": null,
+      "feature_set": "compact",
+      "local": false,
+      "window_years": 7,
+      "mode": "binary"
+    },
+    {
+      "name": "global_gmm3_hist",
+      "factory": null,
+      "feature_set": "regime",
+      "local": false,
+      "window_years": 7,
+      "mode": "gmm"
+    },
+    {
+      "name": "global_survival_logit",
+      "factory": null,
+      "feature_set": "compact",
+      "local": false,
+      "window_years": null,
+      "mode": "survival"
+    },
+    {
+      "name": "local_survival_logit",
+      "factory": null,
+      "feature_set": "compact",
+      "local": true,
+      "window_years": null,
+      "mode": "survival"
+    },
+    {
+      "name": "global_floor_q25",
+      "factory": null,
+      "feature_set": "compact",
+      "local": false,
+      "window_years": 7,
+      "mode": "floor"
+    },
+    {
+      "name": "global_floor_q50",
+      "factory": null,
+      "feature_set": "compact",
+      "local": false,
+      "window_years": 7,
+      "mode": "floor"
+    },
+    {
+      "name": "local_floor_q35",
+      "factory": null,
+      "feature_set": "compact",
+      "local": true,
+      "window_years": 7,
+      "mode": "floor"
+    }
+  ],
+  "feature_sets": {
+    "compact": [
+      "ret_1",
+      "ret_3",
+      "ret_5",
+      "ret_10",
+      "ret_20",
+      "ret_60",
+      "range_pos_20",
+      "range_pos_60",
+      "range_pos_120",
+      "range_pos_250",
+      "slope_z_20",
+      "slope_z_60",
+      "raw_vol_5",
+      "raw_vol_20",
+      "raw_vol_60",
+      "vol_ratio_20_120",
+      "positive_share_20",
+      "ret_ac1_20",
+      "streak_up",
+      "streak_dn",
+      "bars_since_min_30",
+      "bars_since_max_30",
+      "common_ret_1",
+      "common_ret_5",
+      "common_ret_20",
+      "common_ret_60",
+      "residual_ret_1",
+      "residual_ret_5",
+      "residual_ret_20",
+      "residual_ret_60",
+      "common_ret1_vol20",
+      "common_ret1_mean5",
+      "common_ret1_mean20",
+      "common_ret1_lag1",
+      "common_ret1_lag2",
+      "common_ret1_lag3",
+      "common_ret1_lag5",
+      "peer_dispersion_5",
+      "rel_to_peers_5",
+      "usd_ret_5",
+      "usd_ret_20",
+      "cny_ret_5",
+      "cny_ret_20",
+      "annual_sin_1",
+      "annual_cos_1",
+      "annual_sin_2",
+      "annual_cos_2",
+      "dow_sin",
+      "dow_cos",
+      "gap_days",
+      "currency_AMD",
+      "currency_KGS",
+      "currency_KZT",
+      "currency_TJS",
+      "currency_UZS"
+    ],
+    "spline": [
+      "ret_1",
+      "ret_5",
+      "ret_20",
+      "ret_60",
+      "range_pos_20",
+      "range_pos_60",
+      "slope_z_20",
+      "raw_vol_20",
+      "vol_ratio_20_120",
+      "common_ret_5",
+      "common_ret_20",
+      "residual_ret_5",
+      "residual_ret_20"
+    ],
+    "regime": [
+      "ret_20",
+      "ret_60",
+      "slope_z_20",
+      "slope_z_60",
+      "raw_vol_20",
+      "raw_vol_60",
+      "vol_ratio_20_120",
+      "common_ret_20",
+      "common_ret_60",
+      "common_ret1_vol20",
+      "residual_ret_20",
+      "peer_dispersion_5",
+      "currency_AMD",
+      "currency_KGS",
+      "currency_KZT",
+      "currency_TJS",
+      "currency_UZS"
+    ]
+  }
+}

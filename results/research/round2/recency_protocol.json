@@ -1,0 +1,132 @@
+{
+  "specs": [
+    {
+      "name": "global_extra_window2",
+      "kind": "extra",
+      "local": false,
+      "window_years": 2,
+      "half_life_years": null,
+      "postshock_boost": 1.0
+    },
+    {
+      "name": "global_extra_window3",
+      "kind": "extra",
+      "local": false,
+      "window_years": 3,
+      "half_life_years": null,
+      "postshock_boost": 1.0
+    },
+    {
+      "name": "global_extra_window5",
+      "kind": "extra",
+      "local": false,
+      "window_years": 5,
+      "half_life_years": null,
+      "postshock_boost": 1.0
+    },
+    {
+      "name": "global_extra_decay1p0",
+      "kind": "extra",
+      "local": false,
+      "window_years": null,
+      "half_life_years": 1.0,
+      "postshock_boost": 1.0
+    },
+    {
+      "name": "global_extra_decay2p0",
+      "kind": "extra",
+      "local": false,
+      "window_years": null,
+      "half_life_years": 2.0,
+      "postshock_boost": 1.0
+    },
+    {
+      "name": "local_extra_window3",
+      "kind": "extra",
+      "local": true,
+      "window_years": 3,
+      "half_life_years": null,
+      "postshock_boost": 1.0
+    },
+    {
+      "name": "global_extra_postshock4_decay2",
+      "kind": "extra",
+      "local": false,
+      "window_years": null,
+      "half_life_years": 2.0,
+      "postshock_boost": 4.0
+    },
+    {
+      "name": "global_hist_window2",
+      "kind": "hist",
+      "local": false,
+      "window_years": 2,
+      "half_life_years": null,
+      "postshock_boost": 1.0
+    },
+    {
+      "name": "global_hist_window3",
+      "kind": "hist",
+      "local": false,
+      "window_years": 3,
+      "half_life_years": null,
+      "postshock_boost": 1.0
+    },
+    {
+      "name": "global_hist_window5",
+      "kind": "hist",
+      "local": false,
+      "window_years": 5,
+      "half_life_years": null,
+      "postshock_boost": 1.0
+    },
+    {
+      "name": "global_hist_decay1p0",
+      "kind": "hist",
+      "local": false,
+      "window_years": null,
+      "half_life_years": 1.0,
+      "postshock_boost": 1.0
+    },
+    {
+      "name": "global_hist_decay2p0",
+      "kind": "hist",
+      "local": false,
+      "window_years": null,
+      "half_life_years": 2.0,
+      "postshock_boost": 1.0
+    },
+    {
+      "name": "local_hist_window3",
+      "kind": "hist",
+      "local": true,
+      "window_years": 3,
+      "half_life_years": null,
+      "postshock_boost": 1.0
+    },
+    {
+      "name": "global_hist_postshock4_decay2",
+      "kind": "hist",
+      "local": false,
+      "window_years": null,
+      "half_life_years": 2.0,
+      "postshock_boost": 4.0
+    }
+  ],
+  "general_years": [
+    2017,
+    2018,
+    2019,
+    2020
+  ],
+  "shock_years": [
+    2022,
+    2023
+  ],
+  "final_years": [
+    2024,
+    2025,
+    2026
+  ],
+  "postshock_boost_selection": "not eligible for formal selection; retrospective sensitivity only"
+}

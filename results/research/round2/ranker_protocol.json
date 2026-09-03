@@ -1,0 +1,54 @@
+{
+  "specs": [
+    {
+      "name": "global_pairwise_quarter_w3",
+      "objective": "rank:pairwise",
+      "local": false,
+      "window_years": 3,
+      "group_period": "quarter"
+    },
+    {
+      "name": "global_pairwise_quarter_w5",
+      "objective": "rank:pairwise",
+      "local": false,
+      "window_years": 5,
+      "group_period": "quarter"
+    },
+    {
+      "name": "global_pairwise_year_w5",
+      "objective": "rank:pairwise",
+      "local": false,
+      "window_years": 5,
+      "group_period": "year"
+    },
+    {
+      "name": "global_ndcg_quarter_w5",
+      "objective": "rank:ndcg",
+      "local": false,
+      "window_years": 5,
+      "group_period": "quarter"
+    },
+    {
+      "name": "local_pairwise_quarter_w5",
+      "objective": "rank:pairwise",
+      "local": true,
+      "window_years": 5,
+      "group_period": "quarter"
+    }
+  ],
+  "general_years": [
+    2017,
+    2018,
+    2019,
+    2020
+  ],
+  "shock_years": [
+    2022,
+    2023
+  ],
+  "final_years": [
+    2024,
+    2025,
+    2026
+  ]
+}
