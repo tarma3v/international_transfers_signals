@@ -54,6 +54,11 @@ def test_feature_builder_has_targets_and_no_target_columns_in_features() -> None
     assert "target_fav" not in safe_features
     assert "target_close" not in safe_features
     assert "benefit_bps" not in safe_features
+    assert all(not column.startswith("published_next_") for column in safe_features)
+
+    asof_features = feature_columns(frame, target_col="target_pub_fav")
+    assert "published_next_ret_1" in asof_features
+    assert "published_next_pct_range_90" in asof_features
     assert frame["target_fav"].isin([0.0, 1.0]).all()
     assert frame["target_pub_fav"].isin([0.0, 1.0]).all()
 

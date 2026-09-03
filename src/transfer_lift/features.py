@@ -199,8 +199,14 @@ def build_dataset(
     return frame
 
 
-def feature_columns(frame: pd.DataFrame) -> list[str]:
-    """Columns safe for model training."""
+def feature_columns(frame: pd.DataFrame, target_col: str = "target_fav") -> list[str]:
+    """Columns safe for model training for a specific target.
+
+    CBR publishes tomorrow's effective rate today. Therefore published_next_* columns are
+    legitimate as-of features only for targets whose label window starts after that already
+    published rate. For target_fav/target_close they would overlap with the label window and
+    leak part of the answer, so they are blocked.
+    """
     blocked = {
         "date",
         "corridor",
@@ -212,4 +218,8 @@ def feature_columns(frame: pd.DataFrame) -> list[str]:
         "benefit_bps",
         "published_next_benefit_bps",
     }
+    if target_col != "target_pub_fav":
+        blocked.update(
+            column for column in frame.columns if column.startswith("published_next_")
+        )
     return [column for column in frame.columns if column not in blocked]

@@ -115,7 +115,6 @@ def make_model(name: str) -> Scorer:
         "reversal_from_low",
         "published_tomorrow_worse",
         "published_next_low",
-        "published_tomorrow_worse",
     }:
         return RuleModel(name)
     raise ValueError(f"unknown model: {name}")
@@ -124,6 +123,7 @@ def make_model(name: str) -> Scorer:
 def default_model_names() -> list[str]:
     """Models intentionally kept installable with only scikit-learn."""
     return [
+        "published_tomorrow_worse",
         "published_next_low",
         "level_low_percentile",
         "momentum_down",

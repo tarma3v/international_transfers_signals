@@ -123,7 +123,7 @@ def benchmark_models(
 ) -> pd.DataFrame:
     """Run walk-forward benchmark and return model x corridor lift metrics."""
     models = model_names or default_model_names()
-    features = feature_columns(frame)
+    features = feature_columns(frame, target_col=target_col)
     folds = make_walk_forward_folds(frame, train_months, test_months, step_months)
     if not folds:
         raise ValueError("not enough history for requested walk-forward folds")
