@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.ipynb_checkpoints/
+*.tar.gz
+node_modules/
+submission/slide-*.jpg
+*_output.txt
+!results/*_output.txt
