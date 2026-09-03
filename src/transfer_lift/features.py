@@ -6,6 +6,14 @@ import datetime as dt
 import numpy as np
 import pandas as pd
 
+from transfer_lift.calendar_ref import (
+    CORRIDOR_HOLIDAYS,
+    HOLIDAYS,
+    days_since_payday,
+    days_since_prev,
+    days_to_next,
+    days_to_payday,
+)
 from transfer_lift.data import CORRIDORS, REFERENCE, Series
 
 RETURN_LAGS: tuple[int, ...] = (1, 3, 5, 10, 20, 60)
@@ -101,6 +109,24 @@ def _row_features(
     row["is_month_start"] = 1.0 if day.day <= 5 else 0.0
     row["is_month_end"] = 1.0 if day.day >= 26 else 0.0
     row["corridor_id"] = float(CORRIDORS.index(corridor))
+
+    # --- Seasonality (case indicator "seasonality"): payday window + recipient
+    # country holidays. Holiday dates are pre-published years ahead, so this is
+    # calendar knowledge, not look-ahead into market data.
+    row["days_to_payday"] = float(days_to_payday(day))
+    row["days_since_payday"] = float(days_since_payday(day))
+    row["in_payday_window"] = 1.0 if min(days_to_payday(day), days_since_payday(day)) <= 3 else 0.0
+    relevant_holidays = CORRIDOR_HOLIDAYS.get(corridor, ())
+    for name in ("navruz", "eid_adha", "eid_fitr", "new_year", "sep_first"):
+        relevant = name in relevant_holidays
+        row[f"to_{name}"] = float(days_to_next(day, HOLIDAYS[name])) if relevant else 999.0
+        row[f"since_{name}"] = float(days_since_prev(day, HOLIDAYS[name])) if relevant else 999.0
+    row["to_any_holiday"] = (
+        min(float(days_to_next(day, HOLIDAYS[n])) for n in relevant_holidays)
+        if relevant_holidays
+        else 999.0
+    )
+    row["pre_holiday_14d"] = 1.0 if row["to_any_holiday"] <= 14 else 0.0
     return row
 
 
@@ -109,6 +135,37 @@ def target_now_favourable(values: np.ndarray, idx: int, horizon: int) -> float |
     if idx + horizon >= len(values):
         return None
     return 1.0 if values[idx] <= values[idx + 1 : idx + horizon + 1].min() else 0.0
+
+
+def target_local_minimum(values: np.ndarray, idx: int, horizon: int) -> float | None:
+    """Case-literal target: today is a local minimum inside a SYMMETRIC +-h window.
+
+    The case asks models to decide "was today a local minimum of the rate within a
+    +-h day window", not only a forward-looking favourable day. Both sides of the
+    window are needed here: values[idx-h : idx+h+1]. This target legitimately looks
+    both backward and forward because it is a LABEL, not a feature; see the module
+    docstring and feature_columns() for the leakage boundary that still applies to
+    features built from row_features/published_next_features.
+    """
+    if idx - horizon < 0 or idx + horizon >= len(values):
+        return None
+    window = values[idx - horizon : idx + horizon + 1]
+    return 1.0 if values[idx] <= window.min() else 0.0
+
+
+def symmetric_benefit_bps(values: np.ndarray, idx: int, horizon: int) -> float | None:
+    """Case-literal benefit metric: today's rate vs the mean rate in a +-h window.
+
+    Matches "Выгода момента в базисных пунктах" from the case ("насколько курс в день
+    сигнала лучше среднего курса в окне +-h дней"). Unlike forward_benefit_bps, this
+    compares against BOTH past and future days, so it also credits a signal fired
+    right after the move already happened. Use forward_benefit_bps to see how much of
+    that benefit a client could still capture going forward.
+    """
+    if idx - horizon < 0 or idx + horizon >= len(values):
+        return None
+    window_mean = float(values[idx - horizon : idx + horizon + 1].mean())
+    return client_bps(float(values[idx]), window_mean) if window_mean > 0 else None
 
 
 def target_window_closing(values: np.ndarray, idx: int, horizon: int) -> float | None:
@@ -185,10 +242,14 @@ def build_dataset(
                     "rate": float(current_series.values[idx]),
                     "target_fav": target_now_favourable(current_series.values, idx, horizon),
                     "target_close": target_window_closing(current_series.values, idx, horizon),
+                    "target_local_min": target_local_minimum(current_series.values, idx, horizon),
                     "target_pub_fav": target_published_next_favourable(
                         current_series.values, idx, horizon
                     ),
                     "benefit_bps": forward_benefit_bps(current_series.values, idx, horizon),
+                    "symmetric_benefit_bps": symmetric_benefit_bps(
+                        current_series.values, idx, horizon
+                    ),
                     "published_next_benefit_bps": published_next_benefit_bps(
                         current_series.values, idx, horizon
                     ),
@@ -214,8 +275,10 @@ def feature_columns(frame: pd.DataFrame, target_col: str = "target_fav") -> list
         "rate",
         "target_fav",
         "target_close",
+        "target_local_min",
         "target_pub_fav",
         "benefit_bps",
+        "symmetric_benefit_bps",
         "published_next_benefit_bps",
     }
     if target_col != "target_pub_fav":

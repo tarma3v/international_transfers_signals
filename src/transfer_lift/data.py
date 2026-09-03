@@ -30,6 +30,13 @@ class Series:
         if not np.all(np.isfinite(self.values)) or np.any(self.values <= 0):
             raise ValueError(f"{self.code}: values must be positive finite numbers")
 
+    def __len__(self) -> int:
+        return len(self.values)
+
+    def truncate(self, n: int) -> "Series":
+        """First n observations only. Used to build strictly as-of-T series slices."""
+        return Series(self.code, self.dates[:n].copy(), self.values[:n].copy())
+
 
 def default_data_path() -> Path:
     """Return the sibling-project CBR JSON path from common working directories."""

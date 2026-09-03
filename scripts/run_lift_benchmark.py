@@ -19,7 +19,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--target",
         default="target_fav",
-        choices=["target_fav", "target_close", "target_pub_fav"],
+        choices=["target_fav", "target_close", "target_local_min", "target_pub_fav"],
     )
     parser.add_argument("--top-rate", type=float, default=0.15, help="Share of top-score days selected as signals")
     parser.add_argument("--models", nargs="*", default=default_model_names())

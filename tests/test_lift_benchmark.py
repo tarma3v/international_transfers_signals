@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 from transfer_lift.evaluation import benchmark_models, evaluate_predictions, make_walk_forward_folds
-from transfer_lift.features import build_dataset, feature_columns
+from transfer_lift.features import build_dataset, feature_columns, target_local_minimum
 from transfer_lift.data import Series
 
 
@@ -44,8 +44,10 @@ def test_feature_builder_has_targets_and_no_target_columns_in_features() -> None
     assert {
         "target_fav",
         "target_close",
+        "target_local_min",
         "target_pub_fav",
         "benefit_bps",
+        "symmetric_benefit_bps",
         "published_next_benefit_bps",
         "corridor",
         "date",
@@ -53,14 +55,31 @@ def test_feature_builder_has_targets_and_no_target_columns_in_features() -> None
     safe_features = feature_columns(frame)
     assert "target_fav" not in safe_features
     assert "target_close" not in safe_features
+    assert "target_local_min" not in safe_features
     assert "benefit_bps" not in safe_features
+    assert "symmetric_benefit_bps" not in safe_features
     assert all(not column.startswith("published_next_") for column in safe_features)
+
+    local_min_features = feature_columns(frame, target_col="target_local_min")
+    assert all(not column.startswith("published_next_") for column in local_min_features)
 
     asof_features = feature_columns(frame, target_col="target_pub_fav")
     assert "published_next_ret_1" in asof_features
     assert "published_next_pct_range_90" in asof_features
     assert frame["target_fav"].isin([0.0, 1.0]).all()
+    assert frame["target_local_min"].isin([0.0, 1.0]).all()
     assert frame["target_pub_fav"].isin([0.0, 1.0]).all()
+
+
+def test_target_local_minimum_matches_symmetric_window_definition() -> None:
+    values = np.array([9.0, 8.0, 7.0, 6.0, 5.0, 6.0, 7.0, 8.0, 9.0], dtype=np.float64)
+    # idx=4 (value 5.0) is the global minimum: symmetric +-2 window is fully inside bounds.
+    assert target_local_minimum(values, idx=4, horizon=2) == 1.0
+    # idx=3 (value 6.0) is not a local minimum of its own +-2 window (5.0 is lower, at idx=4).
+    assert target_local_minimum(values, idx=3, horizon=2) == 0.0
+    # Out-of-bounds window (not enough history on the left) must return None, not leak partial data.
+    assert target_local_minimum(values, idx=1, horizon=2) is None
+    assert target_local_minimum(values, idx=8, horizon=2) is None
 
 
 def test_walk_forward_folds_do_not_overlap() -> None:
@@ -93,5 +112,21 @@ def test_benchmark_models_returns_lift_for_rule_and_ml_models() -> None:
         "logistic_regression",
     }
     assert set(metrics["corridor"]) == {"TJS", "UZS", "KGS", "AMD", "KZT"}
+    assert metrics["lift"].notna().all()
+    assert (metrics["n_signals"] > 0).all()
+
+
+def test_benchmark_models_on_symmetric_local_minimum_target() -> None:
+    frame = build_dataset(_synthetic_series(), horizon=5)
+    metrics = benchmark_models(
+        frame,
+        model_names=["level_low_percentile", "logistic_regression"],
+        target_col="target_local_min",
+        top_rate=0.12,
+        train_months=24,
+        test_months=3,
+        step_months=6,
+    )
+    assert set(metrics["model"]) == {"level_low_percentile", "logistic_regression"}
     assert metrics["lift"].notna().all()
     assert (metrics["n_signals"] > 0).all()
