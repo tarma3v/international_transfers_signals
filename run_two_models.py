@@ -64,8 +64,6 @@ def main() -> None:
     s = load()
     gate(s)
     X, names, index = build_matrix(s, CORRIDORS, REFERENCE)
-    X = np.column_stack([X, np.array([CORRIDORS.index(c) for c, _, _ in index], float)])
-    names = names + ["corridor_id"]
     dates = np.array([d for _, _, d in index], dtype=object)
     row_of = {(c, i): r for r, (c, i, _) in enumerate(index)}
 
@@ -112,7 +110,7 @@ def main() -> None:
     # Второе: частота считается ДО первого тестового года, а не константой,
     # снятой с теста, — иначе рабочая точка знает распределение теста.
     target_rate = reference_rate(
-        BASELINES[REFERENCE_RULE](X[:, :-1], names[:-1]), dates, FIRST_TEST)
+        BASELINES[REFERENCE_RULE](X, names), dates, FIRST_TEST)
 
     # ——— walk-forward: обучаем обе модели ———
     reach = target_reach_dates(index, s, max(H, WINDOW))
@@ -190,7 +188,7 @@ def main() -> None:
     print("=" * 104)
     print(f"МЕТРИКА КЕЙСА: «сейчас выгодно», h = {H}. Сравнение при ОДИНАКОВОЙ частоте срабатываний.")
     print("=" * 104)
-    ref_mask = BASELINES["простое правило: верх диапазона"](X[:, :-1], names[:-1]).astype(bool) & oos
+    ref_mask = BASELINES["простое правило: верх диапазона"](X, names).astype(bool) & oos
     ref_rate = ref_mask.sum() / max(int(oos.sum()), 1)
     print(f"Правило «верхние 5 %» срабатывает на {ref_rate*100:.1f} % дней теста.")
     print(f"Порог обеих моделей зафиксирован на обучении, цель — частота правила сравнения")
@@ -203,7 +201,7 @@ def main() -> None:
     print(f"{'правило / модель':<40}{'частота':>10}{'сигн/нед':>10}{'попадание':>12}{'lift':>8}{'полоса ТЗ':>12}")
     rows = []
     for bn, bf in BASELINES.items():
-        f = bf(X[:, :-1], names[:-1]).astype(bool) & oos
+        f = bf(X, names).astype(bool) & oos
         lf, _, n = lift(f, y_case, scope=oos)
         rows.append((bn, f.sum() / max(int(oos.sum()), 1), lf, rate_per_week(n, len(CORRIDORS), dates, oos)))
     validA = oos & ~np.isnan(score_A)
@@ -231,7 +229,7 @@ def main() -> None:
     print("  одновременно не выполняет ничто: всё, что даёт lift >= 1,3, срабатывает реже полосы.")
     print("\n  Строка МОДЕЛИ A — справочная. Её набор признаков (один монотонный) выбран")
     print("  сравнением out-of-sample, а период разработки на том же сравнении выбирает")
-    print("  все 83 признака (блок «ОТКУДА ВЗЯТ НАБОР ПРИЗНАКОВ МОДЕЛИ A» ниже). Честно")
+    print(f"  все {len(names)} признака (блок «ОТКУДА ВЗЯТ НАБОР ПРИЗНАКОВ МОДЕЛИ A» ниже). Честно")
     print("  выбранная до теста конфигурация считается в run_experiment.py и run_boosting.py")
     print("  (там и модель, и набор признаков берутся с периода разработки). Главный вывод")
     print("  от этого не меняется —")
@@ -267,7 +265,7 @@ def main() -> None:
     mask = validA & ~np.isnan(y_case)
     if mask.sum() > 100:
         print(f"\n  AUC модели A по метрике кейса: {roc_auc_score(y_case[mask], score_A[mask]):.3f}")
-        rule5 = BASELINES["простое правило: верх диапазона"](X[:, :-1], names[:-1]).astype(bool) & oos
+        rule5 = BASELINES["простое правило: верх диапазона"](X, names).astype(bool) & oos
         print(f"  Средний процентиль в момент срабатывания модели A: "
               f"{pct90_all[fA].mean():.0f} % "
               f"(у правила «верхние 5 %» — {pct90_all[rule5].mean():.0f} %)")
@@ -409,8 +407,9 @@ def feature_set_on_dev(X, names, y_case, dates, index, s) -> None:
     tr, va = _inner_split(dates, dev, inner_wall, max(H, WINDOW), reach)
     print(f"внутреннее обучение {int(tr.sum())} строк, внутренняя валидация {int(va.sum())}")
     col = names.index("pct_range_90")
+    all_features_label = f"все {len(names)} признака"
     variants = {
-        "все 83 признака": list(range(len(names))),
+        all_features_label: list(range(len(names))),
         "один признак pct_range_90": [col],
     }
     best, best_auc = None, -1.0

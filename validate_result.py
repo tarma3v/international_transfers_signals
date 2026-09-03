@@ -59,12 +59,11 @@ def oos_scores(X, y, dates, h, rate: float, reach, index, series):
 def main() -> None:
     s = load()
     X, names, index = build_matrix(s, CORRIDORS, REFERENCE)
-    X = np.column_stack([X, np.array([CORRIDORS.index(c) for c, _, _ in index], float)])
     dates = np.array([d for _, _, d in index], dtype=object)
     Y = build_targets(s, index)
     y = Y[f"{TARGET}_h{H}"]
     rate = reference_rate(
-        BASELINES[REFERENCE_RULE](X[:, :-1], names), dates, 2021)
+        BASELINES[REFERENCE_RULE](X, names), dates, 2021)
     reach = target_reach_dates(index, s, H)
 
     fwd = np.full(len(index), np.nan)
@@ -94,7 +93,7 @@ def main() -> None:
     print(f"{'правило / модель':<34}{'выгода ±h':>12}{'форвард':>11}{'95% ДИ форв.':>19}{'обратная':>12}")
     fired_map: dict[str, np.ndarray] = {}
     for bn, bf in BASELINES.items():
-        fired_map[bn] = bf(X[:, :-1], names).astype(bool) & oos
+        fired_map[bn] = bf(X, names).astype(bool) & oos
     for m in sc:
         fired_map["* " + m] = fr[m] & oos
     for nm, f in fired_map.items():

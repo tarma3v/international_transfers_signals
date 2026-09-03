@@ -144,7 +144,7 @@ def fig3_decomposition() -> None:
     from ml.validation import assert_no_overlap, target_reach_dates, walk_forward_folds
 
     X, names, index = build_matrix(s, CORRIDORS, REFERENCE)
-    Xm = np.column_stack([X, np.array([CORRIDORS.index(c) for c, _, _ in index], float)])
+    Xm = X
     dates = np.array([d for _, _, d in index], dtype=object)
     y = build_targets(s, index)[f"fav_h{H}"]
 
@@ -239,7 +239,7 @@ def fig4_stability() -> None:
     from ml.validation import assert_no_overlap, target_reach_dates, walk_forward_folds
 
     X, names, index = build_matrix(s, CORRIDORS, REFERENCE)
-    Xm = np.column_stack([X, np.array([CORRIDORS.index(c) for c, _, _ in index], float)])
+    Xm = X
     dates = np.array([d for _, _, d in index], dtype=object)
     y = build_targets(s, index)[f"fav_h{H}"]
     fwd = np.full(len(index), np.nan)
@@ -252,7 +252,7 @@ def fig4_stability() -> None:
     from ml.evaluate import REFERENCE_RULE, reference_rate
 
     ref4 = reference_rate(BASELINES[REFERENCE_RULE](X, names), dates, 2021)
-    cols, _, _ = select_features(Xm, y, dates, names + ["corridor_id"], 2021, horizon=H, reach=target_reach_dates(index, s, H))
+    cols, _, _ = select_features(Xm, y, dates, names, 2021, horizon=H, reach=target_reach_dates(index, s, H))
     n_all, r_all = select_model(Xm, y, dates, 2021, horizon=H, reach=target_reach_dates(index, s, H))
     n_sel, r_sel = select_model(Xm, y, dates, 2021, cols=list(cols), horizon=H, reach=target_reach_dates(index, s, H))
     honest = (n_all, None) if dict(r_all)[n_all] >= dict(r_sel)[n_sel] else (n_sel, list(cols))

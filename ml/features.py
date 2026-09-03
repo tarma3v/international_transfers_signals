@@ -9,6 +9,7 @@ values[:i+1] и от календаря. Он не может зависеть �
 """
 from __future__ import annotations
 
+import calendar
 import datetime as dt
 import math
 
@@ -30,6 +31,16 @@ VOL_WINDOWS: tuple[int, ...] = (10, 30, 90)
 # Прогрев обязан покрывать самое длинное окно признаков, иначе ret_250 первые
 # полсотни строк молча отдаёт 0.0 вместо доходности (см. row_features).
 WARMUP = max(max(RETURN_LAGS), max(RANGE_WINDOWS), max(VOL_WINDOWS)) + 1
+
+
+def _cyclic(value: float, period: float) -> tuple[float, float]:
+    """Кодировка циклической величины без искусственного разрыва на границе.
+
+    Одного синуса недостаточно: у разных точек цикла бывает одинаковый синус.
+    Пара sin/cos однозначно задаёт положение на окружности.
+    """
+    angle = 2.0 * math.pi * value / period
+    return math.sin(angle), math.cos(angle)
 
 
 def past_slice(values: np.ndarray, i: int) -> np.ndarray:
@@ -184,10 +195,14 @@ def row_features(
     f["excess_ret_5"] = f["ret_5"] - f.get("usd_ret_5", 0.0)
     f["excess_ret_20"] = f["ret_20"] - f.get("usd_ret_20", 0.0)
 
-    # --- Календарь (индикатор ТЗ "сезонность") и зарплатное окно
-    f["dow"] = float(day.weekday())
-    f["dom"] = float(day.day)
-    f["month"] = float(day.month)
+    # --- Календарь (индикатор ТЗ "сезонность") и зарплатное окно.
+    # Номера категорий не кладём в модель как 0, 1, 2...: декабрь должен быть
+    # рядом с январём, а воскресенье — с понедельником. Для каждой циклической
+    # величины нужны обе координаты окружности, sin и cos.
+    f["dow_sin"], f["dow_cos"] = _cyclic(float(day.weekday()), 7.0)
+    days_in_month = float(calendar.monthrange(day.year, day.month)[1])
+    f["dom_sin"], f["dom_cos"] = _cyclic(float(day.day - 1), days_in_month)
+    f["month_sin"], f["month_cos"] = _cyclic(float(day.month - 1), 12.0)
     f["days_to_payday"] = float(days_to_payday(day))
     f["days_since_payday"] = float(days_since_payday(day))
     f["in_payday_window"] = 1.0 if min(days_to_payday(day), days_since_payday(day)) <= 3 else 0.0
@@ -271,10 +286,12 @@ def row_features(
         f["peer_ret_5_mean"] = f["rel_to_peers_5"] = f["peer_dispersion_5"] = 0.0
 
     # --- Календарь: положение внутри месяца и квартала
-    f["week_of_month"] = float((day.day - 1) // 7)
+    week_of_month = float((day.day - 1) // 7)
+    f["week_of_month_sin"], f["week_of_month_cos"] = _cyclic(week_of_month, 5.0)
     f["is_month_end"] = 1.0 if day.day >= 26 else 0.0
     f["is_month_start"] = 1.0 if day.day <= 5 else 0.0
-    f["quarter"] = float((day.month - 1) // 3)
+    quarter = float((day.month - 1) // 3)
+    f["quarter_sin"], f["quarter_cos"] = _cyclic(quarter, 4.0)
 
     return f
 
@@ -307,6 +324,10 @@ def build_matrix(
             rows.append(
                 row_features(past_slice(s.values, i), day, corridor, gap, ref_past, peer_past)
             )
+            # Явная валюта назначения без ложного числового порядка TJS < UZS < ...
+            # (такой порядок создавал прежний corridor_id). Это обычный one-hot.
+            for code in corridors:
+                rows[-1][f"currency_{code}"] = 1.0 if corridor == code else 0.0
             index.append((corridor, i, day))
     names = sorted(rows[0])
     X = np.array([[r[n] for n in names] for r in rows], dtype=np.float64)

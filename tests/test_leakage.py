@@ -129,6 +129,15 @@ def test_no_nan_in_feature_matrix(series):
     assert len(names) == X.shape[1]
 
 
+def test_currency_is_one_hot_in_feature_matrix(series):
+    X, names, index = build_matrix(series, CORRIDORS, REFERENCE)
+    cols = [names.index(f"currency_{c}") for c in CORRIDORS]
+    one_hot = X[:, cols]
+    assert np.all(one_hot.sum(axis=1) == 1.0)
+    for r, (corridor, _i, _d) in enumerate(index):
+        assert one_hot[r, CORRIDORS.index(corridor)] == 1.0
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Рабочая точка. Признаки могут быть чистыми, а решение «когда срабатывать» —
 # взято из теста. Ворота на утечку такое не ловят по конструкции: они смотрят

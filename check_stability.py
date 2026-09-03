@@ -20,12 +20,10 @@ from ml.validation import assert_no_overlap, target_reach_dates, walk_forward_fo
 
 s = load()
 X, names, index = build_matrix(s, CORRIDORS, REFERENCE)
-X = np.column_stack([X, np.array([CORRIDORS.index(c) for c, _, _ in index], float)])
-names = names + ["corridor_id"]
 dates = np.array([d for _, _, d in index], dtype=object)
 Y = build_targets(s, index)
 RATE = reference_rate(
-    BASELINES[REFERENCE_RULE](X[:, :-1], names[:-1]), dates, 2021)
+    BASELINES[REFERENCE_RULE](X, names), dates, 2021)
 
 # Выбор ДО теста: для каждого горизонта — модель с лучшим AUC на внутренней
 # валидации периода разработки, отдельно на всех признаках и на отобранных.

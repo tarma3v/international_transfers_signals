@@ -18,6 +18,7 @@ from ml.features import (
     VOL_WINDOWS,
     WARMUP,
     _bps,
+    _cyclic,
     _position_in_range,
     _share_of_days_beaten,
     _up_share,
@@ -67,6 +68,19 @@ def test_position_in_range_and_percentile_disagree_on_an_outlier() -> None:
 def test_up_share_bounds() -> None:
     assert _up_share(np.arange(1.0, 20.0)) == pytest.approx(100.0)
     assert _up_share(np.arange(20.0, 1.0, -1.0)) == pytest.approx(0.0)
+
+
+def test_calendar_features_are_cyclic_pairs_not_ordinal_numbers() -> None:
+    """Граница цикла не должна выглядеть для модели большим числовым скачком."""
+    past = np.arange(WARMUP, dtype=float) + 100.0
+    f = row_features(past, dt.date(2024, 12, 31), "TJS", 1, {}, None)
+
+    for raw in ("dow", "dom", "month", "week_of_month", "quarter"):
+        assert raw not in f
+        assert f"{raw}_sin" in f and f"{raw}_cos" in f
+        assert f[f"{raw}_sin"] ** 2 + f[f"{raw}_cos"] ** 2 == pytest.approx(1.0)
+
+    assert _cyclic(0.0, 7.0) == pytest.approx((0.0, 1.0))
 
 
 def test_streaks_count_consecutive_moves() -> None:
