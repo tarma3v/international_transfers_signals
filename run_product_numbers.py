@@ -24,6 +24,12 @@ from ml.features import build_matrix
 from ml.targets import benefit_bps, benefit_forward_only, target_now_favourable
 from ml.two_metrics import payday_anchors
 
+#: Правило и горизонт, под которые считается размер пилота. Это то правило,
+#: которое мы предлагаем запускать, а не правило сравнения из отчётов:
+#: срок пилота зависит от частоты и разброса ИМЕННО запускаемого правила.
+PILOT_RULE = "простое правило: верх диапазона"
+PILOT_H = 5
+
 FIRST_TEST = 2021
 H = 5
 TARGET_PER_WEEK = 1.5  # середина обязательной полосы ТЗ (1-2 сигнала на коридор в неделю)
@@ -538,6 +544,114 @@ def clustering(X, names, index, dates) -> None:
     print("просто подобрав порог, — нужен добор до пола и cooldown против серий.")
 
 
+def pilot_sizing(series, X, names, index, dates) -> None:
+    """За какой срок пилот наберёт события при НАШЕЙ частоте сигналов.
+
+    Главное здесь — что у пилота ДВЕ ветки, и они набираются с разной скоростью.
+
+    Выгода курса — свойство СИГНАЛА, а не клиента: если за коридором следят
+    десять тысяч человек и коридор зажёгся, это одно наблюдение курса, а не
+    десять тысяч. Эту ветку когорта не ускоряет вообще, её скорость задана
+    календарём публикаций ЦБ. Инкрементальная конверсия — наоборот, свойство
+    пары «клиент x пуш», и вот она когортой ускоряется. Смешать их в одну
+    таблицу значит пообещать вердикт за неделю там, где нужен год.
+    """
+    bar("ПИЛОТ: за какой срок наберутся события при нашей частоте сигналов")
+    oos = np.array([d.year >= FIRST_TEST for d in dates])
+    corr_of = np.array([c for c, _i, _d in index])
+    fires = BASELINES[PILOT_RULE](X, names).astype(bool) & oos
+
+    fwd = np.full(len(index), np.nan)
+    for r, (c, i, _d) in enumerate(index):
+        v = benefit_forward_only(series[c].values, i, PILOT_H)
+        if v is not None:
+            fwd[r] = v
+    ok = fires & ~np.isnan(fwd)
+    vals = fwd[ok]
+    mean, sd = float(vals.mean()), float(vals.std(ddof=1))
+    n_obs = int(ok.sum())
+
+    # Поправка на кластеризацию: пять коридоров одного дня — не пять независимых
+    # наблюдений. Design effect меряем сами, отношением дисперсии среднего при
+    # блоке «календарный день целиком» к наивной. Назначать его нельзя: он зависит
+    # от того, как часто правило зажигает несколько коридоров в один день.
+    by_day: dict[object, list[float]] = {}
+    for r in np.where(ok)[0]:
+        by_day.setdefault(dates[r], []).append(float(fwd[r]))
+    blocks = [np.array(v) for v in by_day.values()]
+    rng = np.random.default_rng(0)
+    boot = [float(np.concatenate([blocks[k] for k in
+                                  rng.integers(0, len(blocks), len(blocks))]).mean())
+            for _ in range(2000)]
+    se_clustered = float(np.std(boot, ddof=1))
+    deff = (se_clustered / (sd / np.sqrt(n_obs))) ** 2
+
+    oos_days = sorted({d for d, o in zip(dates, oos) if o})
+    span_weeks = (max(oos_days) - min(oos_days)).days / 7.0
+    sig_days_per_week = len(blocks) / span_weeks
+
+    print(f"Правило пилота: {PILOT_RULE}, горизонт h = {PILOT_H} публикаций.")
+    print(f"Измерено на тесте: {n_obs} срабатываний, выгода {mean:+.0f} бп на "
+          f"срабатывание, разброс (SD) {sd:.0f} бп.")
+    print(f"Дней со срабатываниями {len(blocks)} за {span_weeks:.0f} недель — "
+          f"{sig_days_per_week:.2f} дня в неделю,\nв среднем "
+          f"{n_obs / len(blocks):.2f} коридора в такой день.")
+    print(f"Design effect по датам: {deff:.2f}.\n")
+
+    # z для 5 % двусторонней ошибки и 80 % мощности. Зашиты числами намеренно:
+    # scipy в зависимостях нет, а тянуть его ради двух констант дороже, чем
+    # назвать их явно.
+    Z_ALPHA, Z_POWER = 1.960, 0.842
+    K = (Z_ALPHA + Z_POWER) ** 2
+
+    print("-" * 100)
+    print("ВЕТКА 1. Выгода курса на состоявшихся переводах.")
+    print("Единица наблюдения — СИГНАЛ, а не клиент. Размер когорты эту ветку")
+    print("не ускоряет: больше клиентов не покупает больше наблюдений курса.")
+    print("-" * 100)
+    print(f"{'эффект, который хотим увидеть':<32}{'срабатываний':>15}"
+          f"{'дней с сигналом':>18}{'недель':>10}")
+    seen = set()
+    for delta in (mean, mean / 2, 20.0, 10.0):
+        d = round(abs(delta))
+        if d < 1 or d in seen:
+            continue
+        seen.add(d)
+        n_need = K * sd ** 2 / d ** 2 * deff
+        days = n_need / (n_obs / len(blocks))
+        note = "  <- наша оценка" if abs(delta - mean) < 1e-9 else ""
+        print(f"{str(d) + ' бп':<32}{n_need:>15.0f}{days:>18.0f}"
+              f"{days / sig_days_per_week:>10.0f}{note}")
+    print("\nСрок здесь календарный и уменьшить его нечем, кроме как расширив")
+    print("список коридоров: пять коридоров дают ровно столько сигналов, сколько дают.")
+
+    print("\n" + "-" * 100)
+    print("ВЕТКА 2. Инкрементальная конверсия против холдаута.")
+    print("Единица наблюдения — пара «клиент x пуш», и вот её когорта ускоряет.")
+    print("-" * 100)
+    pw = rate_per_week(int(fires.sum()), len(CORRIDORS), dates, oos)
+    print(f"Частота правила: {pw:.2f} сигнала на коридор в неделю. Допущение о когорте:")
+    print("клиент следит за ОДНИМ коридором, пуши делятся поровну с холдаутом.")
+    print("Базовой конверсии пуша у нас нет — кейсодатель данных о коммуникациях")
+    print("не предоставляет, — поэтому она стоит здесь ПАРАМЕТРОМ, а не числом.\n")
+    print(f"{'базовая конверсия':<20}{'ищем рост':<14}"
+          f"{'пар клиент-пуш':>18}{'клиентов 5 000':>17}{'клиентов 50 000':>18}")
+    for p0 in (0.02, 0.05, 0.10):
+        for rel in (0.20, 0.10):
+            p1 = p0 * (1 + rel)
+            n_arm = K * (p0 * (1 - p0) + p1 * (1 - p1)) / (p1 - p0) ** 2
+            n_tot = 2 * n_arm
+            w = [n_tot / (c * pw) for c in (5_000, 50_000)]
+            def wk(x: float) -> str:
+                return "<1 нед" if x < 0.95 else f"{x:.0f} нед"
+            print(f"{p0 * 100:>6.0f} %{'':<13}{'+' + str(int(rel * 100)) + ' %':<14}"
+                  f"{n_tot:>18,.0f}".replace(",", " ")
+                  + f"{wk(w[0]):>17}{wk(w[1]):>18}")
+    print("\nЧитается так: обе ветки нужны, и медленная из них — первая. Вердикт")
+    print("«сигнал ловит выгодный курс» приходит от календаря, вердикт «пуш меняет")
+    print("поведение» — от размера когорты. Планировать пилот надо по первой.")
+
+
 def base_rate_drift(index, dates) -> None:
     """Почему метрика кейса меряет режим рынка, а не качество момента."""
     bar("ДРЕЙФ БАЗОВОЙ СТАВКИ: метрика кейса меряет режим рубля")
@@ -576,6 +690,7 @@ def main() -> None:
     per_corridor_calibration(X, names, index, dates)
     per_corridor(X, names, index, dates)
     clustering(X, names, index, dates)
+    pilot_sizing(series, X, names, index, dates)
     base_rate_drift(index, dates)
 
 

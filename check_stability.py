@@ -157,3 +157,39 @@ for h, mname, use_sel, chosen_before in CASES:
         print(f"   худший год {wy}: {wv:+.0f} бп при n={wn} "
               f"({wn / n_tot * 100:.0f} % срабатываний); без него {wo:+.0f} бп, "
               f"его вклад в итог {wmean - wo:+.0f} бп")
+
+    # «Устойчиво» = ОДНОВРЕМЕННО на нескольких коридорах и на out-of-time окнах.
+    # Разбивка по годам закрывает вторую половину, эта — первую. База берётся
+    # ВНУТРИ коридора: с общей базой lift коридора мерил бы разницу базовых
+    # ставок между коридорами, а не качество сигнала в нём.
+    corr = np.array([c for c, _i, _d in index], dtype=object)
+    per_corr = []
+    for c in CORRIDORS:
+        m = (corr == c) & f & ~np.isnan(fwd)
+        base = (corr == c) & oos & ~np.isnan(y)
+        hits = (corr == c) & f & ~np.isnan(y)
+        if m.sum() > 15 and base.sum() > 0 and hits.sum() > 0:
+            br = float(y[base].mean())
+            lf_c = float(y[hits].mean()) / br if br > 0 else float("nan")
+            per_corr.append((c, lf_c, float(np.nanmean(fwd[m])), int(m.sum())))
+    if per_corr:
+        print("   ПО КОРИДОРАМ (те же out-of-sample строки, база внутри коридора):")
+        print("      " + "".join(f"{c:>12}" for c, _l, _g, _n in per_corr))
+        print("      " + "".join(f"{lc:>12.2f}" for _c, lc, _g, _n in per_corr)
+              + "    lift")
+        print("      " + "".join(f"{g:>+10.0f}бп" for _c, _l, g, _n in per_corr)
+              + "    достижимая")
+        print("      " + "".join(f"{'n=' + str(n):>12}" for _c, _l, _g, n in per_corr))
+        pl = sum(1 for _c, lc, _g, _n in per_corr if lc > 1.0)
+        pg = sum(1 for _c, _l, g, _n in per_corr if g > 0)
+        print(f"      коридоров с lift > 1: {pl} из {len(per_corr)};"
+              f"  с положительной достижимой выгодой: {pg} из {len(per_corr)}")
+        # Перенос параметров с коридора на коридор — то, ради чего кейс и просит
+        # «несколько коридоров». Если весь итог держится на одном, видно здесь.
+        bc, _bl, _bg, _bn = max(per_corr, key=lambda r: r[2])
+        rest = [r for r in per_corr if r[0] != bc]
+        if rest:
+            n_r = sum(n for _c, _l, _g, n in rest)
+            wo = sum(g * n for _c, _l, g, n in rest) / n_r
+            print(f"      лучший коридор {bc}; без него достижимая {wo:+.0f} бп "
+                  f"на {n_r} срабатываниях")
