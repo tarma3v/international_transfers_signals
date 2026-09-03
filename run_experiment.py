@@ -11,13 +11,22 @@ import numpy as np
 
 from ml.baselines import BASELINES
 from ml.data import CORRIDORS, REFERENCE, load
-from ml.evaluate import bootstrap_ci, lift, mean_benefit, reference_rate, train_cutoff
+from ml.evaluate import (
+    REFERENCE_RULE,
+    UPLIFT_COMPARATOR,
+    bootstrap_ci,
+    lift,
+    mean_benefit,
+    rate_per_week,
+    reference_rate,
+    train_cutoff,
+)
 from ml.features import build_matrix
 from ml.leakage import check_detector_works, check_no_lookahead
 from ml.models import make_classifiers
 from ml.selection import select_model
 from ml.targets import HORIZONS, benefit_forward_only, build_targets
-from ml.validation import assert_no_overlap, walk_forward_folds
+from ml.validation import assert_no_overlap, target_reach_dates, walk_forward_folds
 
 FIRST_TEST_YEAR = 2021
 
@@ -78,21 +87,22 @@ def main() -> None:
                 b = benefit_forward_only(series[c].values, i, h)
                 if b is not None:
                     fwd[r] = b
-            folds = walk_forward_folds(dates, FIRST_TEST_YEAR, h)
+            reach = target_reach_dates(index, series, h)
+            folds = walk_forward_folds(dates, FIRST_TEST_YEAR, h, reach=reach)
             if not folds:
                 continue
 
             # Целевая частота — частота правила ТЗ на периоде РАЗРАБОТКИ.
             # Считать её на тесте нельзя: это уже подгонка рабочей точки под тест.
             ref_rate = reference_rate(
-                BASELINES["ТЗ: уровень (нижний дециль)"](X[:, :-1], names[:-1]),
+                BASELINES[REFERENCE_RULE](X[:, :-1], names[:-1]),
                 dates, FIRST_TEST_YEAR)
 
             oos = np.zeros(len(y), dtype=bool)
             scores: dict[str, np.ndarray] = {m: np.full(len(y), np.nan) for m in make_classifiers()}
             fires: dict[str, np.ndarray] = {m: np.zeros(len(y), bool) for m in make_classifiers()}
             for train_idx, test_idx, _year in folds:
-                assert_no_overlap(dates, train_idx, test_idx, h)
+                assert_no_overlap(dates, train_idx, test_idx, h, index=index, series=series)
                 tr = train_idx[~np.isnan(y[train_idx])]
                 te = test_idx[~np.isnan(y[test_idx])]
                 if len(tr) < 400 or len(te) < 30 or len(np.unique(y[tr])) < 2:
@@ -118,11 +128,12 @@ def main() -> None:
             )
 
             def stats(fired: np.ndarray) -> tuple[float, float, float, float, tuple[float, float]]:
-                lf, _, n = lift(fired, y)
-                pw = n / len(CORRIDORS) / (span_years * 52 * (oos.sum() / len(y)))
+                lf, _, n = lift(fired, y, scope=oos)
+                pw = rate_per_week(n, len(CORRIDORS), dates, oos)
                 sym = mean_benefit(fired, ben)
                 fw = float(np.nanmean(np.where(fired, fwd, np.nan)))
-                ci = bootstrap_ci(fwd[fired & ~np.isnan(fwd)])
+                sel = fired & ~np.isnan(fwd)
+                ci = bootstrap_ci(fwd[sel], dates=dates[sel])
                 return lf, pw, sym, fw, ci
 
             tz_rows, model_rows = [], []
@@ -131,7 +142,7 @@ def main() -> None:
                 rate = fired.sum() / max(int(oos.sum()), 1)
                 lf, pw, sym, fw, ci = stats(fired)
                 row = (bname, rate, pw, lf, sym, fw, ci)
-                (model_rows if False else tz_rows).append(row)
+                tz_rows.append(row)
                 print(
                     f"    {bname:<28}{rate*100:>8.1f}%{pw:>10.2f}{lf:>7.2f}"
                     f"{sym:>+11.0f}бп{fw:>+12.0f}бп{f'[{ci[0]:+.0f}; {ci[1]:+.0f}]':>18}"
@@ -147,27 +158,35 @@ def main() -> None:
                     f"{sym:>+11.0f}бп{fw:>+12.0f}бп{f'[{ci[0]:+.0f}; {ci[1]:+.0f}]':>18}"
                 )
 
-            # UPLIFT считается ТОЛЬКО против индикаторов ТЗ; контрпример исключён.
+            # UPLIFT считается ТОЛЬКО против индикаторов ТЗ; простое правило исключено.
             # Модель фиксируется ДО теста — по внутренней валидации периода разработки.
             # Брать лучшую на тесте нельзя: это выбор рабочей точки по тесту, только
             # на уровне модели, и он завышает результат тем сильнее, чем больше перебор.
             tz_only = [r for r in tz_rows if r[0].startswith("ТЗ:")]
+            by_name = {r[0]: r for r in tz_only}
+            cmp_row = by_name[UPLIFT_COMPARATOR]
             best_tz_lift = max(tz_only, key=lambda r: r[3])
             best_tz_fwd = max(tz_only, key=lambda r: r[5])
-            chosen, sel_rep = select_model(X, y, dates, FIRST_TEST_YEAR)
+            chosen, sel_rep = select_model(X, y, dates, FIRST_TEST_YEAR, horizon=h, reach=target_reach_dates(index, series, h))
             md = dict((r[0], r) for r in model_rows)[chosen]
             print(f"\n  модель выбрана ДО теста (AUC на внутренней валидации): {chosen}"
                   f"  [{', '.join(f'{n} {a:.3f}' for n, a in sel_rep)}]")
+            print(f"  компаратор назначен ДО теста: {UPLIFT_COMPARATOR}")
             print(
                 f"  UPLIFT по lift:              {md[3]:.2f} ({chosen})"
-                f"  против {best_tz_lift[3]:.2f} ({best_tz_lift[0]})"
-                f"  = {md[3]-best_tz_lift[3]:+.2f}"
+                f"  против {cmp_row[3]:.2f}  = {md[3]-cmp_row[3]:+.2f}"
             )
             print(
                 f"  UPLIFT по достижимой выгоде: {md[5]:+.0f} бп ({chosen})"
-                f"  против {best_tz_fwd[5]:+.0f} бп ({best_tz_fwd[0]})"
-                f"  = {md[5]-best_tz_fwd[5]:+.0f} бп"
+                f"  против {cmp_row[5]:+.0f} бп  = {md[5]-cmp_row[5]:+.0f} бп"
             )
+            print("  разности ко всем четырём индикаторам (парные, каждая воспроизводима):")
+            for r in tz_only:
+                print(f"      {r[0]:<32} lift {md[3]-r[3]:+.2f}   выгода {md[5]-r[5]:+.0f} бп")
+            print(f"  справочно, разность к МАКСИМУМУ по тесту "
+                  f"(lift {best_tz_lift[0]}, выгода {best_tz_fwd[0]}): "
+                  f"{md[3]-best_tz_lift[3]:+.2f} / {md[5]-best_tz_fwd[5]:+.0f} бп — "
+                  f"это max-статистика, а не парная оценка")
             mx_l = max(model_rows, key=lambda r: r[3])
             mx_f = max(model_rows, key=lambda r: r[5])
             print(f"  справочно, лучшая НА ТЕСТЕ (как результат не годится): "

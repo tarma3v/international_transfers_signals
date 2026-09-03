@@ -20,14 +20,51 @@ from ml.models import make_classifiers
 CANDIDATE_K: tuple[int, ...] = (10, 15, 20, 30, 45, 60, 999)
 
 
+def _purge_gap(horizon: int) -> dt.timedelta:
+    """Календарный запас — резервная ветка, когда точные даты не переданы.
+
+    Она заведомо неточна: горизонт задан в ПУБЛИКАЦИЯХ, а запас отсчитывается
+    в календарных днях. Фактические максимумы по данным ЦБ — 13 дней на h = 1
+    и 17 на h = 3 против запаса 12 и 16, то есть запас бывает МЕНЬШЕ нужного.
+    Сейчас это не протекает только потому, что внутренняя стенка приходится на
+    участок без длинных разрывов; на других данных протечёт. Поэтому обе
+    функции ниже принимают `reach` и при его наличии режут точно.
+    """
+    return dt.timedelta(days=2 * horizon + 10) if horizon > 0 else dt.timedelta(0)
+
+
+def _inner_split(
+    dates: np.ndarray,
+    dev: np.ndarray,
+    inner_wall: dt.date,
+    horizon: int,
+    reach: np.ndarray | None,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Внутренний сплит периода разработки с очисткой в публикациях.
+
+    Та же арифметика, что в `ml/validation.py`: обучающая строка выбрасывается,
+    если дата, до которой достаёт её цель, попадает за внутреннюю стенку.
+    """
+    inner_va = dev & np.array([d > inner_wall for d in dates])
+    if reach is None:
+        inner_tr = dev & np.array([d <= inner_wall - _purge_gap(horizon) for d in dates])
+    else:
+        inner_tr = dev & np.array(
+            [d <= inner_wall and rr <= inner_wall for d, rr in zip(dates, reach)]
+        )
+    return inner_tr, inner_va
+
+
 def select_features(
     X: np.ndarray,
     y: np.ndarray,
     dates: np.ndarray,
     names: list[str],
     first_test_year: int,
+    horizon: int = 0,
     inner_valid_months: int = 6,
     model_name: str = "CatBoost",
+    reach: np.ndarray | None = None,
 ) -> tuple[list[int], int, list[tuple[int, float]]]:
     """Возвращает (индексы отобранных, выбранное K, отчёт по K)."""
     wall = dt.date(first_test_year, 1, 1)
@@ -37,8 +74,7 @@ def select_features(
 
     dev_dates = [d for d in dates[dev]]
     inner_wall = max(dev_dates) - dt.timedelta(days=30 * inner_valid_months)
-    inner_tr = dev & np.array([d <= inner_wall for d in dates])
-    inner_va = dev & np.array([d > inner_wall for d in dates])
+    inner_tr, inner_va = _inner_split(dates, dev, inner_wall, horizon, reach)
     if inner_tr.sum() < 300 or inner_va.sum() < 100:
         raise ValueError("не удалось разделить период разработки")
 
@@ -66,7 +102,9 @@ def select_model(
     dates: np.ndarray,
     first_test_year: int,
     cols: list[int] | None = None,
+    horizon: int = 0,
     inner_valid_months: int = 6,
+    reach: np.ndarray | None = None,
 ) -> tuple[str, list[tuple[str, float]]]:
     """Выбор модели ДО теста — по внутренней валидации внутри периода разработки.
 
@@ -81,8 +119,7 @@ def select_model(
         raise ValueError("мало данных до первого тестового года")
     dev_dates = [d for d in dates[dev]]
     inner_wall = max(dev_dates) - dt.timedelta(days=30 * inner_valid_months)
-    inner_tr = dev & np.array([d <= inner_wall for d in dates])
-    inner_va = dev & np.array([d > inner_wall for d in dates])
+    inner_tr, inner_va = _inner_split(dates, dev, inner_wall, horizon, reach)
     if inner_tr.sum() < 300 or inner_va.sum() < 100:
         raise ValueError("не удалось разделить период разработки")
     use = slice(None) if cols is None else cols

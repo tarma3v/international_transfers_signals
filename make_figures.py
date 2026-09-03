@@ -11,7 +11,7 @@ from pathlib import Path
 from matplotlib import rcParams
 
 from ml.data import CORRIDORS, REFERENCE, load
-from ml.features import build_matrix
+from ml.features import WARMUP, build_matrix
 from ml.targets import benefit_backward_only, benefit_forward_only
 
 rcParams["font.family"] = ["DejaVu Sans"]
@@ -40,7 +40,8 @@ def fig1_corridor_with_signals() -> None:
 
     lo_idx, hi_idx = [], []
     for i in range(90, len(vals)):
-        w = vals[i - 90 : i + 1]
+        # те же 90 точек, что берёт _position_in_range(past, 90)
+        w = vals[i - 89 : i + 1]
         rng = max(w) - min(w)
         if rng <= 0:
             continue
@@ -64,44 +65,70 @@ def fig1_corridor_with_signals() -> None:
 
 
 def fig2_traffic_light() -> None:
-    """Калибровка светофора: выгода по бакетам положения в диапазоне."""
+    """Светофор: две метрики дают ПРОТИВОПОЛОЖНЫЕ цвета.
+
+    Симметричная выгода ±h для светофора не годится: половина её уже случилась
+    и клиенту недоступна. По ней дешёвые дни выглядят выгодными, а дорогие —
+    вредными; по достижимой половине всё наоборот. Светофор, откалиброванный
+    по ±h, отправлял бы клиента переводить ровно в те дни, когда это хуже всего.
+    Поэтому рисуются обе метрики рядом.
+    """
     BK = [(0, 10, "0–10 %\nдёшево"), (10, 30, "10–30 %"), (30, 70, "30–70 %\nнейтрально"),
           (70, 90, "70–90 %"), (90, 101, "90–100 %\nдорого")]
     agg = {b[2]: [] for b in BK}
+    fwd_b = {b[2]: [] for b in BK}
     hits = {b[2]: [] for b in BK}
     for c in CORRIDORS:
         v = list(s[c].values)
-        for i in range(90, len(v) - H):
-            w = v[i - 90 : i + 1]
+        # тот же прогрев, что и везде: иначе бакеты в графике и в отчёте
+        # посчитаны на разных выборках и цифры расходятся
+        for i in range(WARMUP, len(v) - H):
+            # ровно те же 90 точек, что берёт _position_in_range(past, 90):
+            # окно включает сегодняшний день, поэтому срез начинается с i-89
+            w = v[i - 89 : i + 1]
             rng = max(w) - min(w)
             if rng <= 0:
                 continue
             p = (v[i] - min(w)) / rng * 100
             ref = float(np.mean(v[i - H : i + H + 1]))
             ben = -(v[i] - ref) / ref * 10000
+            fw = benefit_forward_only(s[c].values, i, H)
             for a, b, nm in BK:
                 if a <= p < b:
                     agg[nm].append(ben)
+                    if fw is not None:
+                        fwd_b[nm].append(fw)
                     hits[nm].append(1.0 if v[i] <= min(v[i + 1 : i + H + 1]) else 0.0)
                     break
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4.2))
     labels = [b[2] for b in BK]
-    means = [np.mean(agg[l]) for l in labels]
-    colors = [POS if m > 20 else (NEG if m < -20 else GREY) for m in means]
-    ax1.bar(range(5), means, color=colors)
+    x = np.arange(5)
+    sym = [np.mean(agg[l]) for l in labels]
+    fw = [np.mean(fwd_b[l]) for l in labels]
+    ax1.bar(x - 0.2, sym, 0.4, label="выгода ±h (в метрике ТЗ)", color=GREY)
+    ax1.bar(x + 0.2, fw, 0.4, label="ДОСТИЖИМАЯ половина", color=ACCENT)
     ax1.axhline(0, color=INK, lw=0.8)
-    ax1.set_xticks(range(5))
+    ax1.set_xticks(x)
     ax1.set_xticklabels(labels, fontsize=8)
-    ax1.set_ylabel("Выгода клиента, б. п.", fontsize=9)
-    ax1.set_title("Что чувствует клиент", fontsize=11, color=INK, loc="left")
+    ax1.set_ylabel("Выгода, б. п.", fontsize=9)
+    ax1.set_title("Две метрики дают противоположный светофор", fontsize=11, color=INK, loc="left")
+    ax1.legend(fontsize=8, frameon=False)
     ax1.grid(axis="y", alpha=0.15)
+    for xi, a, b in zip(x, sym, fw):
+        ax1.annotate(f"{a:+.0f}", (xi - 0.2, a), textcoords="offset points",
+                     xytext=(0, 4 if a >= 0 else -12), ha="center", fontsize=8, color=GREY)
+        ax1.annotate(f"{b:+.0f}", (xi + 0.2, b), textcoords="offset points",
+                     xytext=(0, 4 if b >= 0 else -12), ha="center", fontsize=8,
+                     color=ACCENT, weight="bold")
     hr = [np.mean(hits[l]) * 100 for l in labels]
-    ax2.bar(range(5), hr, color=ACCENT)
-    ax2.set_xticks(range(5))
+    ax2.bar(x, hr, color=ACCENT)
+    ax2.set_xticks(x)
     ax2.set_xticklabels(labels, fontsize=8)
     ax2.set_ylabel("Попадание по метрике ТЗ, %", fontsize=9)
-    ax2.set_title("Что показывает метрика кейса", fontsize=11, color=INK, loc="left")
+    ax2.set_title("Попадание растёт к дорогим дням", fontsize=11, color=INK, loc="left")
     ax2.grid(axis="y", alpha=0.15)
+    print(f"  fig2: ±h дёшево {sym[0]:+.0f} / дорого {sym[-1]:+.0f}; "
+          f"достижимая дёшево {fw[0]:+.0f} / дорого {fw[-1]:+.0f}")
     fig.tight_layout()
     fig.savefig(f"{OUT}/02-konflikt-metrik.png", bbox_inches="tight")
     plt.close(fig)
@@ -114,7 +141,7 @@ def fig3_decomposition() -> None:
     from ml.models import make_classifiers
     from ml.selection import select_model
     from ml.targets import build_targets
-    from ml.validation import assert_no_overlap, walk_forward_folds
+    from ml.validation import assert_no_overlap, target_reach_dates, walk_forward_folds
 
     X, names, index = build_matrix(s, CORRIDORS, REFERENCE)
     Xm = np.column_stack([X, np.array([CORRIDORS.index(c) for c, _, _ in index], float)])
@@ -132,18 +159,19 @@ def fig3_decomposition() -> None:
             bwd[r] = b
 
     # Модель фиксируется ДО теста — иначе на график попадёт победитель теста.
-    chosen, _ = select_model(Xm, y, dates, 2021)
+    chosen, _ = select_model(Xm, y, dates, 2021, horizon=H, reach=target_reach_dates(index, s, H))
     # Целевая частота — та же, что в run_experiment.py: доля срабатываний правила
     # «нижний дециль» на периоде РАЗРАБОТКИ. Иначе числа в отчёте и на графике разойдутся.
     from ml.baselines import BASELINES
-    from ml.evaluate import reference_rate
+    from ml.evaluate import REFERENCE_RULE, reference_rate
 
-    ref_rate = reference_rate(BASELINES["ТЗ: уровень (нижний дециль)"](X, names), dates, 2021)
+    ref_rate = reference_rate(BASELINES[REFERENCE_RULE](X, names), dates, 2021)
     oos = np.zeros(len(y), bool)
     sc = np.full(len(y), np.nan)
     model_mask = np.zeros(len(y), bool)
-    for tr_i, te_i, _ in walk_forward_folds(dates, 2021, H):
-        assert_no_overlap(dates, tr_i, te_i, H)
+    reach = target_reach_dates(index, s, H)
+    for tr_i, te_i, _ in walk_forward_folds(dates, 2021, H, reach=reach):
+        assert_no_overlap(dates, tr_i, te_i, H, index=index, series=s)
         tr = tr_i[~np.isnan(y[tr_i])]
         te = te_i[~np.isnan(y[te_i])]
         if len(tr) < 400 or len(te) < 30 or len(np.unique(y[tr])) < 2:
@@ -163,8 +191,9 @@ def fig3_decomposition() -> None:
         "ТЗ: моментум\n(падение 3 дня)": (dn >= 3) & oos,
         "ТЗ: уровень\n(нижний дециль)": (pct <= 10) & oos,
         f"Модель\n({chosen})": model_mask,
+        "Простое правило\n(верх диапазона)": (pct >= 95) & oos,
     }
-    fig, ax = plt.subplots(figsize=(9, 4.6))
+    fig, ax = plt.subplots(figsize=(10, 4.6))
     labels, fvals, bvals = [], [], []
     for nm, mask in rules.items():
         labels.append(nm)
@@ -207,7 +236,7 @@ def fig4_stability() -> None:
     from ml.models import make_classifiers
     from ml.selection import select_features, select_model
     from ml.targets import build_targets
-    from ml.validation import assert_no_overlap, walk_forward_folds
+    from ml.validation import assert_no_overlap, target_reach_dates, walk_forward_folds
 
     X, names, index = build_matrix(s, CORRIDORS, REFERENCE)
     Xm = np.column_stack([X, np.array([CORRIDORS.index(c) for c, _, _ in index], float)])
@@ -220,12 +249,12 @@ def fig4_stability() -> None:
             fwd[r] = b
 
     from ml.baselines import BASELINES
-    from ml.evaluate import reference_rate
+    from ml.evaluate import REFERENCE_RULE, reference_rate
 
-    ref4 = reference_rate(BASELINES["ТЗ: уровень (нижний дециль)"](X, names), dates, 2021)
-    cols, _, _ = select_features(Xm, y, dates, names + ["corridor_id"], 2021)
-    n_all, r_all = select_model(Xm, y, dates, 2021)
-    n_sel, r_sel = select_model(Xm, y, dates, 2021, cols=list(cols))
+    ref4 = reference_rate(BASELINES[REFERENCE_RULE](X, names), dates, 2021)
+    cols, _, _ = select_features(Xm, y, dates, names + ["corridor_id"], 2021, horizon=H, reach=target_reach_dates(index, s, H))
+    n_all, r_all = select_model(Xm, y, dates, 2021, horizon=H, reach=target_reach_dates(index, s, H))
+    n_sel, r_sel = select_model(Xm, y, dates, 2021, cols=list(cols), horizon=H, reach=target_reach_dates(index, s, H))
     honest = (n_all, None) if dict(r_all)[n_all] >= dict(r_sel)[n_sel] else (n_sel, list(cols))
 
     configs: list[tuple[str, str, list[int] | None]] = []
@@ -235,8 +264,9 @@ def fig4_stability() -> None:
 
     oos = np.zeros(len(y), bool)
     fires = {lbl: np.zeros(len(y), bool) for lbl, _, _ in configs}
-    for tr_i, te_i, _ in walk_forward_folds(dates, 2021, H):
-        assert_no_overlap(dates, tr_i, te_i, H)
+    reach = target_reach_dates(index, s, H)
+    for tr_i, te_i, _ in walk_forward_folds(dates, 2021, H, reach=reach):
+        assert_no_overlap(dates, tr_i, te_i, H, index=index, series=s)
         tr = tr_i[~np.isnan(y[tr_i])]
         te = te_i[~np.isnan(y[te_i])]
         if len(tr) < 400 or len(te) < 30 or len(np.unique(y[tr])) < 2:
@@ -293,43 +323,66 @@ def fig4_stability() -> None:
           f"победитель теста {winner_lbl} {np.mean([v for v in wv if v]):+.0f} бп/год")
 
 
-def _parse_two_models() -> tuple[list[float], list[int], list[int], list[int]]:
-    """Цифры берём из свежего прогона, а не из памяти: захардкоженные числа
-    в графиках — самый простой способ показать давно исправленный результат."""
+def _parse_two_models() -> tuple[list[float], list[int], list[int], list[int], int]:
+    """Цифры берём из свежего прогона, а не из памяти.
+
+    Захардкоженное число в графике расходится с кодом молча: прогон меняется,
+    картинка остаётся прежней, и заметить это можно только сверкой глазами.
+    Разбор намеренно падает с исключением, если строка не найдена."""
     import re
 
     txt = Path("results/two_models_output.txt").read_text(encoding="utf-8")
     lifts, gains, los, his = [], [], [], []
-    for pat in (r"контрпример: верхние 5 %.*?([\d.]+)\s*$",
-                r"МОДЕЛЬ A \(обучена.*?([\d.]+)\s*$",
-                r"МОДЕЛЬ B \(обучена.*?([\d.]+)\s*$"):
+    # В таблице метрики кейса после lift идёт колонка «полоса ТЗ» — её и якорим,
+    # иначе регулярка молча захватит не тот столбец.
+    # Якорим на колонку «полоса ТЗ» — она есть только в таблице метрики кейса,
+    # поэтому подпись строки можно менять, не ломая разбор.
+    tail = r"\s+([\d.]+)\s+(?:НИЖЕ|ВЫШЕ|в полосе)\s*$"
+    for pat in (r"простое правило: верх диапазона.*?" + tail,
+                r"МОДЕЛЬ A \(.*?" + tail,
+                r"МОДЕЛЬ B \(.*?" + tail):
         m = re.search(pat, txt, re.M)
         if m is None:
             raise RuntimeError(f"не нашёл строку lift: {pat}")
         lifts.append(float(m.group(1)))
+    mo = re.search(r"Потолок \(оракул, знает будущее\): \+(\d+) бп", txt)
+    if mo is None:
+        raise RuntimeError("не нашёл потолок оракула — он не должен быть захардкожен")
+    oracle = int(mo.group(1))
     for pat in (r"Правило: верхние 5 % диапазона\s*([-+]\d+)бп\s*\[([-+]\d+); ([-+]\d+)\]",
                 r"МОДЕЛЬ A \(метрика кейса\)\s*([-+]\d+)бп\s*\[([-+]\d+); ([-+]\d+)\]",
-                r"МОДЕЛЬ B \(метрика клиента\)\s*([-+]\d+)бп\s*\[([-+]\d+); ([-+]\d+)\]"):
+                r"МОДЕЛЬ B \(порог: предсказание > 0\)\s*([-+]\d+)бп\s*\[([-+]\d+); ([-+]\d+)\]"):
         m = re.search(pat, txt)
         if m is None:
             raise RuntimeError(f"не нашёл строку выгоды: {pat}")
         gains.append(int(m.group(1))); los.append(int(m.group(2))); his.append(int(m.group(3)))
-    return lifts, gains, los, his
+    return lifts, gains, los, his, oracle
 
 
 def fig5_two_models() -> None:
     """Две модели под две метрики. Цифры читаются из results/two_models_output.txt."""
-    lifts, gains, los, his = _parse_two_models()
+    lifts, gains, los, his, oracle = _parse_two_models()
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4.0))
-    labels = ["Правило\n«верхние 5 %»", "МОДЕЛЬ A\nметрика кейса", "МОДЕЛЬ B\nметрика клиента"]
+    # «МОДЕЛЬ B» в двух панелях — РАЗНЫЕ политики: слева порог берётся из обучения,
+    # справа сигналом считается любое положительное предсказание. Одна подпись на
+    # обе панели склеивала бы их в одну сущность, поэтому подписи разные.
+    # У «МОДЕЛИ A» строка-источник помечена «набор признаков с теста — справочно».
+    # Без этой пометки столбец читается как честный результат, а он им не является.
+    # Подписи в три строки: в одну строку они наезжают на соседний столбец.
+    labels_lift = ["Правило\n«верхние 5 %»",
+                   "МОДЕЛЬ A\nпризнаки с теста,\nсправочно",
+                   "МОДЕЛЬ B\nпорог\nиз обучения"]
+    labels_gain = ["Правило\n«верхние 5 %»",
+                   "МОДЕЛЬ A\nпризнаки с теста,\nсправочно",
+                   "МОДЕЛЬ B\nпорог:\nпредсказание > 0"]
     x = np.arange(3)
     ax1.bar(x, lifts, 0.55, color=[GREY, ACCENT, POS])
     ax1.axhline(1.0, color=INK, lw=0.9, ls="--")
     ax1.annotate("уровень случайного дня", (0.015, 1.0), xycoords=("axes fraction", "data"),
                  textcoords="offset points", xytext=(0, 4),
                  fontsize=8, color=INK, ha="left", va="bottom")
-    ax1.set_xticks(x); ax1.set_xticklabels(labels, fontsize=9)
-    ax1.set_ylim(0.9, 1.52)
+    ax1.set_xticks(x); ax1.set_xticklabels(labels_lift, fontsize=8)
+    ax1.set_ylim(min(0.95, min(lifts) - 0.05), max(lifts) + 0.12)
     ax1.set_ylabel("lift по метрике кейса", fontsize=9)
     ax1.set_title("Метрика заказчика", fontsize=11, color=INK, loc="left")
     ax1.grid(axis="y", alpha=0.15)
@@ -341,18 +394,25 @@ def fig5_two_models() -> None:
     ax2.errorbar(x, gains, yerr=[np.array(gains) - np.array(los), np.array(his) - np.array(gains)],
                  fmt="none", ecolor=INK, capsize=5, lw=1.1)
     ax2.axhline(0, color=INK, lw=0.9)
-    ax2.axhline(143, color=NEG, lw=1.1, ls="--")
-    ax2.annotate("потолок оракула +143 бп", (0.015, 143), xycoords=("axes fraction", "data"),
+    ax2.axhline(oracle, color=NEG, lw=1.1, ls="--")
+    ax2.annotate(f"потолок оракула +{oracle} бп", (0.015, oracle), xycoords=("axes fraction", "data"),
                  textcoords="offset points", xytext=(0, -6),
                  fontsize=8, color=NEG, ha="left", va="top")
-    ax2.set_xticks(x); ax2.set_xticklabels(labels, fontsize=9)
-    ax2.set_ylim(-45, 165)
+    ax2.set_xticks(x); ax2.set_xticklabels(labels_gain, fontsize=8)
+    ax2.set_ylim(min(los) - 15, oracle * 1.15)
     ax2.set_ylabel("бп против дня зарплаты", fontsize=9)
     ax2.set_title("Метрика клиента: что получила семья", fontsize=11, color=INK, loc="left")
     ax2.grid(axis="y", alpha=0.15)
     for xi, v, hi in zip(x, gains, his):
-        ax2.annotate(f"{v:+.0f}", (xi, hi), textcoords="offset points", xytext=(0, 7),
+        # Ноль печатаем без знака: округлённый до целых он может прийти как «-0»,
+        # и «+0» приписал бы направление, которого в числе нет.
+        lab = "0" if v == 0 else f"{v:+.0f}"
+        ax2.annotate(lab, (xi, hi), textcoords="offset points", xytext=(0, 7),
                      ha="center", fontsize=10, weight="bold")
+    fig.text(0.5, -0.075,
+             "«МОДЕЛЬ B» в двух панелях — разные политики: слева порог из обучения, "
+             "справа сигнал = любое положительное предсказание.",
+             ha="center", fontsize=8, color=INK)
     fig.tight_layout()
     fig.savefig(f"{OUT}/05-dve-modeli.png", bbox_inches="tight")
     plt.close(fig)

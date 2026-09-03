@@ -10,6 +10,7 @@
 from __future__ import annotations
 
 import datetime as dt
+from dataclasses import dataclass
 
 import numpy as np
 
@@ -70,35 +71,56 @@ def build_windows(
     return out
 
 
+@dataclass(frozen=True)
+class PolicyRun:
+    """Исход политики по каждому окну — единственный источник истины для отчётов.
+
+    Возвращается вектор, а не среднее: агрегировать (среднее, ДИ с кластеризацией
+    по датам, разложение по дню срабатывания) должен вызывающий. Раньше отчёт
+    пересчитывал выгоды вторым, параллельным кодом — два источника истины для
+    главного числа.
+    """
+
+    gains: np.ndarray  # бп против дня зарплаты, по одному на окно
+    day_used: np.ndarray  # на какой день окна пришёлся перевод (0 = день зарплаты)
+    fired: np.ndarray  # сработал ли сигнал в этом окне (bool)
+    anchor: np.ndarray  # индекс дня зарплаты каждого окна
+
+    def __len__(self) -> int:
+        return len(self.gains)
+
+    @property
+    def mean(self) -> float:
+        return float(self.gains.mean()) if len(self.gains) else float("nan")
+
+    @property
+    def fire_rate(self) -> float:
+        return float(self.fired.mean()) if len(self.fired) else 0.0
+
+
 def evaluate_policy(
     values: np.ndarray,
     windows: list[tuple[int, int]],
     fires: dict[int, bool],
-) -> tuple[float, float, float, int]:
+) -> PolicyRun:
     """Симуляция политики: переводим в первый день окна, где сигнал сработал.
 
     Если не сработал ни разу — переводим в конце окна (клиент всё равно переведёт).
-    Возвращает (выгода против дня зарплаты в бп, доля окон со срабатыванием,
-    средний день перевода, число окон).
     """
     gains: list[float] = []
-    fired_windows = 0
     day_used: list[int] = []
+    fired: list[bool] = []
+    anchor: list[int] = []
     for p, w in windows:
-        chosen = None
-        for k in range(w + 1):
-            if fires.get(p + k, False):
-                chosen = p + k
-                break
+        chosen = next((p + k for k in range(w + 1) if fires.get(p + k, False)), None)
+        fired.append(chosen is not None)
         if chosen is None:
             chosen = p + w
-        else:
-            fired_windows += 1
         day_used.append(chosen - p)
+        anchor.append(p)
         gains.append(-(float(values[chosen]) - float(values[p])) / float(values[p]) * 10000.0)
-    if not gains:
-        return float("nan"), 0.0, float("nan"), 0
-    return float(np.mean(gains)), fired_windows / len(windows), float(np.mean(day_used)), len(gains)
+    return PolicyRun(np.array(gains), np.array(day_used, dtype=int),
+                     np.array(fired, dtype=bool), np.array(anchor, dtype=int))
 
 
 def oracle_gain(values: np.ndarray, windows: list[tuple[int, int]]) -> float:

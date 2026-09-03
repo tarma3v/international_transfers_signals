@@ -27,7 +27,9 @@ from ml.data import Series
 RETURN_LAGS: tuple[int, ...] = (1, 3, 5, 10, 20, 60, 120, 250)
 RANGE_WINDOWS: tuple[int, ...] = (30, 90, 180)
 VOL_WINDOWS: tuple[int, ...] = (10, 30, 90)
-WARMUP = 200  # строк в начале ряда, где окна ещё не набраны
+# Прогрев обязан покрывать самое длинное окно признаков, иначе ret_250 первые
+# полсотни строк молча отдаёт 0.0 вместо доходности (см. row_features).
+WARMUP = max(max(RETURN_LAGS), max(RANGE_WINDOWS), max(VOL_WINDOWS)) + 1
 
 
 def past_slice(values: np.ndarray, i: int) -> np.ndarray:
@@ -53,8 +55,13 @@ def _bps(new: float, old: float) -> float:
     return -(new - old) / old * 10000.0
 
 
-def _percentile_in_range(past: np.ndarray, window: int) -> float:
-    """Положение последнего значения в диапазоне окна, 0..100."""
+def _position_in_range(past: np.ndarray, window: int) -> float:
+    """Положение последнего значения в диапазоне min..max окна, 0..100.
+
+    Это НЕ процентиль: чувствительно к одному выбросу на границе окна.
+    Настоящий процентиль считает `_share_of_days_beaten` — он нужен для текста
+    пуша «выгоднее, чем в 85 % дней», который обещает именно долю дней.
+    """
     w = past[-window:]
     lo, hi = float(w.min()), float(w.max())
     if hi <= lo:
@@ -62,7 +69,31 @@ def _percentile_in_range(past: np.ndarray, window: int) -> float:
     return (float(w[-1]) - lo) / (hi - lo) * 100.0
 
 
-def _rsi(past: np.ndarray, window: int = 14) -> float:
+def _share_of_days_beaten(past: np.ndarray, window: int) -> float:
+    """Доля дней окна, которые сегодняшний курс ПОБИВАЕТ, 0..100 — честный процентиль.
+
+    Ровно та величина, которую обещает разрешённый кейсом текст пуша
+    «выгоднее, чем в 85 % дней за последние три месяца»: 85 здесь означает
+    «85 % дней были для клиента хуже сегодняшнего».
+
+    Направление здесь легко перепутать, и ошибка была бы не косметической.
+    Курс — рубли за единицу валюты получателя, поэтому **низкий курс выгоден
+    клиенту**: за те же рубли получатель получает больше. Значит «выгоднее,
+    чем в 85 % дней» — это доля дней, когда курс был ВЫШЕ сегодняшнего.
+    Доля дней ниже сегодняшнего — величина, обратная нужной: на входе
+    `[1, 2, 3, 4, 10]` она равна 100 %, хотя сегодня самый дорогой день окна,
+    и пуш «выгоднее, чем в 100 % дней» ушёл бы в худший момент.
+
+    Отличается от `_position_in_range` тем, что не зависит от одного выброса
+    на краю окна.
+    """
+    w = past[-window:]
+    if len(w) < 2:
+        return 50.0
+    return float((w[:-1] > w[-1]).mean()) * 100.0
+
+
+def _up_share(past: np.ndarray, window: int = 14) -> float:
     w = past[-(window + 1):]
     if len(w) < 2:
         return 50.0
@@ -113,14 +144,15 @@ def row_features(
     # --- Уровень: положение в диапазоне (индикатор ТЗ "уровень")
     for w in RANGE_WINDOWS:
         if len(past) >= w:
-            f[f"pct_range_{w}"] = _percentile_in_range(past, w)
+            f[f"pct_range_{w}"] = _position_in_range(past, w)
+            f[f"days_beaten_{w}"] = _share_of_days_beaten(past, w)
             win = past[-w:]
             f[f"dist_min_{w}"] = _bps(v, float(win.min()))
             f[f"dist_max_{w}"] = _bps(v, float(win.max()))
             mu, sd = float(win.mean()), float(win.std())
             f[f"z_{w}"] = (v - mu) / sd if sd > 0 else 0.0
         else:
-            f[f"pct_range_{w}"] = 50.0
+            f[f"pct_range_{w}"] = f[f"days_beaten_{w}"] = 50.0
             f[f"dist_min_{w}"] = f[f"dist_max_{w}"] = f[f"z_{w}"] = 0.0
 
     # --- Волатильность
@@ -137,7 +169,7 @@ def row_features(
             f[f"bars_since_max_{w}"] = float(w - 1 - int(np.argmax(win)))
         else:
             f[f"bars_since_min_{w}"] = f[f"bars_since_max_{w}"] = 0.0
-    f["rsi_14"] = _rsi(past)
+    f["up_share_14"] = _up_share(past)
 
     # --- Кросс-валютные: рубль в целом или именно этот коридор?
     for code, rp in ref_past.items():
@@ -177,8 +209,8 @@ def row_features(
         if len(past) >= w:
             sma = float(past[-w:].mean())
             f[f"vs_sma_{w}"] = _bps(v, sma)
-            above = past[-w:] > np.array([past[max(0, len(past) - w + k - w):len(past) - w + k + 1].mean()
-                                          if len(past) - w + k >= 0 else past[0]
+            # скользящее среднее ровно по w точкам, заканчивающееся на этой же точке
+            above = past[-w:] > np.array([past[max(0, len(past) - w + k - w + 1):len(past) - w + k + 1].mean()
                                           for k in range(w)])
             f[f"share_above_sma_{w}"] = float(above.mean())
         else:
@@ -199,7 +231,12 @@ def row_features(
         r = rets[-30:]
         sd = float(r.std())
         f["skew_30"] = float(((r - r.mean()) ** 3).mean() / sd**3) if sd > 0 else 0.0
-        f["autocorr_30"] = float(np.corrcoef(r[:-1], r[1:])[0, 1]) if len(r) > 2 else 0.0
+        # sd > 0 обязателен и здесь: на замороженном курсе (жёсткая привязка,
+        # залипший фид) все доходности равны нулю, corrcoef возвращает NaN,
+        # и дальше падает StandardScaler.
+        f["autocorr_30"] = (
+            float(np.corrcoef(r[:-1], r[1:])[0, 1]) if len(r) > 2 and sd > 0 else 0.0
+        )
     else:
         f["skew_30"] = f["autocorr_30"] = 0.0
     f["accel_5_20"] = f["ret_5"] - f["ret_20"]
@@ -214,7 +251,7 @@ def row_features(
     # --- Положение доллара в собственном диапазоне
     usd = ref_past.get("USD")
     if usd is not None and len(usd) >= 90:
-        f["usd_pct_range_90"] = _percentile_in_range(usd, 90)
+        f["usd_pct_range_90"] = _position_in_range(usd, 90)
     else:
         f["usd_pct_range_90"] = 50.0
 
@@ -246,8 +283,9 @@ def build_matrix(
     series: dict[str, Series], corridors: tuple[str, ...], refs: tuple[str, ...]
 ) -> tuple[np.ndarray, list[str], list[tuple[str, int, dt.date]]]:
     """Матрица признаков по всем коридорам (pooled). Возвращает X, имена, индекс строк."""
-    ref_dates = {c: list(series[c].dates) for c in refs}
-    peer_dates = {c: list(series[c].dates) for c in corridors}
+    # массивы дат неизменны — строим один раз, а не 50 тыс. раз внутри цикла
+    ref_dates = {c: np.array(series[c].dates, dtype=object) for c in refs}
+    peer_dates = {c: np.array(series[c].dates, dtype=object) for c in corridors}
     rows: list[dict[str, float]] = []
     index: list[tuple[str, int, dt.date]] = []
     for corridor in corridors:
@@ -258,13 +296,13 @@ def build_matrix(
             ref_past = {}
             for c in refs:
                 # последнее наблюдение справочной валюты НЕ ПОЗЖЕ текущей даты
-                j = np.searchsorted(np.array(ref_dates[c]), day, side="right")
+                j = np.searchsorted(ref_dates[c], day, side="right")
                 ref_past[c] = past_slice(series[c].values, j - 1)
             peer_past = {}
             for other in corridors:
                 if other == corridor:
                     continue
-                k = np.searchsorted(np.array(peer_dates[other]), day, side="right")
+                k = np.searchsorted(peer_dates[other], day, side="right")
                 peer_past[other] = past_slice(series[other].values, k - 1)
             rows.append(
                 row_features(past_slice(s.values, i), day, corridor, gap, ref_past, peer_past)
