@@ -39,13 +39,11 @@ def main() -> None:
     s = load()
     gate(s)
     X, names, index = build_matrix(s, CORRIDORS, REFERENCE)
-    X = np.column_stack([X, np.array([CORRIDORS.index(c) for c, _, _ in index], float)])
-    names = names + ["corridor_id"]
     dates = np.array([d for _, _, d in index], dtype=object)
     Y = build_targets(s, index)
     span = (max(dates) - min(dates)).days / 365.25
     RATE = reference_rate(
-        BASELINES[REFERENCE_RULE](X[:, :-1], names[:-1]), dates, FIRST_TEST_YEAR)
+        BASELINES[REFERENCE_RULE](X, names), dates, FIRST_TEST_YEAR)
 
     for h in HORIZONS:
         y = Y[f"fav_h{h}"]
@@ -105,7 +103,7 @@ def main() -> None:
 
         tz = []
         for bn, bf in BASELINES.items():
-            f = bf(X[:, :-1], names[:-1]).astype(bool) & oos
+            f = bf(X, names).astype(bool) & oos
             lf, fw = show(bn, f, False)
             if bn.startswith("ТЗ:"):
                 tz.append((bn, lf, fw))

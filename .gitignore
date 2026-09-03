@@ -10,3 +10,6 @@ submission/slide-*.jpg
 *_output.txt
 !results/*_output.txt
 catboost_info/
+research/cache/
+results/research/candidate_outputs_*.pkl
+tmp/pdfs/

@@ -55,10 +55,6 @@ def main() -> None:
     gate_leakage(series)
 
     X, names, index = build_matrix(series, CORRIDORS, REFERENCE)
-    # коридор как признак: модель одна на всех, но знает, в каком коридоре стоит
-    corr_ids = np.array([CORRIDORS.index(c) for c, _, _ in index], dtype=float)
-    X = np.column_stack([X, corr_ids])
-    names = names + ["corridor_id"]
     dates = np.array([d for _, _, d in index], dtype=object)
     corridors = np.array([c for c, _, _ in index], dtype=object)
     Y = build_targets(series, index)
@@ -95,7 +91,7 @@ def main() -> None:
             # Целевая частота — частота правила ТЗ на периоде РАЗРАБОТКИ.
             # Считать её на тесте нельзя: это уже подгонка рабочей точки под тест.
             ref_rate = reference_rate(
-                BASELINES[REFERENCE_RULE](X[:, :-1], names[:-1]),
+                BASELINES[REFERENCE_RULE](X, names),
                 dates, FIRST_TEST_YEAR)
 
             oos = np.zeros(len(y), dtype=bool)
@@ -138,7 +134,7 @@ def main() -> None:
 
             tz_rows, model_rows = [], []
             for bname, bfn in BASELINES.items():
-                fired = bfn(X[:, :-1], names[:-1]).astype(bool) & oos
+                fired = bfn(X, names).astype(bool) & oos
                 rate = fired.sum() / max(int(oos.sum()), 1)
                 lf, pw, sym, fw, ci = stats(fired)
                 row = (bname, rate, pw, lf, sym, fw, ci)

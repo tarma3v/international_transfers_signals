@@ -16,12 +16,10 @@ from ml.validation import assert_no_overlap, target_reach_dates, walk_forward_fo
 
 s = load()
 X, names, index = build_matrix(s, CORRIDORS, REFERENCE)
-X = np.column_stack([X, np.array([CORRIDORS.index(c) for c, _, _ in index], float)])
-names = names + ["corridor_id"]
 dates = np.array([d for _, _, d in index], dtype=object)
 Y = build_targets(s, index)
 RATE = reference_rate(
-    BASELINES[REFERENCE_RULE](X[:, :-1], names[:-1]), dates, 2021)
+    BASELINES[REFERENCE_RULE](X, names), dates, 2021)
 
 lines: list[str] = []
 W = lines.append
@@ -86,7 +84,7 @@ for tname, tlabel in (("fav", "Сейчас выгодно"), ("close", "Окн�
             continue
         rows = []
         for bn, bf in BASELINES.items():
-            f = bf(X[:, :-1], names[:-1]).astype(bool) & oos
+            f = bf(X, names).astype(bool) & oos
             rows.append((bn, f, False))
         for m in sc:
             rows.append((m, fr[m] & oos, True))

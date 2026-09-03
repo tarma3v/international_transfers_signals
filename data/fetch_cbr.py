@@ -18,7 +18,7 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 IDS = {"TJS": "R01670", "UZS": "R01717", "KGS": "R01370", "AMD": "R01060",
-       "KZT": "R01335", "USD": "R01235", "CNY": "R01375"}
+       "KZT": "R01335", "USD": "R01235", "CNY": "R01375", "EUR": "R01239"}
 MIN_ROWS = 1000  # меньше — значит ЦБ вернул усечённый ответ, дальше идти нельзя
 
 
