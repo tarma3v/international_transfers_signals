@@ -19,7 +19,8 @@ from transfer_lift.data import CORRIDORS, REFERENCE, Series
 RETURN_LAGS: tuple[int, ...] = (1, 3, 5, 10, 20, 60)
 RANGE_WINDOWS: tuple[int, ...] = (30, 90, 180)
 VOL_WINDOWS: tuple[int, ...] = (10, 30, 90)
-WARMUP = max(max(RETURN_LAGS), max(RANGE_WINDOWS), max(VOL_WINDOWS)) + 1
+HOLIDAY_NAMES: tuple[str, ...] = tuple(HOLIDAYS)
+WARMUP = max(*RETURN_LAGS, *RANGE_WINDOWS, *VOL_WINDOWS) + 1
 
 
 def client_bps(new: float, old: float) -> float:
@@ -76,19 +77,30 @@ def _row_features(
     row["streak_up"] = up
 
     for window in RANGE_WINDOWS:
-        if len(past) >= window:
-            values = past[-window:]
-            row[f"pct_range_{window}"] = _position_in_range(past, window)
-            row[f"days_beaten_{window}"] = _days_beaten(past, window)
-            row[f"z_{window}"] = (current - float(values.mean())) / float(values.std()) if values.std() > 0 else 0.0
-            row[f"dist_min_bps_{window}"] = client_bps(current, float(values.min()))
-            row[f"dist_max_bps_{window}"] = client_bps(current, float(values.max()))
-        else:
-            row[f"pct_range_{window}"] = 50.0
-            row[f"days_beaten_{window}"] = 50.0
-            row[f"z_{window}"] = 0.0
-            row[f"dist_min_bps_{window}"] = 0.0
-            row[f"dist_max_bps_{window}"] = 0.0
+        prefix_values = past[-window:]
+        if len(past) < window:
+            row.update(
+                {
+                    f"pct_range_{window}": 50.0,
+                    f"days_beaten_{window}": 50.0,
+                    f"z_{window}": 0.0,
+                    f"dist_min_bps_{window}": 0.0,
+                    f"dist_max_bps_{window}": 0.0,
+                }
+            )
+            continue
+
+        mean = float(prefix_values.mean())
+        std = float(prefix_values.std())
+        row.update(
+            {
+                f"pct_range_{window}": _position_in_range(past, window),
+                f"days_beaten_{window}": _days_beaten(past, window),
+                f"z_{window}": (current - mean) / std if std > 0 else 0.0,
+                f"dist_min_bps_{window}": client_bps(current, float(prefix_values.min())),
+                f"dist_max_bps_{window}": client_bps(current, float(prefix_values.max())),
+            }
+        )
 
     returns = np.diff(past) / past[:-1] * 10_000.0 if len(past) > 1 else np.array([0.0])
     for window in VOL_WINDOWS:
@@ -110,23 +122,22 @@ def _row_features(
     row["is_month_end"] = 1.0 if day.day >= 26 else 0.0
     row["corridor_id"] = float(CORRIDORS.index(corridor))
 
-    # --- Seasonality (case indicator "seasonality"): payday window + recipient
-    # country holidays. Holiday dates are pre-published years ahead, so this is
-    # calendar knowledge, not look-ahead into market data.
-    row["days_to_payday"] = float(days_to_payday(day))
-    row["days_since_payday"] = float(days_since_payday(day))
-    row["in_payday_window"] = 1.0 if min(days_to_payday(day), days_since_payday(day)) <= 3 else 0.0
+    # Holiday dates are known in advance, so these are past-safe calendar features.
+    to_payday = days_to_payday(day)
+    since_payday = days_since_payday(day)
+    row["days_to_payday"] = float(to_payday)
+    row["days_since_payday"] = float(since_payday)
+    row["in_payday_window"] = float(min(to_payday, since_payday) <= 3)
     relevant_holidays = CORRIDOR_HOLIDAYS.get(corridor, ())
-    for name in ("navruz", "eid_adha", "eid_fitr", "new_year", "sep_first"):
+    for name in HOLIDAY_NAMES:
         relevant = name in relevant_holidays
         row[f"to_{name}"] = float(days_to_next(day, HOLIDAYS[name])) if relevant else 999.0
         row[f"since_{name}"] = float(days_since_prev(day, HOLIDAYS[name])) if relevant else 999.0
-    row["to_any_holiday"] = (
-        min(float(days_to_next(day, HOLIDAYS[n])) for n in relevant_holidays)
-        if relevant_holidays
-        else 999.0
+    row["to_any_holiday"] = min(
+        (float(days_to_next(day, HOLIDAYS[name])) for name in relevant_holidays),
+        default=999.0,
     )
-    row["pre_holiday_14d"] = 1.0 if row["to_any_holiday"] <= 14 else 0.0
+    row["pre_holiday_14d"] = float(row["to_any_holiday"] <= 14)
     return row
 
 
@@ -145,7 +156,7 @@ def target_local_minimum(values: np.ndarray, idx: int, horizon: int) -> float | 
     window are needed here: values[idx-h : idx+h+1]. This target legitimately looks
     both backward and forward because it is a LABEL, not a feature; see the module
     docstring and feature_columns() for the leakage boundary that still applies to
-    features built from row_features/published_next_features.
+    features built from row_features strictly on values[:idx+1].
     """
     if idx - horizon < 0 or idx + horizon >= len(values):
         return None
@@ -183,38 +194,6 @@ def forward_benefit_bps(values: np.ndarray, idx: int, horizon: int) -> float | N
     return client_bps(float(values[idx]), future_mean) if future_mean > 0 else None
 
 
-def target_published_next_favourable(values: np.ndarray, idx: int, horizon: int) -> float | None:
-    """As-of CBR target: tomorrow's published rate remains unbeaten for horizon rows."""
-    if idx + horizon + 1 >= len(values):
-        return None
-    published_next = float(values[idx + 1])
-    return 1.0 if published_next <= values[idx + 2 : idx + horizon + 2].min() else 0.0
-
-
-def published_next_benefit_bps(values: np.ndarray, idx: int, horizon: int) -> float | None:
-    """Forward benefit of the rate already published for the next effective date."""
-    if idx + horizon + 1 >= len(values):
-        return None
-    future_mean = float(values[idx + 2 : idx + horizon + 2].mean())
-    return client_bps(float(values[idx + 1]), future_mean) if future_mean > 0 else None
-
-
-def published_next_features(values: np.ndarray, idx: int) -> dict[str, float]:
-    """Features based on tomorrow's CBR rate, known today according to the case."""
-    published_next = float(values[idx + 1])
-    current = float(values[idx])
-    window = values[max(0, idx + 2 - 90) : idx + 2]
-    lo, hi = float(window.min()), float(window.max())
-    pct_range = 50.0 if hi <= lo else (published_next - lo) / (hi - lo) * 100.0
-    days_beaten = float((window[:-1] > published_next).mean()) * 100.0 if len(window) > 1 else 50.0
-    return {
-        "published_next_rate": published_next,
-        "published_next_ret_1": client_bps(published_next, current),
-        "published_next_pct_range_90": pct_range,
-        "published_next_days_beaten_90": days_beaten,
-    }
-
-
 def build_dataset(
     series: dict[str, Series],
     corridors: tuple[str, ...] = CORRIDORS,
@@ -233,41 +212,27 @@ def build_dataset(
                 ref_idx = int(np.searchsorted(ref_dates[ref], day, side="right")) - 1
                 ref_past[ref] = series[ref].values[: ref_idx + 1]
             features = _row_features(current_series.values[: idx + 1], day, corridor, ref_past)
-            features.update(published_next_features(current_series.values, idx))
-            features.update(
-                {
-                    "date": pd.Timestamp(day),
-                    "corridor": corridor,
-                    "row_idx": idx,
-                    "rate": float(current_series.values[idx]),
-                    "target_fav": target_now_favourable(current_series.values, idx, horizon),
-                    "target_close": target_window_closing(current_series.values, idx, horizon),
-                    "target_local_min": target_local_minimum(current_series.values, idx, horizon),
-                    "target_pub_fav": target_published_next_favourable(
-                        current_series.values, idx, horizon
-                    ),
-                    "benefit_bps": forward_benefit_bps(current_series.values, idx, horizon),
-                    "symmetric_benefit_bps": symmetric_benefit_bps(
-                        current_series.values, idx, horizon
-                    ),
-                    "published_next_benefit_bps": published_next_benefit_bps(
-                        current_series.values, idx, horizon
-                    ),
-                }
-            )
-            rows.append(features)
+            row: dict[str, object] = {
+                **features,
+                "date": pd.Timestamp(day),
+                "corridor": corridor,
+                "row_idx": idx,
+                "rate": float(current_series.values[idx]),
+                "target_fav": target_now_favourable(current_series.values, idx, horizon),
+                "target_close": target_window_closing(current_series.values, idx, horizon),
+                "target_local_min": target_local_minimum(current_series.values, idx, horizon),
+                "benefit_bps": forward_benefit_bps(current_series.values, idx, horizon),
+                "symmetric_benefit_bps": symmetric_benefit_bps(
+                    current_series.values, idx, horizon
+                ),
+            }
+            rows.append(row)
     frame = pd.DataFrame(rows).sort_values(["date", "corridor"]).reset_index(drop=True)
     return frame
 
 
 def feature_columns(frame: pd.DataFrame, target_col: str = "target_fav") -> list[str]:
-    """Columns safe for model training for a specific target.
-
-    CBR publishes tomorrow's effective rate today. Therefore published_next_* columns are
-    legitimate as-of features only for targets whose label window starts after that already
-    published rate. For target_fav/target_close they would overlap with the label window and
-    leak part of the answer, so they are blocked.
-    """
+    """Return model inputs, excluding identifiers and all future-derived labels."""
     blocked = {
         "date",
         "corridor",
@@ -276,13 +241,7 @@ def feature_columns(frame: pd.DataFrame, target_col: str = "target_fav") -> list
         "target_fav",
         "target_close",
         "target_local_min",
-        "target_pub_fav",
         "benefit_bps",
         "symmetric_benefit_bps",
-        "published_next_benefit_bps",
     }
-    if target_col != "target_pub_fav":
-        blocked.update(
-            column for column in frame.columns if column.startswith("published_next_")
-        )
     return [column for column in frame.columns if column not in blocked]

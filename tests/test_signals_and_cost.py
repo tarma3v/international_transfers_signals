@@ -71,17 +71,17 @@ def test_signals_as_of_is_identical_regardless_of_future_history() -> None:
     series = _synthetic_series()
     as_of = dt.date(2022, 6, 1)
 
-    full_rows = signals_as_of(series, as_of, include_published_next=False)
+    full_rows = signals_as_of(series, as_of)
 
     near_future_cut = truncate_to(series, dt.date(2022, 6, 10))
-    near_rows = signals_as_of(near_future_cut, as_of, include_published_next=False)
+    near_rows = signals_as_of(near_future_cut, as_of)
 
     assert full_rows == near_rows
 
 
 def test_signals_as_of_returns_required_fields_per_corridor() -> None:
     series = _synthetic_series()
-    rows = signals_as_of(series, dt.date(2022, 6, 1), include_published_next=False)
+    rows = signals_as_of(series, dt.date(2022, 6, 1))
     required = {"date", "corridor", "indicator", "direction", "strength", "speed", "scenario"}
     assert rows
     for row in rows:

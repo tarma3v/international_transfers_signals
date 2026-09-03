@@ -19,7 +19,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--target",
         default="target_fav",
-        choices=["target_fav", "target_close", "target_local_min", "target_pub_fav"],
+        choices=["target_fav", "target_close", "target_local_min"],
     )
     parser.add_argument("--top-rate", type=float, default=0.15, help="Share of top-score days selected as signals")
     parser.add_argument("--models", nargs="*", default=default_model_names())
@@ -30,7 +30,13 @@ def main() -> None:
     args = parse_args()
     rates = load_rates(args.data)
     dataset = build_dataset(rates, horizon=args.horizon)
-    metrics = benchmark_models(dataset, model_names=args.models, target_col=args.target, top_rate=args.top_rate)
+    metrics = benchmark_models(
+        dataset,
+        model_names=args.models,
+        target_col=args.target,
+        top_rate=args.top_rate,
+        horizon=args.horizon,
+    )
     overall = summarize_overall(metrics)
     print("\n=== Model summary ===")
     print(overall.to_string(index=False, float_format=lambda value: f"{value:.3f}"))

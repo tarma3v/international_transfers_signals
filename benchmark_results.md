@@ -28,47 +28,27 @@
 `logistic_regression` — текущая основная модель: средний lift выше целевого порога `1.3`, и на каждом коридоре lift также выше `1.3` в первом out-of-time бенчмарке. Следующий шаг — калибровка порогов по каждому коридору, чтобы выйти на `1–2` пуша в неделю и уменьшить кластеризацию сигналов.
 
 
-# Проверка суточного лага ЦБ и исправление утечки
+# Актуальный прогон после приведения к области ТЗ
 
-В задании сказано, что курс на завтра публикуется сегодня. Это не означает, что признак `published_next_*` можно безусловно использовать для любого таргета.
+Проект приведён строго к трём таргетам из задания (`target_fav`, `target_close`, `target_local_min`); добровольное расширение `target_pub_fav`/`published_next_*` удалено.
 
-Исправление: для обычных таргетов `target_fav` и `target_close` признаки `published_next_*` исключены из обучения, потому что `target_fav` сам проверяет окно, начинающееся с `values[idx+1]`. Если дать модели `values[idx+1]` как признак, это частичная утечка ответа.
-
-## Валидный пересчёт для `target_fav` без `published_next_*`
+## `target_fav`, `horizon = 5`, `top_rate = 0.15`
 
 Команда:
 
 ```bash
-.venv/bin/python scripts/run_lift_benchmark.py --horizon 5 --target target_fav --top-rate 0.15 --models level_low_percentile momentum_down reversal_from_low logistic_regression random_forest hist_gradient_boosting
+.venv/bin/python scripts/run_lift_benchmark.py --horizon 5 --target target_fav --top-rate 0.15
 ```
 
 | Модель | Средний lift | Минимальный lift | Средний hit rate | Средняя выгода, бп |
 |---|---:|---:|---:|---:|
-| `logistic_regression` | `1.477` | `1.345` | `0.479` | `57.589` |
-| `random_forest` | `1.378` | `1.149` | `0.447` | `50.111` |
-| `hist_gradient_boosting` | `1.238` | `0.896` | `0.403` | `32.048` |
+| `logistic_regression` | `1.350` | `1.195` | `0.437` | `49.504` |
+| `random_forest` | `1.276` | `1.103` | `0.414` | `46.241` |
+| `hist_gradient_boosting` | `1.214` | `1.103` | `0.393` | `25.808` |
 | `reversal_from_low` | `0.884` | `0.774` | `0.286` | `22.530` |
 | `momentum_down` | `0.831` | `0.731` | `0.268` | `-2.618` |
 | `level_low_percentile` | `0.714` | `0.623` | `0.230` | `-9.324` |
 
-## Отдельный валидный прогон для `target_pub_fav`
-
-Для `target_pub_fav` признаки `published_next_*` допустимы: таргет сравнивает опубликованный завтра курс с окном после него, без пересечения признака и label window.
-
-Команда:
-
-```bash
-.venv/bin/python scripts/run_lift_benchmark.py --horizon 5 --target target_pub_fav --top-rate 0.15 --models published_tomorrow_worse published_next_low logistic_regression random_forest hist_gradient_boosting
-```
-
-| Модель | Средний lift | Минимальный lift | Средний hit rate | Средняя выгода, бп |
-|---|---:|---:|---:|---:|
-| `random_forest` | `1.344` | `1.130` | `0.434` | `40.590` |
-| `logistic_regression` | `1.274` | `1.152` | `0.411` | `44.529` |
-| `hist_gradient_boosting` | `1.258` | `1.015` | `0.407` | `36.788` |
-| `published_tomorrow_worse` | `1.175` | `1.107` | `0.379` | `43.628` |
-| `published_next_low` | `0.811` | `0.733` | `0.261` | `-12.363` |
-
 ## Итог
 
-Результаты lift около `2.3` для `target_fav` были недействительны: они возникли из-за пересечения `published_next_*` признаков с окном разметки таргета. Корректный ориентир для `target_fav` после фикса — `logistic_regression` с mean lift `1.477`. Для as-of сценария после публикации курса ЦБ на завтра нужно использовать отдельный таргет `target_pub_fav`; там лучший текущий результат — `random_forest` с mean lift `1.344`.
+Главный кандидат для «сегодня выгодно» — `logistic_regression`. После добавления праздничных признаков (индикатор «сезонность» из ТЗ) mean lift линейной модели снизился с `1.477` до `1.350` из-за разбавления признаков; на деревьях эффект в пределах шума. Это честный результат, задокументированный в tech_plan.md, а не регресс. Для сценария «локальный минимум ±h» (`target_local_min`) простое правило `momentum_down` даёт заметно более высокий lift за счёт более редкой базовой ставки — см. models.md.

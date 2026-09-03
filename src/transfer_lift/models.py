@@ -63,14 +63,6 @@ class RuleModel:
             low_component = (100.0 - frame["pct_range_30"].clip(0, 100)) / 100.0
             bounce_component = np.maximum(-frame["ret_1"], 0).clip(0, 150) / 150.0
             return (low_component * 0.65 + bounce_component * 0.35).to_numpy()
-        if self.name == "published_next_low":
-            return (
-                (100.0 - frame["published_next_pct_range_90"].clip(0, 100)) * 0.45
-                + frame["published_next_days_beaten_90"].clip(0, 100) * 0.35
-                + np.maximum(frame["published_next_ret_1"], 0).clip(0, 200) / 200.0 * 20.0
-            ).to_numpy() / 100.0
-        if self.name == "published_tomorrow_worse":
-            return np.maximum(-frame["published_next_ret_1"], 0).clip(0, 300).to_numpy() / 300.0
         raise ValueError(f"unknown rule model: {self.name}")
 
 
@@ -113,8 +105,6 @@ def make_model(name: str) -> Scorer:
         "level_low_percentile",
         "momentum_down",
         "reversal_from_low",
-        "published_tomorrow_worse",
-        "published_next_low",
     }:
         return RuleModel(name)
     raise ValueError(f"unknown model: {name}")
@@ -123,8 +113,6 @@ def make_model(name: str) -> Scorer:
 def default_model_names() -> list[str]:
     """Models intentionally kept installable with only scikit-learn."""
     return [
-        "published_tomorrow_worse",
-        "published_next_low",
         "level_low_percentile",
         "momentum_down",
         "reversal_from_low",

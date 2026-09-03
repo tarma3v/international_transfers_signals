@@ -3,7 +3,12 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from transfer_lift.evaluation import benchmark_models, evaluate_predictions, make_walk_forward_folds
+from transfer_lift.evaluation import (
+    benchmark_models,
+    evaluate_predictions,
+    make_walk_forward_folds,
+    purge_label_overlap,
+)
 from transfer_lift.features import build_dataset, feature_columns, target_local_minimum
 from transfer_lift.data import Series
 
@@ -45,10 +50,8 @@ def test_feature_builder_has_targets_and_no_target_columns_in_features() -> None
         "target_fav",
         "target_close",
         "target_local_min",
-        "target_pub_fav",
         "benefit_bps",
         "symmetric_benefit_bps",
-        "published_next_benefit_bps",
         "corridor",
         "date",
     }.issubset(frame.columns)
@@ -58,17 +61,8 @@ def test_feature_builder_has_targets_and_no_target_columns_in_features() -> None
     assert "target_local_min" not in safe_features
     assert "benefit_bps" not in safe_features
     assert "symmetric_benefit_bps" not in safe_features
-    assert all(not column.startswith("published_next_") for column in safe_features)
-
-    local_min_features = feature_columns(frame, target_col="target_local_min")
-    assert all(not column.startswith("published_next_") for column in local_min_features)
-
-    asof_features = feature_columns(frame, target_col="target_pub_fav")
-    assert "published_next_ret_1" in asof_features
-    assert "published_next_pct_range_90" in asof_features
     assert frame["target_fav"].isin([0.0, 1.0]).all()
     assert frame["target_local_min"].isin([0.0, 1.0]).all()
-    assert frame["target_pub_fav"].isin([0.0, 1.0]).all()
 
 
 def test_target_local_minimum_matches_symmetric_window_definition() -> None:
@@ -80,6 +74,38 @@ def test_target_local_minimum_matches_symmetric_window_definition() -> None:
     # Out-of-bounds window (not enough history on the left) must return None, not leak partial data.
     assert target_local_minimum(values, idx=1, horizon=2) is None
     assert target_local_minimum(values, idx=8, horizon=2) is None
+
+
+def test_purge_label_overlap_removes_last_h_rows_per_corridor() -> None:
+    frame = pd.DataFrame(
+        {
+            "corridor": ["TJS"] * 5 + ["KZT"] * 5,
+            "date": list(pd.date_range("2024-01-01", periods=5)) * 2,
+        }
+    )
+
+    purged = purge_label_overlap(frame, horizon=2)
+
+    assert purged.groupby("corridor").size().to_dict() == {"KZT": 3, "TJS": 3}
+    assert purged.groupby("corridor")["date"].max().eq(pd.Timestamp("2024-01-03")).all()
+
+
+def test_evaluate_predictions_selects_top_rate_inside_each_fold() -> None:
+    frame = pd.DataFrame(
+        {
+            "corridor": ["TJS"] * 8,
+            "fold": [0] * 4 + [1] * 4,
+            "date": pd.date_range("2024-01-01", periods=8),
+            "target_fav": [1, 0, 0, 0, 1, 0, 0, 0],
+            "benefit_bps": [10, 0, 0, 0, 10, 0, 0, 0],
+            "score": [0.9, 0.8, 0.7, 0.6, 0.2, 0.1, 0.05, 0.01],
+        }
+    )
+
+    metrics = evaluate_predictions(frame, "score", "target_fav", top_rate=0.25)
+
+    assert metrics.loc[0, "n_signals"] == 2
+    assert metrics.loc[0, "hit_rate"] == 1.0
 
 
 def test_walk_forward_folds_do_not_overlap() -> None:
@@ -95,8 +121,7 @@ def test_benchmark_models_returns_lift_for_rule_and_ml_models() -> None:
     metrics = benchmark_models(
         frame,
         model_names=[
-            "published_tomorrow_worse",
-            "published_next_low",
+            "momentum_down",
             "level_low_percentile",
             "logistic_regression",
         ],
@@ -106,8 +131,7 @@ def test_benchmark_models_returns_lift_for_rule_and_ml_models() -> None:
         step_months=6,
     )
     assert set(metrics["model"]) == {
-        "published_tomorrow_worse",
-        "published_next_low",
+        "momentum_down",
         "level_low_percentile",
         "logistic_regression",
     }

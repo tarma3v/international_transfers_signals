@@ -9,7 +9,6 @@ import pandas as pd
 from transfer_lift.features import feature_columns
 from transfer_lift.models import default_model_names, make_model
 
-
 @dataclass(frozen=True)
 class Fold:
     train_start: pd.Timestamp
@@ -39,6 +38,19 @@ def make_walk_forward_folds(
     return folds
 
 
+def purge_label_overlap(train: pd.DataFrame, horizon: int) -> pd.DataFrame:
+    """Drop each corridor's last h rows whose labels overlap the next test period."""
+    if horizon < 0:
+        raise ValueError("horizon must be non-negative")
+    if horizon == 0 or train.empty:
+        return train.copy()
+    ordered = train.sort_values(["corridor", "date"])
+    grouped = ordered.groupby("corridor", sort=False)
+    position = grouped.cumcount()
+    group_size = grouped["corridor"].transform("size")
+    return ordered.loc[position < group_size - horizon].reset_index(drop=True)
+
+
 def _weekly_frequency(selected: pd.DataFrame) -> float:
     if selected.empty:
         return 0.0
@@ -55,8 +67,6 @@ def _cluster_share(selected: pd.DataFrame, days: int = 3) -> float:
 
 
 def _benefit_column_for_target(target_col: str) -> str:
-    if target_col == "target_pub_fav":
-        return "published_next_benefit_bps"
     if target_col == "target_local_min":
         return "symmetric_benefit_bps"
     return "benefit_bps"
@@ -112,37 +122,59 @@ def select_cost_threshold(
     return best_threshold
 
 
+def _metric_row(
+    corridor: str,
+    part: pd.DataFrame,
+    selected: pd.DataFrame,
+    target_col: str,
+    benefit_col: str,
+) -> dict[str, object]:
+    """Calculate the shared metric set for one corridor."""
+    baseline_hit = float(part[target_col].mean())
+    n_signals = len(selected)
+    hit_rate = float(selected[target_col].mean()) if n_signals else np.nan
+    lift = hit_rate / baseline_hit if baseline_hit > 0 and n_signals else np.nan
+    return {
+        "corridor": corridor,
+        "n_test": len(part),
+        "n_signals": n_signals,
+        "hit_rate": hit_rate,
+        "baseline_hit_rate": baseline_hit,
+        "lift": lift,
+        "mean_forward_benefit_bps": (
+            float(selected[benefit_col].mean()) if n_signals else np.nan
+        ),
+        "weekly_frequency": _weekly_frequency(selected),
+        "cluster_share_3d": _cluster_share(selected),
+    }
+
+
+def _select_top_rate(part: pd.DataFrame, score_col: str, top_rate: float) -> pd.DataFrame:
+    """Select the requested score share independently inside every test fold."""
+    group_columns = ["fold"] if "fold" in part.columns else []
+    groups = part.groupby(group_columns, sort=False) if group_columns else [(None, part)]
+    selected: list[pd.DataFrame] = []
+    for _, group in groups:
+        limit = max(1, int(np.ceil(len(group) * top_rate)))
+        selected.append(group.nlargest(limit, score_col))
+    return pd.concat(selected, ignore_index=False)
+
+
 def evaluate_predictions(
     frame: pd.DataFrame,
     score_col: str,
     target_col: str,
     top_rate: float = 0.15,
 ) -> pd.DataFrame:
-    """Evaluate selected top-score days against random same-corridor/test-period baseline."""
+    """Evaluate top-score days selected separately in each out-of-time fold."""
     benefit_col = _benefit_column_for_target(target_col)
     rows: list[dict[str, object]] = []
     for corridor, part in frame.groupby("corridor", sort=True):
-        part = part.dropna(subset=[target_col, score_col, benefit_col]).copy()
+        part = part.dropna(subset=[target_col, score_col, benefit_col])
         if part.empty:
             continue
-        limit = max(1, int(np.ceil(len(part) * top_rate)))
-        selected = part.nlargest(limit, score_col)
-        baseline_hit = float(part[target_col].mean())
-        hit_rate = float(selected[target_col].mean())
-        lift = hit_rate / baseline_hit if baseline_hit > 0 else np.nan
-        rows.append(
-            {
-                "corridor": corridor,
-                "n_test": int(len(part)),
-                "n_signals": int(len(selected)),
-                "hit_rate": hit_rate,
-                "baseline_hit_rate": baseline_hit,
-                "lift": lift,
-                "mean_forward_benefit_bps": float(selected[benefit_col].mean()),
-                "weekly_frequency": _weekly_frequency(selected),
-                "cluster_share_3d": _cluster_share(selected),
-            }
-        )
+        selected = _select_top_rate(part, score_col, top_rate)
+        rows.append(_metric_row(corridor, part, selected, target_col, benefit_col))
     return pd.DataFrame(rows)
 
 
@@ -158,29 +190,36 @@ def evaluate_predictions_with_threshold(
     """
     benefit_col = _benefit_column_for_target(target_col)
     rows: list[dict[str, object]] = []
+    required = [target_col, score_col, benefit_col, threshold_col]
     for corridor, part in frame.groupby("corridor", sort=True):
-        part = part.dropna(subset=[target_col, score_col, benefit_col, threshold_col]).copy()
+        part = part.dropna(subset=required)
         if part.empty:
             continue
         selected = part[part[score_col] >= part[threshold_col]]
-        baseline_hit = float(part[target_col].mean())
-        n_signals = int(len(selected))
-        hit_rate = float(selected[target_col].mean()) if n_signals else float("nan")
-        lift = hit_rate / baseline_hit if baseline_hit > 0 and n_signals else np.nan
-        rows.append(
-            {
-                "corridor": corridor,
-                "n_test": int(len(part)),
-                "n_signals": n_signals,
-                "hit_rate": hit_rate,
-                "baseline_hit_rate": baseline_hit,
-                "lift": lift,
-                "mean_forward_benefit_bps": float(selected[benefit_col].mean()) if n_signals else float("nan"),
-                "weekly_frequency": _weekly_frequency(selected) if n_signals else 0.0,
-                "cluster_share_3d": _cluster_share(selected) if n_signals else 0.0,
-            }
-        )
+        rows.append(_metric_row(corridor, part, selected, target_col, benefit_col))
     return pd.DataFrame(rows)
+
+
+def _fit_and_score(
+    train: pd.DataFrame,
+    frames: list[pd.DataFrame],
+    model_name: str,
+    target_col: str,
+    features: list[str],
+) -> list[pd.DataFrame]:
+    """Fit once and score one or more frames with the same fitted model."""
+    train = train.dropna(subset=[target_col])
+    scored_frames = [frame.copy() for frame in frames]
+    if train[target_col].nunique() < 2:
+        constant_score = float(train[target_col].mean()) if len(train) else 0.0
+        for scored in scored_frames:
+            scored["score"] = constant_score
+        return scored_frames
+
+    model = make_model(model_name).fit(train, target_col, features)
+    for scored in scored_frames:
+        scored["score"] = model.score(scored, features)
+    return scored_frames
 
 
 def _fit_predict_fold(
@@ -190,15 +229,7 @@ def _fit_predict_fold(
     target_col: str,
     features: list[str],
 ) -> pd.DataFrame:
-    train = train.dropna(subset=[target_col]).copy()
-    test = test.copy()
-    if train[target_col].nunique() < 2:
-        test["score"] = float(train[target_col].mean()) if len(train) else 0.0
-        return test
-    model = make_model(model_name)
-    model.fit(train, target_col, features)
-    test["score"] = model.score(test, features)
-    return test
+    return _fit_and_score(train, [test], model_name, target_col, features)[0]
 
 
 def benchmark_models(
@@ -209,6 +240,7 @@ def benchmark_models(
     train_months: int = 36,
     test_months: int = 6,
     step_months: int = 6,
+    horizon: int = 5,
 ) -> pd.DataFrame:
     """Run walk-forward benchmark and return model x corridor lift metrics."""
     models = model_names or default_model_names()
@@ -222,6 +254,7 @@ def benchmark_models(
         scored_folds: list[pd.DataFrame] = []
         for fold_id, fold in enumerate(folds):
             train = frame[(frame["date"] >= fold.train_start) & (frame["date"] <= fold.train_end)]
+            train = purge_label_overlap(train, horizon)
             test = frame[(frame["date"] >= fold.test_start) & (frame["date"] <= fold.test_end)]
             scored = _fit_predict_fold(train, test, model_name, target_col, features)
             scored["fold"] = fold_id
@@ -243,6 +276,7 @@ def benchmark_models_cost_sensitive(
     train_months: int = 36,
     test_months: int = 6,
     step_months: int = 6,
+    horizon: int = 5,
 ) -> pd.DataFrame:
     """Same walk-forward scheme as `benchmark_models`, but instead of a fixed
     `top_rate`, each (model, corridor, fold) gets its own threshold selected on
@@ -265,9 +299,11 @@ def benchmark_models_cost_sensitive(
         scored_folds: list[pd.DataFrame] = []
         for fold_id, fold in enumerate(folds):
             train = frame[(frame["date"] >= fold.train_start) & (frame["date"] <= fold.train_end)]
+            train = purge_label_overlap(train, horizon)
             test = frame[(frame["date"] >= fold.test_start) & (frame["date"] <= fold.test_end)]
-            scored_train = _fit_predict_fold(train, train, model_name, target_col, features)
-            scored_test = _fit_predict_fold(train, test, model_name, target_col, features)
+            scored_train, scored_test = _fit_and_score(
+                train, [train, test], model_name, target_col, features
+            )
 
             thresholds: dict[str, float] = {}
             for corridor, part in scored_train.groupby("corridor"):
