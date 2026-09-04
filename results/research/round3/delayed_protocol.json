@@ -1,0 +1,103 @@
+{
+  "specs": [
+    {
+      "name": "delayed_global_hist_w3",
+      "kind": "hist",
+      "local": false,
+      "window_years": 3,
+      "delayed_only": false
+    },
+    {
+      "name": "delayed_global_hist_w5",
+      "kind": "hist",
+      "local": false,
+      "window_years": 5,
+      "delayed_only": false
+    },
+    {
+      "name": "delayed_global_extra_w5",
+      "kind": "extra",
+      "local": false,
+      "window_years": 5,
+      "delayed_only": false
+    },
+    {
+      "name": "delayed_local_hist_w5",
+      "kind": "hist",
+      "local": true,
+      "window_years": 5,
+      "delayed_only": false
+    },
+    {
+      "name": "delayed_global_xgb_w5",
+      "kind": "xgb",
+      "local": false,
+      "window_years": 5,
+      "delayed_only": false
+    },
+    {
+      "name": "delayed_global_logit_expand",
+      "kind": "logit",
+      "local": false,
+      "window_years": null,
+      "delayed_only": false
+    },
+    {
+      "name": "delayed_only_hist_w5",
+      "kind": "hist",
+      "local": false,
+      "window_years": 5,
+      "delayed_only": true
+    }
+  ],
+  "features": [
+    "resolved_fav_lag_5",
+    "resolved_fav_lag_6",
+    "resolved_fav_lag_7",
+    "resolved_fav_lag_8",
+    "resolved_fav_lag_9",
+    "resolved_fav_lag_10",
+    "resolved_fav_lag_11",
+    "resolved_fav_lag_12",
+    "resolved_fav_lag_13",
+    "resolved_fav_lag_14",
+    "resolved_fav_lag_15",
+    "resolved_fav_lag_16",
+    "resolved_fav_lag_17",
+    "resolved_fav_lag_18",
+    "resolved_fav_lag_19",
+    "resolved_fav_lag_20",
+    "resolved_rate_5",
+    "resolved_rate_10",
+    "resolved_rate_20",
+    "resolved_rate_60",
+    "resolved_rate_120",
+    "resolved_streak",
+    "resolved_transition_rate_20",
+    "pending_survival_1",
+    "pending_margin_1",
+    "pending_survival_2",
+    "pending_margin_2",
+    "pending_survival_3",
+    "pending_margin_3",
+    "pending_survival_4",
+    "pending_margin_4"
+  ],
+  "earliest_label_lag": 5,
+  "causality": "every resolved label reaches by the row date; pending features use values only through row date",
+  "general_years": [
+    2017,
+    2018,
+    2019,
+    2020
+  ],
+  "shock_years": [
+    2022,
+    2023
+  ],
+  "final_years": [
+    2024,
+    2025,
+    2026
+  ]
+}

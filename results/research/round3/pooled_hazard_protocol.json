@@ -1,0 +1,51 @@
+{
+  "specs": [
+    {
+      "name": "pooled_hazard_hist_w3",
+      "kind": "hist",
+      "window_years": 3,
+      "local": false
+    },
+    {
+      "name": "pooled_hazard_hist_w5",
+      "kind": "hist",
+      "window_years": 5,
+      "local": false
+    },
+    {
+      "name": "pooled_hazard_extra_w5",
+      "kind": "extra",
+      "window_years": 5,
+      "local": false
+    },
+    {
+      "name": "pooled_hazard_logit_expand",
+      "kind": "logit",
+      "window_years": null,
+      "local": false
+    },
+    {
+      "name": "pooled_hazard_local_hist_w5",
+      "kind": "hist",
+      "window_years": 5,
+      "local": true
+    }
+  ],
+  "target": "conditional survival at each future publication",
+  "score": "product of five pooled conditional survival probabilities",
+  "general_years": [
+    2017,
+    2018,
+    2019,
+    2020
+  ],
+  "shock_years": [
+    2022,
+    2023
+  ],
+  "final_years": [
+    2024,
+    2025,
+    2026
+  ]
+}

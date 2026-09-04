@@ -1,0 +1,2 @@
+rate_target,n,frequency,rolling_window,cooldown_days,hit_rate,base_rate,lift,auc,forward_benefit_bps,year_lift_min,year_lift_median,year_lift_positive,years,corridor_freq_min,corridor_freq_max,corridor_lift_min,cluster_share_7d,candidate,robustness
+0.25,1134,1.0941419710544453,500,0,0.3298059964726631,0.24577822990844353,1.3418844972376982,0.5523473802024808,9.561543870512802,1.2971421592574501,1.420700150307548,4,4,1.0179186767746382,1.2398345968297726,1.1646919431279623,0.8609388839681134,currency_champions,1.1646919431279623
