@@ -18,6 +18,11 @@
 - Если следующий эффективный курс ЦБ уже опубликован, выбранная на ранних
   блоках условная модель даёт **lift 2.459**; лучший ретроспективный финалист —
   **2.553**. Это другой момент принятия решения, не обычный прогноз.
+- Logistic regression из `version_b` после устранения future-test top-K даёт
+  **1.307–1.347** на просмотренном 2022–2026 при допустимой частоте, но на
+  длинной истории причинные варианты снижаются до **1.085–1.225**. Это
+  recent-regime challenger, а не подтверждённый стабильный lift 1.450;
+  bootstrap-интервалы честных recent-вариантов пересекают порог 1.30.
 
 ## Что именно предсказывается
 
@@ -228,6 +233,8 @@ Future-only показывает достижимую выгоду относи�
 3. Current-regime challenger: post-2022 reset XGB, target rate 20%, rolling 120.
 4. Research-only: Online Hedge, пока не стабилизирована частота.
 5. Отдельный продукт: after-publication policy со строгим timestamp gate.
+6. Объяснимый recent-regime challenger: logistic regression `version_b` с
+   `30m fit / 6m calibration / q20 / rolling-120`; проверять только вперёд.
 
 Round 4 уточняет пункт 5: основной выбранный кандидат — conditional ExtraTrees
 с target rate 22% и rolling threshold 250; ансамбль logit + ExtraTrees остаётся
@@ -245,6 +252,8 @@ challenger до нового настоящего holdout.
 - `results/research/checkpoint_2026-09-04.md` - что было известно до round 2.
 - `results/research/round4/report.md` - post-publication, Markov-state и
   window-closing продолжение.
+- `results/research/version_b_honest_audit/report.md` - причинная перепроверка
+  заявленного lift 1.450 из ветки `version_b`.
 
 ### Главные сводные таблицы
 
@@ -272,7 +281,7 @@ challenger до нового настоящего holdout.
 
 ## Проверки
 
-- Все 54 теста прошли.
+- Все 56 тестов прошли.
 - Новые тесты отдельно проверяют соответствие post-publication gate цели h=1,
   точное использование строки `i+1` и purge h=5 до калибровочного года.
 - PDF round 3 визуально проверен на всех 16 страницах; PDF round 4 — на всех 6.

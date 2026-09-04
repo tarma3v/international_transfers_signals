@@ -1,0 +1,14 @@
+{
+  "source_commit": "aa44f10a47bb9bd72379331bd4596eab3c4944b0",
+  "data": "/Users/jeck5iv/Documents/ChatGPT/itmo/international_transfers_signals/data/cbr_rates_2010_2026.json",
+  "rows": 19646,
+  "folds": 26,
+  "first_test": "2013-09-28",
+  "last_test": "2026-08-25",
+  "target": "target_fav",
+  "horizon_publications": 5,
+  "model": "logistic_regression",
+  "source_fit": "36 months, h=5 purged, 6 month test",
+  "nested_fit": "30 months fit, h=5 purged, 6 months untouched calibration, 6 months test",
+  "warning": "All results are retrospective because the full period was already inspected."
+}
