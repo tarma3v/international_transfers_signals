@@ -6,6 +6,10 @@
 
 Последнее обновление: 04.09.2026. Основной горизонт: `h=5` публикаций ЦБ.
 
+Полная связная версия с постановкой задачи, provenance по веткам, графиками,
+статистическим аудитом и рекомендацией для пилота: [итоговый PDF](output/pdf/international_transfers_full_research_report.pdf).
+Редактируемый источник: [results/research/full_report/report-source.md](results/research/full_report/report-source.md).
+
 ## Ответ в пяти строках
 
 - Честный заранее зафиксированный past-only результат на 2024-2026: **lift 1.295**.
