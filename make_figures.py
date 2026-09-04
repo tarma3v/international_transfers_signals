@@ -26,6 +26,18 @@ NEG = "#9E3226"
 GREY = "#8a94a0"
 OUT = "submission/figures"
 
+
+def save(fig, name: str) -> None:
+    """Сохранить фигуру в PNG и PDF.
+
+    PNG идёт в презентацию и в markdown, PDF — в комплект материалов: он
+    векторный, поэтому в нём читается ось и подпись при любом увеличении,
+    а растр на проекторе рассыпается. Два формата из одного вызова, чтобы
+    они не разъезжались.
+    """
+    for ext in ("png", "pdf"):
+        fig.savefig(f"{OUT}/{name}.{ext}", bbox_inches="tight")
+
 s = load()
 H = 5
 
@@ -60,7 +72,7 @@ def fig1_corridor_with_signals() -> None:
     ax.legend(fontsize=8, frameon=False, loc="upper left")
     ax.grid(axis="y", alpha=0.15)
     fig.tight_layout()
-    fig.savefig(f"{OUT}/01-koridor-s-signalami.png", bbox_inches="tight")
+    save(fig, "01-koridor-s-signalami")
     plt.close(fig)
 
 
@@ -130,7 +142,7 @@ def fig2_traffic_light() -> None:
     print(f"  fig2: ±h дёшево {sym[0]:+.0f} / дорого {sym[-1]:+.0f}; "
           f"достижимая дёшево {fw[0]:+.0f} / дорого {fw[-1]:+.0f}")
     fig.tight_layout()
-    fig.savefig(f"{OUT}/02-konflikt-metrik.png", bbox_inches="tight")
+    save(fig, "02-konflikt-metrik")
     plt.close(fig)
 
 
@@ -221,7 +233,7 @@ def fig3_decomposition() -> None:
                 (0, 0), xycoords="axes fraction", xytext=(0, -46), textcoords="offset points",
                 fontsize=8, color=GREY)
     fig.tight_layout()
-    fig.savefig(f"{OUT}/03-razlozhenie-vygody.png", bbox_inches="tight")
+    save(fig, "03-razlozhenie-vygody")
     plt.close(fig)
     print(f"  fig3: моментум {fvals[0]:+.0f}, уровень {fvals[1]:+.0f}, {chosen} {fvals[2]:+.0f} бп")
 
@@ -317,7 +329,7 @@ def fig4_stability() -> None:
     ax2.legend(fontsize=8, frameon=False)
     ax2.grid(axis="y", alpha=0.15)
     fig.tight_layout()
-    fig.savefig(f"{OUT}/04-ustoychivost.png", bbox_inches="tight")
+    save(fig, "04-ustoychivost")
     plt.close(fig)
     print(f"  fig4: {honest_lbl} {np.mean([v for v in hv if v]):+.0f} бп/год, "
           f"победитель теста {winner_lbl} {np.mean([v for v in wv if v]):+.0f} бп/год")
@@ -414,7 +426,7 @@ def fig5_two_models() -> None:
              "справа сигнал = любое положительное предсказание.",
              ha="center", fontsize=8, color=INK)
     fig.tight_layout()
-    fig.savefig(f"{OUT}/05-dve-modeli.png", bbox_inches="tight")
+    save(fig, "05-dve-modeli")
     plt.close(fig)
 
 
@@ -424,4 +436,4 @@ if __name__ == "__main__":
     fig3_decomposition()
     fig4_stability()
     fig5_two_models()
-    print("готово: 5 графиков в", OUT)
+    print("готово: 5 графиков (png + pdf) в", OUT)

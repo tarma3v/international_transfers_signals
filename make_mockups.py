@@ -62,6 +62,35 @@ def extract_block(html: str, start_pat: str, occurrence: int = 0) -> str:
     raise RuntimeError(f"незакрытый блок {start_pat!r}")
 
 
+def render_pdf(chrome: str, html: str, width: int, height: int, dest: Path) -> None:
+    """То же содержимое в PDF: векторный текст, растровыми остаются только шрифты.
+
+    Размер страницы задаётся через @page под фактический блок, иначе Chrome
+    сверстает макет на A4 и обрежет широкий ряд телефонов. Флаг отключения
+    колонтитулов называется --no-pdf-header-footer; похожий по смыслу
+    --print-to-pdf-no-header не существует и молча игнорируется.
+    """
+    page = (f"<style>@page{{size:{width}px {height}px;margin:0}}"
+            f"html,body{{width:{width}px}}</style>")
+    html = html.replace("</head>", page + "</head>", 1)
+    with tempfile.NamedTemporaryFile("w", suffix=".html", delete=False,
+                                     encoding="utf-8") as fh:
+        fh.write(html)
+        tmp = fh.name
+    try:
+        subprocess.run(
+            [chrome, "--headless", "--disable-gpu", "--no-sandbox",
+             "--virtual-time-budget=10000", "--no-pdf-header-footer",
+             f"--print-to-pdf={dest}", f"file://{tmp}"],
+            check=True, capture_output=True,
+        )
+    finally:
+        os.unlink(tmp)
+    if not dest.exists():
+        raise RuntimeError(f"Chrome не создал {dest}")
+    print(f"  {dest}  ({dest.stat().st_size // 1024} КБ)")
+
+
 def render(chrome: str, html: str, width: int, height: int, dest: Path) -> None:
     with tempfile.NamedTemporaryFile("w", suffix=".html", delete=False,
                                      encoding="utf-8") as fh:
@@ -113,12 +142,14 @@ def main() -> None:
     row = "".join(f'<div class="col"><p class="cap">{c}</p>{p}</div>'
                   for c, p in zip(caps, phones))
     print("рендер макетов:")
-    render(chrome, head + f'<div class="row">{row}</div></body></html>',
-           1980, 830, OUT / "06-makety-interfeysa.png")
+    doc = head + f'<div class="row">{row}</div></body></html>'
+    render(chrome, doc, 1980, 830, OUT / "06-makety-interfeysa.png")
+    render_pdf(chrome, doc, 1980, 830, OUT / "06-makety-interfeysa.pdf")
 
     states = extract_block(src, r'<div class="states">')
-    render(chrome, head + f'<div style="max-width:1120px">{states}</div></body></html>',
-           1180, 530, OUT / "07-tri-sostoyaniya-vidzheta.png")
+    doc = head + f'<div style="max-width:1120px">{states}</div></body></html>'
+    render(chrome, doc, 1180, 530, OUT / "07-tri-sostoyaniya-vidzheta.png")
+    render_pdf(chrome, doc, 1180, 530, OUT / "07-tri-sostoyaniya-vidzheta.pdf")
 
 
 if __name__ == "__main__":
