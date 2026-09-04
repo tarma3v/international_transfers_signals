@@ -1,0 +1,18 @@
+{
+  "next_row_is_same_currency_i_plus_1": true,
+  "known_gate_equals_fav_h1": true,
+  "purged_training_before_calibration": {
+    "2017": true,
+    "2018": true,
+    "2019": true,
+    "2020": true,
+    "2022": true,
+    "2023": true,
+    "2024": true,
+    "2025": true,
+    "2026": true
+  },
+  "ordinary_matrix_uses_next_row": false,
+  "publication_matrix_max_lookahead": "i+1, valid only after that effective rate is public",
+  "later_than_i_plus_1_features": false
+}

@@ -11,7 +11,7 @@
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m ml.leakage             # ворота: доказательство отсутствия утечки
-.venv/bin/python -m pytest -c pytest.ini   # 51 тест: честность, корректность, срез
+.venv/bin/python -m pytest -c pytest.ini   # 54 теста: честность, корректность, срез
 .venv/bin/python -m ml.signals             # сигналы на произвольную дату среза
 .venv/bin/python run_product_numbers.py    # продуктовые величины: размах, потолок, кучность, коридоры
 .venv/bin/python run_experiment.py         # базовые модели против индикаторов ТЗ
@@ -23,6 +23,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m research.publication_timing_audit   # сценарий после публикации ЦБ
 .venv/bin/python -m research.calendar_day_robustness    # календарные дни + forward-fill
 .venv/bin/python -m research.statistical_audit          # 4-недельный block bootstrap
+.venv/bin/python -m research.round4_research             # условная публикация + Markov + close
 ```
 
 XGBoost на macOS требует OpenMP: `brew install libomp`.
@@ -93,6 +94,14 @@ h = 1/3/5/10/20 и 1,36–1,38 сигнала на коридор в недел�
 Это не «предсказание h=1»: первый шаг уже известен. Поэтому сценарий изолирован
 в `research/publication_timing_audit.py` и разрешён только после фактической
 публикации. Если уведомление должно уходить раньше, его использовать нельзя.
+
+Продолжение round 4 обучает условную модель на оставшихся четырёх неизвестных
+публикациях. Кандидат, выбранный по блокам 2017–2023, — conditional ExtraTrees:
+на 2024–2026 он дал **lift 2,459**, частоту **1,069** и future-only выгоду
+**+138 б.п.**; минимальный lift по годам — **2,268**, по валютам — **2,371**.
+Лучший среди заранее отобранных финалистов на уже просмотренном периоде —
+logit + ExtraTrees, **2,553**, но это ретроспективный максимум, не новая честная
+оценка. Подробный отчёт: [results/research/round4/report.md](results/research/round4/report.md).
 
 **Без знания следующего курса** лучший диагностический h=5 anchor — положение в
 90-дневном диапазоне плюс momentum 20/60 — даёт lift **1,406**, частоту **1,03**,
@@ -199,7 +208,8 @@ Soft regime router получил 1,243 / 1,325 и оказался ровнее
 | `ml/two_metrics.py` | метрика клиента: выгода против реального контрфакта |
 | `ml/leakage.py` | доказательство отсутствия заглядывания в будущее |
 | `ml/signals.py` | сигналы на произвольную дату среза (публичный API проверяемости) |
-| `tests/` | 51 тест: честность, корректность признаков и произвольный срез |
+| `tests/` | 54 теста: честность, корректность признаков и произвольный срез |
+| `research/round4_research.py` | post-publication conditional ML, Markov-state и window-closing аудит |
 | `run_product_numbers.py` | продуктовые величины: размах, потолок, цена ожидания, коридоры, кучность |
 | `run_experiment.py` | базовые модели |
 | `run_encoding_experiment.py` | честное сравнение старой и новой кодировки календаря/валюты |
