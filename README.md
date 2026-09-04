@@ -6,12 +6,17 @@
 **[Краткий итог всех модельных экспериментов](EXPERIMENTS_SUMMARY.md)** - лидеры,
 лучшие признаки и приёмы, отрицательные результаты и карта полных артефактов.
 
+**[Полный итоговый отчёт в PDF](output/pdf/international_transfers_full_research_report.pdf)** -
+единая картина задачи, данных, честной валидации, результатов `main`, `version_b`
+и `ivan-experiments`, источников прироста, ограничений и рекомендуемой схемы пилота.
+Исходник отчёта: [results/research/full_report/report-source.md](results/research/full_report/report-source.md).
+
 ## Быстрый старт
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m ml.leakage             # ворота: доказательство отсутствия утечки
-.venv/bin/python -m pytest -c pytest.ini   # 54 теста: честность, корректность, срез
+.venv/bin/python -m pytest -c pytest.ini   # 56 тестов: честность, корректность, срез
 .venv/bin/python -m ml.signals             # сигналы на произвольную дату среза
 .venv/bin/python run_product_numbers.py    # продуктовые величины: размах, потолок, кучность, коридоры
 .venv/bin/python run_experiment.py         # базовые модели против индикаторов ТЗ
