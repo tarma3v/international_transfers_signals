@@ -1,0 +1,78 @@
+{
+  "specs": [
+    {
+      "name": "barrier_ridge_expand_a100",
+      "kind": "ridge",
+      "local": false,
+      "window_years": null,
+      "alpha": 100.0,
+      "residual_window_years": null
+    },
+    {
+      "name": "barrier_ridge_window5_a10",
+      "kind": "ridge",
+      "local": false,
+      "window_years": 5,
+      "alpha": 10.0,
+      "residual_window_years": null
+    },
+    {
+      "name": "barrier_ridge_window5_a100",
+      "kind": "ridge",
+      "local": false,
+      "window_years": 5,
+      "alpha": 100.0,
+      "residual_window_years": null
+    },
+    {
+      "name": "barrier_local_ridge_window5",
+      "kind": "ridge",
+      "local": true,
+      "window_years": 5,
+      "alpha": 30.0,
+      "residual_window_years": null
+    },
+    {
+      "name": "barrier_ridge_expand_resid3",
+      "kind": "ridge",
+      "local": false,
+      "window_years": null,
+      "alpha": 100.0,
+      "residual_window_years": 3
+    },
+    {
+      "name": "barrier_extra_window5",
+      "kind": "extra",
+      "local": false,
+      "window_years": 5,
+      "alpha": 100.0,
+      "residual_window_years": null
+    },
+    {
+      "name": "barrier_hist_window5",
+      "kind": "hist",
+      "local": false,
+      "window_years": 5,
+      "alpha": 100.0,
+      "residual_window_years": null
+    }
+  ],
+  "path_target": "five cumulative future log returns divided by causal raw_vol_20",
+  "score": "joint empirical residual probability that all five path values are >= 0",
+  "residuals": "currency-specific and training-only",
+  "general_years": [
+    2017,
+    2018,
+    2019,
+    2020
+  ],
+  "shock_years": [
+    2022,
+    2023
+  ],
+  "final_years": [
+    2024,
+    2025,
+    2026
+  ]
+}

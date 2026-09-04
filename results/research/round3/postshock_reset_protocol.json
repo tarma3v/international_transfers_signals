@@ -1,0 +1,78 @@
+{
+  "reset": "2022-02-24",
+  "specs": [
+    {
+      "name": "reset_hist",
+      "kind": "hist",
+      "delayed": true,
+      "local": false
+    },
+    {
+      "name": "reset_hist_compact",
+      "kind": "hist",
+      "delayed": false,
+      "local": false
+    },
+    {
+      "name": "reset_extra",
+      "kind": "extra",
+      "delayed": true,
+      "local": false
+    },
+    {
+      "name": "reset_xgb",
+      "kind": "xgb",
+      "delayed": true,
+      "local": false
+    },
+    {
+      "name": "reset_logit",
+      "kind": "logit",
+      "delayed": true,
+      "local": false
+    },
+    {
+      "name": "reset_local_hist",
+      "kind": "hist",
+      "delayed": true,
+      "local": true
+    }
+  ],
+  "selection_year": 2024,
+  "gate_year": 2025,
+  "reported_last_year": 2026,
+  "delayed_features": [
+    "resolved_fav_lag_5",
+    "resolved_fav_lag_6",
+    "resolved_fav_lag_7",
+    "resolved_fav_lag_8",
+    "resolved_fav_lag_9",
+    "resolved_fav_lag_10",
+    "resolved_fav_lag_11",
+    "resolved_fav_lag_12",
+    "resolved_fav_lag_13",
+    "resolved_fav_lag_14",
+    "resolved_fav_lag_15",
+    "resolved_fav_lag_16",
+    "resolved_fav_lag_17",
+    "resolved_fav_lag_18",
+    "resolved_fav_lag_19",
+    "resolved_fav_lag_20",
+    "resolved_rate_5",
+    "resolved_rate_10",
+    "resolved_rate_20",
+    "resolved_rate_60",
+    "resolved_rate_120",
+    "resolved_streak",
+    "resolved_transition_rate_20",
+    "pending_survival_1",
+    "pending_margin_1",
+    "pending_survival_2",
+    "pending_margin_2",
+    "pending_survival_3",
+    "pending_margin_3",
+    "pending_survival_4",
+    "pending_margin_4"
+  ],
+  "limitation": "all post-2022 results are retrospective; no untouched post-break holdout remains"
+}

@@ -1,0 +1,251 @@
+{
+  "registry": [
+    {
+      "candidate": "0.25*reset_xgb+0.75*online_hedge",
+      "members": [
+        "reset_xgb",
+        "online_hedge"
+      ],
+      "weights": [
+        0.25,
+        0.75
+      ]
+    },
+    {
+      "candidate": "0.50*reset_xgb+0.50*online_hedge",
+      "members": [
+        "reset_xgb",
+        "online_hedge"
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "candidate": "0.75*reset_xgb+0.25*online_hedge",
+      "members": [
+        "reset_xgb",
+        "online_hedge"
+      ],
+      "weights": [
+        0.75,
+        0.25
+      ]
+    },
+    {
+      "candidate": "0.25*reset_xgb+0.75*multiscale_anchor",
+      "members": [
+        "reset_xgb",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.25,
+        0.75
+      ]
+    },
+    {
+      "candidate": "0.50*reset_xgb+0.50*multiscale_anchor",
+      "members": [
+        "reset_xgb",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "candidate": "0.75*reset_xgb+0.25*multiscale_anchor",
+      "members": [
+        "reset_xgb",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.75,
+        0.25
+      ]
+    },
+    {
+      "candidate": "0.25*online_hedge+0.75*multiscale_anchor",
+      "members": [
+        "online_hedge",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.25,
+        0.75
+      ]
+    },
+    {
+      "candidate": "0.50*online_hedge+0.50*multiscale_anchor",
+      "members": [
+        "online_hedge",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "candidate": "0.75*online_hedge+0.25*multiscale_anchor",
+      "members": [
+        "online_hedge",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.75,
+        0.25
+      ]
+    },
+    {
+      "candidate": "0.25*reset_xgb+0.75*consensus_geometric",
+      "members": [
+        "reset_xgb",
+        "consensus_geometric"
+      ],
+      "weights": [
+        0.25,
+        0.75
+      ]
+    },
+    {
+      "candidate": "0.50*reset_xgb+0.50*consensus_geometric",
+      "members": [
+        "reset_xgb",
+        "consensus_geometric"
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "candidate": "0.75*reset_xgb+0.25*consensus_geometric",
+      "members": [
+        "reset_xgb",
+        "consensus_geometric"
+      ],
+      "weights": [
+        0.75,
+        0.25
+      ]
+    },
+    {
+      "candidate": "0.25*consensus_geometric+0.75*multiscale_anchor",
+      "members": [
+        "consensus_geometric",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.25,
+        0.75
+      ]
+    },
+    {
+      "candidate": "0.50*consensus_geometric+0.50*multiscale_anchor",
+      "members": [
+        "consensus_geometric",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "candidate": "0.75*consensus_geometric+0.25*multiscale_anchor",
+      "members": [
+        "consensus_geometric",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.75,
+        0.25
+      ]
+    },
+    {
+      "candidate": "equal_three",
+      "members": [
+        "reset_xgb",
+        "online_hedge",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    {
+      "candidate": "reset_half_online_anchor_quarters",
+      "members": [
+        "reset_xgb",
+        "online_hedge",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.5,
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "candidate": "online_half_reset_anchor_quarters",
+      "members": [
+        "reset_xgb",
+        "online_hedge",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.25,
+        0.5,
+        0.25
+      ]
+    },
+    {
+      "candidate": "equal_reset_consensus_anchor",
+      "members": [
+        "reset_xgb",
+        "consensus_geometric",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    {
+      "candidate": "reset_half_consensus_anchor_quarters",
+      "members": [
+        "reset_xgb",
+        "consensus_geometric",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.5,
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "candidate": "consensus_half_reset_anchor_quarters",
+      "members": [
+        "reset_xgb",
+        "consensus_geometric",
+        "multiscale_anchor"
+      ],
+      "weights": [
+        0.25,
+        0.5,
+        0.25
+      ]
+    }
+  ],
+  "selection_year": 2024,
+  "gate_year": 2025,
+  "reported_last_year": 2026,
+  "limitation": "no pristine post-break holdout remains"
+}

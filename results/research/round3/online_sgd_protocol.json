@@ -1,0 +1,117 @@
+{
+  "specs": [
+    {
+      "name": "online_sgd_w5_eta005_e1",
+      "eta0": 0.005,
+      "update_epochs": 1,
+      "window_years": 5,
+      "local": false,
+      "delayed": true
+    },
+    {
+      "name": "online_sgd_w5_eta02_e1",
+      "eta0": 0.02,
+      "update_epochs": 1,
+      "window_years": 5,
+      "local": false,
+      "delayed": true
+    },
+    {
+      "name": "online_sgd_w5_eta05_e1",
+      "eta0": 0.05,
+      "update_epochs": 1,
+      "window_years": 5,
+      "local": false,
+      "delayed": true
+    },
+    {
+      "name": "online_sgd_w5_eta005_e3",
+      "eta0": 0.005,
+      "update_epochs": 3,
+      "window_years": 5,
+      "local": false,
+      "delayed": true
+    },
+    {
+      "name": "online_sgd_w5_eta02_e3",
+      "eta0": 0.02,
+      "update_epochs": 3,
+      "window_years": 5,
+      "local": false,
+      "delayed": true
+    },
+    {
+      "name": "online_sgd_expand_eta02_e1",
+      "eta0": 0.02,
+      "update_epochs": 1,
+      "window_years": null,
+      "local": false,
+      "delayed": true
+    },
+    {
+      "name": "online_sgd_local_w5_eta02_e1",
+      "eta0": 0.02,
+      "update_epochs": 1,
+      "window_years": 5,
+      "local": true,
+      "delayed": true
+    },
+    {
+      "name": "online_sgd_compact_w5_eta02_e1",
+      "eta0": 0.02,
+      "update_epochs": 1,
+      "window_years": 5,
+      "local": false,
+      "delayed": false
+    }
+  ],
+  "delayed_features": [
+    "resolved_fav_lag_5",
+    "resolved_fav_lag_6",
+    "resolved_fav_lag_7",
+    "resolved_fav_lag_8",
+    "resolved_fav_lag_9",
+    "resolved_fav_lag_10",
+    "resolved_fav_lag_11",
+    "resolved_fav_lag_12",
+    "resolved_fav_lag_13",
+    "resolved_fav_lag_14",
+    "resolved_fav_lag_15",
+    "resolved_fav_lag_16",
+    "resolved_fav_lag_17",
+    "resolved_fav_lag_18",
+    "resolved_fav_lag_19",
+    "resolved_fav_lag_20",
+    "resolved_rate_5",
+    "resolved_rate_10",
+    "resolved_rate_20",
+    "resolved_rate_60",
+    "resolved_rate_120",
+    "resolved_streak",
+    "resolved_transition_rate_20",
+    "pending_survival_1",
+    "pending_margin_1",
+    "pending_survival_2",
+    "pending_margin_2",
+    "pending_survival_3",
+    "pending_margin_3",
+    "pending_survival_4",
+    "pending_margin_4"
+  ],
+  "feedback_rule": "partial_fit only when target_reach_date <= current publication date",
+  "general_years": [
+    2017,
+    2018,
+    2019,
+    2020
+  ],
+  "shock_years": [
+    2022,
+    2023
+  ],
+  "final_years": [
+    2024,
+    2025,
+    2026
+  ]
+}

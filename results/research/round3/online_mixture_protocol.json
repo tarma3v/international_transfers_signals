@@ -1,0 +1,226 @@
+{
+  "experts": {
+    "global_compact_extra": "diverse_outputs.pkl",
+    "local_compact_extra": "diverse_outputs.pkl",
+    "global_gmm3_hist": "diverse_outputs.pkl",
+    "global_path_knn300": "diverse_outputs.pkl",
+    "local_spline_logit": "diverse_outputs.pkl",
+    "global_survival_logit": "diverse_outputs.pkl",
+    "local_floor_q35": "diverse_outputs.pkl",
+    "global_hist_window5": "recency_outputs.pkl",
+    "global_extra_window3": "recency_outputs.pkl",
+    "local_hist_window3": "recency_outputs.pkl",
+    "global_pairwise_quarter_w5": "ranker_outputs.pkl"
+  },
+  "consensus": [
+    "mean",
+    "trimmed",
+    "median",
+    "lower_quartile",
+    "geometric",
+    "disagreement_0.25",
+    "disagreement_0.5",
+    "disagreement_1.0"
+  ],
+  "hedge_specs": [
+    {
+      "scope": "global",
+      "eta": 2.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "global",
+      "eta": 2.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "global",
+      "eta": 2.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "global",
+      "eta": 5.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "global",
+      "eta": 5.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "global",
+      "eta": 5.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "global",
+      "eta": 10.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "global",
+      "eta": 10.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "global",
+      "eta": 10.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "global",
+      "eta": 20.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "global",
+      "eta": 20.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "global",
+      "eta": 20.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "local",
+      "eta": 2.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "local",
+      "eta": 2.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "local",
+      "eta": 2.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "local",
+      "eta": 5.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "local",
+      "eta": 5.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "local",
+      "eta": 5.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "local",
+      "eta": 10.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "local",
+      "eta": 10.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "local",
+      "eta": 10.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "local",
+      "eta": 20.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "local",
+      "eta": 20.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "local",
+      "eta": 20.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 2.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 2.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 2.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 5.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 5.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 5.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 10.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 10.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 10.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 20.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 20.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 20.0,
+      "rho": 1.0
+    }
+  ],
+  "loss": "Brier loss on preceding-year percentile-ranked expert scores",
+  "feedback_rule": "update only when target_reach_date <= current publication date",
+  "selection": {
+    "general": [
+      2017,
+      2018,
+      2019,
+      2020
+    ],
+    "shock_gate": [
+      2022,
+      2023
+    ],
+    "final_retrospective": [
+      2024,
+      2025,
+      2026
+    ]
+  }
+}

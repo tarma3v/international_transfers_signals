@@ -25,7 +25,7 @@ OUT = Path("results/research")
 COOLDOWN_DAYS = 3
 
 
-def evaluate(y1, y, benefit, dates, currencies, years, h):
+def evaluate(y1, y, forward_benefit, symmetric_benefit, dates, currencies, years, h):
     scope = np.zeros(len(y), dtype=bool)
     fired = np.zeros(len(y), dtype=bool)
     scope[:] = np.asarray([day.year in years for day in dates]) & ~np.isnan(y)
@@ -59,7 +59,8 @@ def evaluate(y1, y, benefit, dates, currencies, years, h):
         "h": h, "years": str(tuple(years)), "n": int(active.sum()),
         "frequency": rate_per_week(int(active.sum()), len(CORRIDORS), dates, valid),
         "hit_rate": hit, "base_rate": base, "lift": hit / base,
-        "forward_benefit_bps": float(np.nanmean(benefit[active])),
+        "forward_benefit_bps": float(np.nanmean(forward_benefit[active])),
+        "symmetric_benefit_bps": float(np.nanmean(symmetric_benefit[active])),
         "year_lift_min": min(year_lifts),
         "corridor_lift_min": min(corridor_lifts),
         "corridor_freq_min": min(corridor_freqs),
@@ -78,14 +79,17 @@ def main():
     rows = []
     for h in HORIZONS:
         y = targets[f"fav_h{h}"]
+        symmetric_benefit = targets[f"benefit_h{h}"]
         benefit = np.full(len(index), np.nan)
         for row, (currency, i, _day) in enumerate(index):
             value = benefit_forward_only(series[currency].values, i, h)
             if value is not None:
                 benefit[row] = value
         rows.extend([
-            evaluate(y1, y, benefit, dates, currencies, REGIME_VALID_YEARS, h),
-            evaluate(y1, y, benefit, dates, currencies, FINAL_TEST_YEARS, h),
+            evaluate(y1, y, benefit, symmetric_benefit, dates, currencies,
+                     REGIME_VALID_YEARS, h),
+            evaluate(y1, y, benefit, symmetric_benefit, dates, currencies,
+                     FINAL_TEST_YEARS, h),
         ])
     result = pd.DataFrame(rows)
     result.to_csv(OUT / "publication_timing_h1.csv", index=False)
