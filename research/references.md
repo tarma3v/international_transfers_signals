@@ -14,6 +14,10 @@ features unless a script explicitly says so.
   timing is not regulated, but the rates are normally posted by 18:00 Moscow.
   This is why the next-effective-rate experiment is conditional on an explicit
   post-publication product cutoff and isolated from ordinary causal features.
+- Bank of Russia FX FAQ: <https://www.cbr.ru/faq/dkp/04/>.  It also states that
+  the rates take effect on the calendar day after they are set and remain in
+  force until the next rate.  Round four uses this timing only in its explicitly
+  isolated post-publication information set.
 - Bank of Russia cross-border transfers database:
   <https://www.cbr.ru/hd_base/tg/?tab.current=t2>.  It exposes quarterly and
   annual outflow/inflow data.  Such data can describe demand regimes but must be
