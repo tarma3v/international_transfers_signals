@@ -215,9 +215,9 @@ footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-siz
     <table>
       <thead><tr><th>Состояние курса</th><th>Доля дней</th><th>Достижимая выгода</th><th>95 % ДИ</th><th>Что можно сказать</th></tr></thead>
       <tbody>
-        <tr><td>Сум дают больше обычного</td><td>10 %</td><td class="num">−1 бп</td><td>[−26; +24]</td><td>только факт</td></tr>
+        <tr><td>Сум дают больше обычного</td><td>18 %</td><td class="num">−1 бп</td><td>[−26; +24]</td><td>только факт</td></tr>
         <tr><td>Как обычно</td><td>66 %</td><td class="neg">−7 бп</td><td>[−17; +4]</td><td>только факт</td></tr>
-        <tr class="hl"><td>Сум дают меньше обычного</td><td>10 %</td><td class="pos">+48 бп</td><td>[+22; +75]</td><td>факт + одна строка про прошлое</td></tr>
+        <tr class="hl"><td>Сум дают меньше обычного</td><td>17 %</td><td class="pos">+48 бп</td><td>[+22; +75]</td><td>факт + одна строка про прошлое</td></tr>
       </tbody>
     </table>
   </div>
@@ -229,12 +229,12 @@ footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-siz
 
   <div class="states">
     <div class="state">
-      <div class="state-hd"><div class="n">Состояние 1 · 10 % дней</div><div class="v">Больше обычного</div></div>
+      <div class="state-hd"><div class="n">Состояние 1 · 18 % дней</div><div class="v">Больше обычного</div></div>
       <div class="state-in">
         <div class="mini">
           <div class="fxw-top"><div class="fxw-lab">Получатель получит</div><div class="fxw-state">Больше обычного</div></div>
           <div class="fxw-big">4 452 000 <small>сум</small></div>
-          <div class="track"><div class="track-bar"><div class="track-pin" style="left:88%"></div></div>
+          <div class="track"><div class="track-bar"><div class="track-pin" style="left:95%"></div></div>
             <div class="track-ends"><span>4 180 000</span><span>4 465 000</span></div></div>
           <div class="fxw-fact">Больше, чем в <b>91 % дней</b> за последние три месяца.</div>
         </div>
@@ -255,7 +255,7 @@ footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-siz
       <div class="state-ft">Нейтрально и честно. Две трети дней попадают сюда — молчание тоже продуктовое решение.</div>
     </div>
     <div class="state">
-      <div class="state-hd"><div class="n">Состояние 3 · 10 % дней</div><div class="v">Меньше обычного</div></div>
+      <div class="state-hd"><div class="n">Состояние 3 · 17 % дней</div><div class="v">Меньше обычного</div></div>
       <div class="state-in">
         <div class="mini warn">
           <div class="fxw-top"><div class="fxw-lab">Получатель получит</div><div class="fxw-state">Меньше обычного</div></div>
@@ -303,7 +303,7 @@ footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-siz
           <div class="track"><div class="track-bar"><div class="track-pin" style="left:41%"></div></div>
             <div class="track-ends"><span>за 3 мес. минимум<br>4 180 000</span><span style="text-align:right">максимум<br>4 465 000</span></div></div>
           <div class="fxw-fact">Больше, чем в <b>38 % дней</b> за последние три месяца.</div>
-          <div class="fxw-link">🔔 Сообщить, когда будут давать больше</div>
+          <div class="fxw-link">🔔 Сообщить, если будут давать больше</div>
         </div>
 
         <div class="cta">Перевести 30 000 ₽</div>
@@ -312,7 +312,7 @@ footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-siz
     </div>
 
     <div class="notes">
-      <div class="note"><h4>Величина в сумах, а не в курсе<span class="tag t-num">решение</span></h4><p>«143,2 ₽ за 10 000 сум» клиенту ничего не говорит. «Получатель получит 4 296 000 сум» — говорит, и это та же цифра, которую он назовёт семье по телефону.</p></div>
+      <div class="note"><h4>Величина в сумах, а не в курсе<span class="tag t-num">решение</span></h4><p>«69,8 ₽ за 10 000 сум» клиенту ничего не говорит. «Получатель получит 4 296 000 сум» — говорит, и это та же цифра, которую он назовёт семье по телефону.</p></div>
       <div class="note"><h4>Виджет ниже суммы, а не выше<span class="tag t-num">решение</span></h4><p>Пока сумма не введена, показывать нечего: вся ценность в переводе бп в сумы. Виджет появляется вместе с первой введённой цифрой.</p></div>
       <div class="note"><h4>Полоска без цветовой заливки<span class="tag t-no">чего не делаем</span></h4><p>Градиент «красное → зелёное» на шкале означал бы, что один конец хороший. По нашим данным это неправда для двух состояний из трёх.</p></div>
       <div class="note"><h4>Кнопка перевода не меняется<span class="tag t-no">чего не делаем</span></h4><p>Никакого «Перевести сейчас — выгодный курс!». Индикатор информирует уже сформированное намерение, а не подталкивает.</p></div>
@@ -328,7 +328,7 @@ footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-siz
   <div class="pair rev">
     <div class="notes">
       <div class="note"><h4>Пуш 1: уровень, который задал клиент<span class="tag t-ok">основной</span></h4><p>Прогноза не требует вовсе — это факт наступления события, которое клиент сам назначил. Поэтому он и должен быть основным типом: его текст не может нарушить рамку, потому что в нём нет утверждения ни о чём, кроме настоящего.</p></div>
-      <div class="note"><h4>Пуш 2: сигнал модели<span class="tag t-num">по заданию</span></h4><p>Формулировка ровно та, что разрешает кейс: доля дней, которые сегодняшний курс побивает. Ни слова о будущем. Частота — 0,6–0,8 на коридор в неделю.</p></div>
+      <div class="note"><h4>Пуш 2: сигнал модели<span class="tag t-no">не проверен комплаенсом</span></h4><p>Правило срабатывает на 99-м процентиле диапазона — когда валюта получателя <b>дорога</b>, и клиент получает меньше сумов. Разрешённая кейсом формулировка «выгоднее, чем в N % дней» там превращается в «хуже, чем в 99 % дней» и перевода не мотивирует, а единственный мотивирующий текст — обещание будущего — запрещён. Рамка «перестань ждать» — единственный найденный кандидат: это факт о прошлом, направления он не обещает. Частота правила — 0,60 на коридор в неделю.</p></div>
       <div class="note"><h4>Чего в пушах нет<span class="tag t-no">запрещено</span></h4><p>«Успейте», «курс вырастет», «лучший момент», «пока не подорожало». Любой намёк на будущее — то же нарушение, что и прямое обещание.</p></div>
       <div class="note"><h4>Сумма в пуше — та, которую клиент переводит обычно<span class="tag t-num">решение</span></h4><p>Абстрактный курс в пуше не читается. Берём медианный перевод клиента по этому коридору и показываем результат в сумах.</p></div>
     </div>
@@ -337,7 +337,7 @@ footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-siz
       <div class="pstat"><span style="opacity:0"></span><span class="rt" style="opacity:0"></span></div>
       <div class="lock">
         <div class="lock-time">20:32</div>
-        <div class="lock-date">среда, 3 сентября</div>
+        <div class="lock-date">четверг, 3 сентября</div>
         <div class="push">
           <div class="push-hd"><span class="push-ic"></span><span>БАНК · сейчас</span></div>
           <div class="push-t">Курс дошёл до вашего уровня</div>
@@ -345,8 +345,8 @@ footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-siz
         </div>
         <div class="push">
           <div class="push-hd"><span class="push-ic"></span><span>БАНК · 2 ч назад</span></div>
-          <div class="push-t">Сум сегодня дают больше обычного</div>
-          <div class="push-b">За 30 000 ₽ дают больше, чем в 91 % дней за последние три месяца.</div>
+          <div class="push-t">Если вы ждали лучшего курса</div>
+          <div class="push-b">За последние три месяца ожидание в такие дни в среднем не окупалось. Сейчас за 30 000 ₽ — 4 190 000 сум.</div>
         </div>
       </div>
       <div class="pbar"></div>
@@ -354,12 +354,12 @@ footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-siz
   </div>
 
   <h3>Что открывается после тапа</h3>
-  <p>Не главный экран и не общий список переводов. Тап открывает <strong>предзаполненный перевод по тому коридору, о котором был пуш</strong>, с раскрытым виджетом и историей за три месяца. Одно касание до подтверждения.</p>
+  <p>Не главный экран и не общий список переводов. Тап открывает <strong>предзаполненный перевод по тому коридору, о котором был пуш</strong>, с раскрытым виджетом и историей за три месяца. Получатель и сумма уже подставлены.</p>
 
   <div class="pair">
     <div class="phone">
       <div class="pstat"><span>20:33</span><span class="rt">LTE ▮▮▮ 38</span></div>
-      <div class="pnav"><span class="ic">✕</span><span class="ttl">Курс дошёл до уровня</span><span class="ic"></span></div>
+      <div class="pnav"><span class="ic">✕</span><span class="ttl">Курс дошёл до вашего уровня</span><span class="ic"></span></div>
       <div class="pbody">
         <div class="fxw">
           <div class="fxw-top"><div class="fxw-lab">Получатель получит за 30 000 ₽</div></div>
@@ -403,7 +403,7 @@ footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-siz
         <div class="seg"><span class="on">В сумах</span><span>В рублях</span></div>
 
         <div style="text-align:center;padding:14px 0 4px">
-          <div style="font-size:12.5px;color:var(--app-grey)">Сообщить, когда за 30 000 ₽ будут давать</div>
+          <div style="font-size:12.5px;color:var(--app-grey)">Сообщить, если за 30 000 ₽ будут давать</div>
           <div style="font-size:32px;font-weight:700;letter-spacing:-.02em;margin-top:5px">4 400 000 <span style="font-size:18px;color:var(--app-grey)">сум</span></div>
           <div style="font-size:12.5px;color:var(--app-warn);margin-top:5px">на 104 000 сум больше, чем сейчас</div>
         </div>
@@ -413,7 +413,7 @@ footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-siz
         </div>
 
         <div style="background:var(--app-neutral-bg);border-radius:11px;padding:11px 13px;font-size:12.5px;line-height:1.45;color:var(--app-neutral);margin-top:16px">
-          Такой курс был <b style="color:var(--app-ink)">в 16 % дней</b> за последние три месяца — примерно раз в две недели. Мы не знаем, будет ли он снова.
+          Такой курс был <b style="color:var(--app-ink)">в 16 % дней</b> за последние три месяца — примерно раз в неделю. Мы не знаем, будет ли он снова.
         </div>
 
         <div class="acard" style="margin-top:11px;padding:4px 12px">
@@ -429,7 +429,7 @@ footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-siz
     <div class="notes">
       <div class="note"><h4>Порог в сумах, а не в курсе<span class="tag t-num">решение</span></h4><p>Клиент мыслит суммой, которую получит семья. Переключатель «в рублях» оставлен для тех, кто считает курсом, но по умолчанию не он.</p></div>
       <div class="note"><h4>Ползунок ограничен реальным диапазоном<span class="tag t-num">решение</span></h4><p>Границы — минимум и максимум квартала. Позволить выставить уровень, которого никогда не было, значит завести оповещение, которое не сработает никогда.</p></div>
-      <div class="note"><h4>Частота уровня названа заранее<span class="tag t-ok">ключевое</span></h4><p><b>«Такой курс был в 16 % дней — примерно раз в две недели»</b>. Это калибровка ожидания, снова фактом о прошлом. Клиент сам решает, реалистичен ли его уровень.</p></div>
+      <div class="note"><h4>Частота уровня названа заранее<span class="tag t-ok">ключевое</span></h4><p><b>«Такой курс был в 16 % дней — примерно раз в неделю»</b>. Это калибровка ожидания, снова фактом о прошлом. Клиент сам решает, реалистичен ли его уровень.</p></div>
       <div class="note"><h4>«Мы не знаем, будет ли он снова»<span class="tag t-ok">рамка</span></h4><p>Одна строка, которая честно закрывает рамку кейса и снимает с продукта обещание. Её стоит защищать: она превращает ограничение в доверие.</p></div>
       <div class="note"><h4>Срок жизни оповещения<span class="tag t-num">решение</span></h4><p>30 дней с переспросом. Бессрочное оповещение через полгода станет спамом по поводу, о котором клиент забыл.</p></div>
     </div>
@@ -493,7 +493,7 @@ footer{margin-top:60px;padding-top:24px;border-top:2px solid var(--ink);font-siz
       <tbody>
         <tr><td>Индикатор на экране суммы</td><td>доверие, удовлетворённость</td><td class="pos">нет</td><td>доля отказов на экране суммы</td></tr>
         <tr><td>Оповещение об уровне</td><td>удержание отложенного намерения</td><td class="pos">нет</td><td>возвраты в приложение, конверсия по пушу</td></tr>
-        <tr class="hl"><td>Сигнал триггерной модели</td><td>тайминг</td><td class="pos">нет</td><td>инкрементальная конверсия против холдаута</td></tr>
+        <tr class="hl"><td>Сигнал триггерной модели</td><td>остановка ожидания</td><td class="pos">нет</td><td>инкрементальная конверсия против холдаута</td></tr>
         <tr><td>Прогноз направления курса</td><td>—</td><td class="neg">да</td><td class="neg">в продукт не берём</td></tr>
       </tbody>
     </table>
