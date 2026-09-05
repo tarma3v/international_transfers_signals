@@ -1,0 +1,53 @@
+{
+  "packet": "AN",
+  "variants": [
+    "cny_intraday_extra",
+    "basis_extra",
+    "stale_basis_extra",
+    "basis_anchor_logit",
+    "basis_logit50_extra50"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "basis_feature_names": [
+    "cny_basis_close_bps",
+    "cny_basis_open_bps",
+    "cny_basis_waprice_bps",
+    "cny_basis_high_bps",
+    "cny_basis_low_bps",
+    "cny_basis_change_1",
+    "cny_basis_return_gap_1",
+    "cny_basis_change_2",
+    "cny_basis_return_gap_2",
+    "cny_basis_change_5",
+    "cny_basis_return_gap_5",
+    "cny_basis_change_10",
+    "cny_basis_return_gap_10",
+    "cny_basis_change_20",
+    "cny_basis_return_gap_20",
+    "cny_basis_mean_5",
+    "cny_basis_z_5",
+    "cny_basis_mean_20",
+    "cny_basis_z_20",
+    "cny_basis_mean_60",
+    "cny_basis_z_60",
+    "cny_basis_market_age",
+    "cny_basis_cbr_age",
+    "cny_basis_missing"
+  ],
+  "basis_rule": "MOEX trade date < signal; CBR CNY date <= MOEX trade date",
+  "physical_joint_future_corruption_check": true,
+  "stale_control": "basis delayed by 20 target rows per currency",
+  "payload_sha256": "03693535c248cca35976366cd0fc5072ad45779e23d5b7703f3ad34c7e456e8f",
+  "all_training_labels_resolved": true,
+  "later_period_status": "post-diagnostic retrospective exploration"
+}

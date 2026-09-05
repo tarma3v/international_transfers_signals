@@ -1,0 +1,48 @@
+{
+  "packet": "CH",
+  "comparisons": [
+    [
+      "cba_freshness",
+      "cba_consensus_stale20",
+      "cba_consensus_basis"
+    ],
+    [
+      "cba_on_primary",
+      "logit50_extra50",
+      "primary75_cba_consensus_basis25"
+    ],
+    [
+      "cba_on_label_free_geometry",
+      "primary75_geometry_min75_max2525",
+      "geometry75_cba_consensus_basis25"
+    ],
+    [
+      "cba_geometry_vs_regime",
+      "primary75_regime_logit25",
+      "geometry75_cba_consensus_basis25"
+    ]
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "bootstrap_draws": 4000,
+  "bootstrap": "paired four-week blocks with currencies kept by date",
+  "multiplicity": "Holm adjustment across four predeclared comparisons",
+  "case_gates": {
+    "all_horizons_case_lift_at_least_1_30": true,
+    "all_horizons_symmetric_benefit_positive": true,
+    "all_horizons_future_benefit_positive": true,
+    "all_horizon_frequencies_between_1_and_2": true,
+    "all_case_gates": true
+  },
+  "model_refit": false,
+  "later_period_status": "multiplicity-aware retrospective audit"
+}

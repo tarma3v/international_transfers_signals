@@ -1,0 +1,14 @@
+{
+  "candidate": "stack50_benefit50",
+  "policy": {
+    "rate": 0.35,
+    "window": 20,
+    "minimum_history": 10
+  },
+  "history_reset": "calendar quarter, aligned with model refit",
+  "current_score_appended_after_decision": true,
+  "physical_future_score_corruption_check": true,
+  "selection_period": 2024,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

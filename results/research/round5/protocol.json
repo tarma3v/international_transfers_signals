@@ -1,0 +1,45 @@
+{
+  "information_set": "ordinary: publications through i only; i+1 forbidden",
+  "architecture_selection": [
+    2017,
+    2018,
+    2019,
+    2020
+  ],
+  "adverse_regime_gate": [
+    2022,
+    2023
+  ],
+  "retrospective_only": [
+    2024,
+    2025,
+    2026
+  ],
+  "candidate_families": {
+    "invariant_summary_logit": "invariant",
+    "invariant_summary_extra": "invariant",
+    "invariant_summary_hist": "invariant",
+    "rocket_logit": "rocket",
+    "stable_invariant_logit": "stable",
+    "domain_balanced_logit": "stable",
+    "path_analogue_knn100": "analogue",
+    "path_analogue_knn250": "analogue",
+    "ordinal_count_extra": "rich_target",
+    "future_floor_extra": "rich_target",
+    "future_floor_hist": "rich_target",
+    "multi_extra_geometric": "multi_horizon",
+    "multi_extra_lower": "multi_horizon",
+    "era_logit_median": "era",
+    "era_logit_lower": "era",
+    "era_extra_median": "era",
+    "era_extra_lower": "era",
+    "anchor_multiscale_locked": "anchor",
+    "new_triad_equal": "ensemble",
+    "new_triad_anchor25": "ensemble",
+    "invariant_extra_anchor50": "ensemble",
+    "era_extra_anchor25": "ensemble"
+  },
+  "policies_per_architecture": 35,
+  "selection_rule": "max min(lift, macro-year, min-year, min-currency) under frequency and benefit constraints",
+  "pristine_holdout_available": false
+}

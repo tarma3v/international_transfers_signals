@@ -1,0 +1,22 @@
+{
+  "source": "stack50_benefit50",
+  "minimum_same_quarter_history": 10,
+  "same_quarter_rank": "strictly earlier scores, appended after transform",
+  "same_day_rank": "simultaneously observable five-currency panel",
+  "candidates": [
+    "source_stack50_benefit50",
+    "original75_qrank25",
+    "original75_qrank25_day20",
+    "original50_qrank50",
+    "original50_qrank50_day20",
+    "original25_qrank75",
+    "original25_qrank75_day20",
+    "qrank75_day25",
+    "qrank50_day50"
+  ],
+  "target_used_by_transform": false,
+  "physical_future_score_corruption_check": true,
+  "policy_selected_on": 2024,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

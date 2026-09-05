@@ -1,0 +1,42 @@
+{
+  "packet": "BW",
+  "comparisons": [
+    [
+      "primary_survival_increment",
+      "logit50_extra50",
+      "primary75_survival25"
+    ],
+    [
+      "shadow_survival_vs_shadow",
+      "shadow_close_basis",
+      "shadow75_survival25"
+    ],
+    [
+      "shadow_survival_vs_survival",
+      "survival_cumulative_geometric",
+      "shadow75_survival25"
+    ],
+    [
+      "three_expert_increment",
+      "logit50_extra50",
+      "primary50_survival25_shadow25"
+    ]
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "bootstrap_draws": 4000,
+  "bootstrap": "paired four-week blocks with currencies kept by date",
+  "multiplicity": "Holm adjustment across four predeclared hypotheses",
+  "any_increment_supported": false,
+  "model_refit": false,
+  "later_period_status": "multiplicity-aware retrospective audit"
+}

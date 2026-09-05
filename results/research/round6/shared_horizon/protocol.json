@@ -1,0 +1,22 @@
+{
+  "kinds": [
+    "hist",
+    "extra",
+    "xgb"
+  ],
+  "aggregates": [
+    "minimum",
+    "geomean",
+    "conservative"
+  ],
+  "training_replication": "one row per horizon 1..5 with one-hot horizon",
+  "all_five_labels_resolved_before_refit": true,
+  "matrix_shape": [
+    19326,
+    472
+  ],
+  "n_broad_features": 382,
+  "next_rate_feature": false,
+  "architecture_and_policy_selected_on": 2024,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

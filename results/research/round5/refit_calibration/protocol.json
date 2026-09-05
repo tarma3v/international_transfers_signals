@@ -1,0 +1,22 @@
+{
+  "next_rate_feature": false,
+  "quarterly_refit": true,
+  "same_model_past_score_rank_windows": [
+    60,
+    120,
+    250
+  ],
+  "score_rank_uses_targets": false,
+  "screen": 2024,
+  "confirmation": 2025,
+  "audit": 2026,
+  "quarter_frequency_gate": [
+    0.3,
+    2.5
+  ],
+  "winner": null,
+  "chronology_ok": true,
+  "pristine_holdout_available": false,
+  "n_candidate_architectures": 13,
+  "n_policies_per_architecture": 64
+}

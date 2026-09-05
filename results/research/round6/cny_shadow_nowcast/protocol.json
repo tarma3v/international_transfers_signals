@@ -1,0 +1,55 @@
+{
+  "packet": "BQ",
+  "variants": [
+    "shadow_close_basis",
+    "shadow_close_cross5",
+    "primary75_shadow25",
+    "primary50_shadow50",
+    "primary75_shadow_cross25"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "architecture_screen_year": 2024,
+  "screened_formulas": [
+    "close basis",
+    "WAP basis",
+    "minimum close/open/WAP basis",
+    "close basis - one-day target/CNY cross return",
+    "close basis + one-day target/CNY cross return",
+    "close basis - 0.20 * five-day target/CNY cross return",
+    "negative 20-day cross z-score",
+    "negative 60-day cross z-score",
+    "close basis - 0.25 * 20-day cross z-score",
+    "close basis - 0.25 * 60-day cross z-score"
+  ],
+  "advanced_formulas": {
+    "shadow_close_basis": "CNY MOEX close / official CBR CNY log basis",
+    "shadow_close_cross5": "close basis - 0.20 * target/CNY cross return 5"
+  },
+  "blend_weights": [
+    [
+      0.75,
+      0.25
+    ],
+    [
+      0.5,
+      0.5
+    ]
+  ],
+  "basis_feature": "cny_basis_close_bps",
+  "asof_rule": "MOEX TRADEDATE < signal; official CBR date <= signal",
+  "same_day_market_close_allowed": false,
+  "physical_future_corruption_check": true,
+  "payload_sha256": "03693535c248cca35976366cd0fc5072ad45779e23d5b7703f3ad34c7e456e8f",
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

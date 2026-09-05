@@ -1,0 +1,41 @@
+{
+  "packet": "CL",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "source": "Central Bank of Uzbekistan official yearly XLS archive",
+  "source_url": "https://cbu.uz/ru/arkhiv-kursov-valyut/",
+  "source_files": [
+    "data/external_uzbekistan_cbu_2016.xls",
+    "data/external_uzbekistan_cbu_2017.xls",
+    "data/external_uzbekistan_cbu_2018.xls",
+    "data/external_uzbekistan_cbu_2019.xls",
+    "data/external_uzbekistan_cbu_2020.xls",
+    "data/external_uzbekistan_cbu_2021.xls",
+    "data/external_uzbekistan_cbu_2022.xls",
+    "data/external_uzbekistan_cbu_2023.xls",
+    "data/external_uzbekistan_cbu_2024.xls",
+    "data/external_uzbekistan_cbu_2025.xls",
+    "data/external_uzbekistan_cbu_2026.xls"
+  ],
+  "payload_sha256": "3b1e9ec6ddbc89c38f56a79a9f6ec8dc45cb179c6af5cfdcb62fb1a75e9634c6",
+  "selection_period": 2024,
+  "raw_selected": "uzbek_cbu_cny_basis",
+  "finalist_selected": "incumbent",
+  "selection_objective": "maximum worst official case-lift over h=1/3/5/10/20",
+  "selection_constraints": "positive symmetric and future-only benefit at every horizon",
+  "asof_rule": "local-CB effective date strictly before signal date; CBR date <= signal date",
+  "publication_time_assumed": false,
+  "physical_future_corruption_check": true,
+  "stale_control_rows_per_currency": 20,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

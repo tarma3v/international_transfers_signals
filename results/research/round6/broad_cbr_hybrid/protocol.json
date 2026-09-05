@@ -1,0 +1,13 @@
+{
+  "broad_component": "broad_full_extra",
+  "baseload_component": "packet_e_cbr_anchor50",
+  "broad_weights": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "combination": "per-currency rank blend against prior calibration year",
+  "policy_selected_on": 2024,
+  "later_period_status": "protocol-controlled retrospective, not pristine",
+  "next_rate_feature": false
+}

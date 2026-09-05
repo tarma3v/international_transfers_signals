@@ -1,0 +1,38 @@
+{
+  "packet": "CB",
+  "variants": [
+    "nbt_direct_basis",
+    "nbt_usd_cross_basis",
+    "nbt_cny_cross_basis",
+    "nbt_consensus_basis",
+    "nbt_direct_consensus_mean",
+    "nbt_direct_stale20",
+    "primary_tjs_nbt_direct",
+    "router_tjs_nbt_direct",
+    "primary75_nbt25"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "source": "National Bank of Tajikistan official dynamic XML archive",
+  "source_files": [
+    "data/external_nbt_cny_2016_2026.xml",
+    "data/external_nbt_rub_2016_2026.xml",
+    "data/external_nbt_usd_2016_2026.xml"
+  ],
+  "payload_sha256": "453f3e024e019632b9496a946707de122c87698ce059e9789ced87bb02e37349",
+  "asof_rule": "NBT effective date strictly before signal date; CBR date <= signal date",
+  "publication_time_assumed": false,
+  "physical_future_corruption_check": true,
+  "stale_control_rows_per_currency": 20,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

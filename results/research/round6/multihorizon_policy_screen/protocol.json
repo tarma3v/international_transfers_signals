@@ -1,0 +1,22 @@
+{
+  "packet": "CU",
+  "source_candidate": "geometry75_cba_consensus_basis25",
+  "selection_period": 2024,
+  "selected_policy": {
+    "kind": "exponential",
+    "rate": 0.3,
+    "memory": 40
+  },
+  "default_policy": {
+    "kind": "rolling",
+    "rate": 0.22,
+    "memory": 20
+  },
+  "candidate_count": 84,
+  "selection_objective": "maximum worst official lift over h=1/3/5/10/20",
+  "selection_constraints": "rate/corridor/quarter cadence and positive benefits",
+  "exponential_quantile": "strictly previous scores, half-life in observations",
+  "physical_future_score_corruption_check": true,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}

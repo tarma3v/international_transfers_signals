@@ -1,0 +1,47 @@
+{
+  "specs": [
+    {
+      "name": "rank_pair_fav_compact_quarter",
+      "matrix": "compact",
+      "target": "fav",
+      "objective": "rank:pairwise",
+      "group_period": "quarter"
+    },
+    {
+      "name": "rank_pair_fav_full_month",
+      "matrix": "full",
+      "target": "fav",
+      "objective": "rank:pairwise",
+      "group_period": "month"
+    },
+    {
+      "name": "rank_pair_ordinal_compact_quarter",
+      "matrix": "compact",
+      "target": "ordinal",
+      "objective": "rank:pairwise",
+      "group_period": "quarter"
+    },
+    {
+      "name": "rank_ndcg_ordinal_full_month",
+      "matrix": "full",
+      "target": "ordinal",
+      "objective": "rank:ndcg",
+      "group_period": "month"
+    },
+    {
+      "name": "rank_pair_benefit_compact_quarter",
+      "matrix": "compact",
+      "target": "benefit",
+      "objective": "rank:pairwise",
+      "group_period": "quarter"
+    }
+  ],
+  "query_groups": "currency x calendar month/quarter, contiguous before fit",
+  "benefit_relevance": "within-training-query decile",
+  "post_2022_only": true,
+  "all_training_labels_resolved_before_refit": true,
+  "next_rate_feature": false,
+  "architecture_and_policy_selected_on": 2024,
+  "later_period_status": "protocol-controlled retrospective, not pristine",
+  "n_broad_features": 382
+}

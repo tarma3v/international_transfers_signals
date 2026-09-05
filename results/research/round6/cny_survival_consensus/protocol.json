@@ -1,0 +1,48 @@
+{
+  "packet": "BV",
+  "variants": [
+    "primary75_survival25",
+    "shadow75_survival25",
+    "primary50_survival25_shadow25"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "screen_year": 2024,
+  "screened_weights": [
+    [
+      0.25,
+      0.75
+    ],
+    [
+      0.5,
+      0.5
+    ],
+    [
+      0.75,
+      0.25
+    ],
+    [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    [
+      0.5,
+      0.25,
+      0.25
+    ]
+  ],
+  "combination": "fixed per-currency causal score ranks",
+  "components_refitted": false,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

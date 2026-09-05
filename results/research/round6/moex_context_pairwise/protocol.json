@@ -1,0 +1,34 @@
+{
+  "packet": "AP",
+  "order": [
+    "imoex_aligned",
+    "imoex_stale20",
+    "primary75_imoex25",
+    "rgbi_aligned",
+    "rgbi_stale20",
+    "primary75_rgbi25",
+    "rusfar_aligned",
+    "rusfar_stale20",
+    "primary75_rusfar25",
+    "gold_aligned",
+    "gold_stale20",
+    "primary75_gold25"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "aligned_weight_in_blend": 0.25,
+  "stale_control": "individual 22-feature group delayed 20 target rows per currency",
+  "payload_sha256": "3764a536a15af9fd076223df3325bd30a4a8c48fb69edd6f8ca1a2b1d5c21bdc",
+  "asof_rule": "TRADEDATE < signal_date",
+  "all_training_labels_resolved": true,
+  "later_period_status": "post-diagnostic retrospective exploration"
+}

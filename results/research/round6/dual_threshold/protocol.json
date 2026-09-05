@@ -1,0 +1,22 @@
+{
+  "candidate": "stack50_benefit50",
+  "primary": {
+    "rate": 0.22,
+    "rolling": 60
+  },
+  "reset_fallback": {
+    "rate": 0.35,
+    "window": 20,
+    "minimum_history": 10
+  },
+  "dual_policy": {
+    "lookback_days": 28,
+    "primary_ceiling": 0.75,
+    "emitted_floor": 0.75,
+    "fallback_weekday": 2
+  },
+  "fallback_cap": "one per currency ISO week; primary uncapped",
+  "selection_period": 2024,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

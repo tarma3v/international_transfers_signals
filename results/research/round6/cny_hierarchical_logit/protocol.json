@@ -1,0 +1,41 @@
+{
+  "packet": "AT",
+  "variants": [
+    "hierarchical_interaction_logit",
+    "global50_hierarchical50",
+    "primary75_hierarchical25"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "base_numeric_features": 14,
+  "currency_indicators": 5,
+  "interaction_features": 70,
+  "matrix_features": 89,
+  "logistic_penalty": {
+    "type": "L2",
+    "C": 0.025
+  },
+  "blend_weights": {
+    "global50_hierarchical50": [
+      0.5,
+      0.5
+    ],
+    "primary75_hierarchical25": [
+      0.75,
+      0.25
+    ]
+  },
+  "payload_sha256": "03693535c248cca35976366cd0fc5072ad45779e23d5b7703f3ad34c7e456e8f",
+  "asof_rule": "TRADEDATE < signal_date",
+  "all_training_labels_resolved": true,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

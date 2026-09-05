@@ -1,0 +1,67 @@
+{
+  "packet": "BD",
+  "variants": [
+    "target_analogue_lcb",
+    "cny_analogue_lcb",
+    "joint_analogue_lcb",
+    "primary75_joint_analogue25"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "target_feature_names": [
+    "ret_1",
+    "ret_3",
+    "ret_5",
+    "ret_10",
+    "ret_20",
+    "ret_60",
+    "pct_range_30",
+    "pct_range_90",
+    "pct_range_180",
+    "vol_10",
+    "vol_30",
+    "vol_90"
+  ],
+  "cny_feature_names": [
+    "moex_cnyrub_tom_ret_1",
+    "moex_cnyrub_tom_ret_2",
+    "moex_cnyrub_tom_ret_5",
+    "moex_cnyrub_tom_ret_10",
+    "moex_cnyrub_tom_ret_20",
+    "moex_cnyrub_tom_vol_5",
+    "moex_cnyrub_tom_vol_20",
+    "moex_cnyrub_tom_vol_60",
+    "moex_cnyrub_tom_open_close",
+    "moex_cnyrub_tom_intraday_range",
+    "moex_cnyrub_tom_close_wap",
+    "moex_cnyrub_tom_overnight_gap",
+    "moex_cnyrub_tom_log_trades"
+  ],
+  "scaling": "quarterly training-only median/IQR, clipped +/-10",
+  "global_neighbours": 250,
+  "local_neighbours": 80,
+  "currency_penalty": 0.05,
+  "local_shrinkage_denominator": 100.0,
+  "beta_prior": [
+    0.5,
+    0.5
+  ],
+  "primary_joint_weights": [
+    0.75,
+    0.25
+  ],
+  "payload_sha256": "03693535c248cca35976366cd0fc5072ad45779e23d5b7703f3ad34c7e456e8f",
+  "asof_rule": "TRADEDATE < signal_date",
+  "all_training_labels_resolved": true,
+  "future_outcome_corruption_check": true,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

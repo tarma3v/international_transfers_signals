@@ -1,0 +1,27 @@
+{
+  "experts": {
+    "benefit_ranker_anchor25": {
+      "rate": 0.22,
+      "rolling": 60
+    },
+    "broad75_baseload25": {
+      "rate": 0.35,
+      "rolling": 250
+    },
+    "cbr_baseload": {
+      "rate": 0.35,
+      "rolling": 120
+    }
+  },
+  "router": {
+    "scope": "hierarchical",
+    "window_signals": 20,
+    "prior_strength": 20.0
+  },
+  "selection_period": 2024,
+  "history_carried_forward_from": 2024,
+  "feedback_rule": "only expert signals with h5 reach date <= week start",
+  "physical_unresolved_label_corruption_check": true,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

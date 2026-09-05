@@ -1,0 +1,22 @@
+{
+  "primary": {
+    "candidate": "stack50_benefit50",
+    "rate": 0.22,
+    "rolling": 60
+  },
+  "baseload": {
+    "candidate": "packet_e_cbr_anchor50",
+    "rate": 0.35,
+    "rolling": 120
+  },
+  "fallback": {
+    "lookback_days": 28,
+    "primary_ceiling": 1.0,
+    "emitted_floor": 1.25,
+    "fallback_weekday": 0
+  },
+  "fallback_cap": "one per currency ISO week; primary uncapped",
+  "selection_period": 2024,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

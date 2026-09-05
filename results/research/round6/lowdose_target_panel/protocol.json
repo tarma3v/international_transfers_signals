@@ -1,0 +1,29 @@
+{
+  "primary": "stack50_benefit50",
+  "experts": [
+    "target_panel_extra",
+    "target_panel_only_extra",
+    "target_panel_xgb"
+  ],
+  "primary_weights": [
+    0.8,
+    0.75,
+    0.6666666666666666
+  ],
+  "policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 60,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "weights_fitted": false,
+  "threshold_rescreened": false,
+  "candidate_order_selected_on": 2024,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

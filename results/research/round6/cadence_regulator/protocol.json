@@ -1,0 +1,22 @@
+{
+  "primary": {
+    "candidate": "broad_full_extra",
+    "rate": 0.3,
+    "rolling": 250
+  },
+  "baseload": {
+    "candidate": "packet_e_cbr_anchor50",
+    "rate": 0.35,
+    "rolling": 120
+  },
+  "regulator": {
+    "trailing_days": 56,
+    "floor_per_week": 1.5,
+    "fallback_weekday": 3,
+    "weekly_cap": 2
+  },
+  "regulator_selected_on": 2024,
+  "current_row_excluded_from_trailing_rate": true,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

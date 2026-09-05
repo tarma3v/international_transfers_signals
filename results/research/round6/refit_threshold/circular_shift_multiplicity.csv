@@ -1,0 +1,2 @@
+period,policy,observed_lift,circular_shift_p_unadjusted,circular_shift_p_max_adjusted,n_recorded_policies,observed_max_lift,null_max_lift_q95
+retrospective_2025_2026,refit_threshold,1.3459795975833813,0.00024993751562109475,0.00024993751562109475,1,1.3459795975833813,1.193923325053041

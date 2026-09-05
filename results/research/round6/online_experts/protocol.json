@@ -1,0 +1,197 @@
+{
+  "experts": [
+    "broad_full_extra",
+    "broad_compact_tree_consensus",
+    "broad_factor_hist_anchor25",
+    "packet_e_cbr_macro",
+    "anchor_multiscale_locked"
+  ],
+  "specs": [
+    {
+      "scope": "global",
+      "eta": 2.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "global",
+      "eta": 2.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "global",
+      "eta": 2.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "global",
+      "eta": 5.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "global",
+      "eta": 5.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "global",
+      "eta": 5.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "global",
+      "eta": 10.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "global",
+      "eta": 10.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "global",
+      "eta": 10.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "global",
+      "eta": 20.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "global",
+      "eta": 20.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "global",
+      "eta": 20.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "local",
+      "eta": 2.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "local",
+      "eta": 2.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "local",
+      "eta": 2.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "local",
+      "eta": 5.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "local",
+      "eta": 5.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "local",
+      "eta": 5.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "local",
+      "eta": 10.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "local",
+      "eta": 10.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "local",
+      "eta": 10.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "local",
+      "eta": 20.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "local",
+      "eta": 20.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "local",
+      "eta": 20.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 2.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 2.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 2.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 5.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 5.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 5.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 10.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 10.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 10.0,
+      "rho": 1.0
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 20.0,
+      "rho": 0.97
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 20.0,
+      "rho": 0.99
+    },
+    {
+      "scope": "hierarchical",
+      "eta": 20.0,
+      "rho": 1.0
+    }
+  ],
+  "loss": "Brier loss on per-currency prior-calibration percentile ranks",
+  "feedback_rule": "update only when h5 target reach date <= current date",
+  "physical_unresolved_label_corruption_check": true,
+  "architecture_and_policy_selected_on": 2024,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

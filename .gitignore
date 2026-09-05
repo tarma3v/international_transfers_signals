@@ -12,4 +12,4 @@ submission/slide-*.jpg
 catboost_info/
 research/cache/
 results/research/candidate_outputs_*.pkl
-tmp/pdfs/
+tmp/

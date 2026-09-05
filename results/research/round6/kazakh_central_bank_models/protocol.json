@@ -1,0 +1,29 @@
+{
+  "packet": "CM",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "source": "National Bank of Kazakhstan official daily XLSX archive",
+  "source_url": "https://nationalbank.kz/en/exchangerates/ezhednevnye-oficialnye-rynochnye-kursy-valyut",
+  "source_file": "data/external_kazakhstan_nbk_rub_usd_cny_2016_2026.xlsx",
+  "payload_sha256": "e6825496ae8f77bbd696efd77e663c43039c7e5c42ea43724bf5778572d63481",
+  "selection_period": 2024,
+  "raw_selected": "kazakh_nbk_cny_basis",
+  "finalist_selected": "incumbent",
+  "selection_objective": "maximum worst official case-lift over h=1/3/5/10/20",
+  "selection_constraints": "positive symmetric and future-only benefit at every horizon",
+  "asof_rule": "local-NBK effective date strictly before signal date; CBR date <= signal date",
+  "publication_time_assumed": false,
+  "physical_future_corruption_check": true,
+  "stale_control_rows_per_currency": 20,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

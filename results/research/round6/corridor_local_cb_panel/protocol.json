@@ -1,0 +1,35 @@
+{
+  "packet": "CT",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "selection_period": 2024,
+  "selected_by_corridor": {
+    "TJS": "negative_usd_minus_cny",
+    "UZS": "cny_basis",
+    "KGS": "cny_basis",
+    "AMD": "consensus_basis",
+    "KZT": "cny_basis"
+  },
+  "selected_finalist": "incumbent",
+  "formula_count_per_corridor": 24,
+  "selection_objective": "per-corridor maximum worst official lift over all five horizons with positive benefits",
+  "asof_rule": "every local-CB effective date strictly before signal date; CBR date <= signal date",
+  "payload_sha256": {
+    "TJS": "453f3e024e019632b9496a946707de122c87698ce059e9789ced87bb02e37349",
+    "UZS": "3b1e9ec6ddbc89c38f56a79a9f6ec8dc45cb179c6af5cfdcb62fb1a75e9634c6",
+    "KGS": "7bbd147c6a37501561fb6268bbeb5b26342a0bd8960f930bad8076e977eb5090",
+    "AMD": "cd325557a64ac55c8625fdd5f6ab63be06cd1e2cbf794cb5f5cbeb683ee54b68",
+    "KZT": "e6825496ae8f77bbd696efd77e663c43039c7e5c42ea43724bf5778572d63481"
+  },
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after all 2024 choices"
+}

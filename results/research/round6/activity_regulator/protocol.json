@@ -1,0 +1,23 @@
+{
+  "primary": {
+    "candidate": "broad75_baseload25",
+    "rate": 0.35,
+    "rolling": 250
+  },
+  "baseload": {
+    "candidate": "packet_e_cbr_anchor50",
+    "rate": 0.35,
+    "rolling": 120
+  },
+  "regulator": {
+    "lookback_days": 21,
+    "primary_ceiling": 0.75,
+    "emitted_floor": 1.25,
+    "fallback_weekday": 0,
+    "weekly_cap": 2
+  },
+  "regulator_selected_on": 2024,
+  "current_row_excluded_from_activity_and_cadence": true,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

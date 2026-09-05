@@ -1,0 +1,32 @@
+{
+  "components": [
+    "stack_resolved_extra",
+    "benefit_ranker_anchor25",
+    "packet_e_cbr_anchor50"
+  ],
+  "weights": [
+    [
+      0.25,
+      0.75
+    ],
+    [
+      0.5,
+      0.5
+    ],
+    [
+      0.75,
+      0.25
+    ],
+    [
+      0.5,
+      0.25,
+      0.25
+    ]
+  ],
+  "combination": "per-currency ranks against prior calibration block",
+  "missing_2023_stack_calibration": "2024 stack test ranks use strictly earlier 2024 stack scores",
+  "weights_fitted": false,
+  "policy_selected_on": 2024,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

@@ -1,0 +1,48 @@
+{
+  "packet": "CO",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "experts": [
+    "geometry75_cba_consensus_basis25",
+    "primary75_regime_logit25"
+  ],
+  "selection_period": 2024,
+  "selected": "incumbent",
+  "router_label": "expert with lower weighted mean Brier loss over resolved h=1/3/5/10/20 outcomes",
+  "objectives": {
+    "equal": [
+      0.2,
+      0.2,
+      0.2,
+      0.2,
+      0.2
+    ],
+    "tail": [
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3
+    ]
+  },
+  "training_start": "2023-01-01",
+  "purge_horizon": 20,
+  "all_training_labels_resolved": true,
+  "future_outcome_corruption_check": true,
+  "stale_control_rows_per_currency": 20,
+  "payload_sha256": {
+    "CBA": "cd325557a64ac55c8625fdd5f6ab63be06cd1e2cbf794cb5f5cbeb683ee54b68",
+    "MOEX": "03693535c248cca35976366cd0fc5072ad45779e23d5b7703f3ad34c7e456e8f"
+  },
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

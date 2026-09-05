@@ -1,0 +1,18 @@
+{
+  "source": "results/research/round6/lowdose_horizon/outputs.pkl",
+  "policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 60,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "candidate_scores_changed": false,
+  "candidate_order_selected_on": 2024,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

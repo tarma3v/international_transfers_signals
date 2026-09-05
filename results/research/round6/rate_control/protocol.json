@@ -1,0 +1,11 @@
+{
+  "next_rate_feature": false,
+  "input_scores_frozen_from": "results/research/round5/adaptation/outputs.pkl",
+  "policy_selected_on": 2024,
+  "confirmation": 2025,
+  "audit": 2026,
+  "n_policy_variants": 256,
+  "weekly_controller_is_causal": true,
+  "quarter_history_reset": true,
+  "pristine_holdout_available": false
+}

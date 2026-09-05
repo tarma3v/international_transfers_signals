@@ -1,0 +1,10 @@
+{
+  "audit_date": "2026-09-04",
+  "physical_future_cut": "2020-12-31",
+  "extended_feature_rebuild_equal_before_cut": true,
+  "round5_path_feature_rebuild_equal_before_cut": true,
+  "quarterly_training_reach_precedes_refit": true,
+  "crossfit_training_reach_precedes_calibration": true,
+  "next_rate_feature": false,
+  "status": "passed"
+}

@@ -1,0 +1,78 @@
+{
+  "packet": "BC",
+  "control": "logit50_extra50",
+  "challengers": [
+    "pooled_hit_lcb",
+    "shrunk_hit_lcb",
+    "shrunk_benefit_lcb",
+    "reliability_benefit_equal",
+    "primary75_reliability25"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "bootstrap_draws": 4000,
+  "multiplicity": "max lift difference over five BB variants under circular date shifts",
+  "promotion_gates": {
+    "pooled_hit_lcb": {
+      "annual_lift_at_least_1_30": true,
+      "annual_rate_between_1_and_2": true,
+      "minimum_annual_lift_not_below_primary": false,
+      "minimum_currency_lift_at_least_1_30": true,
+      "minimum_quarter_rate_at_least_1": true,
+      "paired_lift_ci_excludes_zero": false,
+      "max_adjusted_p_below_005": false,
+      "all_promotion_gates": false
+    },
+    "shrunk_hit_lcb": {
+      "annual_lift_at_least_1_30": true,
+      "annual_rate_between_1_and_2": true,
+      "minimum_annual_lift_not_below_primary": false,
+      "minimum_currency_lift_at_least_1_30": true,
+      "minimum_quarter_rate_at_least_1": false,
+      "paired_lift_ci_excludes_zero": false,
+      "max_adjusted_p_below_005": false,
+      "all_promotion_gates": false
+    },
+    "shrunk_benefit_lcb": {
+      "annual_lift_at_least_1_30": true,
+      "annual_rate_between_1_and_2": true,
+      "minimum_annual_lift_not_below_primary": false,
+      "minimum_currency_lift_at_least_1_30": true,
+      "minimum_quarter_rate_at_least_1": true,
+      "paired_lift_ci_excludes_zero": false,
+      "max_adjusted_p_below_005": false,
+      "all_promotion_gates": false
+    },
+    "reliability_benefit_equal": {
+      "annual_lift_at_least_1_30": true,
+      "annual_rate_between_1_and_2": true,
+      "minimum_annual_lift_not_below_primary": true,
+      "minimum_currency_lift_at_least_1_30": true,
+      "minimum_quarter_rate_at_least_1": false,
+      "paired_lift_ci_excludes_zero": false,
+      "max_adjusted_p_below_005": false,
+      "all_promotion_gates": false
+    },
+    "primary75_reliability25": {
+      "annual_lift_at_least_1_30": true,
+      "annual_rate_between_1_and_2": true,
+      "minimum_annual_lift_not_below_primary": false,
+      "minimum_currency_lift_at_least_1_30": true,
+      "minimum_quarter_rate_at_least_1": true,
+      "paired_lift_ci_excludes_zero": false,
+      "max_adjusted_p_below_005": false,
+      "all_promotion_gates": false
+    }
+  },
+  "model_refit": false,
+  "later_period_status": "multiplicity-aware retrospective audit"
+}
