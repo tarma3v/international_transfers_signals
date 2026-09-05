@@ -6,7 +6,8 @@ from pathlib import Path
 import numpy as np
 
 from ml.data import CORRIDORS, Series
-from research.round6_broad_cbr_features import build_broad_features
+from research.round5_features import load_round5_features
+from research.round6_broad_cbr_features import build_broad_features, load_broad_features
 from research.round6_cny_basis_features import causality_check as basis_causality_check
 from research.round6_cny_decomposition import delayed_by_currency
 from research.round6_direct_rankers import _group_keys
@@ -44,6 +45,10 @@ from research.round6_target_state_space import (
     causality_check as target_state_causality_check,
 )
 from research.round6_state_agreement_geometry import future_rank_check
+from research.round6_moex_perpetual_features import (
+    causality_check as perpetual_futures_causality_check,
+    load_perpetual_history,
+)
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -282,6 +287,29 @@ def test_state_agreement_rank_ignores_future_scores():
         for number, _currency in enumerate(CORRIDORS)
     ])
     assert future_rank_check(scores, dates, currencies)
+
+
+def test_perpetual_futures_archive_is_complete_and_causal():
+    history, _digest = load_perpetual_history()
+    assert set(history) == {"CNYRUBF", "USDRUBF"}
+    assert all(len(history[ticker]) == 1107 for ticker in history)
+    assert 5.0 < history["CNYRUBF"][-1]["settle"] < 30.0
+    assert 30.0 < history["USDRUBF"][-1]["settle"] < 200.0
+    _X, _names, index, series, *_rest = load_round5_features()
+    _broad, _broad_names, references = load_broad_features(index, series)
+    assert perpetual_futures_causality_check(index, history, references)
+
+
+def test_perpetual_futures_refits_use_only_resolved_labels():
+    path = Path("results/research/round6/moex_perpetual/training_log.csv")
+    with path.open(newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    assert rows
+    for row in rows:
+        assert dt.date.fromisoformat(row["last_resolved"]) < dt.date.fromisoformat(
+            row["quarter"]
+        )
+        assert int(row["n_train"]) >= 2000
 
 
 def test_exponential_threshold_cannot_change_past_from_future_scores():

@@ -718,7 +718,7 @@ but must be frozen and replicated prospectively.
   that earlier OOF predictions remain bit-identical.
 - The lifecycle handoff test verifies that regime scores cannot alter any
   pre-2024 decision.
-- Full suite: **96 tests passed** on 2026-09-05. The suite now also verifies
+- Full suite: **98 tests passed** on 2026-09-05. The suite now also verifies
   the byte hashes of every frozen prospective model input.
 - NBG and NBRB loaders verify aligned RUB/USD/CNY calendars, normalized units
   and physical future-corruption invariance. The new exponential threshold and
@@ -820,6 +820,7 @@ protocol-controlled but still retrospective:
 | DD | within-source normalized latent RUB factor | raw screen min/mean 1.233 / 1.339; selected later 1.593 / 1.759 | structural normalization helps the raw factor, but its 10% blend still dilutes the leader |
 | DE | one-sided alpha-beta target state | selected later min/mean 1.591 / 1.845 | h10/h20 and symmetric benefits improve, but h1/h3/h5 weaken; no overall promotion |
 | DF | nonlinear incumbent/state agreement | selected later min/mean 1.598 / 1.809; stale 1.576 / 1.794 | fresh state adds timing information, but the geometry dilutes future-only precision |
+| DG/DH | lagged MOEX CNYRUBF/USDRUBF perpetual futures | selected later min/mean 1.534 / 1.648; stale 1.064 / 1.123 | strong fresh independent expert; incumbent remains stronger |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -862,6 +863,16 @@ horizon while retaining DE's long-horizon gain. The selected high-state bonus
 does beat its 20-row-stale control, but not the incumbent. This separates two
 claims: the state is temporally informative, yet it is not incrementally useful
 for the single trigger under the all-horizon objective.
+
+Packets DG/DH add the first genuinely new market archive since the CNY spot
+packet: 1,107 official MOEX sessions each for perpetual CNY/RUB and USD/RUB
+futures from 26 April 2022 through the frozen cutoff. Only the previous trading
+day is visible. A quarterly ExtraTrees model selected on 2024 has h5 lift
+1.770 in 2025 and 1.645 in 2026 at rates 1.18 and 1.26; its minimum currency
+lift is 1.653. Across all five horizons its combined minimum/mean is
+1.534/1.648. Delaying the 47 futures fields by 20 rows collapses the same model
+to 1.064/1.123, while the fresh h5 bootstrap lower bound remains 1.414. This is
+strong evidence of fresh information, though still below the incumbent.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:
