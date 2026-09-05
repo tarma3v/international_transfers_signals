@@ -77,6 +77,7 @@ from research.round6_fixing_cutoff_frontier import (
     cutoff_scores,
 )
 from research.round6_fixing_1520_router import market_available
+from research.round6_fixing_regime_normalization import regime_features
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -479,6 +480,28 @@ def test_fixing_residual_refits_use_only_resolved_labels():
         )
         assert int(row["n_train"]) >= 2000
         assert int(row["n_features"]) == 48
+
+
+def test_fixing_regime_features_use_only_prior_available_sessions():
+    dates = np.asarray([
+        dt.date(2025, 1, 1) + dt.timedelta(days=i) for i in range(6)
+    ], dtype=object)
+    currencies = np.asarray(["AMD"] * len(dates), dtype=object)
+    raw = np.asarray([1.0, 2.0, 999.0, 4.0, 5.0, 6.0])
+    available = np.asarray([True, True, False, True, True, True])
+    original = regime_features(raw, available, dates, currencies)
+    assert np.isnan(original["innovation_1"][0])
+    assert original["innovation_1"][1] == 1.0
+    assert np.isnan(original["innovation_1"][2])
+    assert original["innovation_1"][3] == 2.0
+    assert original["persistent_mean_3"][3] == 7.0 / 3.0
+    assert np.isnan(original["median_excess_20"]).all()
+
+    changed_raw = raw.copy()
+    changed_raw[4:] *= 100.0
+    changed = regime_features(changed_raw, available, dates, currencies)
+    for name in original:
+        np.testing.assert_array_equal(original[name][:4], changed[name][:4])
 
 
 def test_perpetual_online_weights_ignore_unresolved_future_outcomes():

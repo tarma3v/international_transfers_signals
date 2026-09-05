@@ -1,0 +1,48 @@
+{
+  "packet": "EM",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "decision_time": "15:30:00 Europe/Moscow",
+  "raw_anchor": "positive CNY session-mean basis to current CBR",
+  "features": [
+    "innovation_1",
+    "median_excess_20",
+    "median_excess_60",
+    "robust_z_20",
+    "robust_z_60",
+    "persistent_mean_3",
+    "persistent_min_2"
+  ],
+  "blend_features": [
+    "innovation_1",
+    "robust_z_20",
+    "robust_z_60",
+    "persistent_mean_3",
+    "persistent_min_2"
+  ],
+  "blend_weights": {
+    "availability_router": 0.75,
+    "alternative": 0.25
+  },
+  "history": "strictly earlier available sessions of same currency",
+  "robust_scale": 1.4826,
+  "robust_scale_floor_bps": 1.0,
+  "rank_window": 250,
+  "rank_minimum": 20,
+  "selection_period": 2024,
+  "selected": "router75_robust_z_60_25",
+  "matched_control": "selected feature delayed 20 target rows",
+  "feature_future_corruption_check": true,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}
