@@ -43,6 +43,7 @@ from research.round6_crossbank_normalized_factor import (
 from research.round6_target_state_space import (
     causality_check as target_state_causality_check,
 )
+from research.round6_state_agreement_geometry import future_rank_check
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -268,6 +269,19 @@ def test_target_state_space_ignores_future_target_values():
     assert target_state_causality_check(
         series, index, cutoff=days[75],
     )
+
+
+def test_state_agreement_rank_ignores_future_scores():
+    days = np.asarray([
+        dt.date(2025, 1, 1) + dt.timedelta(days=i) for i in range(220)
+    ], dtype=object)
+    dates = np.tile(days, len(CORRIDORS))
+    currencies = np.repeat(np.asarray(CORRIDORS, dtype=object), len(days))
+    scores = np.concatenate([
+        np.sin(np.arange(len(days)) / (5.0 + number))
+        for number, _currency in enumerate(CORRIDORS)
+    ])
+    assert future_rank_check(scores, dates, currencies)
 
 
 def test_exponential_threshold_cannot_change_past_from_future_scores():

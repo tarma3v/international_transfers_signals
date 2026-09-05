@@ -1,0 +1,39 @@
+{
+  "packet": "DF",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "incumbent": "geometry75_cba_consensus_basis25",
+  "state_expert": "state_selected",
+  "rank_window": 250,
+  "rank_minimum": 20,
+  "formulas": [
+    "minimum",
+    "geometric",
+    "harmonic",
+    "min75_max25",
+    "min90_max10",
+    "low_penalty10",
+    "low_penalty20",
+    "high_bonus10",
+    "high_bonus20",
+    "disagreement_penalty20"
+  ],
+  "matched_state_stale_rows": 20,
+  "selection_period": 2024,
+  "selected": "high_bonus20",
+  "selection_objective": "maximum worst official case-lift over h=1/3/5/10/20 with positive benefits",
+  "geometry_is_label_free": true,
+  "current_score_added_after_rank": true,
+  "physical_future_score_corruption_check": true,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}
