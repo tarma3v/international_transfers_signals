@@ -1,0 +1,52 @@
+{
+  "packet": "EL",
+  "anchor": "positive 15:30 CNY session-mean basis",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "training_start": "2022-05-01",
+  "quarterly_refit": true,
+  "rank_window": 250,
+  "rank_minimum": 20,
+  "base_logit_c": 0.05,
+  "target_features": [
+    "pct_range_30",
+    "pct_range_90",
+    "pct_range_180",
+    "ret_1",
+    "ret_5",
+    "ret_20"
+  ],
+  "spot_feature_count": 36,
+  "residual_weight": 0.25,
+  "router_weight": 0.75,
+  "hist_residual": {
+    "max_iter": 150,
+    "learning_rate": 0.03,
+    "max_leaf_nodes": 5,
+    "min_samples_leaf": 100,
+    "l2_regularization": 30.0
+  },
+  "extra_residual": {
+    "n_estimators": 400,
+    "max_depth": 6,
+    "min_samples_leaf": 40,
+    "max_features": 0.65
+  },
+  "stale_control_rows": 20,
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "all_training_labels_resolved": true,
+  "future_outcome_corruption_check": true,
+  "selection_period": 2024,
+  "selected": "availability_router",
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}
