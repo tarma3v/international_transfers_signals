@@ -1808,3 +1808,32 @@ over h=1/3/5/10/20, then mean lift, requiring positive symmetric and
 future-only benefit at every horizon. Open 2025--2026 once for the selected
 candidate, incumbent and its matched stale system. No cutoff, feature,
 hyperparameter or blend change is permitted after later-period results appear.
+
+## Packet DO: label-free three-view futures consensus
+
+Frozen after packet DN selected `noon_hist` on 2024 and before evaluating any
+new consensus metric. Keep three scores fixed: the incumbent, packet-DH daily
+futures ExtraTrees, and packet-DN noon HistGB. Convert each to a same-currency
+percentile against at most 250 strictly earlier scores, minimum 20. Evaluate
+exactly five two-view formulas on incumbent/noon (minimum, geometric mean,
+harmonic mean, arithmetic mean, and 75% minimum plus 25% maximum) and seven
+three-view formulas (minimum, geometric mean, harmonic mean, arithmetic mean,
+median, lower quartile, and 75% three-view minimum plus 25% three-view median).
+
+Select on 2024 with the unchanged five-horizon/positive-benefit objective and
+fixed rolling policy. Construct an exact stale system for every formula by
+replacing both market experts with their own pre-fitted stale-20 controls while
+leaving the incumbent aligned. Open 2025--2026 once for incumbent, the selected
+fresh formula and its matched stale formula. The formula family is label-free;
+no target loss chooses the row-level view or a later-period weight.
+
+## Packet DP: paired audit of three-view consensus
+
+Frozen after packet DO point estimates and before paired inference. Compare
+the selected consensus with the incumbent and with its matched double-stale
+system on the same four-week moving-block draws at h=1/3/5/10/20. Holm-adjust
+lift, symmetric-benefit and future-benefit families over all ten horizon
+comparisons; also report the draw-wise minimum and mean lift. Promotion needs
+a positive lower 95% bound for minimum-lift improvement over incumbent plus
+the established annual lift/rate, minimum-currency and all-horizon benefit
+gates. Freshness remains a separate claim against the matched stale system.
