@@ -546,6 +546,7 @@ cross-era diagnostic нашёл лучший минимальный lift тол�
 | Causally normalized cross-bank factor | standalone screen min 1.233 | 10% смесь переносится до min 1.593 против лидера 1.623 |
 | One-sided target state-space | h20 1.914 против 1.879 у лидера | улучшает длинные h и symmetric benefit, но снижает h1 до 1.591 |
 | Nonlinear incumbent/state agreement | fresh min 1.598 против stale 1.576 | timing настоящий, но единый trigger всё равно хуже лидера 1.623 |
+| MOEX perpetual CNYRUBF/USDRUBF ExtraTrees | five-horizon min 1.534; h5 1.770/1.645 по годам | новый свежий эксперт: stale20 падает до min 1.064, но incumbent сильнее |
 
 Отрицательные результаты сохранены намеренно: они не дают снова повторять те же
 дорогие эксперименты и показывают, где именно нарушается переносимость.
@@ -669,7 +670,7 @@ challenger обязаны считаться на каждой следующе�
 
 ## Проверки
 
-- Все 96 тестов прошли.
+- Все 98 тестов прошли.
 - Новые тесты отдельно проверяют соответствие post-publication gate цели h=1,
   точное использование строки `i+1` и purge h=5 до калибровочного года.
 - MOEX-тест физически меняет same-day/future цены и подтверждает, что прошлые
