@@ -1971,3 +1971,18 @@ comparisons. A scorecard promotion requires positive lower confidence bounds
 for both minimum- and mean-lift gain over packet DO, plus the existing annual
 lift/rate, minimum-currency and all-positive-benefit gates. Freshness is a
 separate online-versus-stale claim. Do not alter packet DV after this audit.
+
+## Packet DX: label-free noon/spot agreement geometry
+
+Frozen after packet DW and before evaluating any agreement formula. Convert
+packet DO's noon-futures consensus and packet DU's signed-spot winner to
+same-currency causal percentiles with window 250/minimum 20. Evaluate exactly
+the five pair geometries already used in packet DO: minimum, geometric mean,
+harmonic mean, arithmetic mean, and 75% minimum plus 25% maximum. Include the
+two unchanged components as do-nothing comparators.
+
+For each geometry create an exact stale control by replacing only the signed
+spot rank with packet DU's stale-20 rank. Select on 2024 by the unchanged
+maximum-worst-lift/mean-lift objective with positive benefits at all horizons,
+then open 2025--2026 once. This is retrospective causal research; no new
+formula, rank window or continuous weight search may follow the later result.
