@@ -65,6 +65,10 @@ from research.round6_moex_spot_1530_features import (
     causality_check as spot_1530_causality_check,
     load_spot_1530_history,
 )
+from research.round6_fixing_proxies import (
+    proxy_causality_check,
+    proxy_scores,
+)
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -377,8 +381,17 @@ def test_spot_hourly_archives_and_cutoffs_are_causal():
     )
     assert noon.shape == fixing.shape == (len(index), 36)
     assert len(noon_names) == len(fixing_names) == 36
+    proxies = proxy_scores(index, spot_1530, references)
+    assert proxies.shape == (len(index), 5)
+    assert np.all(np.isfinite(proxies))
+    np.testing.assert_array_equal(
+        proxies[:, 0],
+        fixing[:, fixing_names.index("moex_1530_cnyrub_tom_mean_cbr_basis")],
+    )
+    assert np.any(np.all(proxies == 0.0, axis=1))
     assert spot_hourly_causality_check(index, spot, references, perpetual)
     assert spot_1530_causality_check(index, spot_1530, references)
+    assert proxy_causality_check(index, spot_1530, references)
 
 
 def test_shared_noon_horizon_refits_use_only_resolved_labels():

@@ -2025,3 +2025,65 @@ for matched controls. Select on 2024 by maximum worst official lift, then mean
 lift, with all benefits positive; open 2025--2026 once for the selected score
 and stale control. Treat this as a separate timed product and retrospective
 causal challenger, not as a replacement justified by the same viewed years.
+
+## Packet EA: pre-publication noon/fixing consensus
+
+Frozen after packet DZ and before evaluating any packet-EA target metric.
+Define a distinct 15:30 Moscow product that combines two already frozen,
+causal views: packet DO's 12:00 incumbent/noon-futures consensus and packet
+DZ's positive CNY session-mean spot-to-current-CBR basis. Convert both to
+same-currency causal percentiles using exactly 250 strictly earlier rows and a
+minimum history of 20. The next CBR fixing is never loaded.
+
+Evaluate exactly the five label-free pair geometries used in packet DO:
+minimum, geometric mean, harmonic mean, arithmetic mean, and 75% minimum plus
+25% maximum. Include both unchanged components as do-nothing comparators. An
+exact freshness control delays only the 15:30 spot score by 20 target rows;
+the noon consensus stays aligned. Select once on 2024 by maximum worst official
+lift over h=1/3/5/10/20, then mean lift, requiring positive symmetric and
+future-only benefit at every horizon. Open 2025--2026 once for the selected
+candidate and matched stale control.
+
+This is a protocol-controlled retrospective challenger: all later years have
+already been viewed in preceding packets, so packet EA may diagnose a useful
+mechanism but cannot create a new pristine holdout. No formula, rank window,
+cutoff, sign, policy, or weight may be changed after its result is observed.
+
+## Packet EB: candle-level fixing proxies without reported volume
+
+Frozen after packet EA retained the raw fixing basis and before computing any
+packet-EB target metric. The archived MOEX candle schema contains `value` and
+`volume`, but every historical value is null, so a true transaction-weighted
+fixing reconstruction is unavailable and must not be fabricated. Keep the
+same 10:00 <= t < 15:30 CNYRUB_TOM window and construct exactly five
+deterministic, unweighted price proxies from completed candles: arithmetic mean
+close (the packet-DZ comparator), geometric mean close, arithmetic mean of
+OHLC4, arithmetic mean of HLC3, and arithmetic mean of high/low midpoint. Each
+score is the positive log basis of that proxy to the current available CBR CNY
+reference. No proxy direction is fitted.
+
+Include the frozen packet-DO noon consensus and each raw proxy as candidates;
+do not add a blend after packet EA's blend family failed. Build an exact stale
+control by delaying each proxy score by 20 target rows. Select once on 2024 by
+maximum worst official lift over h=1/3/5/10/20, then mean lift, requiring
+positive symmetric and future-only benefit at every horizon. Open 2025--2026
+once for the selected candidate and matched stale control. Treat the result as
+retrospective causal evidence, not a replacement for prospective validation.
+
+## Packet EC: paired multi-horizon audit of the fixing proxy
+
+Frozen after packet EB point estimates and before running any new paired
+inference. On identical 2025--2026 rows compare packet EB's selected 15:30
+fixing proxy against packet DO's noon consensus and against its matched
+stale-20 fixing proxy at h=1/3/5/10/20. Reuse the established paired moving
+four-week bootstrap with the same sampled weeks across horizons and preserve
+corridor-year base rates within every sampled week.
+
+Report lift, symmetric-benefit and future-only-benefit differences with 95%
+intervals and one-sided p-values. Holm-adjust each metric family across all ten
+horizon comparisons and report draw-wise minimum/mean lift differences.
+Promotion over noon requires positive lower 95% bounds for both minimum and
+mean lift gain, annual h5 lift >=1.30 and rate in [1,2], minimum-currency h5
+lift >=1.30, minimum-quarter rate >=1.00, and positive benefits at all five
+horizons. Freshness is a separate claim against stale-20; do not alter packet
+EB after this audit.
