@@ -2125,3 +2125,52 @@ for both minimum and mean lift gain, annual h5 lift >=1.30 and rate in [1,2],
 minimum-currency h5 lift >=1.30, minimum-quarter rate >=1.00, and positive
 benefits at all five horizons. Improvement over raw fixing and freshness
 versus stale are separate claims. Do not change the router after this audit.
+
+## Packet EF: cadence-first policy plateau for the availability router
+
+Frozen after packet EE and before evaluating any packet-EF policy. Keep packet
+ED's score byte-for-byte fixed and vary only the causal alert threshold. Screen
+exactly rolling rates {0.20, 0.22, 0.24, 0.26} with memories
+{15, 20, 30, 40, 60}, plus exponentially weighted quantiles at the same rates
+with half-lives {10, 20, 40}. Every threshold uses only strictly earlier
+same-currency scores and appends the current score after deciding.
+
+On 2024 require h5 average frequency in [1,2], minimum currency frequency
+>=1.00, minimum quarter frequency >=1.00, and positive symmetric and
+future-only benefit at every h=1/3/5/10/20. Among feasible policies select
+maximum worst official lift, then mean lift, then minimum-quarter frequency.
+Open 2025--2026 once for the selected policy and the unchanged rolling-22%/20
+default. Promotion requires all five lifts >=1.30, annual rate in [1,2],
+minimum currency lift >=1.30, minimum-quarter rate >=1.00, all benefits
+positive, and a separately frozen paired audit. This is retrospective policy
+research; do not expand the grid or alter the objective after viewing later
+results.
+
+## Packet EG: full available-history fixing-proxy audit
+
+Frozen after packet EF and before evaluating any pre-2024 fixing metric. Hold
+the packet-EB arithmetic mean-close CNY fixing basis and the original
+rolling-22%/20 policy fixed; fit no model and select no year. Mark every target
+row before the first archived 10-minute CNY candle on 3 January 2022 as
+unavailable rather than as a zero score. From that date onward retain every
+target date, using the same neutral zero score on a day without a completed
+10:00--15:30 CNY session.
+
+Construct calendar-year output blocks for 2022--2026. A year's rolling
+threshold may use its finite previous-year scores and then strictly earlier
+scores from the current year; in 2022 it begins operating only after observed
+2022 history accumulates. Report the unchanged official h=1/3/5/10/20
+scorecard by individual year, 2022 quarter, currency and the full 2022--2026
+period, plus block-bootstrap and circular-shift diagnostics. This is a fixed
+lifecycle audit, not another selector; no result may change the proxy, cutoff,
+missing-day handling or policy.
+
+## Packet EH: descriptive 2022 SVO boundary audit
+
+Frozen after packet EG and before computing the boundary split. Reuse packet
+EG's already generated scores and alert decisions without refitting or changing
+the threshold. Split 2022 mechanically at 24 February into 3 January--23
+February and 24 February--31 December, then report h=1/3/5/10/20 scope,
+signals, frequency, pooled lift, symmetric benefit and future-only benefit.
+This is a descriptive regime diagnostic with a short pre-boundary sample; it
+must not be used to select a new score, policy, sign or reset date.

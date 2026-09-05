@@ -1,0 +1,32 @@
+{
+  "packet": "EH",
+  "source": "packet-EG fixed fixing_basis decisions",
+  "boundary": "2022-02-24",
+  "regimes": [
+    {
+      "name": "pre_svo_2022",
+      "start": "2022-01-03",
+      "end": "2022-02-23"
+    },
+    {
+      "name": "post_svo_2022",
+      "start": "2022-02-24",
+      "end": "2022-12-31"
+    }
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "model_or_policy_refit": false,
+  "selector_used": false,
+  "next_cbr_rate_used": false,
+  "interpretation": "descriptive only; short pre-boundary sample cannot promote a model"
+}

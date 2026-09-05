@@ -1,0 +1,31 @@
+{
+  "packet": "EG",
+  "years": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "first_available": "2022-01-03",
+  "candidate": "packet-EB arithmetic mean-close CNY fixing basis",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "decision_time": "15:30:00 Europe/Moscow",
+  "strict_asof": "10-minute candle end < signal date 15:30",
+  "preavailability_rows_are_invalid": true,
+  "postavailability_market_closed_rows_are_neutral_zero": true,
+  "selector_used": false,
+  "next_cbr_rate_used": false,
+  "later_period_status": "fixed retrospective lifecycle audit"
+}

@@ -836,6 +836,8 @@ protocol-controlled but still retrospective:
 | EA | label-free 12:00/15:30 consensus | 2024 retained raw fixing basis | strong components do not improve through static agreement geometry |
 | EB/EC | candle-level fixing proxies and paired audit | fresh-vs-stale min gain **+0.926**, CI **[+0.638, +1.167]** | freshness proved; no lift superiority over noon; true VWAP unavailable |
 | ED/EE | market-availability fixing/noon router and paired audit | later min/mean **1.780 / 1.956**; h5 2.096/1.994 at rate 1.19/1.28 | new point leader; paired gain unresolved and one quarter rate 0.955 |
+| EF | cadence-first router policy plateau | selected rolling-20%/20 reaches min 1.785 but quarter rate 0.875 | default 22%/20 retained; 2024 cadence does not transport perfectly |
+| EG/EH | fixed 2022--2026 fixing lifecycle and SVO-boundary audit | yearly min lift 1.514--1.740; combined min/mean **1.601 / 1.751** | strongest explainable stability evidence; no selector or next CBR fixing |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -995,6 +997,29 @@ average 1--2 band passes in both years. Against matched stale fixing, minimum
 gain is +1.025 with CI [+0.674, +1.311], so the timing information itself is
 strongly supported. Keep the router frozen as a retrospective 15:30
 challenger and require new prospective dates before claiming superiority.
+
+Packet EF tests whether a small causal policy plateau can repair the one weak
+quarter without touching the score. The 2024 cadence-first screen selects
+rolling 20% with memory 20, which transfers to min/mean 1.785/1.952 but lowers
+2025Q2 frequency from 0.955 to 0.875. The default 22%/20 policy therefore stays
+operationally preferable. No later-period threshold repair is attempted.
+
+Packet EG removes model selection entirely and applies the packet-EB fixing
+basis with frozen 22%/20 policy to every available year. The five yearly
+minimum lifts for h=1/3/5/10/20 are 1.531, 1.514, 1.578, 1.740 and 1.665 for
+2022--2026. Every annual h5 frequency lies between 1.19 and 1.38. Across the
+full period, five-horizon minimum/mean is 1.601/1.751, h5 lift is 1.751 with
+moving-block 95% CI [1.612, 1.926], minimum-currency h5 lift is 1.649 and the
+circular-shift p-value is 0.00025. The first archive date is explicit; earlier
+rows are unavailable, while later market-closed days remain neutral eligible
+rows rather than disappearing from the denominator.
+
+Packet EH reuses those decisions and splits 2022 mechanically at 24 February.
+The pre-boundary block has minimum/mean lift 1.471/1.691 and the post-boundary
+block 1.533/1.635, at frequencies 1.47 and 1.27. Only 45 signals occur before
+the boundary, so this is descriptive rather than a model-selection claim. It
+does show that the signed fixing mechanism is present on both sides of the
+shock instead of being created only by the post-2022 regime.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:
