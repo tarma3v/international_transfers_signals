@@ -1761,3 +1761,50 @@ zero, both annual h5 lifts at least 1.30, both annual rates 1--2, minimum
 currency h5 lift at least 1.30, and all five selected point benefits positive.
 Freshness is a separate claim and requires its matched paired lift lower bound
 above zero after Holm. Do not alter packet-DI after this audit.
+
+## Packet DM: noon-Moscow hourly perpetual-futures archive
+
+Frozen after the 05.09 case-owner Q&A explicitly permitted MOEX as an
+intraday indicator, before downloading or evaluating the hourly archive.
+Download every public 60-minute candle for `CNYRUBF` and `USDRUBF` from the
+official MOEX ISS endpoint, 1 January 2022 through the frozen historical cutoff
+3 September 2026. Preserve schema, requested page URLs, retrieval timestamp,
+row counts and a canonical SHA-256 digest. Reject duplicate or unsorted candle
+start times and non-positive OHLC values.
+
+Define one operational decision time rather than tune it: **12:00 Europe/Moscow**.
+For a signal on date T, admit only candles whose `end` timestamp is strictly
+before T 12:00; this normally exposes completed candles through 11:59:59 and
+forbids the noon candle and the rest of the session. The next CBR fixing is
+never loaded as an input. This packet is therefore a distinct, explicitly
+timed intraday product variant rather than a rewrite of the previous-day
+incumbent.
+
+Build per-contract cutoff features for last price; overnight return from the
+previous completed session; open-to-cutoff, last-one-hour and last-two-hour
+returns; cutoff high-low range and realised volatility; log cutoff volume;
+number of completed candles; log-price slope; last-price position within the
+cutoff range; and last-price basis to the current available CBR reference.
+Add CNY-via-USD cross basis plus one-hour and open-to-cutoff return divergence.
+Every missing/age state is explicit. Physically changing all candles at or
+after a row's noon cutoff must leave that row and all earlier rows bit-identical.
+
+## Packet DN: quarterly learners on the fixed noon-Moscow state
+
+Frozen after packet-DM integrity checks and before any packet-DN metric. Reuse
+the six target state fields and five currency one-hots from packet DH. Fit two
+fixed feature views: the new noon block alone, and the noon block appended to
+the 47 previous-session perpetual-futures fields. For each view fit the same
+three regularised quarterly classifiers as packet DH (logit C 0.025; HistGB
+180 iterations/five leaves/minimum leaf 100/L2 30; ExtraTrees 400 trees/depth
+six/minimum leaf 45/max-features 0.65), starting 1 May 2022 and admitting an h5
+training label only when its reach date is strictly before the refit quarter.
+
+For each learner fit an exact stale-20 control that delays only the noon block
+within currency; static target fields and previous-session daily futures stay
+aligned. Screen the six aligned raw learners, incumbent, and fixed 10%/25%
+causal-rank incumbent blends on 2024. Select by the maximum worst official lift
+over h=1/3/5/10/20, then mean lift, requiring positive symmetric and
+future-only benefit at every horizon. Open 2025--2026 once for the selected
+candidate, incumbent and its matched stale system. No cutoff, feature,
+hyperparameter or blend change is permitted after later-period results appear.
