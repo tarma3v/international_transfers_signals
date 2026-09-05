@@ -1,0 +1,69 @@
+{
+  "packet": "DD",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "sources": [
+    "armenia_cba",
+    "tajikistan_nbt",
+    "uzbekistan_cbu",
+    "kazakhstan_nbk",
+    "kyrgyzstan_nbkr",
+    "georgia_nbg",
+    "belarus_nbrb"
+  ],
+  "payload_sha256": {
+    "armenia_cba": "cd325557a64ac55c8625fdd5f6ab63be06cd1e2cbf794cb5f5cbeb683ee54b68",
+    "tajikistan_nbt": "453f3e024e019632b9496a946707de122c87698ce059e9789ced87bb02e37349",
+    "uzbekistan_cbu": "3b1e9ec6ddbc89c38f56a79a9f6ec8dc45cb179c6af5cfdcb62fb1a75e9634c6",
+    "kazakhstan_nbk": "e6825496ae8f77bbd696efd77e663c43039c7e5c42ea43724bf5778572d63481",
+    "kyrgyzstan_nbkr": "7bbd147c6a37501561fb6268bbeb5b26342a0bd8960f930bad8076e977eb5090",
+    "georgia_nbg": "a156cc616549aae02ebdedc9a57ff5aafeac6e49922144685153b32247e3cbd7",
+    "belarus_nbrb": "4998e6c4e0d228c219a6e2f84b030e8683589805911faaadcca3d0f84bcd4329"
+  },
+  "max_source_age_days": 7,
+  "normalization_window_signal_dates": 250,
+  "minimum_prior_observations": 60,
+  "raw_candidates": [
+    "median_percentile",
+    "negative_median_percentile",
+    "mean_percentile",
+    "negative_mean_percentile",
+    "lower_quartile_percentile",
+    "upper_quartile_percentile",
+    "low_extreme_breadth",
+    "high_extreme_breadth",
+    "median_robust_z",
+    "negative_median_robust_z",
+    "trimmed_robust_z",
+    "negative_trimmed_robust_z",
+    "negative_z_dispersion",
+    "signed_z_to_dispersion",
+    "cba_high_agreement",
+    "cba_low_agreement"
+  ],
+  "blend_weights": [
+    0.05,
+    0.1,
+    0.2,
+    0.3
+  ],
+  "selection_period": 2024,
+  "raw_selected": "negative_mean_percentile",
+  "finalist_selected": "incumbent90_factor10",
+  "selection_objective": "maximum worst official case-lift over h=1/3/5/10/20 with positive benefits",
+  "score_before_history_update": true,
+  "minimum_current_sources": 3,
+  "asof_rule": "every local-CB date strictly before signal date; CBR USD/CNY date <= signal date",
+  "physical_future_corruption_check": true,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}
