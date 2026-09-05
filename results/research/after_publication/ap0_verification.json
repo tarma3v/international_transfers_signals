@@ -1,0 +1,12 @@
+{
+  "date": "2026-09-06",
+  "stage": "AP0 explicit availability contract",
+  "test_command": "PYTHONPATH=. .venv/bin/pytest -q tests/test_after_publication_clock.py",
+  "tests_passed": 9,
+  "historical_release_times_verified": false,
+  "new_model_metric_computed": false,
+  "old_2_459_certified": false,
+  "hourly_automation": "deleted at user request",
+  "continuation": "active goal, not scheduled heartbeat",
+  "next_stage": "AP1 causal after-publication experimental benchmark and models"
+}

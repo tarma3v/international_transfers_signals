@@ -1,0 +1,19 @@
+candidate,h,control,lift_lo,lift_hi,delta_lo,delta_hi,draws,block
+change_z_r25,1,change_z_r25,1.0444638293305324,1.2285221223999194,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+change_z_r25,3,change_z_r25,0.9679718744004413,1.2294452840872667,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+change_z_r25,5,change_z_r25,0.9057107759870816,1.1961503511618783,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+change_z_r25,10,change_z_r25,0.8002834415911414,1.1322270136707904,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+change_z_r25,20,change_z_r25,0.739800415041393,1.123122702574708,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+change_z_r25,mean,change_z_r25,,,0.0,0.0,1000,
+sign_cd3,1,change_z_r25,0.9667221728665769,1.116530494179423,-0.17763381595995115,-0.011705883439846016,1000,"20 announcement dates, circular, all currencies together"
+sign_cd3,3,change_z_r25,0.9181407379600646,1.0953413136105268,-0.22151580250596836,0.019368571485016348,1000,"20 announcement dates, circular, all currencies together"
+sign_cd3,5,change_z_r25,0.9147083467944969,1.140513138385518,-0.16819304715412006,0.10987069302305284,1000,"20 announcement dates, circular, all currencies together"
+sign_cd3,10,change_z_r25,0.823624990367724,1.0863234452511878,-0.17629179680060159,0.1503063627329045,1000,"20 announcement dates, circular, all currencies together"
+sign_cd3,20,change_z_r25,0.8359292881082054,1.0888914395196132,-0.13822908623979469,0.18855004612824275,1000,"20 announcement dates, circular, all currencies together"
+sign_cd3,mean,change_z_r25,,,-0.15429697658458813,0.07218792980794948,1000,
+stale20_z_r35,1,change_z_r25,0.900783325901751,1.061639547484269,-0.2858980597861031,-0.03091435018657024,1000,"20 announcement dates, circular, all currencies together"
+stale20_z_r35,3,change_z_r25,0.8908986353882916,1.141712582436205,-0.28032976000599474,0.09937669279526716,1000,"20 announcement dates, circular, all currencies together"
+stale20_z_r35,5,change_z_r25,0.888160729305176,1.1829799197431565,-0.22544605606933968,0.18833309570082424,1000,"20 announcement dates, circular, all currencies together"
+stale20_z_r35,10,change_z_r25,0.8478227940493934,1.1954847759101999,-0.16891222352602514,0.26972657039095554,1000,"20 announcement dates, circular, all currencies together"
+stale20_z_r35,20,change_z_r25,0.8127615636046585,1.2313465001462955,-0.1984056112576223,0.36822625280052207,1000,"20 announcement dates, circular, all currencies together"
+stale20_z_r35,mean,change_z_r25,,,-0.20155887380627074,0.15691773254575228,1000,

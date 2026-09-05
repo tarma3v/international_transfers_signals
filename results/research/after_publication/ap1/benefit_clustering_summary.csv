@@ -1,0 +1,8 @@
+convention,candidate,all_symmetric_ci_positive,max_gap_days,max_empty_complete_months,max_weekly_signals
+effective,quantile7y_r25,True,34,0,5
+effective,change_z_r25,True,43,1,4
+effective,sign_cd3,True,18,0,2
+effective,stale20_z_r35,False,31,0,5
+publication,change_z_r25,False,43,1,4
+publication,sign_cd3,False,18,0,2
+publication,stale20_z_r35,False,31,0,5

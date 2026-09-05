@@ -1,0 +1,126 @@
+{
+  "audit_date": "2026-09-06",
+  "candidate": "pub_extra_7y",
+  "period": "2024-2026 already explored retrospective",
+  "rule": "inferred_publication_date = next_effective_date - one calendar day",
+  "limitation": "Calendar consistency check only; actual publication timestamps not present",
+  "n_rows": 3260,
+  "n_signals": 732,
+  "reproduced_pooled_lift": 2.458731785063752,
+  "rows_requiring_later_announcement": 680,
+  "signals_requiring_later_announcement": 147,
+  "signals_requiring_later_announcement_share": 0.20081967213114754,
+  "signal_weekdays": {
+    "Friday": 145,
+    "Saturday": 141,
+    "Sunday": 7,
+    "Thursday": 151,
+    "Tuesday": 131,
+    "Wednesday": 157
+  },
+  "flagged_signal_weekdays": {
+    "Saturday": 137,
+    "Sunday": 7,
+    "Thursday": 1,
+    "Wednesday": 2
+  },
+  "examples": [
+    {
+      "currency": "TJS",
+      "signal_date": "2024-02-03",
+      "weekday": "Saturday",
+      "next_effective_date": "2024-02-06",
+      "inferred_publication_date": "2024-02-05",
+      "announcement_after_signal_date": true,
+      "signal": true,
+      "outcome": 1.0,
+      "current_rate": 8.27478,
+      "next_rate": 8.32596
+    },
+    {
+      "currency": "TJS",
+      "signal_date": "2024-04-28",
+      "weekday": "Sunday",
+      "next_effective_date": "2024-05-03",
+      "inferred_publication_date": "2024-05-02",
+      "announcement_after_signal_date": true,
+      "signal": true,
+      "outcome": 0.0,
+      "current_rate": 8.39753,
+      "next_rate": 8.43092
+    },
+    {
+      "currency": "TJS",
+      "signal_date": "2024-06-29",
+      "weekday": "Saturday",
+      "next_effective_date": "2024-07-02",
+      "inferred_publication_date": "2024-07-01",
+      "announcement_after_signal_date": true,
+      "signal": true,
+      "outcome": 1.0,
+      "current_rate": 8.041039999999999,
+      "next_rate": 8.18631
+    },
+    {
+      "currency": "TJS",
+      "signal_date": "2024-07-27",
+      "weekday": "Saturday",
+      "next_effective_date": "2024-07-30",
+      "inferred_publication_date": "2024-07-29",
+      "announcement_after_signal_date": true,
+      "signal": true,
+      "outcome": 1.0,
+      "current_rate": 8.05393,
+      "next_rate": 8.13162
+    },
+    {
+      "currency": "TJS",
+      "signal_date": "2024-08-10",
+      "weekday": "Saturday",
+      "next_effective_date": "2024-08-13",
+      "inferred_publication_date": "2024-08-12",
+      "announcement_after_signal_date": true,
+      "signal": true,
+      "outcome": 1.0,
+      "current_rate": 8.31046,
+      "next_rate": 8.492180000000001
+    },
+    {
+      "currency": "TJS",
+      "signal_date": "2024-08-17",
+      "weekday": "Saturday",
+      "next_effective_date": "2024-08-20",
+      "inferred_publication_date": "2024-08-19",
+      "announcement_after_signal_date": true,
+      "signal": true,
+      "outcome": 1.0,
+      "current_rate": 8.34017,
+      "next_rate": 8.399890000000001
+    },
+    {
+      "currency": "TJS",
+      "signal_date": "2024-09-07",
+      "weekday": "Saturday",
+      "next_effective_date": "2024-09-10",
+      "inferred_publication_date": "2024-09-09",
+      "announcement_after_signal_date": true,
+      "signal": true,
+      "outcome": 1.0,
+      "current_rate": 8.42723,
+      "next_rate": 8.48163
+    },
+    {
+      "currency": "TJS",
+      "signal_date": "2024-09-21",
+      "weekday": "Saturday",
+      "next_effective_date": "2024-09-24",
+      "inferred_publication_date": "2024-09-23",
+      "announcement_after_signal_date": true,
+      "signal": true,
+      "outcome": 0.0,
+      "current_rate": 8.69227,
+      "next_rate": 8.72062
+    }
+  ],
+  "conclusion": "Old 2.459 is conditional row-shift result, not verified 18:00 live lift"
+}

@@ -1,0 +1,16 @@
+{
+  "convention": "effective",
+  "selected": "quantile7y_r25",
+  "selected_simple": "change_z_r25",
+  "selection_years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2022,
+    2023
+  ],
+  "selection_value": 2.002265731539954,
+  "selected_before_later_evaluation": true,
+  "limitations": "Calendar-assumed; opened retrospective final; no executable bank quotes"
+}

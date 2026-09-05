@@ -1,11 +1,29 @@
 # Research continuation checkpoint
 
+**Superseded priority on2026-09-06:** user explicitly redirected the indefinite
+loop to already-published tomorrow-CBR research and deleted the hourly automation.
+An active target now drives continuation. Read
+`after_publication_next_steps.md` and `after_publication_protocol.md` first.
+The local-pair/strict-before-publication agenda below is retained as historical
+context and control work, not the primary next experiment.
+
 Updated 2026-09-05. Branch: ivan-experiments. User explicitly authorized ongoing
 research, PDF summaries and pushing reviewable results to this branch only.
-Hourly thread heartbeat `automation` is active. Do one meaningful bounded
-experiment per wakeup, retaining every result. Never replace main or force-push.
+At this historical checkpoint the hourly heartbeat was active; it was deleted
+on 06.09 and must not be recreated. Preserve results; never replace main or
+force-push. Current continuation uses the active target documented above.
 
 ## Current decision
+
+**2026-09-06 publication audit:** do not promote old after-publication 2.459.
+`round4_research._publication_matrix` reads the next effective-date row without
+an announcement-time gate. Calendar replay of `pub_extra_7y` reproduces 2.459
+but flags 147/732 signals (20.08%) as requiring a later announcement, mostly
+weekends. Need full causal reconstruction, not just dropping those test alerts.
+The remaining alerts are not timestamp-certified either. Q&A Sep5 p7 says app
+rates are real-time; old-CBR executable prices after publication are unproven.
+Report: `output/pdf/ivan_cbr_after_publication_applicability.pdf`. This audit
+does not refit or independently validate the 15:30 incumbent below.
 
 Retain packet ED 15:30 availability_route. Official adjusted h5 lift 2.052908,
 pooled 2.058770; h1/3/5/10/20 = 1.780/2.014/2.053/2.005/1.928, rate 1.1946.

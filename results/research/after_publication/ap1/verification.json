@@ -1,0 +1,28 @@
+{
+  "checked_on": "2026-09-06",
+  "report": "output/pdf/ivan_after_publication_ap1.pdf",
+  "sha256": "44e93c8e1ffa6a862f604ece19808937d1e68bb39ffeb2a215c3c77b8ded15a3",
+  "source_sha256": "53911e793a969a8d33236d889ffdf93785e07c04f019448c1123d7ce8ab01d79",
+  "pages": 4,
+  "bytes": 92934,
+  "hyperlink_annotations": 2,
+  "text_outside_page": 0,
+  "page_character_counts": [2073, 2268, 2250, 2809],
+  "rendering": "Poppler pdftoppm, 1600px, explicit local fontconfig",
+  "visually_inspected_pages": [1, 2, 3, 4],
+  "visual_result": "Latest rendering inspected; no clipping, overlap, broken tables or missing glyphs observed",
+  "saved_result_consistency": {
+    "effective_change_z_r25_h5": {"adjusted_lift": 2.264616686372927, "signals": 869, "rows": 3265},
+    "publication_change_z_r25_h5": {"adjusted_lift": 1.0602589325820466, "signals": 869, "rows": 3260}
+  },
+  "test_command": "PYTHONPATH=. .venv/bin/python -m pytest -q",
+  "test_exit_code": 0,
+  "tests_passed": 127,
+  "new_tests": 15,
+  "warnings": "joblib physical-core detection fell back to logical cores",
+  "diff_check": "passed",
+  "historical_timestamp_certification": false,
+  "bank_quote_validation": false,
+  "fresh_holdout": false,
+  "goal_complete": false
+}
