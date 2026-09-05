@@ -1937,3 +1937,21 @@ currency. Screen on 2024 with the unchanged five-horizon/positive-benefit
 objective and open 2025--2026 once for the selected formula and matched stale
 control. This is a retrospective mechanistic challenger; do not tune signs,
 weights, rank memory or formula after later results are visible.
+
+## Packet DV: delayed online spot-regime weighting
+
+Frozen after packet DU showed a strong 2024 signed-spot screen and weaker
+2025--2026 transport, before computing any adaptive score. Combine packet DO's
+frozen noon-futures consensus with packet DU's selected signed-spot score. Use
+the exact already-audited packet-DK online rule `global/window=250/eta=5` rather
+than screen a new grid. Both inputs are converted to same-currency causal ranks
+using window 250/minimum 20. Every h=1/3/5/10/20 outcome contributes equal
+Brier loss only after its own reach date is strictly before the current signal
+date. Also report the two components and static equal blend.
+
+Build the matched control by replacing only the signed-spot input with its
+packet-DU stale-20 twin. Physically flipping every unresolved future outcome
+must leave all earlier weights and scores identical. Because the component
+regime change is already known, this packet is an explicitly retrospective
+mechanism test, not a fresh holdout; do not tune window, eta, loss, ranks, or
+reset after reading its path.
