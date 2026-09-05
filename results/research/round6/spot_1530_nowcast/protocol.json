@@ -1,0 +1,39 @@
+{
+  "packet": "DZ",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "decision_time": "15:30:00 Europe/Moscow",
+  "strict_asof": "10-minute candle end < signal date 15:30",
+  "scores": [
+    "cny_last_basis",
+    "cny_mean_basis",
+    "usd_last_basis",
+    "usd_mean_basis",
+    "last_basis_arithmetic",
+    "mean_basis_arithmetic",
+    "last_basis_maximum",
+    "last_basis_minimum"
+  ],
+  "sign": "positive spot-current-CBR basis is favourable",
+  "sign_fitted": false,
+  "blend_weights": [
+    0.1,
+    0.25,
+    0.4
+  ],
+  "stale_rows": 20,
+  "selection_period": 2024,
+  "selected": "cny_mean_basis",
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}

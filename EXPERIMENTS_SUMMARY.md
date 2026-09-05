@@ -566,6 +566,11 @@ cross-era diagnostic нашёл лучший минимальный lift тол�
 | Incumbent/futures minimum geometry | point min 1.659 против 1.623 | paired min-gain CI пересекает ноль; сохранить challenger, не продвигать |
 | Delayed all-horizon MOEX weighting | point min 1.643 против 1.623 | fresh beats stale значимо, но gain к incumbent CI [-0.144; +0.081]; не продвигать |
 | Noon-Moscow incumbent/HistGB rank mean | five-horizon min/mean 1.714/1.892 | лучший point score; min-gain CI [-0.137; +0.202], сохранить challenger |
+| Noon/state balance + shared-horizon noon learner | 2024 retained noon consensus | state correction and five-horizon shared learner add variance, no transport claim |
+| Noon spot ML | best screen min lift 1.528 | full boosting loses to the simpler signed basis and to the incumbent/noon consensus |
+| Signed noon spot basis | screen min 1.644; later min 1.604; stale20 0.844 | genuinely fresh but regime-dependent partial-fixing signal |
+| Online noon/spot weighting | later min/mean 1.714/1.898 | best point mean; paired mean-gain CI [-0.045; +0.076], no promotion |
+| 15:30 CNY session-mean basis | later min/mean 1.708/1.883; stale20 min 0.782 | strong explainable timed product, especially h20=1.927 |
 
 Отрицательные результаты сохранены намеренно: они не дают снова повторять те же
 дорогие эксперименты и показывают, где именно нарушается переносимость.
@@ -689,7 +694,7 @@ challenger обязаны считаться на каждой следующе�
 
 ## Проверки
 
-- Все 98 тестов прошли.
+- Все 103 теста прошли.
 - Новые тесты отдельно проверяют соответствие post-publication gate цели h=1,
   точное использование строки `i+1` и purge h=5 до калибровочного года.
 - MOEX-тест физически меняет same-day/future цены и подтверждает, что прошлые

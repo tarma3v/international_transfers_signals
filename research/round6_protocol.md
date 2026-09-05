@@ -1995,6 +1995,8 @@ CNY/RUB TOM transaction window as 10:00 <= t < 15:30 Moscow; the Bank states
 that the new official rates are usually published by 18:00 and exact
 publication time is not regulated. Define a distinct pre-publication product
 variant at **15:30 Europe/Moscow** and never load the next official fixing.
+Primary references: `cbr.ru/Content/Document/File/162004/metod_6290-u.pdf` and
+`cbr.ru/Reception/TopicalMessage/Page/2661`.
 
 Download official MOEX ISS 10-minute candles for `CNYRUB_TOM` and
 `USD000UTSTOM` from 1 January 2022 through 3 September 2026. Preserve URLs,

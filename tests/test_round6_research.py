@@ -55,6 +55,16 @@ from research.round6_moex_perpetual_hourly_features import (
     causality_check as hourly_futures_causality_check,
     load_hourly_history,
 )
+from research.round6_moex_spot_hourly_features import (
+    build_spot_features,
+    causality_check as spot_hourly_causality_check,
+    load_spot_history,
+)
+from research.round6_moex_spot_1530_features import (
+    build_spot_1530_features,
+    causality_check as spot_1530_causality_check,
+    load_spot_1530_history,
+)
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -345,6 +355,44 @@ def test_perpetual_hourly_refits_use_only_resolved_labels():
             row["quarter"]
         )
         assert int(row["n_train"]) >= 2000
+
+
+def test_spot_hourly_archives_and_cutoffs_are_causal():
+    spot, _spot_digest = load_spot_history()
+    spot_1530, _spot_1530_digest = load_spot_1530_history()
+    perpetual, _perpetual_digest = load_hourly_history()
+    assert {ticker: len(rows) for ticker, rows in spot.items()} == {
+        "CNYRUB_TOM": 13427, "USD000UTSTOM": 8719,
+    }
+    assert {ticker: len(rows) for ticker, rows in spot_1530.items()} == {
+        "CNYRUB_TOM": 74442, "USD000UTSTOM": 46547,
+    }
+    _X, _names, index, series, *_rest = load_round5_features()
+    _broad, _broad_names, references = load_broad_features(index, series)
+    noon, noon_names = build_spot_features(
+        index, spot, references, perpetual,
+    )
+    fixing, fixing_names = build_spot_1530_features(
+        index, spot_1530, references,
+    )
+    assert noon.shape == fixing.shape == (len(index), 36)
+    assert len(noon_names) == len(fixing_names) == 36
+    assert spot_hourly_causality_check(index, spot, references, perpetual)
+    assert spot_1530_causality_check(index, spot_1530, references)
+
+
+def test_shared_noon_horizon_refits_use_only_resolved_labels():
+    path = Path("results/research/round6/noon_shared_horizon/training_log.csv")
+    with path.open(newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    assert rows
+    assert {row["kind"] for row in rows} == {"hist", "extra"}
+    assert {row["stale"] for row in rows} == {"True", "False"}
+    for row in rows:
+        assert dt.date.fromisoformat(row["last_resolved"]) < dt.date.fromisoformat(
+            row["quarter"]
+        )
+        assert int(row["n_train_replicas"]) >= 10000
 
 
 def test_perpetual_online_weights_ignore_unresolved_future_outcomes():

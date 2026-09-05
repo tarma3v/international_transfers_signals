@@ -718,8 +718,9 @@ but must be frozen and replicated prospectively.
   that earlier OOF predictions remain bit-identical.
 - The lifecycle handoff test verifies that regime scores cannot alter any
   pre-2024 decision.
-- Full suite: **100 tests passed** on 2026-09-05. The suite now also verifies
-  the byte hashes of every frozen prospective model input.
+- Full suite: **103 tests passed** on 2026-09-05. The suite now also verifies
+  the byte hashes of every frozen prospective model input, the noon/15:30
+  spot archives and their physical cutoff/future corruption invariance.
 - NBG and NBRB loaders verify aligned RUB/USD/CNY calendars, normalized units
   and physical future-corruption invariance. The new exponential threshold and
   weekly-cap policies have separate causal state-transition tests.
@@ -825,6 +826,13 @@ protocol-controlled but still retrospective:
 | DK/DL | delayed five-horizon online weighting of futures expert | point min/mean 1.643 / 1.845; gain CI [-0.144, 0.081] | causal regime adaptation, but no incumbent promotion |
 | DM/DN | official hourly perpetual futures, frozen 12:00 MSK cutoff | noon HistGB later min/mean 1.636 / 1.793 | strong fresh short-horizon state; stale20 min 0.776 |
 | DO/DP | label-free incumbent/noon rank consensus and paired audit | point min/mean **1.714 / 1.892**; gain CI [-0.137, 0.202] | new point leader, statistical promotion unresolved |
+| DQ | fixed noon/state balance | 2024 retained noon consensus | long-state correction adds no robust scorecard value |
+| DR | shared official-horizon noon learner | best new screen min 1.543; noon consensus 1.566 | direct multi-horizon pooling does not improve selection |
+| DS/DT | official hourly MOEX spot and quarterly ML | best spot/perpetual screen min 1.528 | full spot ML trails the simple consensus |
+| DU | signed noon partial-fixing basis | screen 1.644; later min 1.604; stale 0.844 | fresh but regime-dependent standalone signal |
+| DV/DW | delayed online noon/spot weighting and paired audit | later min/mean 1.714 / **1.898**; mean-gain CI [-0.045, 0.076] | point mean improves, statistical promotion fails |
+| DX | label-free noon/spot agreement geometry | 2024 retained signed spot | agreement formulas do not fix transport |
+| DY/DZ | methodology-aligned 15:30 spot nowcast | later min/mean **1.708 / 1.883**; h20 1.927 | strong explainable timed challenger, not overall leader |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -914,6 +922,40 @@ quarters exceed rate 1.09 and combined minimum-currency h5 lift is 1.748.
 Packet DP gives paired minimum-lift gain +0.091 with CI [-0.137, +0.202], so
 the new point leader remains a challenger. Its matched double-stale minimum is
 1.331 and fresh-versus-stale mean-lift gain is +0.430, CI [+0.209, +0.595].
+
+Packets DQ/DR then tested two natural ways to repair the point leader's weaker
+h20: a fixed target state-space correction and one shared classifier trained
+directly on the five official horizons. Both 2024 screens retained the existing
+noon consensus. This is a useful negative result: the long-horizon shortfall is
+not repaired by adding a slow target state or by pooling more labels into the
+same feature representation.
+
+Packets DS/DT add official hourly `CNYRUB_TOM` and `USD000UTSTOM` candles at the
+same noon cutoff. The frozen archive has 13,427 and 8,719 rows respectively;
+36 derived features pass physical cutoff/future corruption. Quarterly logit,
+HistGB and ExtraTrees variants, including spot+perpetual views, all lose the
+2024 selection to the existing noon consensus. The raw economic sign is more
+useful: packet DU's maximum spot-to-current-CBR basis reaches screen minimum
+1.644, and its stale20 twin collapses below one. But it transports to only
+1.604 minimum lift on 2025--2026, so it is a fresh regime-sensitive expert,
+not a primary model.
+
+Packet DV applies the previously audited delayed online rule to the noon and
+signed-spot experts. Every horizon contributes Brier loss only after its reach
+date. The point minimum is unchanged at 1.714, mean lift rises from 1.892 to
+1.898, h20 rises from 1.819 to 1.874, and future-only benefit improves at all
+five horizons. Packet DW does not confirm the gain: paired mean-lift CI is
+[-0.045, +0.076], and no individual lift difference survives Holm. Keep this
+as a research point challenger, not a promoted score.
+
+Packets DY/DZ define a separate decision product at 15:30 Moscow, aligned with
+the Bank of Russia CNY fixing window rather than tuned on target metrics. The
+10-minute archive contains 74,442 CNY and 46,547 USD candles; the next official
+CBR rate is never loaded. A label-free positive CNY session-mean basis selected
+on 2024 reaches later official lifts 1.708/1.889/1.943/1.948/1.927 for
+h=1/3/5/10/20, minimum/mean 1.708/1.883. Annual h5 lift/rate is 1.983/1.38 in
+2025 and 1.901/1.34 in 2026; its stale20 minimum is 0.782. It is slightly below
+the 12:00 consensus overall but stronger at h20 and highly explainable.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:
