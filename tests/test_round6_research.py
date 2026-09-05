@@ -50,6 +50,11 @@ from research.round6_moex_perpetual_features import (
     load_perpetual_history,
 )
 from research.round6_perpetual_online_weighting import OnlineSpec, online_scores
+from research.round6_moex_perpetual_hourly_features import (
+    build_hourly_features,
+    causality_check as hourly_futures_causality_check,
+    load_hourly_history,
+)
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -311,6 +316,19 @@ def test_perpetual_futures_refits_use_only_resolved_labels():
             row["quarter"]
         )
         assert int(row["n_train"]) >= 2000
+
+
+def test_perpetual_hourly_archive_and_noon_cutoff_are_causal():
+    history, _digest = load_hourly_history()
+    assert set(history) == {"CNYRUBF", "USDRUBF"}
+    assert len(history["CNYRUBF"]) == 16951
+    assert len(history["USDRUBF"]) == 16953
+    _X, _names, index, series, *_rest = load_round5_features()
+    _broad, _broad_names, references = load_broad_features(index, series)
+    matrix, names = build_hourly_features(index, history, references)
+    assert matrix.shape == (len(index), 31)
+    assert len(names) == 31
+    assert hourly_futures_causality_check(index, history, references)
 
 
 def test_perpetual_online_weights_ignore_unresolved_future_outcomes():
