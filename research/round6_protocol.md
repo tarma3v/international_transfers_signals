@@ -1608,3 +1608,21 @@ fixed 5%, 10%, 20% and 30% causal-rank blends with the incumbent and open
 2025--2026 once. A physical corruption of all target values after a cutoff must
 leave every earlier state score bit-identical. The current published target
 course is available; no next course or future outcome is used.
+
+## Packet DF: nonlinear incumbent and target-state agreement
+
+Frozen after packet DE and before reading any packet-DF result. Convert both
+the incumbent score and packet-DE's selected raw negative-innovation score to
+same-currency percentiles against at most 250 strictly earlier scores, minimum
+20. Compare exactly ten label-free geometries: minimum, geometric mean,
+harmonic mean, 75/25 and 90/10 lower/upper mixtures; incumbent minus 10% or 20%
+of a state rank shortfall below 0.5; incumbent plus 10% or 20% of a state rank
+excess above 0.5; and incumbent minus 20% absolute rank disagreement.
+
+Select an aligned geometry on 2024 with the unchanged five-horizon and benefit
+objective. For each formula also construct a predeclared stale control by
+delaying only the state rank 20 rows within currency; after selection compare
+the chosen aligned formula, its matching stale control and incumbent on the
+one-time 2025--2026 opening. The current score enters rank history only after
+its percentile is computed. No target labels choose weights or gates, and no
+formula may be changed after later results are visible.
