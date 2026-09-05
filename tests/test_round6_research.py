@@ -40,6 +40,9 @@ from research.round6_crossbank_revision_dynamics import (
 from research.round6_crossbank_normalized_factor import (
     causality_check as normalized_factor_causality_check,
 )
+from research.round6_target_state_space import (
+    causality_check as target_state_causality_check,
+)
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -244,6 +247,26 @@ def test_normalized_crossbank_factor_ignores_future_local_cb_values():
     index = [(CORRIDORS[0], i, day) for i, day in enumerate(days[6:96])]
     assert normalized_factor_causality_check(
         index, references, sources, cutoff=days[80],
+    )
+
+
+def test_target_state_space_ignores_future_target_values():
+    length = 100
+    days = np.asarray([
+        dt.date(2024, 1, 1) + dt.timedelta(days=i) for i in range(length)
+    ], dtype=object)
+    series = {}
+    for number, code in enumerate(CORRIDORS):
+        values = (1.0 + number) * np.exp(
+            .001 * np.arange(length) + .01 * np.sin(np.arange(length) / 7.0)
+        )
+        series[code] = Series(code, days.copy(), values)
+    index = [
+        (code, position, days[position])
+        for code in CORRIDORS for position in range(10, 95)
+    ]
+    assert target_state_causality_check(
+        series, index, cutoff=days[75],
     )
 
 
