@@ -539,6 +539,9 @@ cross-era diagnostic нашёл лучший минимальный lift тол�
 | Derived CNY microstructure | aligned 1.770 | stale20 1.860: режимный прокси, не свежий сигнал |
 | Raw target trajectory analogues | 2025 lift 0.832 | форма target без CNY не переносится |
 | Global HistGB/ExtraTrees residual boost | combined до 1.853 | paired gain к primary +0.007, benefit ниже |
+| Seven-bank shadow-RUB consensus | screen min lift 1.472 | выбранная 30% смесь падает до min 1.544 против лидера 1.623 на 2025–2026 |
+| Cross-bank uncertainty/veto | screen min lift 1.432 | лучшая causal confirmation переносится только до min 1.612 |
+| Joint target+CBA+cross-bank ML | fresh logit 1.378 против stale20 1.181 на screen | внешняя информация свежая, но ни logit, ни HistGB, ни ExtraTrees не обошли лидера |
 
 Отрицательные результаты сохранены намеренно: они не дают снова повторять те же
 дорогие эксперименты и показывают, где именно нарушается переносимость.
@@ -662,7 +665,7 @@ challenger обязаны считаться на каждой следующе�
 
 ## Проверки
 
-- Все 89 тестов прошли.
+- Все 92 теста прошли.
 - Новые тесты отдельно проверяют соответствие post-publication gate цели h=1,
   точное использование строки `i+1` и purge h=5 до калибровочного года.
 - MOEX-тест физически меняет same-day/future цены и подтверждает, что прошлые

@@ -1,0 +1,73 @@
+{
+  "packet": "DB",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "models": [
+    "logit",
+    "hist",
+    "extra"
+  ],
+  "feature_names": [
+    "primary_rank",
+    "geometry_rank",
+    "pct_range_30",
+    "pct_range_90",
+    "pct_range_180",
+    "ret_1",
+    "ret_5",
+    "ret_20",
+    "currency_AMD",
+    "currency_KGS",
+    "currency_KZT",
+    "currency_TJS",
+    "currency_UZS",
+    "cba_direct_basis_bps",
+    "cba_usd_basis_bps",
+    "cba_cny_basis_bps",
+    "cba_consensus_basis_bps",
+    "cba_direct_minus_usd_bps",
+    "cba_direct_minus_cny_bps",
+    "cba_usd_minus_cny_bps",
+    "cba_rub_quote_ret_1",
+    "cba_rub_quote_ret_2",
+    "cba_rub_quote_ret_5",
+    "cba_rub_age_days",
+    "cba_usd_age_days",
+    "cba_cny_age_days",
+    "median_consensus",
+    "trimmed_consensus",
+    "fresh_weighted_consensus",
+    "negative_dispersion",
+    "positive_breadth",
+    "signed_consensus_to_dispersion"
+  ],
+  "training_start": "2022-02-24",
+  "quarterly_refit": true,
+  "h5_training_labels_resolved": true,
+  "external_stale_control_rows_per_currency": 20,
+  "screen_aligned_vs_stale": {
+    "logit": {
+      "aligned": 1.3776622505450278,
+      "stale": 1.181463837158943
+    },
+    "hist": {
+      "aligned": 1.2120747484427408,
+      "stale": 1.1910526315789471
+    }
+  },
+  "selection_period": 2024,
+  "selected": "incumbent",
+  "selection_objective": "maximum worst official case-lift over h=1/3/5/10/20 with positive benefits",
+  "future_outcome_corruption_check": true,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}
