@@ -1,0 +1,77 @@
+{
+  "packet": "DE",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "gains": [
+    [
+      0.1,
+      0.01
+    ],
+    [
+      0.2,
+      0.03
+    ],
+    [
+      0.4,
+      0.08
+    ]
+  ],
+  "score_kinds": [
+    "next_gap",
+    "negative_innovation",
+    "positive_slope",
+    "rebound"
+  ],
+  "reset_date": "2022-02-24",
+  "scale_window": 120,
+  "minimum_scale_history": 20,
+  "raw_candidates": [
+    "full_a10_b01_next_gap",
+    "full_a10_b01_negative_innovation",
+    "full_a10_b01_positive_slope",
+    "full_a10_b01_rebound",
+    "reset2022_a10_b01_next_gap",
+    "reset2022_a10_b01_negative_innovation",
+    "reset2022_a10_b01_positive_slope",
+    "reset2022_a10_b01_rebound",
+    "full_a20_b03_next_gap",
+    "full_a20_b03_negative_innovation",
+    "full_a20_b03_positive_slope",
+    "full_a20_b03_rebound",
+    "reset2022_a20_b03_next_gap",
+    "reset2022_a20_b03_negative_innovation",
+    "reset2022_a20_b03_positive_slope",
+    "reset2022_a20_b03_rebound",
+    "full_a40_b08_next_gap",
+    "full_a40_b08_negative_innovation",
+    "full_a40_b08_positive_slope",
+    "full_a40_b08_rebound",
+    "reset2022_a40_b08_next_gap",
+    "reset2022_a40_b08_negative_innovation",
+    "reset2022_a40_b08_positive_slope",
+    "reset2022_a40_b08_rebound"
+  ],
+  "blend_weights": [
+    0.05,
+    0.1,
+    0.2,
+    0.3
+  ],
+  "selection_period": 2024,
+  "raw_selected": "full_a40_b08_negative_innovation",
+  "finalist_selected": "incumbent90_state10",
+  "selection_objective": "maximum worst official case-lift over h=1/3/5/10/20 with positive benefits",
+  "feature_information": "current and earlier target publications only",
+  "physical_future_corruption_check": true,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}
