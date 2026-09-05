@@ -19,6 +19,7 @@ from pathlib import Path
 
 SRC = Path("design/interfeys.html")
 JOURNEY = Path("design/put-klienta.html")
+TIMING = Path("design/taymingi.html")
 OUT = Path("submission/figures")
 
 CHROME_CANDIDATES = [
@@ -164,11 +165,16 @@ def main() -> None:
     # Схема пути — самостоятельная страница целиком, вырезать из неё нечего.
     # Ширина 1900: при размещении на слайде 11 дюймов шрифт 16,5 px даёт ~7 пт,
     # то есть читается с проектора. Уже 1900 — текст уходит в нечитаемое.
-    if JOURNEY.exists():
+    for src_page, w, h, stem in (
+        (JOURNEY, 1900, 1010, "08-put-klienta"),
+        (TIMING, 1900, 790, "09-taymingi"),
+    ):
+        if not src_page.exists():
+            continue
         doc = ('<!doctype html><html lang="ru"><head><meta charset="utf-8">'
-               + JOURNEY.read_text(encoding="utf-8") + "</head><body></body></html>")
-        render(chrome, doc, 1900, 1010, OUT / "08-put-klienta.png")
-        render_pdf(chrome, doc, 1900, 1010, OUT / "08-put-klienta.pdf")
+               + src_page.read_text(encoding="utf-8") + "</head><body></body></html>")
+        render(chrome, doc, w, h, OUT / f"{stem}.png")
+        render_pdf(chrome, doc, w, h, OUT / f"{stem}.pdf")
 
 
 if __name__ == "__main__":

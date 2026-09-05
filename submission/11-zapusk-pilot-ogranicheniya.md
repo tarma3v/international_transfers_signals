@@ -25,7 +25,7 @@ CNY лежат в репозитории — `data/cbr_rates.json`, постро
 
 ```bash
 .venv/bin/python -m ml.leakage             # ворота: доказательство отсутствия утечки
-.venv/bin/python -m pytest -c pytest.ini   # 44 теста: честность, корректность, срез
+.venv/bin/python -m pytest -c pytest.ini   # 49 тестов: честность, корректность, срез
 .venv/bin/python -m ml.signals             # сигналы на произвольную дату среза
 .venv/bin/python run_product_numbers.py    # продуктовые величины и размер пилота
 .venv/bin/python run_experiment.py         # базовые модели против индикаторов ТЗ

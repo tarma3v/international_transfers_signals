@@ -1,0 +1,130 @@
+<title>Тайминги</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#1A2530; --paper:#FFF; --line:#C9D1D9; --line-soft:#E1E6EB;
+  --muted:#3F4A56; --grey:#5E6B78; --soft:#F4F6F8;
+  --accent:#9C5B12; --accent-bg:#FDF8F1; --accent-line:#E4CDAB;
+  --pos:#16674F; --neg:#9E3226;
+  --serif:Spectral,Georgia,serif;
+  --sans:"IBM Plex Sans",-apple-system,Segoe UI,sans-serif;
+  --mono:"IBM Plex Mono","SF Mono",Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:19px;line-height:1.45;margin:0;padding:34px 38px;
+     -webkit-font-smoothing:antialiased}
+
+.lede{font-family:var(--serif);font-size:31px;font-weight:600;margin:0 0 4px}
+.sub{font-size:17px;color:var(--grey);margin:0 0 26px;max-width:130ch}
+.sub b{color:var(--ink);font-weight:600}
+
+/* ── две суточные полосы ──────────────────────────────────────── */
+.day{margin-bottom:20px}
+.day-hd{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+.day-hd .d{font-family:var(--serif);font-size:22px;font-weight:600}
+.day-hd .n{font-family:var(--mono);font-size:11.5px;letter-spacing:.09em;
+     text-transform:uppercase;color:var(--grey)}
+
+.rail-top{position:relative;height:21px}
+.rail-top .moment{position:absolute;bottom:2px;font-family:var(--mono);font-size:12px;
+      font-weight:500;color:var(--ink);white-space:nowrap;padding-left:7px;
+      border-left:2px solid var(--ink)}
+.rail{position:relative;height:34px;background:linear-gradient(90deg,#EDF1F4,#E2E8ED);
+      border-radius:6px;margin-bottom:9px}
+.rail .pin{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink)}
+.rail .tick{position:absolute;top:0;bottom:0;width:1px;background:#C3CCD5}
+.rail .lab{position:absolute;top:9px;font-family:var(--mono);font-size:11px;
+      color:var(--grey);transform:translateX(-50%)}
+.rail .span{position:absolute;top:5px;height:24px;border-radius:5px;
+      display:flex;align-items:center;padding:0 10px;font-size:13.5px;font-weight:500;
+      white-space:nowrap;overflow:hidden}
+.rail .span.pub{background:var(--ink);color:#fff}
+.rail .span.calc{background:#D8E0E7;color:var(--muted)}
+.rail .span.send{background:var(--accent);color:#fff}
+.rail .span.east{background:var(--accent-bg);color:var(--accent);
+      border:1px solid var(--accent-line)}
+.rail .span.fix{background:#E4EDE9;color:var(--pos)}
+
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.c{border:1px solid var(--line-soft);border-radius:8px;padding:12px 14px;
+   font-size:16px;line-height:1.42;color:var(--muted)}
+.c b{color:var(--ink);font-weight:600;display:block;margin-bottom:3px}
+.c .t{font-family:var(--mono);font-size:11px;letter-spacing:.07em;
+   text-transform:uppercase;color:var(--accent);display:block;margin-bottom:3px}
+.c.case{border-color:var(--accent-line);background:var(--accent-bg)}
+
+.note{margin-top:22px;border-top:1px solid var(--line-soft);padding-top:16px;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.note div{font-size:16px;color:var(--muted);line-height:1.42}
+.note b{color:var(--ink);font-weight:600}
+.note i{font-style:normal;color:var(--accent);font-family:var(--mono);font-size:11px;
+      letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px}
+</style>
+
+<p class="lede">Тайминг: когда публикуется курс и когда уходит пуш</p>
+<p class="sub">Источник — официальный курс ЦБ РФ. Он публикуется <b>после 15:30 МСК</b> и действует
+<b>со следующего дня</b>. Отсюда всё остальное: и окно отправки, и срок жизни сообщения, и то, почему
+в тексте стоит дата курса, а не слово «сегодня».</p>
+
+<div class="day">
+  <div class="day-hd"><span class="d">Четверг, 3 сентября</span><span class="n">день публикации</span></div>
+  <div class="rail-top">
+    <div class="moment" style="left:64.6%">15:30 МСК · ЦБ публикует курс, действующий 4 сентября</div>
+  </div>
+  <div class="rail">
+    <div class="tick" style="left:0"></div><div class="lab" style="left:1.2%">00:00</div>
+    <div class="tick" style="left:25%"></div><div class="lab" style="left:25%">06:00</div>
+    <div class="tick" style="left:50%"></div><div class="lab" style="left:50%">12:00</div>
+    <div class="pin" style="left:64.6%"></div>
+    <div class="span calc" style="left:64.6%;width:10.4%">счёт и фильтры</div>
+    <div class="span send" style="left:75%;width:12.5%">18:00–21:00 · пуш</div>
+  </div>
+  <div class="cards">
+    <div class="c"><span class="t">15:30 МСК</span><b>Публикация</b>Курс приходит из открытого XML API ЦБ.
+      Это единственный источник сигнала: воспроизводимый и публичный.</div>
+    <div class="c"><span class="t">15:30–18:00</span><b>Счёт и фильтры</b>Признаки по ряду публикаций,
+      правило, затем cooldown против серий и блэкауты: 24 апреля в Армению, Рамадан вечером.</div>
+    <div class="c case"><span class="t">развилка кейса · 18:00–21:00</span><b>Окно отправки — местное</b>
+      Клиент в России, а не в стране получателя. Одиннадцать зон против одной публикации.</div>
+    <div class="c case"><span class="t">развилка кейса · МСК+5 и восточнее</span><b>Восток — утром</b>
+      В Иркутске и Владивостоке 18:00 МСК — это глубокая ночь. Там окно сдвигается на утро 4-го.</div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-hd"><span class="d">Пятница, 4 сентября</span><span class="n">день действия курса</span></div>
+  <div class="rail-top">
+    <div class="moment" style="left:64.6%">15:30 МСК · следующая публикация переписывает пуш</div>
+  </div>
+  <div class="rail">
+    <!-- подписи часов не повторяем: шкала та же, что на полосе выше, а под
+         плашкой они читались бы как обрезанный мусор -->
+    <div class="pin" style="left:64.6%"></div>
+    <div class="span fix" style="left:0.6%;width:63.4%">курс зафиксирован на сутки — число в пуше точное</div>
+    <div class="span east" style="left:29.2%;width:12.5%">07:00–10:00 · окно востока</div>
+  </div>
+  <div class="cards">
+    <div class="c"><span class="t">весь день</span><b>Число не портится</b>Курс ЦБ фиксирован на сутки,
+      поэтому сумма из пуша точна до следующей публикации. Расхождение начинается не «к утру», а с
+      новой публикации.</div>
+    <div class="c case"><span class="t">развилка кейса · 15:30</span><b>Перезапись, а не второй пуш</b>
+      Одно живое уведомление на коридор. На iOS это apns-collapse-id, на Android — tag, и молча:
+      звук клиент слышит один раз.</div>
+    <div class="c case"><span class="t">развилка кейса · дальше</span><b>Срок жизни рекомендации</b>
+      Отличить сигнал от случайного дня данные позволяют только в день сигнала: +61 бп, [+7; +113].
+      Дальше интервал накрывает ноль.</div>
+    <div class="c"><span class="t">во всех текстах</span><b>Дата вместо «сегодня»</b>Ни одна платформа
+      не снимает просроченный пуш сама, поэтому текст обязан не портиться:
+      «Курс ЦБ на 4 сентября» верен и через неделю.</div>
+  </div>
+</div>
+
+<div class="note">
+  <div><i>почему не «сегодня»</i>Вечерний московский пуш приходит во Владивосток, когда там уже
+    наступило <b>завтра</b>. Одно слово означало бы разные дни для разных клиентов.</div>
+  <div><i>чего мы не видим</i>Ряд ЦБ дневной. <b>Внутридневного устаревания</b> — между отправкой
+    вечером и открытием ночью — эти данные не показывают.</div>
+  <div><i>курс исполнения</i>Сигнал считается по ряду ЦБ, а перевод пройдёт <b>по курсу
+    поставщика</b>. Разрыв назван на экране подтверждения.</div>
+</div>

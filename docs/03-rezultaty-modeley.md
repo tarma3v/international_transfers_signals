@@ -412,7 +412,7 @@
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m ml.leakage             # ворота: тест на заглядывание в будущее
-.venv/bin/python -m pytest -c pytest.ini   # 44 теста: честность, корректность, срез
+.venv/bin/python -m pytest -c pytest.ini   # 49 тестов: честность, корректность, срез
 .venv/bin/python run_experiment.py         # базовые модели против индикаторов ТЗ
 .venv/bin/python run_boosting.py           # CatBoost, XGBoost + отбор признаков
 .venv/bin/python check_stability.py        # разбивка по годам
