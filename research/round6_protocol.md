@@ -1627,3 +1627,24 @@ the chosen aligned formula, its matching stale control and incumbent on the
 one-time 2025--2026 opening. The current score enters rank history only after
 its percentile is computed. No target labels choose weights or gates, and no
 formula may be changed after later results are visible.
+
+## Packet DG: lagged MOEX perpetual FX futures archive
+
+Frozen before downloading the archive. Fetch `CNYRUBF` and `USDRUBF` from the
+official public MOEX ISS history endpoint from 1 January 2022 through the
+existing historical cutoff 3 September 2026. Preserve every requested page,
+URL, schema, retrieval timestamp and a canonical SHA-256 digest. The contracts
+are daily cash-settled futures with automatic extension, avoiding a hand-built
+quarterly rollover. Only rows with positive close, settlement and trade count
+are price observations.
+
+Every model feature must use `TRADEDATE < signal_date`; same-day futures close,
+settlement, volume, funding or open interest are forbidden. CBR USD/CNY
+references may be dated no later than the signal date because the current CBR
+publication is part of the current information set. Build per-contract lagged
+returns (1/2/5/10/20), volatility (5/20), candle shape, close/settlement and
+close/VWAP gaps, log volume/trades/open-interest, funding, open-interest changes
+(1/5), close/settlement basis to the current matching CBR reference, age and
+missingness. Add cross-contract close/settlement CNY-via-USD basis, return
+divergence (1/5) and funding spread. Physically changing every futures row on
+or after a cutoff must leave all features on or before that cutoff unchanged.
