@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-06",
+  "availability": "CALENDAR-ASSUMED effective_date minus1 day at18:00 Moscow",
+  "baseline_support": "own-currency announcement events only, not all calendar days",
+  "selection_years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2022,
+    2023
+  ],
+  "retrospective_years": [
+    2024,
+    2025,
+    2026
+  ],
+  "data_sha256": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+  "registered_sha256": "55106dcd57fc13eec979440fa39b212aef03ff6a8c457e81d150f959b90786f0",
+  "n_rows": 19326,
+  "n_features": 111,
+  "new_bank_execution_evidence": false
+}

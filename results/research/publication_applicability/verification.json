@@ -1,0 +1,22 @@
+{
+  "checked_on": "2026-09-06",
+  "report": "output/pdf/ivan_cbr_after_publication_applicability.pdf",
+  "sha256": "14e8ca7553bedaea5ce30d8dfbf8dcf844162c0f5a4456e44dec4472845aabf6",
+  "pages": 9,
+  "bytes": 114884,
+  "hyperlink_annotations": 15,
+  "distinct_https_targets": 6,
+  "invalid_link_targets": 0,
+  "text_outside_page": 0,
+  "replacement_characters": 0,
+  "rendering": "Poppler pdftoppm, 1600px, explicit local fontconfig",
+  "visually_inspected_pages": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "visual_result": "No clipping, overlapping text, broken tables, missing glyphs or awkward page continuations observed",
+  "saved_audit_consistency": "3260 rows, 732 signals, 147 flagged; pooled lift matches stored summary to 1e-12",
+  "diff_check": "passed",
+  "model_refit": false,
+  "corrected_lift_computed": false,
+  "historical_timestamp_certification": false,
+  "bank_quote_validation": false,
+  "pushed": false
+}

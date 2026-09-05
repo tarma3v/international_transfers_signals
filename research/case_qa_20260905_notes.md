@@ -35,11 +35,20 @@ They do not replace the stricter causal protocol chosen for this research.
 
 ## Information availability and product meaning
 
+- **2026-09-06 correction:** the Sep5 Q&A p7 explicitly says app rates are
+  real-time and tied to liquidity providers. It does not establish an old-CBR
+  execution window after the new fixing is published. The p5 availability
+  permission is not blanket approval of a particular after-publication model.
+  The new calendar replay flags 147/732 saved `pub_extra_7y` signals as requiring
+  an announcement later than the signal date; old pooled lift 2.459 is not a
+  verified after-18:00 result. See `publication_applicability/report-source.md`
+  and `publication_semantics_audit.py`; actual release timestamps remain missing.
 - A signal for date `T` may use only information available at `T`. The Q&A
-  notes that a CBR rate for tomorrow can be published today. This project keeps
-  the user's stricter primary track: **do not use knowledge of the next CBR
-  fixing**, even when it may already be published. Results that use it remain
-  a separately labelled after-publication track.
+  notes that a CBR rate for tomorrow can be published today. Until 05.09 this
+  project used the user's stricter before-publication primary track. On 06.09
+  the user explicitly made knowledge of the already published fixing the main
+  research scenario. See `after_publication_tz_decision.md` and
+  `after_publication_next_steps.md`; both target conventions remain labelled.
 - Open and reproducible external data are allowed. The case owner explicitly
   names MOEX as a permissible indicator of intraday dynamics; reproducible
   USD/RUB cross construction for target currencies is also an allowed
