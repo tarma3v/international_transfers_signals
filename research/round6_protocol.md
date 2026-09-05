@@ -2288,3 +2288,35 @@ changing any raw basis after a cutoff must leave every earlier normalized
 feature bit-identical. This is a retrospective, outcome-free normalization
 screen; do not add a lookback, formula, sign or blend weight after viewing its
 later result.
+
+## Packet EN: reference-invariant intraday persistence proxies
+
+Frozen after packet EM and before evaluating any packet-EN target metric. The
+Bank of Russia methodology defines the CNY fixing as a 10:00--15:30
+volume-weighted mean of `CNYRUB_TOM` trades. Historical trade volumes are not
+available in the archived public 10-minute candles, so retain packet-EB's
+frozen unweighted session-mean basis as the exact anchor and make no true-VWAP
+claim. Derive exactly seven same-session, label-free shape corrections from
+completed candle closes: median close; 25th-percentile close; mean of the lower
+half of closes; minimum of the 10:00--12:00, 12:00--14:00 and 14:00--15:30
+block means; mean minus half the close-log standard deviation; mean minus one
+quarter of the close-log high-low range; and a 10%-trimmed mean.
+
+Express every price correction as `10000 * log(alternative / session_mean)`
+and add it to the frozen basis. This makes the shape term invariant to the
+absolute price and CBR reference while preserving the original anchor exactly.
+Map each corrected score to an unchanged same-currency causal percentile with
+window 250/minimum 20; fall back to the frozen noon rank when no complete
+session exists. Compare the unchanged availability router, all seven shape
+routes, and fixed 75/25 router/shape mixtures for the 25th-percentile,
+lower-half, block-minimum, half-standard-deviation and quarter-range variants.
+
+Screen once on 2024 by maximum worst official lift over h=1/3/5/10/20 and then
+mean lift, requiring h5 frequency in [1,2] and positive symmetric and
+future-only benefit at every horizon. Open 2025--2026 once for the selected
+candidate and unchanged router. Delay only the selected corrected shape score
+by 20 target rows for its matched freshness control. Physically corrupting the
+cutoff session and all future candles must leave every earlier correction
+bit-identical, and multiplying all closes in one session by a common positive
+constant must leave every correction unchanged. Do not add another quantile,
+penalty, time block or blend weight after viewing the later result.

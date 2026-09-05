@@ -842,6 +842,7 @@ protocol-controlled but still retrospective:
 | EJ/EK | 15:20 availability router and non-inferiority audit | later min/mean **1.770 / 1.952**; aggregate CIs pass -0.05 margin | h20 CI reaches -0.056, so strict all-horizon non-inferiority fails narrowly |
 | EL | global HistGB/ExtraTrees residual correction over fixing anchor | best new screen min 1.558; router 1.607 | user-proposed anchor+global-residual pattern tested directly; no promotion |
 | EM | outcome-free fixing-basis regime normalization | screen 1.623 vs 1.607; later min/mean 1.775/1.934 vs 1.780/1.956 | small cadence repair costs precision; no promotion |
+| EN | reference-invariant intraday fixing-shape proxies | screen 1.628 vs 1.607; later min/mean 1.761/1.930 | session-persistence filter does not transport; no promotion |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -1065,6 +1066,17 @@ the router and trailing-60 robust z-score, raising the screen minimum lift from
 versus 2.059. Minimum-quarter cadence improves only from 0.955 to 0.986. Thus
 slow structural normalization slightly shifts alerts but does not add durable
 precision; the raw market-to-current-CBR gap remains the better explanation.
+
+Packet EN follows the published CBR fixing mechanism more closely without
+pretending that public candles contain unavailable historical trade volumes.
+Seven scale- and reference-invariant corrections ask whether the mean basis is
+supported by the median, lower tail, all three intraday blocks or a low-noise
+session. The 2024 selector chooses a fixed 75/25 router/block-minimum mixture,
+raising minimum lift from 1.607 to 1.628. On 2025--2026 it falls back to
+1.761/1.930 minimum/mean versus 1.780/1.956 for the raw router; h5 is 2.043
+versus 2.059 and minimum-quarter frequency worsens from 0.955 to 0.923. The
+path-shape confirmation therefore removes some useful high-basis days rather
+than isolating a more stable subset.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:

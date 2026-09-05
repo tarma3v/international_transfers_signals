@@ -1,0 +1,49 @@
+{
+  "packet": "EN",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "decision_time": "15:30:00 Europe/Moscow",
+  "methodology_source": "https://cbr.ru/Content/Document/File/162004/metod_6290-u.pdf",
+  "methodology": "10:00-15:30 trade-volume-weighted CNYRUB_TOM",
+  "true_vwap_claimed": false,
+  "features": [
+    "median_close",
+    "q25_close",
+    "lower_half_mean",
+    "block_min_mean",
+    "lcb_half_std",
+    "lcb_quarter_range",
+    "trimmed_mean"
+  ],
+  "blend_features": [
+    "q25_close",
+    "lower_half_mean",
+    "block_min_mean",
+    "lcb_half_std",
+    "lcb_quarter_range"
+  ],
+  "blend_weights": {
+    "availability_router": 0.75,
+    "shape_route": 0.25
+  },
+  "shape_term": "10000*log(alternative/session_mean)",
+  "shape_reference_invariant": true,
+  "rank_window": 250,
+  "rank_minimum": 20,
+  "selection_period": 2024,
+  "selected": "router75_block_min_mean_25",
+  "matched_control": "selected corrected score delayed 20 target rows",
+  "physical_future_corruption_check": true,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}

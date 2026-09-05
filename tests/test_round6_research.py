@@ -78,6 +78,10 @@ from research.round6_fixing_cutoff_frontier import (
 )
 from research.round6_fixing_1520_router import market_available
 from research.round6_fixing_regime_normalization import regime_features
+from research.round6_fixing_shape_proxies import (
+    session_adjustments,
+    shape_causality_check,
+)
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -414,6 +418,7 @@ def test_spot_hourly_archives_and_cutoffs_are_causal():
     assert spot_hourly_causality_check(index, spot, references, perpetual)
     assert spot_1530_causality_check(index, spot_1530, references)
     assert proxy_causality_check(index, spot_1530, references)
+    assert shape_causality_check(index, spot_1530)
 
 
 def test_fixing_availability_router_falls_back_without_dropping_rows():
@@ -502,6 +507,18 @@ def test_fixing_regime_features_use_only_prior_available_sessions():
     changed = regime_features(changed_raw, available, dates, currencies)
     for name in original:
         np.testing.assert_array_equal(original[name][:4], changed[name][:4])
+
+
+def test_fixing_shape_corrections_are_invariant_to_absolute_price_level():
+    closes = np.asarray([10.0, 10.1, 10.2, 10.15, 10.3, 10.25])
+    blocks = np.asarray([0, 0, 1, 1, 2, 2])
+    original = session_adjustments(closes, blocks)
+    rescaled = session_adjustments(closes * 17.0, blocks)
+    assert set(original) == set(rescaled)
+    for name in original:
+        np.testing.assert_allclose(
+            original[name], rescaled[name], rtol=0.0, atol=1e-11,
+        )
 
 
 def test_perpetual_online_weights_ignore_unresolved_future_outcomes():
