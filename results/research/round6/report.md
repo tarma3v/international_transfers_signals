@@ -718,7 +718,7 @@ but must be frozen and replicated prospectively.
   that earlier OOF predictions remain bit-identical.
 - The lifecycle handoff test verifies that regime scores cannot alter any
   pre-2024 decision.
-- Full suite: **98 tests passed** on 2026-09-05. The suite now also verifies
+- Full suite: **99 tests passed** on 2026-09-05. The suite now also verifies
   the byte hashes of every frozen prospective model input.
 - NBG and NBRB loaders verify aligned RUB/USD/CNY calendars, normalized units
   and physical future-corruption invariance. The new exponential threshold and
@@ -822,6 +822,7 @@ protocol-controlled but still retrospective:
 | DF | nonlinear incumbent/state agreement | selected later min/mean 1.598 / 1.809; stale 1.576 / 1.794 | fresh state adds timing information, but the geometry dilutes future-only precision |
 | DG/DH | lagged MOEX CNYRUBF/USDRUBF perpetual futures | selected later min/mean 1.534 / 1.648; stale 1.064 / 1.123 | strong fresh independent expert; incumbent remains stronger |
 | DI/DJ | incumbent/futures minimum geometry and paired audit | point min/mean 1.659 / 1.834; min-lift gain CI [-0.183, 0.098] | new Pareto point, but superiority is unresolved; incumbent retained |
+| DK/DL | delayed five-horizon online weighting of futures expert | point min/mean 1.643 / 1.845; gain CI [-0.144, 0.081] | causal regime adaptation, but no incumbent promotion |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -884,6 +885,16 @@ horizons: the paired minimum-lift gain is +0.036 with CI [-0.183, +0.098], so
 the robust-minimum promotion gate fails. In contrast, fresh-versus-stale lift
 differences are positive after Holm at all five horizons. The result is a
 frozen challenger, not a replacement for the CBA geometry incumbent.
+
+Packet DK replaces fixed geometry with an auditable online weight. Every
+resolved `(row, horizon)` event from h=1/3/5/10/20 contributes Brier loss only
+after its own reach date; the best 2024 online family member is global,
+250-event memory, eta 5. On 2025--2026 it reaches minimum/mean official lift
+1.643/1.845 and h5 lift 2.027/1.843 at rates 1.25/1.25. The incumbent weight
+varies causally from about 0.57 in 2024Q1 to 0.39 in 2026Q1. Packet DL finds a
+point minimum gain of +0.020 but paired CI [-0.144, +0.081], so it is not a
+replacement. Its fresh-versus-stale minimum gain is +0.262 with CI
+[+0.111, +0.593], and fresh lift beats stale after Holm at all five horizons.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:
