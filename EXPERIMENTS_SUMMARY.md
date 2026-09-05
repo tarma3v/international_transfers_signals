@@ -27,6 +27,11 @@
   против **1.623**, но paired CI прироста **[-0.144; +0.081]** включает ноль.
   Fresh-versus-stale minimum gain **+0.262**, CI **[+0.111; +0.593]**:
   информация MOEX настоящая, но её добавочный вес пока оценён неточно.
+- Фиксированный срез MOEX до **12:00 MSK** дал новый point-лидер:
+  арифметическое среднее рангов incumbent и `noon_hist` достигает five-horizon
+  **min 1.714 / mean 1.892**, h5 **2.062 / 1.873** при rate **1.25 / 1.47**
+  в 2025/2026. Paired min-gain **+0.091**, CI **[-0.137; +0.202]**, поэтому
+  статистически incumbent пока не заменён; double-stale заметно хуже.
 - Официальная выгода считается относительно среднего в симметричном окне
   `-h..+h`; её значения у лидера **+18.0 / +31.3 / +38.1 / +47.1 / +70.3
   б.п.** Future-only выгода остаётся дополнительной строгой диагностикой.
@@ -560,6 +565,7 @@ cross-era diagnostic нашёл лучший минимальный lift тол�
 | MOEX perpetual CNYRUBF/USDRUBF ExtraTrees | five-horizon min 1.534; h5 1.770/1.645 по годам | новый свежий эксперт: stale20 падает до min 1.064, но incumbent сильнее |
 | Incumbent/futures minimum geometry | point min 1.659 против 1.623 | paired min-gain CI пересекает ноль; сохранить challenger, не продвигать |
 | Delayed all-horizon MOEX weighting | point min 1.643 против 1.623 | fresh beats stale значимо, но gain к incumbent CI [-0.144; +0.081]; не продвигать |
+| Noon-Moscow incumbent/HistGB rank mean | five-horizon min/mean 1.714/1.892 | лучший point score; min-gain CI [-0.137; +0.202], сохранить challenger |
 
 Отрицательные результаты сохранены намеренно: они не дают снова повторять те же
 дорогие эксперименты и показывают, где именно нарушается переносимость.
