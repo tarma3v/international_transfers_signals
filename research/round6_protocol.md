@@ -242,6 +242,25 @@ expert components' later performance was already inspected before this packet,
 the result is protocol-controlled retrospective evidence, not a pristine
 holdout claim.
 
+## Packet DL: paired audit of the delayed perpetual weighting
+
+Frozen after packet DK selected `online_global_w250_eta5` as the best member
+of the predeclared online-mixture family on 2024, before computing any paired
+uncertainty comparison. Keep that candidate, the incumbent, the matched
+stale-20 online system, the policy and every prediction unchanged. On the
+combined 2025--2026 interval, compare online versus incumbent and fresh versus
+stale at each official horizon using identical moving four-week block draws.
+Apply Holm correction separately to lift, symmetric-benefit and future-benefit
+differences across the ten `(comparison, horizon)` tests.
+
+Also compare the draw-wise minimum and mean lift over the five horizons. The
+online candidate can replace the incumbent only if its point minimum is
+higher, the paired 95% lower bound for minimum-lift improvement exceeds zero,
+annual h5 lift and frequency pass in both years, combined minimum-currency h5
+lift is at least 1.30, and both benefit definitions are positive at all five
+horizons. Failure of this gate is recorded rather than repaired with another
+post-hoc weight choice.
+
 ## Packet L: delayed-feedback online expert mixture
 
 Frozen after packet K showed that hand-written fallback gates still sacrifice
