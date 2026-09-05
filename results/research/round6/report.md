@@ -718,7 +718,7 @@ but must be frozen and replicated prospectively.
   that earlier OOF predictions remain bit-identical.
 - The lifecycle handoff test verifies that regime scores cannot alter any
   pre-2024 decision.
-- Full suite: **95 tests passed** on 2026-09-05. The suite now also verifies
+- Full suite: **96 tests passed** on 2026-09-05. The suite now also verifies
   the byte hashes of every frozen prospective model input.
 - NBG and NBRB loaders verify aligned RUB/USD/CNY calendars, normalized units
   and physical future-corruption invariance. The new exponential threshold and
@@ -819,6 +819,7 @@ protocol-controlled but still retrospective:
 | DC | within-source cross-bank revision dynamics | best feasible raw screen min/mean 1.005 / 1.047 | 2024 selection retains incumbent; common short-term revisions are not predictive |
 | DD | within-source normalized latent RUB factor | raw screen min/mean 1.233 / 1.339; selected later 1.593 / 1.759 | structural normalization helps the raw factor, but its 10% blend still dilutes the leader |
 | DE | one-sided alpha-beta target state | selected later min/mean 1.591 / 1.845 | h10/h20 and symmetric benefits improve, but h1/h3/h5 weaken; no overall promotion |
+| DF | nonlinear incumbent/state agreement | selected later min/mean 1.598 / 1.809; stale 1.576 / 1.794 | fresh state adds timing information, but the geometry dilutes future-only precision |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -855,6 +856,12 @@ a real horizon trade-off rather than a general failure: on 2025--2026 it raises
 h10 from 1.927 to 1.939 and h20 from 1.879 to 1.914, and improves symmetric
 benefit at all five horizons. It simultaneously lowers h1 from 1.623 to 1.591,
 so the single-trigger official scorecard still favours the incumbent.
+
+Packet DF tested whether state agreement could preserve the incumbent's short
+horizon while retaining DE's long-horizon gain. The selected high-state bonus
+does beat its 20-row-stale control, but not the incumbent. This separates two
+claims: the state is temporally informative, yet it is not incrementally useful
+for the single trigger under the all-horizon objective.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:
