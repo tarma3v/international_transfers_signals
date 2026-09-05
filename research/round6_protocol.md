@@ -1872,8 +1872,9 @@ same-currency causal percentile using at most 250 strictly earlier values and
 minimum history 20. Predeclare four horizon aggregations: minimum, geometric
 mean, arithmetic mean, and mean minus one-half standard deviation. For each
 raw aggregate also compare fixed 25% and 50% causal-rank mixtures with the
-incumbent. Repeat every candidate with an exact 20-target-row delay of only the
-noon block. Select once on 2024 by maximum worst official lift, then mean lift,
+incumbent. Include packet DO's frozen noon/incumbent arithmetic consensus as a
+do-nothing comparator. Repeat every new candidate with an exact 20-target-row
+delay of only the noon block. Select once on 2024 by maximum worst official lift, then mean lift,
 requiring positive symmetric and future-only benefit at all horizons. Open
 2025--2026 only for the selected candidate and its matched stale system. This
 is a retrospective causal challenger; no later-period hyperparameter,
