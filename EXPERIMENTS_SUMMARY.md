@@ -543,6 +543,7 @@ cross-era diagnostic нашёл лучший минимальный lift тол�
 | Cross-bank uncertainty/veto | screen min lift 1.432 | лучшая causal confirmation переносится только до min 1.612 |
 | Joint target+CBA+cross-bank ML | fresh logit 1.378 против stale20 1.181 на screen | внешняя информация свежая, но ни logit, ни HistGB, ни ExtraTrees не обошли лидера |
 | Within-source cross-bank revisions | лучший допустимый screen min 1.005 | 2024 сразу оставляет incumbent; краткосрочные общие ревизии не предсказывают цель |
+| Causally normalized cross-bank factor | standalone screen min 1.233 | 10% смесь переносится до min 1.593 против лидера 1.623 |
 
 Отрицательные результаты сохранены намеренно: они не дают снова повторять те же
 дорогие эксперименты и показывают, где именно нарушается переносимость.
@@ -666,7 +667,7 @@ challenger обязаны считаться на каждой следующе�
 
 ## Проверки
 
-- Все 93 теста прошли.
+- Все 94 теста прошли.
 - Новые тесты отдельно проверяют соответствие post-publication gate цели h=1,
   точное использование строки `i+1` и purge h=5 до калибровочного года.
 - MOEX-тест физически меняет same-day/future цены и подтверждает, что прошлые

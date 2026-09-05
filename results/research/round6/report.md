@@ -718,7 +718,7 @@ but must be frozen and replicated prospectively.
   that earlier OOF predictions remain bit-identical.
 - The lifecycle handoff test verifies that regime scores cannot alter any
   pre-2024 decision.
-- Full suite: **93 tests passed** on 2026-09-05. The suite now also verifies
+- Full suite: **94 tests passed** on 2026-09-05. The suite now also verifies
   the byte hashes of every frozen prospective model input.
 - NBG and NBRB loaders verify aligned RUB/USD/CNY calendars, normalized units
   and physical future-corruption invariance. The new exponential threshold and
@@ -817,6 +817,7 @@ protocol-controlled but still retrospective:
 | CZ | causal cross-bank uncertainty/veto | selected later min/mean 1.612 / 1.826 | low-dispersion confirmation nearly preserves h1 but trails overall |
 | DB | quarterly joint target+CBA+cross-bank ML stack | fresh logit screen min 1.378 versus stale20 1.181 | fresh information exists, but all joint learners trail the incumbent |
 | DC | within-source cross-bank revision dynamics | best feasible raw screen min/mean 1.005 / 1.047 | 2024 selection retains incumbent; common short-term revisions are not predictive |
+| DD | within-source normalized latent RUB factor | raw screen min/mean 1.233 / 1.339; selected later 1.593 / 1.759 | structural normalization helps the raw factor, but its 10% blend still dilutes the leader |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -840,6 +841,12 @@ confounder by differencing every bank before aggregation. This made the
 cross-bank revision family clearly weak on the 2024 screen itself, so the
 sealed later selector was the incumbent exactly; no later number was needed
 to reject the feature family.
+
+Packet DD addressed a second comparability problem: every bank's level was
+converted to a causal percentile and robust z-score against only its own prior
+250 signal dates before aggregation. That materially improved the standalone
+factor but did not create a transferable addition. Its selected 10% blend
+trails the incumbent at every aggregate objective on 2025--2026.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:

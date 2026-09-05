@@ -37,6 +37,9 @@ from research.round6_crossbank_consensus import (
 from research.round6_crossbank_revision_dynamics import (
     causality_check as revision_causality_check,
 )
+from research.round6_crossbank_normalized_factor import (
+    causality_check as normalized_factor_causality_check,
+)
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -174,8 +177,10 @@ def test_crossbank_consensus_ignores_future_local_cb_values():
         "CNY": Series("CNY", days.copy(), 12.5 + np.arange(40) * .005),
     }
     sources = {}
-    for number, scale in enumerate((1.0, 4.0, 12.0)):
-        sources[f"source_{number}"] = {
+    for source_name, scale in zip(
+        ("armenia_cba", "source_1", "source_2"), (1.0, 4.0, 12.0),
+    ):
+        sources[source_name] = {
             "RUB": Series("RUB", days.copy(), scale * (.03 + np.arange(40) * 1e-5)),
             "USD": Series("USD", days.copy(), scale * (3.0 + np.arange(40) * 1e-3)),
             "CNY": Series("CNY", days.copy(), scale * (.42 + np.arange(40) * 1e-4)),
@@ -216,6 +221,29 @@ def test_crossbank_revision_features_ignore_future_local_cb_values():
     index = [(CORRIDORS[0], i, day) for i, day in enumerate(days[6:36])]
     assert revision_causality_check(
         index, references, sources, cutoff=days[25],
+    )
+
+
+def test_normalized_crossbank_factor_ignores_future_local_cb_values():
+    days = np.asarray([
+        dt.date(2024, 1, 1) + dt.timedelta(days=i) for i in range(100)
+    ], dtype=object)
+    references = {
+        "USD": Series("USD", days.copy(), 90.0 + np.arange(100) * .02),
+        "CNY": Series("CNY", days.copy(), 12.5 + np.arange(100) * .005),
+    }
+    sources = {}
+    for source_name, scale in zip(
+        ("armenia_cba", "source_1", "source_2"), (1.0, 4.0, 12.0),
+    ):
+        sources[source_name] = {
+            "RUB": Series("RUB", days.copy(), scale * (.03 + np.arange(100) * 1e-5)),
+            "USD": Series("USD", days.copy(), scale * (3.0 + np.arange(100) * 1e-3)),
+            "CNY": Series("CNY", days.copy(), scale * (.42 + np.arange(100) * 1e-4)),
+        }
+    index = [(CORRIDORS[0], i, day) for i, day in enumerate(days[6:96])]
+    assert normalized_factor_causality_check(
+        index, references, sources, cutoff=days[80],
     )
 
 
