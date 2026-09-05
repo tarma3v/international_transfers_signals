@@ -1855,3 +1855,26 @@ comparators. Because later-period diagnostics motivated this coarse family,
 label it a retrospective causal challenger rather than a pristine confirmatory
 result. If the 2024 screen retains an existing score, stop without narrowing
 the grid; no later-period weight tuning is allowed.
+
+## Packet DR: shared official-horizon noon learner
+
+Frozen after packet DQ retained the noon consensus and before fitting or
+evaluating packet DR. Use the packet-DM noon state at 12:00 Moscow together
+with the same six current-target and five currency fields as packet DN. Expand
+each training row into the official horizons h=1/3/5/10/20, append a horizon
+one-hot and normalized log-horizon, and fit one shared classifier. A label may
+enter a quarterly refit only when that horizon's own reach date is strictly
+before the quarter. Compare only the fixed packet-DN HistGB and ExtraTrees
+regularizations; do not tune either learner.
+
+At prediction time convert each of the five horizon probabilities into a
+same-currency causal percentile using at most 250 strictly earlier values and
+minimum history 20. Predeclare four horizon aggregations: minimum, geometric
+mean, arithmetic mean, and mean minus one-half standard deviation. For each
+raw aggregate also compare fixed 25% and 50% causal-rank mixtures with the
+incumbent. Repeat every candidate with an exact 20-target-row delay of only the
+noon block. Select once on 2024 by maximum worst official lift, then mean lift,
+requiring positive symmetric and future-only benefit at all horizons. Open
+2025--2026 only for the selected candidate and its matched stale system. This
+is a retrospective causal challenger; no later-period hyperparameter,
+aggregation, cutoff, or weight changes are permitted.

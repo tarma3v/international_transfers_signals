@@ -1,0 +1,27 @@
+{
+  "packet": "DQ",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "short_medium_expert": "packet-DO selected noon/incumbent consensus",
+  "long_expert": "packet-DE raw selected target state-space score",
+  "state_weights": [
+    0.1,
+    0.25,
+    0.4
+  ],
+  "combination": "causal same-currency ranks against prior calibration scores",
+  "selection_period": 2024,
+  "selected": "noon_consensus",
+  "selection_objective": "maximum worst official case-lift over h=1/3/5/10/20 with positive benefits",
+  "next_cbr_rate_used": false,
+  "status": "retrospective causal challenger; coarse family frozen before metrics"
+}
