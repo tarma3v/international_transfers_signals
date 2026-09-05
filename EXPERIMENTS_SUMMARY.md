@@ -11,6 +11,10 @@
 сравнением всех семейств моделей и разбором крупнейших бустов:
 [PDF](output/pdf/ivan_detailed_experiment_report.pdf).
 
+Объяснение лучшего `15:30 availability-router` простыми словами, с полной
+арифметикой lift и границей допустимости опубликованного курса на завтра:
+[PDF](output/pdf/ivan_best_approach_explained_simply.pdf).
+
 Полная связная версия с постановкой задачи, provenance по веткам, графиками,
 статистическим аудитом и рекомендацией для пилота: [итоговый PDF](output/pdf/international_transfers_full_research_report.pdf).
 Редактируемый источник: [results/research/full_report/report-source.md](results/research/full_report/report-source.md).
