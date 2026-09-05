@@ -1,0 +1,38 @@
+{
+  "packet": "DI",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "incumbent": "geometry75_cba_consensus_basis25",
+  "futures_expert": "packet-DH selected futures_extra",
+  "matched_stale_expert": "packet-DH matched_stale20",
+  "rank_window": 250,
+  "rank_minimum": 20,
+  "formulas": [
+    "minimum",
+    "geometric",
+    "harmonic",
+    "arithmetic",
+    "min75_max25",
+    "min90_max10",
+    "maximum",
+    "highgate65",
+    "highgate75",
+    "disagreement_penalty25"
+  ],
+  "selection_period": 2024,
+  "selected": "minimum",
+  "selection_objective": "maximum worst official case-lift over h=1/3/5/10/20 with positive benefits",
+  "geometry_is_label_free": true,
+  "current_score_added_after_rank": true,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}

@@ -1536,6 +1536,7 @@ candidate lists are saved in each packet's
 | DE | Use one-sided alpha-beta local-linear target states, with full-history and post-SVO reset variants. | Selected 10% blend raises h10/h20 and every symmetric benefit, but lowers h1 to 1.591 and overall mean to 1.845; keep only as a long-horizon challenger. |
 | DF | Combine incumbent and local target-state ranks with nonlinear label-free agreement geometries and a matched stale control. | Fresh state beats stale inside the selected formula, but transfers at min/mean 1.598/1.809 versus incumbent 1.623/1.855; rejected overall. |
 | DG/DH | Archive lagged MOEX CNYRUBF/USDRUBF perpetual futures and fit quarterly classical learners with matched stale controls. | ExtraTrees transfers at min/mean five-horizon lift 1.534/1.648, annual h5 lift 1.770/1.645 and rate 1.18/1.26; stale20 falls to 1.064/1.123. Strong independent expert, not the leader. |
+| DI/DJ | Combine incumbent and futures expert with label-free geometry, then audit all horizons with paired blocks and Holm. | Minimum geometry raises point worst-horizon lift 1.623 to 1.659, but paired CI [-0.183, 0.098] crosses zero and mean lift falls. Freshness versus stale is supported at every h; no promotion. |
 
 The register deliberately keeps attractive failures. In particular, neither
 the 10% Belarus point, the post-gap subgroup, nor an unselected joint learner

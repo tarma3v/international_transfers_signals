@@ -17,6 +17,11 @@
   `geometry75_cba_consensus_basis25`: combined lift по пяти горизонтам
   **1.623 / 1.913 / 1.931 / 1.927 / 1.879**, средний **1.855**, частота
   около **1.26** сигнала на валюту-неделю. Все горизонты проходят 1.30.
+- Новый независимый `futures_extra` на предыдущих perpetual CNY/RUB и USD/RUB
+  сессиях даёт five-horizon minimum **1.534**; stale20 падает до **1.064**.
+  Его minimum-consensus с лидером поднимает point minimum до **1.659**, но
+  paired CI прироста **[-0.183; +0.098]** пересекает ноль, поэтому incumbent
+  пока не заменён.
 - Официальная выгода считается относительно среднего в симметричном окне
   `-h..+h`; её значения у лидера **+18.0 / +31.3 / +38.1 / +47.1 / +70.3
   б.п.** Future-only выгода остаётся дополнительной строгой диагностикой.
@@ -106,6 +111,7 @@ fav_h5(t) = 1, если v[t] <= min(v[t+1], ..., v[t+5])
 | Критерий | Подход | Результат | Как трактовать |
 |---|---|---:|---|
 | Официальный multi-horizon scorecard | Label-free geometry 75% + lagged CBA basis 25% | **min 1.623 / mean 1.855** | h=1/3/5/10/20; symmetric benefit везде положительный |
+| Лучший point minimum по всем h | Minimum incumbent/futures agreement | **min 1.659 / mean 1.834** | h1/h3 выше, но paired superiority не доказано |
 | Основной balanced pass | CNY logit 50% + CNY ExtraTrees 50% | **1.838 / 1.850** | 2025 / 2026; rate 1.31 / 1.33; все кварталы проходят |
 | Максимальный combined point | Primary 75% + causal error-regime logit 25% | **1.992 / 1.872** | combined 1.941; rate 1.254; benefit gain подтверждён |
 | Convolution path challenger | Primary 75% + fixed CNY-convolution logit 25% | **1.990 / 1.819** | combined 1.911; rate 1.204; paired lift gain не доказан |
@@ -547,6 +553,7 @@ cross-era diagnostic нашёл лучший минимальный lift тол�
 | One-sided target state-space | h20 1.914 против 1.879 у лидера | улучшает длинные h и symmetric benefit, но снижает h1 до 1.591 |
 | Nonlinear incumbent/state agreement | fresh min 1.598 против stale 1.576 | timing настоящий, но единый trigger всё равно хуже лидера 1.623 |
 | MOEX perpetual CNYRUBF/USDRUBF ExtraTrees | five-horizon min 1.534; h5 1.770/1.645 по годам | новый свежий эксперт: stale20 падает до min 1.064, но incumbent сильнее |
+| Incumbent/futures minimum geometry | point min 1.659 против 1.623 | paired min-gain CI пересекает ноль; сохранить challenger, не продвигать |
 
 Отрицательные результаты сохранены намеренно: они не дают снова повторять те же
 дорогие эксперименты и показывают, где именно нарушается переносимость.
