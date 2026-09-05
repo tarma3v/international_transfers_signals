@@ -1,0 +1,17 @@
+{
+  "packet": "AP4",
+  "n_rows": 5755,
+  "n_features": 133,
+  "n_policies": 46,
+  "calendar_assumed": true,
+  "market_delay_minutes": 20,
+  "decision": "18:30 MSK",
+  "reference": "latest announced CBR",
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap3/outputs.npz": "d2c91b367ca81dcce47786d6c6378952a9ce00179f92cb622e80403b4525be01",
+    "results/research/after_publication/ap3/metadata.json": "5b50086405eb6ab27f8c566b9e8fff4746791862b2a26f7037eee3fa5e3a8dcd",
+    "research/after_publication_ap4_registered.md": "42389b9e7aaed5b2b8b9580fd0faf9ca1fa6459a5ee03296154921caa212094e"
+  }
+}

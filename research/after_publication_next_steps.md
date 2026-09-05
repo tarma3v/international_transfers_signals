@@ -1,12 +1,89 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP3 complete. The user made after-publication research the
+Updated 2026-09-06, AP4 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
 
-## Current result: AP3 joint tradeoff, PROGRESS not goal completion
+## Latest completed AP4: PROGRESS, alternative not universal improvement
+
+Previous goal turn pushed AP3 as203ae4a. This turn actually trained three
+first-passage/hazard families (globalHistGB/globalLogit/localLogit), restricted
+waiting-time regression, local hazard OOS residual corrections25/50%, ensemble
+weights and soft knownpast/fullforecast/futureonly utility blends.46policies.
+Frozen protocol after_publication_ap4_registered.md. Same5755events/133features,
+AP2-D20 timing/source assumptions, exactAP3control and comparisondates reproduced.
+
+Model construction: five at-risk intervals ending1/3/5/10/20. Failure is STRICTLY
+cheaper future price; ties survive. Only intervals before/including first failure
+entertrain. Prediction design repeats ORIGINAL-T features plusintervalonehot,
+never realizedfutureprices. Curves are cumulative products, monotone byh.
+Restrictedwait=min(firstcheaper,21), missing if incomplete20; regresseslog1p(wait).
+17quarterorigins since2022Q3; matureh20 beforeorigin-2days, pastOOSresiduals only.
+
+2023 selection adds future-only guard>=80% ofAP3 for eachh, toexistingjointgates.
+Four earlyfeasible candidates; selected cny50_hazard_hist_h5_urgent_cap2.
+Early minimumlift1.337504 vsAP3 1.309943. Selection saved beforelater scorecard.
+Selected_simple field is compatibility alias for incumbent, NOT a claim that
+AP3 is a non-ML model. No selected outcome used as a future signal input.
+
+Later selected adjustedh1/3/5/10/20:
+1.477640/1.520349/1.630232/1.566219/1.558629.
+h5:903/3260,2024-01-09..2026-08-25,hit.480620,frequency1.349200.
+Max2/week, maxgap16days,noemptyfullmonths. AP3 remains fixed maincontrol.
+Lift h5 delta vsAP3 +.000175, paired20dateCI[-.046172,.050498].
+Sym h5 +36.612139bp vs33.393618, deltaCI[.789986,5.840468].
+Forward h5 +56.353744bp vs54.907193, deltaCI[-2.182189,5.073625].
+50dateblocks: liftdeltaCI[-.038979,.040891], symdeltaCI[1.298464,5.130105],
+forwarddeltaCI[-1.190069,3.848944]. h1 lift lower:50date deltaCI[-.053731,-.000051].
+Do not promote as universal improvement or newrecord. All pooled lift CIs>1.3
+and symCIs>0 at20/50blocks, but conditional/notmultiple-search-adjusted.
+Yearh5=1.570134/1.826806/1.525618;currange1.568050..1.713972.
+KZT2026h1/h3=1.236017/1.289747; forwardh20+54.065831CI[-11.547222,111.871453]
+(50dates[-18.117823,129.039754]). Still no positivefutureh20 proof.
+
+Negatives: hazardHist h5=1.615691 vsdirectHist1.657377; globalLogit1.396538,
+localLogit1.379569; restrictedwait1.540239, pairedvsdirectHistCI[-.220897,-.022077].
+Local meanhazard1.375065; residual25/50%1.353380/1.397037, no significantgain.
+DirectHist Brierh5 .188132, hazardHist.188277, ExtraTrees.180566 onlater.
+Global/localLogit EARLY Brier .327073/.343570, meanpred .112468/.156943 versus
+early actual .389427: strong calibration/regime weakness, notproofuniquecause.
+
+Softutilities25% knownpastall/fullforecastall/futuremean produce h5
+1.541089/1.562938/1.607456. Knownpast50% h5=1.310456,sym49.018540 but
+forward28.430112 (AP3forward54.907193). Symutility can be gamed by knownpast
+geometry without leakage; forecast half vsknownpast at25% h5deltaCI[-.034639,.085815]
+is NOT evidence of betterfutureprediction. Otherstaticensembleweights no bigboost.
+
+Code after_publication_ap4*.py,8newtests, full150tests passed, allresults under
+results/research/after_publication/ap4 including all46signals,3survivalcurves,
+restrictedlabels,17trainlogs,sourcehashes,early/laterselection,20/50blockdiagnostics.
+PDF output/pdf/ivan_after_publication_ap4.pdf, source after_publication_ap4_report.md.
+See verification.json for final full-suite/PDF checks. No OnlineHedge fit inAP4.
+
+## NEXT bounded stage AP5: causal calibration / delayed expert adaptation
+
+1. Read current AP4 outputs before acting. Keep AP3 and AP4 fixed controls;
+   do not tune specifically to opened KZT/UZS2026. All later periods are repeated
+   retrospective, nofreshholdout or historicalreceipt certification.
+2. Check whether mature-label probability calibration (global/shrunkenlocal,
+   rollingtail versusexpanding, simplelogistic/isotonic asappropriate) improves
+   first-passage/direct probabilities and usefulpoints. Retain rawpast-rank
+   controls: monotone calibration can improveBrier without improvingselection.
+3. Predeclare a bounded delayed expert weighting experiment. Use equal/fixed
+   weights ascontrols; update only from genuinely OOS predictions whose FULLh20
+   outcome matured plus2day embargo BEFORE currentdecision. Allcurrencies ofa
+   date must see the same prior information. Never update on future/currentquarter
+   in-sample predictions or selectweeklytop-k. Save everyweight/cutoff/loss log.
+4. Optimize joint TЗ lift/benefit/cadence, retain future-only guard. Diagnose
+   regime differences and weaklocal calibration; no unconditional claim that
+   more flexible regimes will improve. Diverse target families now exist.
+5. Freeze selection beforelater scorecards; matchedsource/dates/baselines;
+   20/50dateblocks, yearcurrency diagnostics, tests/PDF/preserve negatives.
+   No need to repeatbank/TЗ audit before model work. Target remainsactive.
+
+## Historical AP3 joint tradeoff (still main control)
 
 Previous goal turn completed AP2-D20 and pushed0fc3d1a. This turn actually fit
 AP3: six normalized local/global/residual scores, five future-mean models,
@@ -58,7 +135,7 @@ selection,early300 andlater1000paired20datebootstrap, benefitdiffs/cross-slices.
 PDF output/pdf/ivan_after_publication_ap3.pdf; manuscript after_publication_ap3_report.md.
 AP2audit generalized output/keys/pairs only; old numerical mechanics unchanged.
 
-## NEXT bounded stage AP4: better lift without losing utility/cadence
+## Completed AP4 starting plan (AP5 next above)
 
 1. Retain AP3 selected policy as fixed control. Predeclare diverse new candidates
    and early-only selection before running later scores. Never silently promote
