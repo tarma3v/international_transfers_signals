@@ -71,6 +71,12 @@ from research.round6_fixing_proxies import (
 )
 from research.round6_fixing_availability_router import availability_route
 from research.round6_fixing_history import FIRST_AVAILABLE, YEARS as FIXING_YEARS
+from research.round6_fixing_cutoff_frontier import (
+    CUTOFFS as FIXING_CUTOFFS,
+    cutoff_causality_check,
+    cutoff_scores,
+)
+from research.round6_fixing_1520_router import market_available
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -391,6 +397,19 @@ def test_spot_hourly_archives_and_cutoffs_are_causal():
         fixing[:, fixing_names.index("moex_1530_cnyrub_tom_mean_cbr_basis")],
     )
     assert np.any(np.all(proxies == 0.0, axis=1))
+    frontier_1530 = cutoff_scores(
+        index, spot_1530, references, FIXING_CUTOFFS[-1],
+    )
+    np.testing.assert_array_equal(frontier_1530, proxies[:, 0])
+    assert cutoff_causality_check(
+        index, spot_1530, references, FIXING_CUTOFFS[0],
+    )
+    assert cutoff_causality_check(
+        index, spot_1530, references, FIXING_CUTOFFS[-1],
+    )
+    available_1520 = market_available(index, spot_1530)
+    assert available_1520.shape == (len(index),)
+    assert available_1520.any() and (~available_1520).any()
     assert spot_hourly_causality_check(index, spot, references, perpetual)
     assert spot_1530_causality_check(index, spot_1530, references)
     assert proxy_causality_check(index, spot_1530, references)

@@ -2174,3 +2174,57 @@ February and 24 February--31 December, then report h=1/3/5/10/20 scope,
 signals, frequency, pooled lift, symmetric benefit and future-only benefit.
 This is a descriptive regime diagnostic with a short pre-boundary sample; it
 must not be used to select a new score, policy, sign or reset date.
+
+## Packet EI: pre-publication cutoff frontier
+
+Frozen after packet EH and before computing any cutoff-specific target metric.
+Use the same positive CNY completed-candle mean basis to the current available
+CBR reference and fixed rolling-22%/20 policy. Evaluate exactly eight business
+cutoffs inside the methodology window: 10:30, 11:30, 12:30, 13:30, 14:30,
+15:00, 15:20 and 15:30 Europe/Moscow. A cutoff admits only candles whose end
+timestamp is strictly earlier than it. Market-closed dates remain eligible
+with neutral zero; rows before the archive starts remain unavailable.
+
+For every cutoff physically corrupt the cutoff candle and all future candles
+and require every earlier feature to remain bit-identical. Assert that the
+15:30 score equals packet EB's frozen mean-close score. Screen cutoffs once on
+2024 by maximum worst official lift over h=1/3/5/10/20, then mean lift,
+requiring h5 rate in [1,2] and positive symmetric/future-only benefits at all
+horizons. Open 2025--2026 only for the selected cutoff, the methodology-aligned
+15:30 comparator and the noon-consensus comparator. Create a stale-20 control
+for the selected cutoff. This is a retrospective timing product; no additional
+cutoff or sign may be introduced after the later block is viewed.
+
+## Packet EJ: selected-15:20 availability router
+
+Frozen after packet EI selected 15:20 on the 2024 cutoff screen and before
+evaluating any routed 15:20 target metric. Convert the frozen packet-EI 15:20
+basis and packet-DO noon consensus to same-currency causal percentiles using
+window 250/minimum 20. Use the 15:20 rank when at least one CNY candle has
+completed before 15:20; otherwise use the noon rank. Keep every target row.
+
+Compare this single fixed route with the unchanged noon consensus, raw 15:20
+basis and packet-ED 15:30 availability route. Delay only the 15:20 fixing score
+by 20 target rows for the freshness control. Report the 2024 screen and open
+2025--2026 once; there is no new selector. Promotion as an earlier operational
+product requires all five lifts >=1.30, annual h5 rate in [1,2], minimum
+currency h5 lift >=1.30, minimum-quarter rate >=0.95, all benefits positive,
+and a separately frozen paired audit against the 15:30 route. Do not try any
+other routed cutoff after seeing this result.
+
+## Packet EK: paired non-inferiority audit of the 15:20 router
+
+Frozen after packet EJ point estimates and before paired inference. Compare the
+fixed 15:20 and 15:30 availability routes on identical 2025--2026 rows at
+h=1/3/5/10/20 using the established paired moving four-week bootstrap and the
+same sampled weeks across horizons. Also compare 15:20 with its matched stale
+route as a separate freshness hypothesis.
+
+Predeclare an absolute non-inferiority margin of 0.05 lift and 5 basis points
+for symmetric/future-only benefit. Report each horizon and draw-wise
+minimum/mean lift differences with 95% intervals. The earlier product is
+non-inferior only if both aggregate lift lower bounds exceed -0.05, every
+horizon lift lower bound exceeds -0.05, all future/symmetric benefit lower
+bounds exceed -5 bps, annual h5 rate remains in [1,2], minimum currency h5
+lift is >=1.30 and minimum-quarter rate is >=0.95. Superiority and freshness
+remain separate claims. Do not change either cutoff or margin after inference.

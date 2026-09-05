@@ -1,0 +1,35 @@
+{
+  "packet": "EJ",
+  "cutoff": "15:20:00",
+  "source_cutoff_selection": "packet-EI selected cutoff_1520 on 2024",
+  "route": "15:20 fixing rank when session exists, noon rank otherwise",
+  "availability_labels_used": false,
+  "rank_window": 250,
+  "rank_minimum": 20,
+  "available_rows": 4555,
+  "total_rows": 19326,
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "matched_control": "15:20 fixing input delayed 20 target rows only",
+  "point_gates": {
+    "all_five_lifts_at_least_1p30": true,
+    "annual_rate_between_1_and_2": true,
+    "minimum_currency_h5_lift_at_least_1p30": true,
+    "minimum_quarter_rate_at_least_0p95": true,
+    "all_symmetric_benefits_positive": true,
+    "all_future_benefits_positive": true,
+    "point_operational_gates_pass": true
+  },
+  "next_cbr_rate_used": false,
+  "later_period_status": "fixed retrospective timing product"
+}

@@ -1,0 +1,40 @@
+{
+  "packet": "EK",
+  "candidate": "packet-EJ route_1520",
+  "control": "packet-ED route_1530",
+  "comparisons": [
+    [
+      "early_vs_late",
+      "route_1530",
+      "route_1520"
+    ],
+    [
+      "fresh_vs_stale",
+      "matched_stale20",
+      "route_1520"
+    ]
+  ],
+  "horizons": [
+    1,
+    3,
+    5,
+    10,
+    20
+  ],
+  "lift_noninferiority_margin": 0.05,
+  "benefit_noninferiority_margin_bps": 5.0,
+  "bootstrap_draws": 4000,
+  "bootstrap": "paired moving four-week blocks, same seed/draws across horizons",
+  "noninferiority_gates": {
+    "both_aggregate_lifts_noninferior": true,
+    "every_horizon_lift_noninferior": false,
+    "every_horizon_symmetric_benefit_noninferior": true,
+    "every_horizon_future_benefit_noninferior": true,
+    "annual_h5_rate_between_1_and_2": true,
+    "minimum_currency_h5_lift_at_least_1p30": true,
+    "minimum_quarter_rate_at_least_0p95": true,
+    "earlier_product_noninferior": false
+  },
+  "model_refit": false,
+  "next_cbr_rate_used": false
+}

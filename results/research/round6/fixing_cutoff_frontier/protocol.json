@@ -1,0 +1,35 @@
+{
+  "packet": "EI",
+  "cutoffs": [
+    "10:30:00",
+    "11:30:00",
+    "12:30:00",
+    "13:30:00",
+    "14:30:00",
+    "15:00:00",
+    "15:20:00",
+    "15:30:00"
+  ],
+  "score": "positive CNY completed-candle mean basis to current CBR",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "selection_period": 2024,
+  "selected": "cutoff_1520",
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "strict_asof": "candle end < signal-date cutoff",
+  "all_cutoffs_physical_future_corruption_check": true,
+  "cutoff_1530_exactly_matches_packet_eb": true,
+  "missing_market_day_score": 0.0,
+  "stale_rows": 20,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}

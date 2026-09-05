@@ -838,6 +838,8 @@ protocol-controlled but still retrospective:
 | ED/EE | market-availability fixing/noon router and paired audit | later min/mean **1.780 / 1.956**; h5 2.096/1.994 at rate 1.19/1.28 | new point leader; paired gain unresolved and one quarter rate 0.955 |
 | EF | cadence-first router policy plateau | selected rolling-20%/20 reaches min 1.785 but quarter rate 0.875 | default 22%/20 retained; 2024 cadence does not transport perfectly |
 | EG/EH | fixed 2022--2026 fixing lifecycle and SVO-boundary audit | yearly min lift 1.514--1.740; combined min/mean **1.601 / 1.751** | strongest explainable stability evidence; no selector or next CBR fixing |
+| EI | fixed pre-publication cutoff frontier | 15:20 ties 15:30 on screen; later raw min/mean 1.712/1.874 | last ten minutes add little; earlier cutoffs weaken more |
+| EJ/EK | 15:20 availability router and non-inferiority audit | later min/mean **1.770 / 1.952**; aggregate CIs pass -0.05 margin | h20 CI reaches -0.056, so strict all-horizon non-inferiority fails narrowly |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -1020,6 +1022,24 @@ block 1.533/1.635, at frequencies 1.47 and 1.27. Only 45 signals occur before
 the boundary, so this is descriptive rather than a model-selection claim. It
 does show that the signed fixing mechanism is present on both sides of the
 shock instead of being created only by the post-2022 regime.
+
+Packet EI measures the price of waiting within the official fixing window.
+Eight business cutoffs are frozen before evaluation and every one passes a
+physical future-candle corruption test. The 2024 selector chooses 15:20, tied
+with 15:30 at minimum/mean 1.578/1.673. On 2025--2026 the raw 15:20 product
+gives min/mean 1.712/1.874, compared with 1.708/1.883 at 15:30. The last ten
+minutes therefore have little scorecard value, while 10:30--11:30 are visibly
+weaker on the screen.
+
+Packets EJ/EK apply the same causal market-availability fallback at 15:20.
+The earlier route reaches lifts 1.770/2.006/2.049/2.008/1.928 and hence
+min/mean 1.770/1.952; all annual rate, currency, quarter-0.95 and benefit gates
+pass. Against the 15:30 route, the paired aggregate minimum difference CI is
+[-0.042, +0.025] and mean CI [-0.025, +0.014], both inside the predeclared
+-0.05 lift margin. Four of five horizon lift intervals also pass; h20 extends
+to -0.056, missing the margin by 0.006. All symmetric and future-benefit
+intervals pass their -5 bps margins. Thus 15:20 is a strong ten-minute-earlier
+challenger, but strict all-horizon non-inferiority is not claimed.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:
