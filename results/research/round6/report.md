@@ -833,6 +833,8 @@ protocol-controlled but still retrospective:
 | DV/DW | delayed online noon/spot weighting and paired audit | later min/mean 1.714 / **1.898**; mean-gain CI [-0.045, 0.076] | point mean improves, statistical promotion fails |
 | DX | label-free noon/spot agreement geometry | 2024 retained signed spot | agreement formulas do not fix transport |
 | DY/DZ | methodology-aligned 15:30 spot nowcast | later min/mean **1.708 / 1.883**; h20 1.927 | strong explainable timed challenger, not overall leader |
+| EA | label-free 12:00/15:30 consensus | 2024 retained raw fixing basis | strong components do not improve through static agreement geometry |
+| EB/EC | candle-level fixing proxies and paired audit | fresh-vs-stale min gain **+0.926**, CI **[+0.638, +1.167]** | freshness proved; no lift superiority over noon; true VWAP unavailable |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -956,6 +958,25 @@ on 2024 reaches later official lifts 1.708/1.889/1.943/1.948/1.927 for
 h=1/3/5/10/20, minimum/mean 1.708/1.883. Annual h5 lift/rate is 1.983/1.38 in
 2025 and 1.901/1.34 in 2026; its stale20 minimum is 0.782. It is slightly below
 the 12:00 consensus overall but stronger at h20 and highly explainable.
+
+Packets EA--EC close the static fixing-proxy branch. Five predeclared
+label-free geometries of the noon consensus and the 15:30 basis all lost the
+2024 screen to the raw fixing basis. A more literal transaction-weighted CBR
+fixing reconstruction could not be built because every archived MOEX candle
+has null `value` and `volume`; no volume was imputed. Five deterministic OHLC
+proxies are operationally indistinguishable under the frozen rank policy.
+During implementation an apparent min/mean improvement to 1.790/2.040 was
+traced to NaN market-closed days being removed from the evaluation denominator
+and was rejected. The corrected implementation keeps those dates eligible with
+the frozen neutral score and asserts exact equality of mean-close to packet DZ.
+
+Packet EC confirms that the corrected 15:30 basis contains fresh information:
+versus stale-20, draw-wise minimum-lift gain is +0.926 with 95% CI
+[+0.638, +1.167], and all five lift/benefit differences survive Holm. It does
+not replace the noon point leader: minimum difference is -0.006 with CI
+[-0.106, +0.178], and mean difference is -0.008 with CI [-0.101, +0.107].
+Its symmetric benefit is significantly higher at h=1/3/5/10, so 15:30 remains
+an explainable late-decision product rather than a globally superior score.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:

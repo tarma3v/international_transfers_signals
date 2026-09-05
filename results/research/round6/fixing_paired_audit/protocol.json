@@ -1,0 +1,57 @@
+{
+  "packet": "EC",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "candidate": "packet-EB selected geometric_mean_close",
+  "comparisons": [
+    [
+      "fixing_vs_noon",
+      "noon_consensus",
+      "selected"
+    ],
+    [
+      "fresh_vs_stale",
+      "matched_stale20",
+      "selected"
+    ]
+  ],
+  "horizons": [
+    1,
+    3,
+    5,
+    10,
+    20
+  ],
+  "bootstrap_draws": 4000,
+  "bootstrap": "paired moving four-week blocks, same seed/draws across horizons",
+  "multiplicity": "Holm separately for lift, symmetric and future differences across 10 horizon comparisons",
+  "promotion_gates": {
+    "point_minimum_lift_above_noon": false,
+    "paired_minimum_lift_lower_above_zero": false,
+    "paired_mean_lift_lower_above_zero": false,
+    "annual_h5_lift_at_least_1p30": true,
+    "annual_rate_between_1_and_2": true,
+    "minimum_currency_h5_lift_at_least_1p30": true,
+    "minimum_quarter_rate_at_least_1": true,
+    "all_five_symmetric_benefits_positive": true,
+    "all_five_future_benefits_positive": true,
+    "promoted_over_noon": false
+  },
+  "freshness_summary": {
+    "minimum_lift_gain": 0.9257165318746177,
+    "minimum_lift_ci_low": 0.6383319834634554,
+    "mean_lift_gain": 1.0157444851736925,
+    "mean_lift_ci_low": 0.755350473616381
+  },
+  "model_refit": false,
+  "next_cbr_rate_used": false
+}
