@@ -1837,3 +1837,21 @@ comparisons; also report the draw-wise minimum and mean lift. Promotion needs
 a positive lower 95% bound for minimum-lift improvement over incumbent plus
 the established annual lift/rate, minimum-currency and all-horizon benefit
 gates. Freshness remains a separate claim against the matched stale system.
+
+## Packet DQ: fixed short/long-horizon state balance
+
+Frozen after packet DP and before reading any packet-DQ metric. Treat packet
+DO's selected noon/incumbent arithmetic consensus as the fixed short/medium
+horizon expert and packet DE's raw selected target state-space score as the
+fixed long-horizon expert. Compare only the two raw experts, the incumbent,
+and three causal-rank mixtures with state-space weights 10%, 25%, and 40%.
+Every percentile rank uses at most 250 strictly earlier same-currency scores
+with a minimum history of 20; the current row and all future rows are excluded.
+
+Select once on 2024 by maximum worst official lift over h=1/3/5/10/20, then
+mean lift, requiring positive symmetric and future-only benefit at every
+horizon. Open 2025--2026 only for that selected candidate and the frozen
+comparators. Because later-period diagnostics motivated this coarse family,
+label it a retrospective causal challenger rather than a pristine confirmatory
+result. If the 2024 screen retains an existing score, stop without narrowing
+the grid; no later-period weight tuning is allowed.
