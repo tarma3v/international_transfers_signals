@@ -18,6 +18,7 @@ import tempfile
 from pathlib import Path
 
 SRC = Path("design/interfeys.html")
+JOURNEY = Path("design/put-klienta.html")
 OUT = Path("submission/figures")
 
 CHROME_CANDIDATES = [
@@ -136,20 +137,38 @@ def main() -> None:
         ".col{display:flex;flex-direction:column}</style></head><body>"
     )
 
-    phones = [extract_block(src, r'<div class="phone">', k) for k in range(5)]
-    caps = ["01 · экран суммы", "02 · пуш", "03 · после тапа",
-            "04 · уровень", "05 · список"]
+    # Порядок жёстко привязан к порядку в исходнике: добавите телефон в
+    # середину — подписи молча съедут на один. Поэтому список подписей и
+    # число телефонов держим рядом и проверяем длину.
+    caps = ["01 · экран суммы · 1 сентября", "02 · пуш · 3 сентября, 20:32",
+            "03 · тот же пуш переписан · 4 сентября, 20:35",
+            "04 · после тапа · 3 сентября, 20:33",
+            "05 · открыт позже · 5 сентября, 8:14",
+            "06 · уровень · 1 сентября", "07 · список · 1 сентября"]
+    phones = [extract_block(src, r'<div class="phone">', k) for k in range(len(caps))]
+    found = len(re.findall(r'<div class="phone">', src))
+    if found != len(caps):
+        sys.exit(f"в макете {found} телефонов, а подписей {len(caps)} — поправьте caps")
     row = "".join(f'<div class="col"><p class="cap">{c}</p>{p}</div>'
                   for c, p in zip(caps, phones))
     print("рендер макетов:")
     doc = head + f'<div class="row">{row}</div></body></html>'
-    render(chrome, doc, 1980, 830, OUT / "06-makety-interfeysa.png")
-    render_pdf(chrome, doc, 1980, 830, OUT / "06-makety-interfeysa.pdf")
+    render(chrome, doc, 2780, 830, OUT / "06-makety-interfeysa.png")
+    render_pdf(chrome, doc, 2780, 830, OUT / "06-makety-interfeysa.pdf")
 
     states = extract_block(src, r'<div class="states">')
     doc = head + f'<div style="max-width:1120px">{states}</div></body></html>'
     render(chrome, doc, 1180, 530, OUT / "07-tri-sostoyaniya-vidzheta.png")
     render_pdf(chrome, doc, 1180, 530, OUT / "07-tri-sostoyaniya-vidzheta.pdf")
+
+    # Схема пути — самостоятельная страница целиком, вырезать из неё нечего.
+    # Ширина 1900: при размещении на слайде 11 дюймов шрифт 16,5 px даёт ~7 пт,
+    # то есть читается с проектора. Уже 1900 — текст уходит в нечитаемое.
+    if JOURNEY.exists():
+        doc = ('<!doctype html><html lang="ru"><head><meta charset="utf-8">'
+               + JOURNEY.read_text(encoding="utf-8") + "</head><body></body></html>")
+        render(chrome, doc, 1900, 1010, OUT / "08-put-klienta.png")
+        render_pdf(chrome, doc, 1900, 1010, OUT / "08-put-klienta.pdf")
 
 
 if __name__ == "__main__":

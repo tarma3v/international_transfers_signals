@@ -14,6 +14,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python run_experiment.py         # базовые модели против индикаторов ТЗ
 .venv/bin/python run_boosting.py           # CatBoost, XGBoost + отбор признаков
 .venv/bin/python run_two_models.py         # две модели под две метрики
+.venv/bin/python run_signal_staleness.py   # устаревание сигнала: сроки жизни пуша
 ```
 
 XGBoost на macOS требует OpenMP: `brew install libomp`.
@@ -149,10 +150,12 @@ lift держится на глобальном знаменателе: на б�
 | `run_experiment.py` | базовые модели |
 | `run_boosting.py` | бустинги + отбор признаков |
 | `run_two_models.py` | модель A под метрику кейса, модель B под метрику клиента |
+| `run_signal_staleness.py` | устаревание сигнала: держится ли условие, что теряет клиент на задержке, когда гасить пуш |
 | `check_stability.py` | разбивка результата по годам и по коридорам |
 | `validate_result.py` | четыре испытания найденного |
 | `summarize.py` | сводная таблица |
 | `design/interfeys.html` | макеты интерфейса: индикатор, пуш, оповещение об уровне |
+| `design/put-klienta.html` | схема клиентского пути: шесть шагов и развилка на каждом |
 | `design/pushi-100-variantov.md` | сто вариантов текста пуша, отбор и механика подстановок |
 | `make_mockups.py` | рендер макетов в PNG и PDF для комплекта сдачи (нужен Chrome) |
 | `make_submission_logs.py` | сборка сырых логов `results/*.txt` в markdown комплекта |
