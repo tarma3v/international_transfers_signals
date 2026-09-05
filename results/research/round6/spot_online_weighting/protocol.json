@@ -1,0 +1,31 @@
+{
+  "packet": "DV",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "experts": [
+    "packet-DO noon consensus",
+    "packet-DU signed spot"
+  ],
+  "online_spec": {
+    "scope": "global",
+    "window": 250,
+    "eta": 5.0
+  },
+  "rank_window": 250,
+  "rank_minimum": 20,
+  "feedback_loss": "equal-weight Brier events over h=1/3/5/10/20",
+  "feedback_rule": "target reach date strictly before signal date",
+  "matched_control": "signed spot delayed 20 target rows only",
+  "future_outcome_corruption_check": true,
+  "next_cbr_rate_used": false,
+  "status": "retrospective causal regime-mechanism test"
+}

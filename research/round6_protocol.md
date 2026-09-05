@@ -1955,3 +1955,19 @@ must leave all earlier weights and scores identical. Because the component
 regime change is already known, this packet is an explicitly retrospective
 mechanism test, not a fresh holdout; do not tune window, eta, loss, ranks, or
 reset after reading its path.
+
+## Packet DW: paired audit of online spot-regime weighting
+
+Frozen after all packet-DV point estimates were written and before paired
+inference. On identical 2025--2026 rows compare the fixed online score against
+packet DO's noon consensus and against the exact stale-20 spot system at every
+h=1/3/5/10/20. Reuse the four-week moving-block scheme with the same sampled
+weeks across horizons so each draw yields paired horizon, minimum and mean
+lift differences. Keep corridor-year base rates inside every sampled week.
+
+Report lift, symmetric-benefit and future-benefit differences with 95%
+intervals and one-sided p-values, Holm-adjusting each family over ten horizon
+comparisons. A scorecard promotion requires positive lower confidence bounds
+for both minimum- and mean-lift gain over packet DO, plus the existing annual
+lift/rate, minimum-currency and all-positive-benefit gates. Freshness is a
+separate online-versus-stale claim. Do not alter packet DV after this audit.
