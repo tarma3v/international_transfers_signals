@@ -1673,3 +1673,20 @@ once for the selected candidate, incumbent and its exactly matched stale
 control. Physical corruption of all outcomes unresolved at a cutoff must leave
 earlier prequential scores identical. No next CBR rate, same-day futures value,
 later-period metric or post-selection weight adjustment is allowed.
+
+## Packet DI: incumbent and perpetual-futures expert geometry
+
+Frozen after packet DH and before reading any packet-DI metric. Convert the
+incumbent and selected fresh futures-ExtraTrees scores to same-currency
+percentiles against at most 250 strictly earlier scores, minimum 20, adding the
+current value only after its rank is computed. Test exactly ten label-free
+geometries: minimum, geometric mean, harmonic mean, arithmetic mean, 75/25 and
+90/10 lower/upper mixtures, maximum, high-agreement gates at mean rank 0.65 and
+0.75 (maximum above the gate, minimum otherwise), and arithmetic mean minus
+25% absolute disagreement.
+
+Select on 2024 by the unchanged five-horizon/positive-benefit objective. For
+every formula construct a matched control using the already fitted stale20
+futures expert while leaving the incumbent aligned. Open 2025--2026 once for
+incumbent, the selected geometry and its exact stale control. Do not tune the
+rank memory, formula family, gates or weights after any later result is read.
