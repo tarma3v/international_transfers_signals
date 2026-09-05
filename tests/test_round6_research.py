@@ -464,6 +464,23 @@ def test_shared_noon_horizon_refits_use_only_resolved_labels():
         assert int(row["n_train_replicas"]) >= 10000
 
 
+def test_fixing_residual_refits_use_only_resolved_labels():
+    path = Path("results/research/round6/fixing_residual_boost/training_log.csv")
+    with path.open(newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    assert rows
+    assert {row["candidate"] for row in rows} == {
+        "residual_hist", "residual_hist_stale20",
+        "residual_extra", "residual_extra_stale20",
+    }
+    for row in rows:
+        assert dt.date.fromisoformat(row["last_resolved"]) < dt.date.fromisoformat(
+            row["quarter"]
+        )
+        assert int(row["n_train"]) >= 2000
+        assert int(row["n_features"]) == 48
+
+
 def test_perpetual_online_weights_ignore_unresolved_future_outcomes():
     days = np.asarray([
         dt.date(2025, 1, 1) + dt.timedelta(days=i) for i in range(40)

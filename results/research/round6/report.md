@@ -840,6 +840,7 @@ protocol-controlled but still retrospective:
 | EG/EH | fixed 2022--2026 fixing lifecycle and SVO-boundary audit | yearly min lift 1.514--1.740; combined min/mean **1.601 / 1.751** | strongest explainable stability evidence; no selector or next CBR fixing |
 | EI | fixed pre-publication cutoff frontier | 15:20 ties 15:30 on screen; later raw min/mean 1.712/1.874 | last ten minutes add little; earlier cutoffs weaken more |
 | EJ/EK | 15:20 availability router and non-inferiority audit | later min/mean **1.770 / 1.952**; aggregate CIs pass -0.05 margin | h20 CI reaches -0.056, so strict all-horizon non-inferiority fails narrowly |
+| EL | global HistGB/ExtraTrees residual correction over fixing anchor | best new screen min 1.558; router 1.607 | user-proposed anchor+global-residual pattern tested directly; no promotion |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -1040,6 +1041,18 @@ pass. Against the 15:30 route, the paired aggregate minimum difference CI is
 to -0.056, missing the margin by 0.006. All symmetric and future-benefit
 intervals pass their -5 bps margins. Thus 15:20 is a strong ten-minute-earlier
 challenger, but strict all-horizon non-inferiority is not claimed.
+
+Packet EL directly implements the proposed simple-anchor plus global-residual
+architecture. A quarterly logistic calibrates the fixing rank by currency,
+then fixed HistGB and ExtraTrees regressors learn h5 residuals from 36 aligned
+15:30 fields, six causal target fields and currency identity. Every training
+label has resolved before its refit; flipping unresolved future outcomes leaves
+all earlier scores unchanged. The best new model, residual ExtraTrees, reaches
+only 1.558 worst-horizon lift on the 2024 screen, and all fixed 75/25 router
+mixtures are at or below 1.536 versus 1.607 for the unchanged router. The
+screen therefore retains the transparent availability rule without consulting
+2025--2026 for a model choice. This is evidence that the strong basis is not
+improved merely by adding nonlinear capacity.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:

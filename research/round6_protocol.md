@@ -2228,3 +2228,31 @@ horizon lift lower bound exceeds -0.05, all future/symmetric benefit lower
 bounds exceed -5 bps, annual h5 rate remains in [1,2], minimum currency h5
 lift is >=1.30 and minimum-quarter rate is >=0.95. Superiority and freshness
 remain separate claims. Do not change either cutoff or margin after inference.
+
+## Packet EL: global residual learner over the 15:30 fixing anchor
+
+Frozen after packet EK and before fitting any packet-EL model. Use the positive
+15:30 CNY session-mean basis as the simple anchor. Convert it to a
+same-currency causal percentile with window 250/minimum 20, then fit at each
+calendar-quarter start a global logistic calibration on anchor rank plus five
+currency indicators. Admit rows from 1 May 2022 only when their h5 reach date
+is strictly before the refit.
+
+Fit exactly two global residual regressors to `fav_h5 - calibrated_anchor`:
+HistGradientBoostingRegressor (150 iterations, learning rate .03, at most five
+leaves, minimum leaf 100, L2 30) and ExtraTreesRegressor (400 trees, depth 6,
+minimum leaf 40, max features .65). Their matrix is fixed to five currency
+indicators, six causal target fields (`pct_range_30/90/180`, `ret_1/5/20`),
+anchor rank and all 36 packet-DY 15:30 fields. Add 25% of each predicted
+residual to the calibrated anchor; also form their fixed 50/50 causal-rank
+consensus. Construct stale controls by delaying only the 36 intraday fields 20
+target rows while keeping anchor, target and currency fields aligned.
+
+Compare raw fixing basis, packet-ED availability router, calibrated anchor,
+both residual learners, their consensus, and fixed 75/25 causal-rank mixtures
+of the availability router with each residual score. Screen once on 2024 by
+maximum worst official lift and then mean lift, with all benefits positive;
+open 2025--2026 only for the selected candidate and exact stale control. Flip
+every unresolved future h5 outcome and require all earlier fitted scores to be
+identical. This is retrospective causal research; no model, field, residual
+weight or blend may change after later results are viewed.
