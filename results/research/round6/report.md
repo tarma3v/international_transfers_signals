@@ -835,6 +835,7 @@ protocol-controlled but still retrospective:
 | DY/DZ | methodology-aligned 15:30 spot nowcast | later min/mean **1.708 / 1.883**; h20 1.927 | strong explainable timed challenger, not overall leader |
 | EA | label-free 12:00/15:30 consensus | 2024 retained raw fixing basis | strong components do not improve through static agreement geometry |
 | EB/EC | candle-level fixing proxies and paired audit | fresh-vs-stale min gain **+0.926**, CI **[+0.638, +1.167]** | freshness proved; no lift superiority over noon; true VWAP unavailable |
+| ED/EE | market-availability fixing/noon router and paired audit | later min/mean **1.780 / 1.956**; h5 2.096/1.994 at rate 1.19/1.28 | new point leader; paired gain unresolved and one quarter rate 0.955 |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -977,6 +978,23 @@ not replace the noon point leader: minimum difference is -0.006 with CI
 [-0.106, +0.178], and mean difference is -0.008 with CI [-0.101, +0.107].
 Its symmetric benefit is significantly higher at h=1/3/5/10, so 15:30 remains
 an explainable late-decision product rather than a globally superior score.
+
+Packets ED/EE replace the invalid idea of dropping market-closed dates with a
+causal fallback: use the 15:30 fixing rank when at least one completed CNY
+candle exists, otherwise use the already available noon-consensus rank. Every
+target row remains in the denominator. The route wins the frozen 2024 screen
+and transfers to official lifts 1.780/2.014/2.053/2.005/1.928, hence
+minimum/mean 1.780/1.956. Annual h5 lift is 2.096/1.994 at rate 1.19/1.28;
+minimum-currency lift is 1.832 and all future-only benefits are positive.
+
+This is the strongest point score so far, but not a statistical promotion.
+Against noon, paired minimum gain is +0.066 with CI [-0.123, +0.238] and mean
+gain is +0.065 with CI [-0.061, +0.201]. The 2025Q2 rate is 0.955, narrowly
+missing the stricter internal quarter-rate gate, although the requested annual
+average 1--2 band passes in both years. Against matched stale fixing, minimum
+gain is +1.025 with CI [+0.674, +1.311], so the timing information itself is
+strongly supported. Keep the router frozen as a retrospective 15:30
+challenger and require new prospective dates before claiming superiority.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:

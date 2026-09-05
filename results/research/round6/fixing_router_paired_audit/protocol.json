@@ -1,0 +1,94 @@
+{
+  "packet": "EE",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "candidate": "packet-ED availability_route",
+  "comparisons": [
+    [
+      "route_vs_noon",
+      "noon_consensus",
+      "availability_route"
+    ],
+    [
+      "route_vs_fixing",
+      "fixing_basis",
+      "availability_route"
+    ],
+    [
+      "fresh_vs_stale",
+      "matched_stale20",
+      "availability_route"
+    ]
+  ],
+  "horizons": [
+    1,
+    3,
+    5,
+    10,
+    20
+  ],
+  "bootstrap_draws": 4000,
+  "bootstrap": "paired moving four-week blocks, same seed/draws across horizons",
+  "multiplicity": "Holm separately for lift, symmetric and future differences across 15 horizon comparisons",
+  "promotion_gates": {
+    "point_minimum_lift_above_noon": true,
+    "paired_minimum_lift_lower_above_zero": false,
+    "paired_mean_lift_lower_above_zero": false,
+    "annual_h5_lift_at_least_1p30": true,
+    "annual_rate_between_1_and_2": true,
+    "minimum_currency_h5_lift_at_least_1p30": true,
+    "minimum_quarter_rate_at_least_1": false,
+    "all_five_symmetric_benefits_positive": true,
+    "all_five_future_benefits_positive": true,
+    "promoted_over_noon": false
+  },
+  "aggregate_summary": {
+    "fresh_vs_stale": {
+      "minimum": {
+        "lift_difference": 1.0250174332154613,
+        "lift_difference_ci_low": 0.6737814601984463,
+        "lift_difference_ci_high": 1.3108789726626282
+      },
+      "mean": {
+        "lift_difference": 1.041373011515307,
+        "lift_difference_ci_low": 0.7978675588041099,
+        "lift_difference_ci_high": 1.316170504853703
+      }
+    },
+    "route_vs_fixing": {
+      "minimum": {
+        "lift_difference": 0.07187741370892309,
+        "lift_difference_ci_low": -0.10361033337779854,
+        "lift_difference_ci_high": 0.14853363257543623
+      },
+      "mean": {
+        "lift_difference": 0.07286924079146773,
+        "lift_difference_ci_low": -0.022656328766816124,
+        "lift_difference_ci_high": 0.16353252422027903
+      }
+    },
+    "route_vs_noon": {
+      "minimum": {
+        "lift_difference": 0.06613466917653787,
+        "lift_difference_ci_low": -0.12268490497264599,
+        "lift_difference_ci_high": 0.23792217178106442
+      },
+      "mean": {
+        "lift_difference": 0.0646135532717127,
+        "lift_difference_ci_low": -0.06067101914787859,
+        "lift_difference_ci_high": 0.20115569983063233
+      }
+    }
+  },
+  "model_refit": false,
+  "next_cbr_rate_used": false
+}

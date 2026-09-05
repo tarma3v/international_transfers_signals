@@ -69,6 +69,7 @@ from research.round6_fixing_proxies import (
     proxy_causality_check,
     proxy_scores,
 )
+from research.round6_fixing_availability_router import availability_route
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -392,6 +393,25 @@ def test_spot_hourly_archives_and_cutoffs_are_causal():
     assert spot_hourly_causality_check(index, spot, references, perpetual)
     assert spot_1530_causality_check(index, spot_1530, references)
     assert proxy_causality_check(index, spot_1530, references)
+
+
+def test_fixing_availability_router_falls_back_without_dropping_rows():
+    noon = np.asarray([.1, .2, .3, .4])
+    fixing = np.asarray([.9, .8, .7, .6])
+    missing = np.asarray([False, True, False, True])
+    routed = availability_route(noon, fixing, missing)
+    np.testing.assert_array_equal(routed, np.asarray([.9, .2, .7, .4]))
+
+    path = Path(
+        "results/research/round6/fixing_availability_router/outputs.pkl"
+    )
+    with path.open("rb") as handle:
+        outputs = pickle.load(handle)
+    for year in (2024, 2025, 2026):
+        np.testing.assert_array_equal(
+            outputs["availability_route"][year]["test_idx"],
+            outputs["noon_consensus"][year]["test_idx"],
+        )
 
 
 def test_shared_noon_horizon_refits_use_only_resolved_labels():
