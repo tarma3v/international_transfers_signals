@@ -1,0 +1,25 @@
+candidate,h,control,lift_lo,lift_hi,delta_lo,delta_hi,draws,block
+change_z_r25,1,change_z_r25,1.0444638293305326,1.2285221223999194,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+change_z_r25,3,change_z_r25,0.9679718744004413,1.2294452840872667,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+change_z_r25,5,change_z_r25,0.9057107759870816,1.1961503511618785,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+change_z_r25,10,change_z_r25,0.8002834415911414,1.1322270136707904,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+change_z_r25,20,change_z_r25,0.739800415041393,1.123122702574708,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+change_z_r25,mean,change_z_r25,,,0.0,0.0,1000,
+cny_cbr_w25_r25,1,change_z_r25,1.4379342767013863,1.7146791442213416,0.31423699589068976,0.562676301932151,1000,"20 announcement dates, circular, all currencies together"
+cny_cbr_w25_r25,3,change_z_r25,1.4803121055777855,1.893248461704901,0.4087208113595512,0.757965950952767,1000,"20 announcement dates, circular, all currencies together"
+cny_cbr_w25_r25,5,change_z_r25,1.4838935986931117,1.9232390650615863,0.4563134792180793,0.8486178580088524,1000,"20 announcement dates, circular, all currencies together"
+cny_cbr_w25_r25,10,change_z_r25,1.3636330429669454,1.8256403285501779,0.4323658298420759,0.8443672096375373,1000,"20 announcement dates, circular, all currencies together"
+cny_cbr_w25_r25,20,change_z_r25,1.2692497189593417,1.8552360322825134,0.37111976143481223,0.9117765089431,1000,"20 announcement dates, circular, all currencies together"
+cny_cbr_w25_r25,mean,change_z_r25,,,0.41437433272389257,0.7767365276710836,1000,
+cny_last_r25,1,change_z_r25,1.48157782503534,1.7440775857721813,0.33797427794668206,0.6275346894435336,1000,"20 announcement dates, circular, all currencies together"
+cny_last_r25,3,change_z_r25,1.5440953804394653,1.9312742495089361,0.42489547363827807,0.8501044623667658,1000,"20 announcement dates, circular, all currencies together"
+cny_last_r25,5,change_z_r25,1.5236089730605742,1.9694343098492566,0.4594219105563059,0.967949512838912,1000,"20 announcement dates, circular, all currencies together"
+cny_last_r25,10,change_z_r25,1.4277954269543878,1.918129637379973,0.44124664969060956,1.0010601479958283,1000,"20 announcement dates, circular, all currencies together"
+cny_last_r25,20,change_z_r25,1.3088180098478366,1.899735428612028,0.35016304848303653,1.0252905023495518,1000,"20 announcement dates, circular, all currencies together"
+cny_last_r25,mean,change_z_r25,,,0.42664026922652465,0.8727414396715921,1000,
+stale20_cny_r35,1,change_z_r25,0.8955317921339428,1.07784156516825,-0.2954544266928312,-0.006186413755583281,1000,"20 announcement dates, circular, all currencies together"
+stale20_cny_r35,3,change_z_r25,0.9031595024569343,1.142345806258542,-0.2876812609000101,0.1323918025010004,1000,"20 announcement dates, circular, all currencies together"
+stale20_cny_r35,5,change_z_r25,0.8804358442510793,1.1659460103506547,-0.24943834553009359,0.1888971784932002,1000,"20 announcement dates, circular, all currencies together"
+stale20_cny_r35,10,change_z_r25,0.8289701156925109,1.148688081883546,-0.23289483512803702,0.269865851400304,1000,"20 announcement dates, circular, all currencies together"
+stale20_cny_r35,20,change_z_r25,0.8656368892626966,1.2565908015259475,-0.17501297868934165,0.41679721084116,1000,"20 announcement dates, circular, all currencies together"
+stale20_cny_r35,mean,change_z_r25,,,-0.2192527250787348,0.17747624993182448,1000,

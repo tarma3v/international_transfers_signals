@@ -1,0 +1,114 @@
+{
+  "description": {
+    "columns": [
+      "name",
+      "title",
+      "value",
+      "type",
+      "sort_order",
+      "is_hidden",
+      "precision"
+    ],
+    "data": [
+      [
+        "SECID",
+        "Код инструмента",
+        "CNYRUB_TOM",
+        "string",
+        1,
+        0,
+        null
+      ],
+      [
+        "SHORTNAME",
+        "Краткое наименование",
+        "CNYRUB_TOM",
+        "string",
+        2,
+        0,
+        null
+      ],
+      [
+        "NAME",
+        "Полное наименование",
+        "CNY/RUB_TOM - CNY/РУБ",
+        "string",
+        3,
+        0,
+        null
+      ],
+      [
+        "LATNAME",
+        "Английское наименование",
+        "CNY/RUB_TOM - CNY/RUB",
+        "string",
+        4,
+        1,
+        null
+      ],
+      [
+        "LOTSIZE",
+        "Размер минимального лота, в ед. валюты лота",
+        "1000",
+        "number",
+        6,
+        0,
+        null
+      ],
+      [
+        "FACEVALUE",
+        "Количество валюты лота, за которое указывается курс в котировках",
+        "1",
+        "number",
+        8,
+        0,
+        2
+      ],
+      [
+        "FACEUNIT",
+        "Валюта инструмента",
+        "CNY",
+        "string",
+        9,
+        0,
+        null
+      ],
+      [
+        "TYPENAME",
+        "Вид/категория ценной бумаги",
+        "Валюта",
+        "string",
+        9000,
+        0,
+        null
+      ],
+      [
+        "GROUP",
+        "Код типа инструмента",
+        "currency_selt",
+        "string",
+        9001,
+        1,
+        null
+      ],
+      [
+        "TYPE",
+        "Тип бумаги",
+        "currency",
+        "string",
+        10000,
+        1,
+        null
+      ],
+      [
+        "GROUPNAME",
+        "Типа инструмента",
+        "Валюта",
+        "string",
+        10011,
+        1,
+        null
+      ]
+    ]
+  }
+}

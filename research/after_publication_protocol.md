@@ -85,6 +85,13 @@ Use untouched future prospective data for a new performance claim.
 
 ## Active target and persistence
 
+AP2 source check adds market-feed latency to the availability contract. Free
+ISS is delayed (https://www.moex.com/a8531); bar completion is not client receipt.
+The case-facing AP2-D20 replay assumes20min additional delay throughout features,
+refits and policy. This is not a measured historical bound/SLA. Keep zero-delay
+AP2 separately as an idealized low-latency-feed sensitivity. No source timestamps
+are certified by matching archived prices. See after_publication_ap2_delay_registered.md.
+
 The user explicitly removed the hourly automation and requested an active target.
 Continue substantive experiments sequentially without waiting for a schedule;
 keep the next stage explicit in after_publication_next_steps.md. Continue until

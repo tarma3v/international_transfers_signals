@@ -1,0 +1,17 @@
+{
+  "packet": "AP2",
+  "date": "2026-09-06",
+  "target": "publication-reference",
+  "n_rows": 5755,
+  "n_features": 133,
+  "n_policies": 55,
+  "calendar_assumed": true,
+  "decision_time": "18:30 MSK",
+  "h_units": "next observations",
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "research/after_publication_ap2_registered.md": "aa500bbcd6281d75fce81cd2644b073509a74a7638a1b649f12c5bb6c933b5ff",
+    "data/after_publication_ap2/manifest.json": "774fa5c93c7cf6d74deda06c0c761bfacfa0e2edff724cf3a6e45161a2dcd096",
+    "data/moex_direct_pairs/manifest.json": "ea40654baa7da89315a9606309a38a2e57cdd7da2248a0fb3373a7a70ce2ff6a"
+  }
+}

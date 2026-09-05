@@ -1,0 +1,40 @@
+{
+  "checked_at_utc": "2026-09-05T22:33:27.897694+00:00",
+  "archive": "data/moex_spot_fx_10min_2022_2026.json",
+  "archive_payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "metadata_url": "https://iss.moex.com/iss/securities/CNYRUB_TOM.json?iss.meta=off&iss.only=description",
+  "cny_quote_units": 1,
+  "cny_quote_currency": "RUB",
+  "spot_checks": [
+    {
+      "day": "2023-06-01",
+      "url": "https://iss.moex.com/iss/engines/currency/markets/selt/boards/CETS/securities/CNYRUB_TOM/candles.json?from=2023-06-01&till=2023-06-01&interval=10&iss.meta=off&iss.only=candles",
+      "archived_rows": 73,
+      "fresh_rows": 73,
+      "mismatches": []
+    },
+    {
+      "day": "2025-06-02",
+      "url": "https://iss.moex.com/iss/engines/currency/markets/selt/boards/CETS/securities/CNYRUB_TOM/candles.json?from=2025-06-02&till=2025-06-02&interval=10&iss.meta=off&iss.only=candles",
+      "archived_rows": 55,
+      "fresh_rows": 55,
+      "mismatches": []
+    },
+    {
+      "day": "2026-09-02",
+      "url": "https://iss.moex.com/iss/engines/currency/markets/selt/boards/CETS/securities/CNYRUB_TOM/candles.json?from=2026-09-02&till=2026-09-02&interval=10&iss.meta=off&iss.only=candles",
+      "archived_rows": 55,
+      "fresh_rows": 55,
+      "mismatches": []
+    }
+  ],
+  "first_seen_certification": false,
+  "usd_note_source": "https://www.moex.com/s3933",
+  "usd_note": "2026 non-deliverable ruble-settled contracts differ from historical deliverable USD; excluded from AP2 features",
+  "file_sha256": {
+    "cny_metadata.json": "7cc991403fc89b379c6f3712f9013c4af1cf338f81d7a3a9cae93b3166289030",
+    "cny_cets_2026-09-02.json": "92ea74204a7e58cf00790167e142966e170b36f3317709d4415465b948e450ec",
+    "cny_cets_2023-06-01.json": "9e3cfcdf3fbaf92b5a2f0ec0506eee78e20a520661b5b614938647368142734d",
+    "cny_cets_2025-06-02.json": "14c7c08e7f869c1f731ea63f093abc1791b01cd5524f46a57173124e8b30a216"
+  }
+}
