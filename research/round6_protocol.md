@@ -2087,3 +2087,41 @@ mean lift gain, annual h5 lift >=1.30 and rate in [1,2], minimum-currency h5
 lift >=1.30, minimum-quarter rate >=1.00, and positive benefits at all five
 horizons. Freshness is a separate claim against stale-20; do not alter packet
 EB after this audit.
+
+## Packet ED: causal market-availability fallback
+
+Frozen after packet EC and before evaluating any packet-ED target metric. The
+15:30 product must retain every target date, including MOEX weekends and
+holidays. Convert packet DO's noon score and packet EB's fixing-proxy score to
+same-currency causal percentiles with window 250/minimum 20. On a row with at
+least one completed CNYRUB_TOM candle in 10:00 <= t < 15:30, use the fixing
+rank; otherwise use the noon-consensus rank. The market-availability flag is
+known at decision time and no label chooses the expert.
+
+Compare exactly the routed score and its two unchanged components on 2024.
+Build a matched stale route by delaying only the fixing score 20 target rows;
+the availability mask and noon fallback remain aligned. Select once by maximum
+worst official lift, then mean lift, requiring positive symmetric and
+future-only benefit at every horizon. Open 2025--2026 only for the selected
+candidate and the exact stale control. No alternative missing-day value,
+fallback expert, window, cutoff or route threshold may be tried after seeing
+the result. This is retrospective causal research because the later years are
+already known from preceding packets.
+
+## Packet EE: paired audit of the availability router
+
+Frozen after packet ED point estimates and before paired inference. On the
+same 2025--2026 rows compare the fixed availability route with (a) the noon
+consensus, (b) the raw fixing basis and (c) the matched stale-fixing route at
+every official horizon h=1/3/5/10/20. Use the established paired moving
+four-week bootstrap, identical sampled weeks across horizons, and
+corridor-year base rates preserved inside every sampled week.
+
+Report lift, symmetric-benefit and future-only-benefit differences with 95%
+intervals and one-sided p-values; Holm-adjust each family across all fifteen
+horizon comparisons. Also report paired draw-wise minimum and mean lift for
+all three hypotheses. Promotion over noon requires positive lower 95% bounds
+for both minimum and mean lift gain, annual h5 lift >=1.30 and rate in [1,2],
+minimum-currency h5 lift >=1.30, minimum-quarter rate >=1.00, and positive
+benefits at all five horizons. Improvement over raw fixing and freshness
+versus stale are separate claims. Do not change the router after this audit.

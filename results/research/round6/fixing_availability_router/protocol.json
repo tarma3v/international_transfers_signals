@@ -1,0 +1,27 @@
+{
+  "packet": "ED",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "decision_time": "15:30:00 Europe/Moscow",
+  "route": "fixing rank when CNY session exists, noon rank otherwise",
+  "availability_labels_used": false,
+  "rank_window": 250,
+  "rank_minimum": 20,
+  "missing_rows": 14771,
+  "total_rows": 19326,
+  "selection_period": 2024,
+  "selected": "availability_route",
+  "matched_control": "fixing input delayed 20 target rows only",
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}
