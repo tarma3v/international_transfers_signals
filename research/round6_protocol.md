@@ -1586,3 +1586,24 @@ rolling-20 22% policy, as-of boundary and one-time later opening as packet DC.
 Physical future corruption must leave every earlier normalized feature exactly
 unchanged. The 250/60 memory, feature list and blend grid may not be changed in
 response to packet-DD results.
+
+## Packet DE: one-sided local-linear target state
+
+Frozen after packet DD and before reading any packet-DE result. Apply a causal
+alpha-beta local-linear state filter separately to each of the five target
+currency series in log space. This is not an ETS point-forecast contest: the
+candidate scores are the standardized one-step forecast gap, negative current
+innovation, positive filtered slope, and an equal rebound combination of the
+last two. Standardize with the median absolute deviation of at most 120 earlier
+innovations from the same currency, never including the current innovation
+before scoring.
+
+Use exactly three fixed gain pairs `(alpha,beta)`: (0.10,0.01), (0.20,0.03)
+and (0.40,0.08). For each pair run a full-history filter and a mechanically
+reset filter whose state and scale history restart at the first publication on
+or after 24 February 2022. This gives 24 label-free raw scores. Select one on
+2024 using the unchanged five-horizon/positive-benefit objective, then compare
+fixed 5%, 10%, 20% and 30% causal-rank blends with the incumbent and open
+2025--2026 once. A physical corruption of all target values after a cutoff must
+leave every earlier state score bit-identical. The current published target
+course is available; no next course or future outcome is used.
