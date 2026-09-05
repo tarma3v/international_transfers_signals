@@ -843,6 +843,7 @@ protocol-controlled but still retrospective:
 | EL | global HistGB/ExtraTrees residual correction over fixing anchor | best new screen min 1.558; router 1.607 | user-proposed anchor+global-residual pattern tested directly; no promotion |
 | EM | outcome-free fixing-basis regime normalization | screen 1.623 vs 1.607; later min/mean 1.775/1.934 vs 1.780/1.956 | small cadence repair costs precision; no promotion |
 | EN | reference-invariant intraday fixing-shape proxies | screen 1.628 vs 1.607; later min/mean 1.761/1.930 | session-persistence filter does not transport; no promotion |
+| EO | causal target-to-CNY beta and cross-rate projection | screen min/mean 1.626/1.757; later 1.754/1.919 | currency-specific transmission breaks in 2025Q2; no promotion |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -1077,6 +1078,16 @@ raising minimum lift from 1.607 to 1.628. On 2025--2026 it falls back to
 versus 2.059 and minimum-quarter frequency worsens from 0.955 to 0.923. The
 path-shape confirmation therefore removes some useful high-basis days rather
 than isolating a more stable subset.
+
+Packet EO makes the common CNY signal currency-specific without labels. It
+estimates rolling target-on-CNY betas from returns ending strictly before each
+row and adds a causal target/CNY cross-rate reversion term. The fixed
+router75/projected60 mixture improves the 2024 screen to minimum/mean lift
+1.626/1.757 from 1.607/1.653. It does not transport: 2025--2026 gives
+1.754/1.919 versus 1.780/1.956 for the router. Cadence rises in the weak
+quarters, but the added alerts reduce 2025Q2 h5 lift from 1.405 to 1.068.
+Slowly estimated currency sensitivity is therefore not reliable enough to
+modify the direct common-market rule.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:

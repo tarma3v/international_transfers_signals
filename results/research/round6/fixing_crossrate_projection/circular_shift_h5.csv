@@ -1,0 +1,3 @@
+period,policy,observed_lift,circular_shift_p_unadjusted,circular_shift_p_max_adjusted,n_recorded_policies,observed_max_lift,null_max_lift_q95
+fixing_crossrate_projection_h5,availability_router,2.0587698085086177,0.00024993751562109475,0.00024993751562109475,2,2.0587698085086177,1.2101729340337393
+fixing_crossrate_projection_h5,selected,2.0233990192157325,0.00024993751562109475,0.00024993751562109475,2,2.0587698085086177,1.2101729340337393

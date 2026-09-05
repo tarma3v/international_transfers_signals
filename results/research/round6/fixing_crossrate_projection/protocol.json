@@ -1,0 +1,52 @@
+{
+  "packet": "EO",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "decision_time": "15:30:00 Europe/Moscow",
+  "scores": [
+    "beta_60_basis",
+    "beta_120_basis",
+    "cross_reversion_60",
+    "cross_reversion_120",
+    "projected_60",
+    "projected_120"
+  ],
+  "beta_windows": [
+    60,
+    120
+  ],
+  "beta_minimum": 20,
+  "beta_bounds": [
+    0.0,
+    2.0
+  ],
+  "reversion_weight": 0.25,
+  "blend_scores": [
+    "cross_reversion_60",
+    "projected_60"
+  ],
+  "blend_weights": {
+    "availability_router": 0.75,
+    "projection": 0.25
+  },
+  "strict_returns": "only returns ending before the signal row",
+  "rank_window": 250,
+  "rank_minimum": 20,
+  "selection_period": 2024,
+  "selected": "router75_projected_60_25",
+  "matched_control": "selected raw score delayed 20 target rows",
+  "physical_future_corruption_check": true,
+  "outcome_labels_used": false,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}
