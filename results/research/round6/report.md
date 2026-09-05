@@ -841,6 +841,7 @@ protocol-controlled but still retrospective:
 | EI | fixed pre-publication cutoff frontier | 15:20 ties 15:30 on screen; later raw min/mean 1.712/1.874 | last ten minutes add little; earlier cutoffs weaken more |
 | EJ/EK | 15:20 availability router and non-inferiority audit | later min/mean **1.770 / 1.952**; aggregate CIs pass -0.05 margin | h20 CI reaches -0.056, so strict all-horizon non-inferiority fails narrowly |
 | EL | global HistGB/ExtraTrees residual correction over fixing anchor | best new screen min 1.558; router 1.607 | user-proposed anchor+global-residual pattern tested directly; no promotion |
+| EM | outcome-free fixing-basis regime normalization | screen 1.623 vs 1.607; later min/mean 1.775/1.934 vs 1.780/1.956 | small cadence repair costs precision; no promotion |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -1053,6 +1054,17 @@ mixtures are at or below 1.536 versus 1.607 for the unchanged router. The
 screen therefore retains the transparent availability rule without consulting
 2025--2026 for a model choice. This is evidence that the strong basis is not
 improved merely by adding nonlinear capacity.
+
+Packet EM asks whether the fixing basis needs an adaptive structural baseline.
+Seven outcome-free transformations use only the current and strictly earlier
+available sessions: innovations, trailing-median excesses, robust z-scores and
+two persistence summaries. The 2024 selector chooses a fixed 75/25 mixture of
+the router and trailing-60 robust z-score, raising the screen minimum lift from
+1.607 to 1.623. The gain reverses on 2025--2026: minimum/mean lift is
+1.775/1.934 versus 1.780/1.956 for the unchanged router, while h5 is 2.038
+versus 2.059. Minimum-quarter cadence improves only from 0.955 to 0.986. Thus
+slow structural normalization slightly shifts alerts but does not add durable
+precision; the raw market-to-current-CBR gap remains the better explanation.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:

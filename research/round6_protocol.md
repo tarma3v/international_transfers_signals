@@ -2256,3 +2256,35 @@ open 2025--2026 only for the selected candidate and exact stale control. Flip
 every unresolved future h5 outcome and require all earlier fitted scores to be
 identical. This is retrospective causal research; no model, field, residual
 weight or blend may change after later results are viewed.
+
+## Packet EM: causal persistence and regime normalization of the fixing basis
+
+Frozen after packet EL and before evaluating any packet-EM target metric. Keep
+the packet-EB arithmetic session-mean CNY basis and the packet-ED noon fallback
+as the operational anchor. On a target row with a completed 10:00--15:30 CNY
+session, construct exactly seven label-free alternatives from the current and
+strictly earlier available sessions of the same target currency: one-session
+innovation; excess over the trailing 20- and 60-session medians; robust
+z-scores against those two histories using `1.4826 * MAD` with a unit floor;
+the mean of the current and previous two bases; and the minimum of the current
+and previous basis. A row without a completed session contributes neither an
+observation nor a zero to these histories.
+
+Map every alternative to a same-currency causal percentile using the unchanged
+250-row window and minimum history 20. Route to the already frozen noon rank
+when the current fixing session is unavailable. Compare the unchanged
+availability router, all seven normalized routes, and fixed 75/25 causal-rank
+mixtures of the router with `innovation_1`, `robust_z_20`, `robust_z_60`,
+`persistent_mean_3` and `persistent_min_2`. No outcome, year, volatility state
+or future market observation may enter a feature.
+
+Screen once on 2024 by maximum worst official lift over h=1/3/5/10/20 and then
+mean lift, requiring h5 frequency in [1,2] and positive symmetric and
+future-only benefit at every horizon. Open 2025--2026 once for the selected
+candidate and the unchanged availability router. The matched freshness
+control delays the selected non-noon feature by 20 target rows per currency
+while retaining current-day availability and the noon fallback. Physically
+changing any raw basis after a cutoff must leave every earlier normalized
+feature bit-identical. This is a retrospective, outcome-free normalization
+screen; do not add a lookback, formula, sign or blend weight after viewing its
+later result.
