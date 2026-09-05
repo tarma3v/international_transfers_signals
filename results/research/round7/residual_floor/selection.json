@@ -1,0 +1,8 @@
+{
+  "selected": "global_quantile_w10",
+  "selection_period": "purged 2024",
+  "target": "log minimum of next 5 CBR observations / current",
+  "anchor": "CNY fixing basis",
+  "outcome_corruption_check": true,
+  "later_status": "retrospective, opened in previous packet"
+}

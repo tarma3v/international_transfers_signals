@@ -1,0 +1,178 @@
+{
+  "selected": "per_currency_weights",
+  "simple_selected": "last_basis_soft_w025",
+  "per_currency": {
+    "KZT": "last_basis_any_w075",
+    "AMD": "mean_basis_soft_w025",
+    "KGS": "last_basis_soft_w050",
+    "TJS": "incumbent",
+    "UZS": "mean_basis_any_w050"
+  },
+  "specs": {
+    "mean_basis_any_w010": {
+      "source": "mean_basis",
+      "gate": "any",
+      "weight": 0.1
+    },
+    "mean_basis_any_w025": {
+      "source": "mean_basis",
+      "gate": "any",
+      "weight": 0.25
+    },
+    "mean_basis_any_w050": {
+      "source": "mean_basis",
+      "gate": "any",
+      "weight": 0.5
+    },
+    "mean_basis_any_w075": {
+      "source": "mean_basis",
+      "gate": "any",
+      "weight": 0.75
+    },
+    "mean_basis_any_w100": {
+      "source": "mean_basis",
+      "gate": "any",
+      "weight": 1.0
+    },
+    "mean_basis_hard_w010": {
+      "source": "mean_basis",
+      "gate": "hard",
+      "weight": 0.1
+    },
+    "mean_basis_hard_w025": {
+      "source": "mean_basis",
+      "gate": "hard",
+      "weight": 0.25
+    },
+    "mean_basis_hard_w050": {
+      "source": "mean_basis",
+      "gate": "hard",
+      "weight": 0.5
+    },
+    "mean_basis_hard_w075": {
+      "source": "mean_basis",
+      "gate": "hard",
+      "weight": 0.75
+    },
+    "mean_basis_hard_w100": {
+      "source": "mean_basis",
+      "gate": "hard",
+      "weight": 1.0
+    },
+    "mean_basis_soft_w010": {
+      "source": "mean_basis",
+      "gate": "soft",
+      "weight": 0.1
+    },
+    "mean_basis_soft_w025": {
+      "source": "mean_basis",
+      "gate": "soft",
+      "weight": 0.25
+    },
+    "mean_basis_soft_w050": {
+      "source": "mean_basis",
+      "gate": "soft",
+      "weight": 0.5
+    },
+    "mean_basis_soft_w075": {
+      "source": "mean_basis",
+      "gate": "soft",
+      "weight": 0.75
+    },
+    "mean_basis_soft_w100": {
+      "source": "mean_basis",
+      "gate": "soft",
+      "weight": 1.0
+    },
+    "last_basis_any_w010": {
+      "source": "last_basis",
+      "gate": "any",
+      "weight": 0.1
+    },
+    "last_basis_any_w025": {
+      "source": "last_basis",
+      "gate": "any",
+      "weight": 0.25
+    },
+    "last_basis_any_w050": {
+      "source": "last_basis",
+      "gate": "any",
+      "weight": 0.5
+    },
+    "last_basis_any_w075": {
+      "source": "last_basis",
+      "gate": "any",
+      "weight": 0.75
+    },
+    "last_basis_any_w100": {
+      "source": "last_basis",
+      "gate": "any",
+      "weight": 1.0
+    },
+    "last_basis_hard_w010": {
+      "source": "last_basis",
+      "gate": "hard",
+      "weight": 0.1
+    },
+    "last_basis_hard_w025": {
+      "source": "last_basis",
+      "gate": "hard",
+      "weight": 0.25
+    },
+    "last_basis_hard_w050": {
+      "source": "last_basis",
+      "gate": "hard",
+      "weight": 0.5
+    },
+    "last_basis_hard_w075": {
+      "source": "last_basis",
+      "gate": "hard",
+      "weight": 0.75
+    },
+    "last_basis_hard_w100": {
+      "source": "last_basis",
+      "gate": "hard",
+      "weight": 1.0
+    },
+    "last_basis_soft_w010": {
+      "source": "last_basis",
+      "gate": "soft",
+      "weight": 0.1
+    },
+    "last_basis_soft_w025": {
+      "source": "last_basis",
+      "gate": "soft",
+      "weight": 0.25
+    },
+    "last_basis_soft_w050": {
+      "source": "last_basis",
+      "gate": "soft",
+      "weight": 0.5
+    },
+    "last_basis_soft_w075": {
+      "source": "last_basis",
+      "gate": "soft",
+      "weight": 0.75
+    },
+    "last_basis_soft_w100": {
+      "source": "last_basis",
+      "gate": "soft",
+      "weight": 1.0
+    }
+  },
+  "screen_purged_h20": true,
+  "selection_period": "2024 (h20 resolved before 2025)",
+  "later_status": "previously explored retrospective 2025-2026",
+  "feature_causality_check": true,
+  "policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  }
+}
