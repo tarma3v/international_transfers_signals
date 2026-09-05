@@ -1,0 +1,20 @@
+{
+  "primary": "stack50_benefit50",
+  "experts": [
+    "shared_extra_minimum",
+    "shared_extra_geomean",
+    "shared_extra_conservative",
+    "shared_hist_minimum",
+    "shared_xgb_conservative"
+  ],
+  "primary_weights": [
+    0.8,
+    0.75,
+    0.6666666666666666
+  ],
+  "combination": "fixed causal per-currency score ranks",
+  "weights_fitted": false,
+  "policy_selected_on": 2024,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

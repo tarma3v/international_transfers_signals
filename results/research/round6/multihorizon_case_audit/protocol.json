@@ -1,0 +1,53 @@
+{
+  "packet": "CG",
+  "horizons": [
+    1,
+    3,
+    5,
+    10,
+    20
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "candidates": {
+    "primary": [
+      "results/research/round6/cny_consensus/outputs.pkl",
+      "logit50_extra50"
+    ],
+    "regime_blend": [
+      "results/research/round6/cny_error_regime/outputs.pkl",
+      "primary75_regime_logit25"
+    ],
+    "label_free_geometry_blend": [
+      "results/research/round6/cny_expert_geometry/outputs.pkl",
+      "primary75_geometry_min75_max2525"
+    ],
+    "geometry_cba_blend": [
+      "results/research/round6/armenian_central_bank_models/outputs.pkl",
+      "geometry75_cba_consensus_basis25"
+    ],
+    "resolved_error_router": [
+      "results/research/round6/cny_expert_router/outputs.pkl",
+      "router_tree_hard"
+    ]
+  },
+  "model_refit": false,
+  "case_lift_definition": "hit rate / expected random-day hit rate matched by corridor and calendar year",
+  "case_benefit_definition": "signal day versus mean over symmetric +/-h window",
+  "supplementary_benefit": "signal day versus future h publications only",
+  "source_documents": [
+    "Q&A для команд — сводка 20260904.pdf",
+    "Q&A для команд — сводка 20260905.pdf"
+  ],
+  "next_cbr_rate_used": false,
+  "later_period_status": "retrospective case-definition audit"
+}

@@ -1,0 +1,2 @@
+primary_lift,challenger_lift,lift_difference,lift_difference_ci_low,lift_difference_ci_high,p_challenger_not_better,benefit_difference_bps,benefit_difference_ci_low,benefit_difference_ci_high
+1.8463221702729151,1.8669131238447318,0.020590953571816728,-0.04305577672484788,0.094700013233454,0.30167458135466135,5.168979360580096,-0.7504346437780643,11.934398493502334

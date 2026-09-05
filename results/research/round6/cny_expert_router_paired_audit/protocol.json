@@ -1,0 +1,56 @@
+{
+  "packet": "CA",
+  "comparisons": [
+    [
+      "router_freshness",
+      "router_logit_soft_stale20",
+      "router_logit_soft"
+    ],
+    [
+      "router_vs_equal",
+      "shadow50_survival50",
+      "router_tree_hard"
+    ],
+    [
+      "router_vs_shadow",
+      "shadow_close_basis",
+      "router_tree_hard"
+    ],
+    [
+      "router_vs_survival",
+      "survival_cumulative_geometric",
+      "router_tree_hard"
+    ]
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "bootstrap_draws": 4000,
+  "bootstrap": "paired four-week blocks with currencies kept by date",
+  "multiplicity": "Holm adjustment across four predeclared hypotheses",
+  "operational_gates": {
+    "annual_lift_at_least_1_30": true,
+    "annual_rate_between_1_and_2": true,
+    "minimum_currency_lift_at_least_1_30": true,
+    "minimum_quarter_rate_at_least_1": true,
+    "standalone_lift_ci_above_1": true,
+    "circular_max_adjusted_p_below_005": true,
+    "all_operational_gates": true
+  },
+  "supported_lift_increments": [
+    "router_vs_equal"
+  ],
+  "supported_joint_increments": [
+    "router_vs_equal"
+  ],
+  "model_refit": false,
+  "later_period_status": "multiplicity-aware retrospective audit"
+}

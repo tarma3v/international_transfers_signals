@@ -1,0 +1,21 @@
+{
+  "next_rate_feature": false,
+  "quarterly_refit": true,
+  "heldout_calibration_quarters": [
+    1,
+    2
+  ],
+  "score_calibration_rows_excluded_from_fit": true,
+  "screen": 2024,
+  "confirmation": 2025,
+  "audit": 2026,
+  "quarter_frequency_gate": [
+    0.3,
+    2.5
+  ],
+  "winner": null,
+  "chronology_ok": true,
+  "pristine_holdout_available": false,
+  "n_candidate_architectures": 11,
+  "n_policies_per_architecture": 64
+}

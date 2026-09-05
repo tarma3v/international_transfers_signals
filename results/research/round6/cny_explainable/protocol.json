@@ -1,0 +1,44 @@
+{
+  "packet": "AH",
+  "variants": [
+    "market_currency_logit",
+    "market_anchor_logit",
+    "market_anchor_hist",
+    "full_market_logit",
+    "cny_intraday_extra"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "market_feature_names": [
+    "moex_cnyrub_tom_open_close",
+    "moex_cnyrub_tom_intraday_range",
+    "moex_cnyrub_tom_close_wap",
+    "moex_cnyrub_tom_overnight_gap",
+    "moex_cnyrub_tom_log_trades",
+    "moex_cnyrub_tom_log_trades_change_1",
+    "moex_cnyrub_tom_log_trades_change_5",
+    "moex_cnyrub_tom_log_trades_change_20"
+  ],
+  "transparent_target_feature_names": [
+    "pct_range_30",
+    "pct_range_90",
+    "pct_range_180",
+    "ret_1",
+    "ret_5",
+    "ret_20"
+  ],
+  "payload_sha256": "03693535c248cca35976366cd0fc5072ad45779e23d5b7703f3ad34c7e456e8f",
+  "asof_rule": "TRADEDATE < signal_date",
+  "same_day_close_allowed": false,
+  "all_training_labels_resolved": true,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

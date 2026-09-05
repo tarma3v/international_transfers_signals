@@ -1,0 +1,101 @@
+{
+  "reset": "2022-02-24",
+  "refit": "calendar quarter",
+  "screen": 2024,
+  "confirmation": 2025,
+  "last_audit": 2026,
+  "specs": [
+    {
+      "name": "quarterly_reset_hist",
+      "kind": "hist",
+      "reset": true,
+      "window_years": null,
+      "half_life_years": null
+    },
+    {
+      "name": "quarterly_reset_extra",
+      "kind": "extra",
+      "reset": true,
+      "window_years": null,
+      "half_life_years": null
+    },
+    {
+      "name": "quarterly_reset_logit",
+      "kind": "logit",
+      "reset": true,
+      "window_years": null,
+      "half_life_years": null
+    },
+    {
+      "name": "quarterly_window2_hist",
+      "kind": "hist",
+      "reset": false,
+      "window_years": 2,
+      "half_life_years": null
+    },
+    {
+      "name": "quarterly_window3_hist",
+      "kind": "hist",
+      "reset": false,
+      "window_years": 3,
+      "half_life_years": null
+    },
+    {
+      "name": "quarterly_decay1_hist",
+      "kind": "hist",
+      "reset": false,
+      "window_years": null,
+      "half_life_years": 1.0
+    }
+  ],
+  "ensembles": {
+    "quarterly_reset_tree_consensus": {
+      "members": [
+        "quarterly_reset_hist",
+        "quarterly_reset_extra"
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ]
+    },
+    "quarterly_reset_hist_anchor25": {
+      "members": [
+        "quarterly_reset_hist",
+        "anchor_multiscale_locked"
+      ],
+      "weights": [
+        0.75,
+        0.25
+      ]
+    },
+    "quarterly_reset_hist_anchor50": {
+      "members": [
+        "quarterly_reset_hist",
+        "anchor_multiscale_locked"
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ]
+    },
+    "quarterly_decay_hist_anchor25": {
+      "members": [
+        "quarterly_decay1_hist",
+        "anchor_multiscale_locked"
+      ],
+      "weights": [
+        0.75,
+        0.25
+      ]
+    }
+  },
+  "next_rate_feature": false,
+  "winner": "quarterly_reset_hist_anchor50",
+  "winner_policy": [
+    0.18,
+    120,
+    0
+  ],
+  "pristine_holdout_available": false
+}

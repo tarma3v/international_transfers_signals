@@ -1,0 +1,81 @@
+{
+  "experts": [
+    "benefit_ranker_anchor25",
+    "broad_full_extra",
+    "broad75_baseload25",
+    "cbr_baseload",
+    "ordinal_ndcg_baseload25"
+  ],
+  "expert_feature_names": [
+    "expert_rank_benefit_ranker_anchor25",
+    "expert_rank_broad_full_extra",
+    "expert_rank_broad75_baseload25",
+    "expert_rank_cbr_baseload",
+    "expert_rank_ordinal_ndcg_baseload25",
+    "expert_mean",
+    "expert_std",
+    "expert_min",
+    "expert_max",
+    "expert_range",
+    "expert_tail_benefit_ranker_anchor25_70",
+    "expert_tail_benefit_ranker_anchor25_80",
+    "expert_tail_benefit_ranker_anchor25_90",
+    "expert_tail_broad_full_extra_70",
+    "expert_tail_broad_full_extra_80",
+    "expert_tail_broad_full_extra_90",
+    "expert_tail_broad75_baseload25_70",
+    "expert_tail_broad75_baseload25_80",
+    "expert_tail_broad75_baseload25_90",
+    "expert_tail_cbr_baseload_70",
+    "expert_tail_cbr_baseload_80",
+    "expert_tail_cbr_baseload_90",
+    "expert_tail_ordinal_ndcg_baseload25_70",
+    "expert_tail_ordinal_ndcg_baseload25_80",
+    "expert_tail_ordinal_ndcg_baseload25_90",
+    "expert_diff_benefit_ranker_anchor25__broad_full_extra",
+    "expert_diff_benefit_ranker_anchor25__broad75_baseload25",
+    "expert_diff_benefit_ranker_anchor25__cbr_baseload",
+    "expert_diff_benefit_ranker_anchor25__ordinal_ndcg_baseload25",
+    "expert_diff_broad_full_extra__broad75_baseload25",
+    "expert_diff_broad_full_extra__cbr_baseload",
+    "expert_diff_broad_full_extra__ordinal_ndcg_baseload25",
+    "expert_diff_broad75_baseload25__cbr_baseload",
+    "expert_diff_broad75_baseload25__ordinal_ndcg_baseload25",
+    "expert_diff_cbr_baseload__ordinal_ndcg_baseload25"
+  ],
+  "resolved_feature_count": 73,
+  "specs": [
+    {
+      "name": "stack_experts_logit",
+      "kind": "logit",
+      "matrix": "experts"
+    },
+    {
+      "name": "stack_experts_hist",
+      "kind": "hist",
+      "matrix": "experts"
+    },
+    {
+      "name": "stack_core_hist",
+      "kind": "hist",
+      "matrix": "core"
+    },
+    {
+      "name": "stack_resolved_hist",
+      "kind": "hist",
+      "matrix": "resolved"
+    },
+    {
+      "name": "stack_resolved_extra",
+      "kind": "extra",
+      "matrix": "resolved"
+    }
+  ],
+  "score_rank_reference": "at most 250 strictly earlier scores per currency",
+  "base_scores_prequential": true,
+  "physical_future_score_corruption_check": true,
+  "all_training_labels_resolved_before_refit": true,
+  "policy_selected_on": 2024,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

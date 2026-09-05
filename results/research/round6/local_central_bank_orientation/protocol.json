@@ -1,0 +1,42 @@
+{
+  "packet": "CC",
+  "variants": [
+    "negative_direct_basis",
+    "negative_usd_basis",
+    "negative_cny_basis",
+    "negative_consensus_basis",
+    "inverse_rub_momentum_1",
+    "inverse_rub_momentum_2",
+    "inverse_rub_momentum_5",
+    "inverse_rub_momentum_mean",
+    "direct_usd_disagreement",
+    "direct_cny_disagreement",
+    "usd_cny_disagreement",
+    "primary90_negative_usd_basis10",
+    "primary75_negative_usd_basis25",
+    "primary60_negative_usd_basis40"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "status": "exploratory orientation screen after packet CB",
+  "selection_period": 2024,
+  "selected_formula": "negative_usd_basis",
+  "blend_weights": [
+    0.1,
+    0.25,
+    0.4
+  ],
+  "payload_sha256": "453f3e024e019632b9496a946707de122c87698ce059e9789ced87bb02e37349",
+  "asof_rule": "NBT effective date strictly before signal date; CBR date <= signal date",
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

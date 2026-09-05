@@ -1,0 +1,27 @@
+{
+  "bases": {
+    "benefit_ranker_anchor25": [
+      0.22,
+      60
+    ],
+    "stack25_benefit75": [
+      0.2,
+      60
+    ]
+  },
+  "experts": [
+    "shared_extra_minimum",
+    "shared_extra_geomean",
+    "shared_extra_conservative",
+    "shared_xgb_conservative"
+  ],
+  "base_weights": [
+    0.8,
+    0.75
+  ],
+  "base_policies_preserved": true,
+  "weights_fitted": false,
+  "candidate_order_selected_on": 2024,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

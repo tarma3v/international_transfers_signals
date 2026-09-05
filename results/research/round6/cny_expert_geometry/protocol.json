@@ -1,0 +1,40 @@
+{
+  "packet": "CD",
+  "variants": [
+    "geometry_minimum",
+    "geometry_geometric",
+    "geometry_harmonic",
+    "geometry_min75_max25",
+    "geometry_min90_max10",
+    "geometry_highgate65",
+    "geometry_highgate70",
+    "geometry_highgate75",
+    "geometry_stale20_minimum",
+    "primary90_geometry_min75_max2510",
+    "primary75_geometry_min75_max2525",
+    "primary60_geometry_min75_max2540"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "selection_period": 2024,
+  "selected_geometry": "geometry_min75_max25",
+  "experts": [
+    "shadow_close_basis",
+    "survival_cumulative_geometric"
+  ],
+  "rank_window": 250,
+  "rank_minimum": 20,
+  "geometry_is_label_free": true,
+  "stale_control_rows_per_currency": 20,
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

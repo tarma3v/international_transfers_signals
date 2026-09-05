@@ -1,0 +1,40 @@
+{
+  "packet": "CX",
+  "status": "post-hoc regime hypothesis",
+  "selection_period": 2024,
+  "selected": "incumbent700_after_gap_w300",
+  "selected_transform": "after_gap",
+  "selected_weight": 0.3,
+  "candidate_transforms": [
+    "after_gap",
+    "after_long_gap",
+    "gap_days_capped",
+    "after_gap_monday"
+  ],
+  "weights": [
+    0.025,
+    0.05,
+    0.075,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3
+  ],
+  "interpretation": "a current CBR publication after a multi-day gap is known at decision time",
+  "target_used_by_modifier": false,
+  "full_lifecycle_years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "next_cbr_rate_used": false,
+  "later_period_status": "2025-2026 already inspected before this hypothesis; prospective challenger only"
+}

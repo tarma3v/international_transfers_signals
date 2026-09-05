@@ -1,0 +1,29 @@
+{
+  "packet": "CW",
+  "source_candidate": "geometry75_cba_consensus_basis25",
+  "selection_period": 2024,
+  "selected_policy": {
+    "history": 40,
+    "first": 0.75,
+    "second": 0.92,
+    "fallback": 0.5,
+    "fallback_weekday": 4,
+    "cap": 2
+  },
+  "candidate_count": 198,
+  "weekly_cap": 2,
+  "current_score_enters_history_after_decision": true,
+  "selection_objective": "maximum worst official lift over all five horizons with cadence and benefit constraints",
+  "physical_future_score_corruption_check": true,
+  "default_combined_summary": {
+    "horizon_lift_min": 1.6230036627345803,
+    "horizon_lift_mean": 1.8545481119686134,
+    "symmetric_benefit_min": 18.007536172632168,
+    "future_benefit_min": 70.28340285633575,
+    "frequency": 1.2630691399662732,
+    "corridor_frequency_min": 1.2158516020236088,
+    "quarter_frequency_min": 1.0733333333333333
+  },
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}

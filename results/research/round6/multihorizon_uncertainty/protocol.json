@@ -1,0 +1,49 @@
+{
+  "packet": "CJ",
+  "candidate": "geometry75_cba_consensus_basis25",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "horizons": [
+    1,
+    3,
+    5,
+    10,
+    20
+  ],
+  "periods": {
+    "retrospective_2025": [
+      2025
+    ],
+    "retrospective_2026": [
+      2026
+    ],
+    "combined_2025_2026": [
+      2025,
+      2026
+    ]
+  },
+  "bootstrap_draws": 4000,
+  "bootstrap": "moving four-week blocks; all currencies kept within sampled weeks",
+  "case_lift": "corridor-year matched random-day expectation",
+  "multiplicity": "Holm separately across 15 lift, symmetric-benefit, and future-benefit tests",
+  "familywise_lower_quantile": 0.0033333333333333335,
+  "gates": {
+    "all_15_point_lifts_above_1p30": true,
+    "all_15_point_symmetric_benefits_positive": true,
+    "all_15_point_future_benefits_positive": true,
+    "all_15_lifts_supported_after_holm": true,
+    "all_15_symmetric_benefits_supported_after_holm": true,
+    "all_15_future_benefits_supported_after_holm": false
+  },
+  "model_refit": false,
+  "next_cbr_rate_used": false
+}

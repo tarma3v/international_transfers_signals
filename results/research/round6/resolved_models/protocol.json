@@ -1,0 +1,12 @@
+{
+  "next_rate_feature": false,
+  "resolved_outcomes_require_reach_strictly_before_row": true,
+  "policy_selected_on": 2024,
+  "confirmation": 2025,
+  "audit": 2026,
+  "n_resolved_features": 73,
+  "n_architectures": 18,
+  "n_policies": 312,
+  "chronology_ok": true,
+  "pristine_holdout_available": false
+}

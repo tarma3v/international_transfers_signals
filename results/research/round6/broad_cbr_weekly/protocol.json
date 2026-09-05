@@ -1,0 +1,17 @@
+{
+  "candidate": "broad_full_extra",
+  "policy": {
+    "history": 10,
+    "strong": 0.8,
+    "late": 0.65,
+    "late_weekday": 3,
+    "weekly_cap": 2
+  },
+  "policy_family": "predeclared_packet_a_weekly_controllers",
+  "selection_objective": "max min(overall_lift, corridor_lift_min), then overall_lift, then quarter_frequency_min",
+  "policy_selected_on": 2024,
+  "next_rate_feature": false,
+  "confirmation": 2025,
+  "audit": 2026,
+  "pristine_holdout_available": false
+}

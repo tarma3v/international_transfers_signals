@@ -1,0 +1,60 @@
+{
+  "packet": "BN",
+  "comparisons": [
+    [
+      "residual_freshness",
+      "residual_hist_stale20_25",
+      "residual_hist25"
+    ],
+    [
+      "hist_primary_increment",
+      "logit50_extra50",
+      "residual_hist25"
+    ],
+    [
+      "extra_primary_increment",
+      "logit50_extra50",
+      "residual_extra25"
+    ]
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "bootstrap_draws": 4000,
+  "bootstrap": "paired four-week blocks with currencies kept by date",
+  "multiplicity": "Holm adjustment across three predeclared paired hypotheses",
+  "circular_shift": "separate fixed-comparison calendar-alignment diagnostic",
+  "fresh_hist_supported": false,
+  "promotion_gates": {
+    "residual_hist25": {
+      "annual_lift_at_least_1_30": true,
+      "annual_rate_between_1_and_2": true,
+      "minimum_currency_lift_at_least_1_30": true,
+      "minimum_quarter_rate_at_least_1": false,
+      "combined_lift_above_primary": false,
+      "paired_lift_ci_excludes_zero": false,
+      "holm_p_below_005": false,
+      "all_promotion_gates": false
+    },
+    "residual_extra25": {
+      "annual_lift_at_least_1_30": true,
+      "annual_rate_between_1_and_2": true,
+      "minimum_currency_lift_at_least_1_30": true,
+      "minimum_quarter_rate_at_least_1": false,
+      "combined_lift_above_primary": true,
+      "paired_lift_ci_excludes_zero": false,
+      "holm_p_below_005": false,
+      "all_promotion_gates": false
+    }
+  },
+  "model_refit": false,
+  "later_period_status": "multiplicity-aware retrospective audit"
+}

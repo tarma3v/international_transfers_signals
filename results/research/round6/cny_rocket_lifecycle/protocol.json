@@ -1,0 +1,70 @@
+{
+  "packet": "BK",
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "variants": [
+    "primary_resolved2000",
+    "rocket_resolved2000",
+    "primary75_rocket25_lifecycle",
+    "primary_then_regime2024"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "handoff_rule": "expanding through 2023; post-2022 reset from 2024-01-01",
+  "resolved2000_handoff_date": "2024-01-01",
+  "rocket_features": 178,
+  "payload_sha256": "03693535c248cca35976366cd0fc5072ad45779e23d5b7703f3ad34c7e456e8f",
+  "source_output_sha256": {
+    "results/research/round6/cny_lifecycle/outputs.pkl": "dc50ab7c3861c1b1ee3dcc4a45830e10506a2d29a50b146d6062decde1937b6f",
+    "results/research/round6/cny_rocket/outputs.pkl": "797e8a2d09f4a5eac4911510b1ee22d7536b2b9bed8d5985a14987684a9c0881",
+    "results/research/round6/cny_error_regime/outputs.pkl": "9818f10d62f874be2f837c16e3bb8dbf7e4ba6e72771e691aee9bf4e00b4eea8"
+  },
+  "all_training_labels_resolved": true,
+  "all_years_retained": true,
+  "feasibility_gates": {
+    "rocket_resolved2000": {
+      "combined_lift_above_primary": false,
+      "all_annual_lift_at_least_1_30": false,
+      "all_annual_rate_between_1_and_2": true,
+      "minimum_currency_lift_at_least_1_30": true,
+      "minimum_quarter_rate_at_least_0_90": false,
+      "lifecycle_feasible": false
+    },
+    "primary75_rocket25_lifecycle": {
+      "combined_lift_above_primary": true,
+      "all_annual_lift_at_least_1_30": true,
+      "all_annual_rate_between_1_and_2": true,
+      "minimum_currency_lift_at_least_1_30": true,
+      "minimum_quarter_rate_at_least_0_90": false,
+      "lifecycle_feasible": false
+    },
+    "primary_then_regime2024": {
+      "combined_lift_above_primary": true,
+      "all_annual_lift_at_least_1_30": true,
+      "all_annual_rate_between_1_and_2": true,
+      "minimum_currency_lift_at_least_1_30": true,
+      "minimum_quarter_rate_at_least_0_90": false,
+      "lifecycle_feasible": false
+    }
+  },
+  "later_period_status": "retrospective composition of frozen causal scores"
+}

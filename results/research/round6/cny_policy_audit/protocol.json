@@ -1,0 +1,32 @@
+{
+  "packet": "AJ",
+  "primary_candidate": "logit50_extra50",
+  "primary_policy_unchanged": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "rates": [
+    0.18,
+    0.2,
+    0.22,
+    0.25,
+    0.3
+  ],
+  "windows": [
+    20,
+    40,
+    60
+  ],
+  "grid_used_for_selection": false,
+  "jaccard_logit_extra": 0.43246753246753245,
+  "plateau_cells": 15,
+  "cells_passing_both_lift_and_rate": 14,
+  "later_period_status": "post-diagnostic retrospective sensitivity"
+}

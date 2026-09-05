@@ -1,0 +1,35 @@
+{
+  "packet": "AR",
+  "variants": [
+    "local_logit",
+    "global75_local_logit25",
+    "local_extra",
+    "global75_local_extra25",
+    "local_logit50_extra50",
+    "primary75_local_consensus25"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "minimum_local_rows": 140,
+  "global_local_weights": [
+    0.75,
+    0.25
+  ],
+  "local_consensus_weights": [
+    0.5,
+    0.5
+  ],
+  "asof_rule": "TRADEDATE < signal_date",
+  "payload_sha256": "03693535c248cca35976366cd0fc5072ad45779e23d5b7703f3ad34c7e456e8f",
+  "all_training_labels_resolved": true,
+  "later_period_status": "post-diagnostic retrospective exploration"
+}

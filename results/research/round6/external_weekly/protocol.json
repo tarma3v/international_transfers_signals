@@ -1,0 +1,15 @@
+{
+  "candidate": "macro_full_hist_anchor50",
+  "policy": {
+    "history": 20,
+    "strong": 0.9,
+    "late": 0.3,
+    "late_weekday": 4,
+    "weekly_cap": 2
+  },
+  "policy_selected_on": 2024,
+  "next_rate_feature": false,
+  "confirmation": 2025,
+  "audit": 2026,
+  "pristine_holdout_available": false
+}

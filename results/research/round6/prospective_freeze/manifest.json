@@ -1,0 +1,27 @@
+{
+  "freeze_date": "2026-09-05",
+  "historical_data_cutoff": "2026-09-03",
+  "prospective_signal_date_rule": "signal_date > 2026-09-03",
+  "primary": "logit50_extra50",
+  "challenger": "primary75_local_consensus25",
+  "policy": {
+    "target_rate": 0.22,
+    "rolling_window": 20,
+    "cooldown_days": 0
+  },
+  "sha256": {
+    "research/round6_prospective_shadow_protocol.md": "f6f0be722951f72facb18bc69fc9338d80eaa57d14336e9dab5a76eb9b20fb6e",
+    "research/round6_cny_consensus.py": "377f092b5b0a0682064cd61f752891744f4e241b50a1bdf563a7240992e3e02c",
+    "research/round6_cny_explainable.py": "bb59b3f4b10d4fed5cf3b7fc5c03f8515a818bd5a1a751ed937f2c1146d94896",
+    "research/round6_cny_decomposition.py": "bf53fc6559fc022ad32630b36d1be6fdac565e957c4da9467579b4ae831a5b18",
+    "research/round6_cny_local_experts.py": "1ac55fb9bdb2285c5b57188647a6467cf2ea57881414af6f1f985c8cf254d082",
+    "research/round6_moex_features.py": "a10b36dcc110572149c4c2174cf7c42a41e5fd81f89b05357a92bbec0a2fb67a",
+    "research/round6_multiobjective_blend.py": "e92845ec350822258123381859f0d6aa638736eda85b037789ab79da9d9ea7cb",
+    "research/round6_resolved_models.py": "574cd4456c4ee1f9219af21dd007fafcb097632f4f9bf60ce80194ecb726f41b",
+    "research/round5_features.py": "80c75051927689e5738d40400d746d0d92db0b0f432a1cc754b84464773b23fa",
+    "research/round5_adaptation.py": "e8e2ba9802eec1f8a5613ca702a1b807720865cf8e56a0b2b1ce151ea7fdddc4",
+    "data/moex_fx_history_2010_2026.json": "22c62be99cf253676abb699f3f54bc52bcfcdc255d82a192e38cfb23e50a1ffa",
+    "results/research/round6/cny_consensus/outputs.pkl": "19fe36c52981f3135bb59439f0af3b7f0e46b3f062fdeb5163a0d3a26a2f1084",
+    "results/research/round6/cny_local_experts/outputs.pkl": "161a2d692a7eaac0fa40e330adae3e03fc2b4271be5e25e769680ca631c351d3"
+  }
+}

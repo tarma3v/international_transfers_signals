@@ -1,0 +1,18 @@
+{
+  "components": [
+    "stack_resolved_extra",
+    "benefit_ranker_anchor25"
+  ],
+  "operators": [
+    "geometric",
+    "harmonic",
+    "minimum",
+    "geom_stack25",
+    "geom_stack75"
+  ],
+  "labels_used_by_transform": false,
+  "missing_2023_stack_calibration": "strictly expanding 2024 ranks",
+  "policy_selected_on": 2024,
+  "next_rate_feature": false,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

@@ -1,0 +1,34 @@
+{
+  "packet": "AM",
+  "variants": [
+    "all_history",
+    "post2022_weight3",
+    "hard_reset",
+    "history50_reset50"
+  ],
+  "training_start": "2013-04-15",
+  "post2022_weight": 3.0,
+  "fixed_consensus_weights": [
+    0.5,
+    0.5
+  ],
+  "fixed_history_reset_weights": [
+    0.5,
+    0.5
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "payload_sha256": "03693535c248cca35976366cd0fc5072ad45779e23d5b7703f3ad34c7e456e8f",
+  "asof_rule": "TRADEDATE < signal_date",
+  "all_training_labels_resolved": true,
+  "later_period_status": "post-diagnostic retrospective exploration"
+}

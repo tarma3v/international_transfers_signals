@@ -1,0 +1,66 @@
+{
+  "packet": "BS",
+  "variants": [
+    "shadow_raw_lifecycle",
+    "shadow_available_lifecycle"
+  ],
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "periods": {
+    "pre_svo_2017_2021": [
+      2017,
+      2018,
+      2019,
+      2020,
+      2021
+    ],
+    "transition_2022_2023": [
+      2022,
+      2023
+    ],
+    "post_2024_2026": [
+      2024,
+      2025,
+      2026
+    ],
+    "full_2017_2026": [
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ]
+  },
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "availability_gate": "basis_missing -> score -1e9",
+  "asof_rule": "MOEX TRADEDATE < signal date",
+  "payload_sha256": "03693535c248cca35976366cd0fc5072ad45779e23d5b7703f3ad34c7e456e8f",
+  "labels_fitted": false,
+  "next_cbr_rate_used": false,
+  "older_period_status": "frozen transport audit"
+}

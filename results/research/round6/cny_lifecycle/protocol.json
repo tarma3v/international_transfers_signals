@@ -1,0 +1,41 @@
+{
+  "packet": "AU",
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "variants": [
+    "always_expanding",
+    "early_reset_700",
+    "resolved2000_handoff"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "handoff_rule": "use expanding consensus until a scheduled refit has at least 2000 resolved post-2022 target rows; hard reset thereafter",
+  "resolved2000_handoff_date": "2024-01-01",
+  "model_refit": false,
+  "source_output_sha256": {
+    "results/research/round6/cny_pre2022/outputs.pkl": "e5ca0c91309222e5fe4060e4fbc6a3a67d610c1f88d330b6929dabb1da1b6ce6",
+    "results/research/round6/cny_shock_bridge/outputs.pkl": "97252cece6e5c60a1525e39ebfe9b7caba3d71e07889f6b58d7e5c96383b1f7c",
+    "results/research/round6/cny_history_weighting/outputs.pkl": "612a5fe1e2ebdf2a6fe6f961ce96af90ec31d2d8c92f56faf06d8fa9a50b23f6"
+  },
+  "all_years_retained": true,
+  "later_period_status": "retrospective composition of frozen causal scores"
+}

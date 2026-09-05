@@ -1,0 +1,45 @@
+{
+  "packet": "BB",
+  "variants": [
+    "pooled_hit_lcb",
+    "shrunk_hit_lcb",
+    "shrunk_benefit_lcb",
+    "reliability_benefit_equal",
+    "primary75_reliability25"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "rank_window": 250,
+  "rank_minimum": 20,
+  "global_neighbours": 250,
+  "local_neighbours": 80,
+  "currency_mismatch_distance_penalty": 0.05,
+  "beta_prior": [
+    0.5,
+    0.5
+  ],
+  "lower_bound_standard_deviations": 1.0,
+  "local_shrinkage_denominator": 100.0,
+  "blend_weights": {
+    "hit_benefit": [
+      0.5,
+      0.5
+    ],
+    "primary_meta": [
+      0.75,
+      0.25
+    ]
+  },
+  "all_training_labels_resolved": true,
+  "future_outcome_corruption_check": true,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

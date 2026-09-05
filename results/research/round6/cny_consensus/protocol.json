@@ -1,0 +1,25 @@
+{
+  "packet": "AI",
+  "variants": [
+    "logit50_hist50",
+    "logit67_hist33",
+    "logit50_extra50",
+    "logit67_extra33",
+    "logit_hist_extra_equal"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "combination": "fixed causal per-currency score ranks",
+  "weights_fitted": false,
+  "next_rate_feature": false,
+  "later_period_status": "post-diagnostic retrospective exploration"
+}

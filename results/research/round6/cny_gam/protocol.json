@@ -1,0 +1,64 @@
+{
+  "packet": "AZ",
+  "variants": [
+    "market_spline_gam",
+    "all_spline_gam",
+    "local_all_spline_gam",
+    "global75_local_gam25",
+    "primary75_all_gam25",
+    "primary75_local_gam25"
+  ],
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "raw_feature_names": [
+    "moex_cnyrub_tom_open_close",
+    "moex_cnyrub_tom_intraday_range",
+    "moex_cnyrub_tom_close_wap",
+    "moex_cnyrub_tom_overnight_gap",
+    "moex_cnyrub_tom_log_trades",
+    "moex_cnyrub_tom_log_trades_change_1",
+    "moex_cnyrub_tom_log_trades_change_5",
+    "moex_cnyrub_tom_log_trades_change_20",
+    "pct_range_30",
+    "pct_range_90",
+    "pct_range_180",
+    "ret_1",
+    "ret_5",
+    "ret_20",
+    "currency_AMD",
+    "currency_KGS",
+    "currency_KZT",
+    "currency_TJS",
+    "currency_UZS"
+  ],
+  "spline": {
+    "n_knots": 5,
+    "degree": 2,
+    "knots": "quantile",
+    "include_bias": false,
+    "extrapolation": "linear"
+  },
+  "logistic_penalty": {
+    "type": "L2",
+    "C": 0.025
+  },
+  "minimum_global_rows": 700,
+  "minimum_local_rows": 140,
+  "blend_weights": [
+    0.75,
+    0.25
+  ],
+  "payload_sha256": "03693535c248cca35976366cd0fc5072ad45779e23d5b7703f3ad34c7e456e8f",
+  "asof_rule": "TRADEDATE < signal_date",
+  "all_training_labels_resolved": true,
+  "later_period_status": "protocol-controlled retrospective, not pristine"
+}

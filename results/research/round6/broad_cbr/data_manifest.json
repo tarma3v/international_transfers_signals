@@ -1,0 +1,346 @@
+{
+  "absent_from_daily_directory": [
+    "MXN"
+  ],
+  "directory_alternatives": {
+    "AUD": [
+      {
+        "english_name": "Australian Dollar",
+        "id": "R01010",
+        "name": "Австралийский доллар",
+        "parent_code": "R01010"
+      }
+    ],
+    "BRL": [
+      {
+        "english_name": "Brazilian Real",
+        "id": "R01115",
+        "name": "Бразильский реал",
+        "parent_code": "R01115"
+      }
+    ],
+    "BYN": [
+      {
+        "english_name": "Belarusian Ruble",
+        "id": "R01090B",
+        "name": "Белорусский рубль",
+        "parent_code": "R01090"
+      }
+    ],
+    "CAD": [
+      {
+        "english_name": "Canadian Dollar",
+        "id": "R01350",
+        "name": "Канадский доллар",
+        "parent_code": "R01350"
+      }
+    ],
+    "CHF": [
+      {
+        "english_name": "Swiss Franc",
+        "id": "R01775",
+        "name": "Швейцарский франк",
+        "parent_code": "R01775"
+      }
+    ],
+    "CNY": [
+      {
+        "english_name": "Yuan Renminbi",
+        "id": "R01375",
+        "name": "Юань",
+        "parent_code": "R01375"
+      }
+    ],
+    "CZK": [
+      {
+        "english_name": "Czech Koruna",
+        "id": "R01760",
+        "name": "Чешская крона",
+        "parent_code": "R01760"
+      }
+    ],
+    "DKK": [
+      {
+        "english_name": "Danish Krone",
+        "id": "R01215",
+        "name": "Датская крона",
+        "parent_code": "R01215"
+      }
+    ],
+    "EUR": [
+      {
+        "english_name": "Euro",
+        "id": "R01239",
+        "name": "Евро",
+        "parent_code": "R01239"
+      }
+    ],
+    "GBP": [
+      {
+        "english_name": "Pound Sterling",
+        "id": "R01035",
+        "name": "Фунт стерлингов",
+        "parent_code": "R01035"
+      }
+    ],
+    "HKD": [
+      {
+        "english_name": "Hong Kong Dollar",
+        "id": "R01200",
+        "name": "Гонконгский доллар",
+        "parent_code": "R01200"
+      }
+    ],
+    "HUF": [
+      {
+        "english_name": "Forint",
+        "id": "R01135",
+        "name": "Форинт",
+        "parent_code": "R01135"
+      }
+    ],
+    "INR": [
+      {
+        "english_name": "Indian Rupee",
+        "id": "R01270",
+        "name": "Индийская рупия",
+        "parent_code": "R01270"
+      }
+    ],
+    "JPY": [
+      {
+        "english_name": "Yen",
+        "id": "R01820",
+        "name": "Иена",
+        "parent_code": "R01820"
+      }
+    ],
+    "KRW": [
+      {
+        "english_name": "Won",
+        "id": "R01815",
+        "name": "Вона",
+        "parent_code": "R01815"
+      }
+    ],
+    "NOK": [
+      {
+        "english_name": "Norwegian Krone",
+        "id": "R01535",
+        "name": "Норвежская крона",
+        "parent_code": "R01535"
+      }
+    ],
+    "NZD": [
+      {
+        "english_name": "New Zealand Dollar",
+        "id": "R01530",
+        "name": "Новозеландский доллар",
+        "parent_code": "R01530"
+      }
+    ],
+    "PLN": [
+      {
+        "english_name": "Zloty",
+        "id": "R01565",
+        "name": "Злотый",
+        "parent_code": "R01565"
+      }
+    ],
+    "SEK": [
+      {
+        "english_name": "Swedish Krona",
+        "id": "R01770",
+        "name": "Шведская крона",
+        "parent_code": "R01770"
+      }
+    ],
+    "SGD": [
+      {
+        "english_name": "Singapore Dollar",
+        "id": "R01625",
+        "name": "Сингапурский доллар",
+        "parent_code": "R01625"
+      }
+    ],
+    "TRY": [
+      {
+        "english_name": "Turkish Lira",
+        "id": "R01700J",
+        "name": "Турецкая лира",
+        "parent_code": "R01700"
+      }
+    ],
+    "USD": [
+      {
+        "english_name": "US Dollar",
+        "id": "R01235",
+        "name": "Доллар США",
+        "parent_code": "R01235"
+      }
+    ],
+    "ZAR": [
+      {
+        "english_name": "Rand",
+        "id": "R01810",
+        "name": "Рэнд",
+        "parent_code": "R01810"
+      }
+    ]
+  },
+  "directory_sha256": "b6bc755432f5f3cfa8827496263ce6978a0382ae24c7a1b9ff2568406e6d7ec3",
+  "directory_url": "https://www.cbr.ru/scripts/XML_valFull.asp?d=0",
+  "downloaded_at_utc": "2026-09-04T23:37:18.289624+00:00",
+  "payload_path": "data/cbr_broad_reference_2010_2026.json",
+  "payload_sha256": "3a4ca238ad69200ea8de6a25da77c5336d144c69135ef6ee71208e883a8f7ced",
+  "rejected_for_coverage": {
+    "BYN": 0.6106796116504855,
+    "HKD": 0.5652912621359223,
+    "NZD": 0.21844660194174756
+  },
+  "retained": {
+    "AUD": {
+      "coverage_vs_usd": 1.0,
+      "currency_id": "R01010",
+      "first_date": "2010-01-01",
+      "last_date": "2026-09-05",
+      "rows": 4120
+    },
+    "BRL": {
+      "coverage_vs_usd": 0.999757281553398,
+      "currency_id": "R01115",
+      "first_date": "2010-01-12",
+      "last_date": "2026-09-05",
+      "rows": 4119
+    },
+    "CAD": {
+      "coverage_vs_usd": 1.0,
+      "currency_id": "R01350",
+      "first_date": "2010-01-01",
+      "last_date": "2026-09-05",
+      "rows": 4120
+    },
+    "CHF": {
+      "coverage_vs_usd": 1.0,
+      "currency_id": "R01775",
+      "first_date": "2010-01-01",
+      "last_date": "2026-09-05",
+      "rows": 4120
+    },
+    "CNY": {
+      "coverage_vs_usd": 1.0,
+      "currency_id": "R01375",
+      "first_date": "2010-01-01",
+      "last_date": "2026-09-05",
+      "rows": 4120
+    },
+    "CZK": {
+      "coverage_vs_usd": 0.999757281553398,
+      "currency_id": "R01760",
+      "first_date": "2010-01-12",
+      "last_date": "2026-09-05",
+      "rows": 4119
+    },
+    "DKK": {
+      "coverage_vs_usd": 1.0,
+      "currency_id": "R01215",
+      "first_date": "2010-01-01",
+      "last_date": "2026-09-05",
+      "rows": 4120
+    },
+    "EUR": {
+      "coverage_vs_usd": 1.0,
+      "currency_id": "R01239",
+      "first_date": "2010-01-01",
+      "last_date": "2026-09-05",
+      "rows": 4120
+    },
+    "GBP": {
+      "coverage_vs_usd": 1.0,
+      "currency_id": "R01035",
+      "first_date": "2010-01-01",
+      "last_date": "2026-09-05",
+      "rows": 4120
+    },
+    "HUF": {
+      "coverage_vs_usd": 0.999757281553398,
+      "currency_id": "R01135",
+      "first_date": "2010-01-12",
+      "last_date": "2026-09-05",
+      "rows": 4119
+    },
+    "INR": {
+      "coverage_vs_usd": 0.999757281553398,
+      "currency_id": "R01270",
+      "first_date": "2010-01-12",
+      "last_date": "2026-09-05",
+      "rows": 4119
+    },
+    "JPY": {
+      "coverage_vs_usd": 1.0,
+      "currency_id": "R01820",
+      "first_date": "2010-01-01",
+      "last_date": "2026-09-05",
+      "rows": 4120
+    },
+    "KRW": {
+      "coverage_vs_usd": 0.999757281553398,
+      "currency_id": "R01815",
+      "first_date": "2010-01-12",
+      "last_date": "2026-09-05",
+      "rows": 4119
+    },
+    "NOK": {
+      "coverage_vs_usd": 1.0,
+      "currency_id": "R01535",
+      "first_date": "2010-01-01",
+      "last_date": "2026-09-05",
+      "rows": 4120
+    },
+    "PLN": {
+      "coverage_vs_usd": 0.999757281553398,
+      "currency_id": "R01565",
+      "first_date": "2010-01-12",
+      "last_date": "2026-09-05",
+      "rows": 4119
+    },
+    "SEK": {
+      "coverage_vs_usd": 1.0,
+      "currency_id": "R01770",
+      "first_date": "2010-01-01",
+      "last_date": "2026-09-05",
+      "rows": 4120
+    },
+    "SGD": {
+      "coverage_vs_usd": 1.0,
+      "currency_id": "R01625",
+      "first_date": "2010-01-01",
+      "last_date": "2026-09-05",
+      "rows": 4120
+    },
+    "TRY": {
+      "coverage_vs_usd": 1.0,
+      "currency_id": "R01700J",
+      "first_date": "2010-01-01",
+      "last_date": "2026-09-05",
+      "rows": 4120
+    },
+    "USD": {
+      "coverage_vs_usd": 1.0,
+      "currency_id": "R01235",
+      "first_date": "2010-01-01",
+      "last_date": "2026-09-05",
+      "rows": 4120
+    },
+    "ZAR": {
+      "coverage_vs_usd": 0.999757281553398,
+      "currency_id": "R01810",
+      "first_date": "2010-01-12",
+      "last_date": "2026-09-05",
+      "rows": 4119
+    }
+  },
+  "schema": 1,
+  "target_labels_used_for_selection": false,
+  "usd_rows": 4120
+}
