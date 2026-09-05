@@ -821,6 +821,7 @@ protocol-controlled but still retrospective:
 | DE | one-sided alpha-beta target state | selected later min/mean 1.591 / 1.845 | h10/h20 and symmetric benefits improve, but h1/h3/h5 weaken; no overall promotion |
 | DF | nonlinear incumbent/state agreement | selected later min/mean 1.598 / 1.809; stale 1.576 / 1.794 | fresh state adds timing information, but the geometry dilutes future-only precision |
 | DG/DH | lagged MOEX CNYRUBF/USDRUBF perpetual futures | selected later min/mean 1.534 / 1.648; stale 1.064 / 1.123 | strong fresh independent expert; incumbent remains stronger |
+| DI/DJ | incumbent/futures minimum geometry and paired audit | point min/mean 1.659 / 1.834; min-lift gain CI [-0.183, 0.098] | new Pareto point, but superiority is unresolved; incumbent retained |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -873,6 +874,16 @@ lift is 1.653. Across all five horizons its combined minimum/mean is
 1.534/1.648. Delaying the 47 futures fields by 20 rows collapses the same model
 to 1.064/1.123, while the fresh h5 bootstrap lower bound remains 1.414. This is
 strong evidence of fresh information, though still below the incumbent.
+
+Packet DI applies a conservative agreement rule: rank a row highly only when
+both incumbent and fresh futures ExtraTrees do. It raises the point minimum
+over h=1/3/5/10/20 from 1.623 to 1.659 and improves h1/h3, while lowering the
+mean from 1.855 to 1.834. Its h5 annual lift is 1.959/1.846 at rate 1.21/1.34
+and minimum-currency lift 1.795. Packet DJ keeps the same block draws across
+horizons: the paired minimum-lift gain is +0.036 with CI [-0.183, +0.098], so
+the robust-minimum promotion gate fails. In contrast, fresh-versus-stale lift
+differences are positive after Holm at all five horizons. The result is a
+frozen challenger, not a replacement for the CBA geometry incumbent.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:

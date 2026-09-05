@@ -154,7 +154,7 @@ def main() -> None:
     ].iloc[0]
     min_pair = minimax[
         (minimax.hypothesis == "geometry_vs_incumbent")
-        & (minimax.aggregate == "minimum")
+        & (minimax["aggregate"] == "minimum")
     ].iloc[0]
     selected_points = audit[audit.hypothesis == "geometry_vs_incumbent"]
     gates = {
