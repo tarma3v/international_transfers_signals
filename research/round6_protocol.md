@@ -1879,3 +1879,43 @@ requiring positive symmetric and future-only benefit at all horizons. Open
 2025--2026 only for the selected candidate and its matched stale system. This
 is a retrospective causal challenger; no later-period hyperparameter,
 aggregation, cutoff, or weight changes are permitted.
+
+## Packet DS: noon-Moscow spot-FX archive
+
+Frozen after confirming that the official MOEX ISS hourly endpoint exposes
+`CNYRUB_TOM` and `USD000UTSTOM`, before downloading the historical archive or
+reading any target metric. Download all public 60-minute candles from the MOEX
+currency/SELT market from 1 January 2022 through the frozen 3 September 2026
+cutoff. Preserve every requested URL, schema, timestamp, row count and a
+canonical payload digest; reject duplicate/unsorted timestamps and non-positive
+OHLC. Missing public volume/value fields remain explicit and are not imputed as
+observed turnover.
+
+Keep the already frozen operational decision time **12:00 Europe/Moscow**. A
+row on date T may use only candles whose `end` is strictly before T 12:00. Build
+the same price-state block as packet DM except turnover: last price, overnight,
+open-to-cutoff, last-one/two-hour returns, range, realised volatility, candle
+count, slope, range position, basis to the current available CBR fixing, age
+and missing flags. Add CNY/USD cross-basis and return divergences, plus aligned
+spot-minus-perpetual bases and return divergences. Physically corrupting the
+noon candle and every future candle must leave all earlier rows bit-identical.
+
+## Packet DT: quarterly learners on pre-noon spot FX
+
+Frozen with packet DS before any historical target score is computed. Reuse
+packet DN's six current-target fields and five currency one-hots. Fit the same
+fixed logit, HistGB and ExtraTrees regularizations to two views: spot features
+alone and spot plus the already frozen noon perpetual-futures block. Train on
+`fav_h5` from 1 May 2022 with quarterly refits and admit a label only when its
+reach date is strictly before the quarter. For every model fit a matched
+20-target-row control delaying only the new spot block; any perpetual block
+stays aligned.
+
+For each raw learner compare fixed 25% and 50% causal-rank blends with (a) the
+CBA geometry incumbent and (b) packet DO's noon-futures point leader. Screen
+the raw models, both frozen comparators, and all fixed blends on 2024 using the
+maximum worst lift over h=1/3/5/10/20, then mean lift, with positive symmetric
+and future-only benefit at every horizon. Open 2025--2026 once for the selected
+candidate and its exact stale control. This is a retrospective causal
+challenger; do not tune the instruments, cutoff, feature set, model settings or
+weights after the later block is opened.
