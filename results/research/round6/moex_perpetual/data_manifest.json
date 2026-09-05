@@ -1,0 +1,48 @@
+{
+  "file": "data/moex_perpetual_fx_history_2022_2026.json",
+  "payload_sha256": "cf0a058dd5401183fb0a8b0d38ccaed3a8df0b49d4f30a41e848ee86e5e50753",
+  "strict_asof_rule": "TRADEDATE < signal_date",
+  "same_day_futures_values_allowed": false,
+  "instruments": [
+    {
+      "ticker": "CNYRUBF",
+      "rows": 1107,
+      "first": "2022-04-26",
+      "last": "2026-09-03",
+      "pages": 12
+    },
+    {
+      "ticker": "USDRUBF",
+      "rows": 1107,
+      "first": "2022-04-26",
+      "last": "2026-09-03",
+      "pages": 12
+    }
+  ],
+  "source_urls": [
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/CNYRUBF.json?from=2022-01-01&till=2026-09-03&start=0&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/CNYRUBF.json?from=2022-01-01&till=2026-09-03&start=100&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/CNYRUBF.json?from=2022-01-01&till=2026-09-03&start=200&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/CNYRUBF.json?from=2022-01-01&till=2026-09-03&start=300&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/CNYRUBF.json?from=2022-01-01&till=2026-09-03&start=400&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/CNYRUBF.json?from=2022-01-01&till=2026-09-03&start=500&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/CNYRUBF.json?from=2022-01-01&till=2026-09-03&start=600&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/CNYRUBF.json?from=2022-01-01&till=2026-09-03&start=700&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/CNYRUBF.json?from=2022-01-01&till=2026-09-03&start=800&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/CNYRUBF.json?from=2022-01-01&till=2026-09-03&start=900&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/CNYRUBF.json?from=2022-01-01&till=2026-09-03&start=1000&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/CNYRUBF.json?from=2022-01-01&till=2026-09-03&start=1100&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/USDRUBF.json?from=2022-01-01&till=2026-09-03&start=0&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/USDRUBF.json?from=2022-01-01&till=2026-09-03&start=100&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/USDRUBF.json?from=2022-01-01&till=2026-09-03&start=200&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/USDRUBF.json?from=2022-01-01&till=2026-09-03&start=300&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/USDRUBF.json?from=2022-01-01&till=2026-09-03&start=400&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/USDRUBF.json?from=2022-01-01&till=2026-09-03&start=500&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/USDRUBF.json?from=2022-01-01&till=2026-09-03&start=600&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/USDRUBF.json?from=2022-01-01&till=2026-09-03&start=700&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/USDRUBF.json?from=2022-01-01&till=2026-09-03&start=800&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/USDRUBF.json?from=2022-01-01&till=2026-09-03&start=900&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/USDRUBF.json?from=2022-01-01&till=2026-09-03&start=1000&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE",
+    "https://iss.moex.com/iss/history/engines/futures/markets/forts/securities/USDRUBF.json?from=2022-01-01&till=2026-09-03&start=1100&iss.meta=off&iss.only=history%2Chistory.cursor&history.columns=TRADEDATE%2CSECID%2COPEN%2CLOW%2CHIGH%2CCLOSE%2COPENPOSITIONVALUE%2CVALUE%2CVOLUME%2COPENPOSITION%2CSETTLEPRICE%2CSWAPRATE%2CWAPRICE%2CCHANGE%2CQTY%2CNUMTRADES%2CASSETCODE"
+  ]
+}

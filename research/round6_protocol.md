@@ -1648,3 +1648,27 @@ close/VWAP gaps, log volume/trades/open-interest, funding, open-interest changes
 missingness. Add cross-contract close/settlement CNY-via-USD basis, return
 divergence (1/5) and funding spread. Physically changing every futures row on
 or after a cutoff must leave all features on or before that cutoff unchanged.
+
+## Packet DH: quarterly perpetual-futures learners
+
+Frozen after packet-DG data validation and before fitting or reading any
+packet-DH metric. The fixed matrix contains the 47 packet-DG features, six
+target-state fields (`pct_range_30/90/180`, `ret_1/5/20`) and the five currency
+one-hots. Training begins 1 May 2022. At every quarterly refit from 2024 onward,
+admit only h5 labels whose target-reach date is strictly before the refit.
+
+Fit exactly three classifiers: StandardScaler plus L2 logistic regression
+`C=0.025`; HistGradientBoosting with 180 iterations, learning rate 0.03, five
+leaves, minimum leaf 100 and L2 30; ExtraTrees with 400 trees, depth six,
+minimum leaf 45 and max-features 0.65. Seed all learners with 20260905. For each
+learner also fit an otherwise identical control whose 47 futures columns are
+delayed 20 rows within currency while target/currency fields remain aligned.
+
+The aligned 2024 candidate set is the three raw learners, the incumbent, and
+fixed 10% and 25% causal-rank additions of each learner to the incumbent. Select
+by maximum worst official lift over h=1/3/5/10/20, then mean lift, requiring
+positive symmetric and future-only benefit at every horizon. Open 2025--2026
+once for the selected candidate, incumbent and its exactly matched stale
+control. Physical corruption of all outcomes unresolved at a cutoff must leave
+earlier prequential scores identical. No next CBR rate, same-day futures value,
+later-period metric or post-selection weight adjustment is allowed.
