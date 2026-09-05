@@ -211,6 +211,37 @@ then freeze. The dual gate is intended to switch fallback off promptly when
 the high-confidence regime returns instead of waiting for a long cadence
 deficit to decay.
 
+## Packet DK: delayed multi-horizon weighting of the perpetual expert
+
+Frozen after the packet-DJ paired audit established that the lagged MOEX
+perpetual-futures expert contains significant fresh information but that a
+fixed minimum geometry does not significantly beat the incumbent. Keep the
+incumbent, packet-DH `futures_extra`, their stale-20 control and the fixed
+rolling signal policy unchanged. Map incumbent and futures scores to causal
+same-currency trailing percentile ranks over 250 rows with a minimum history
+of 20.
+
+For each signal date, update expert losses only from earlier target outcomes
+whose own horizon reach date is **strictly earlier** than the signal date.
+Each resolved `(row, horizon)` event contributes an equal-weight Brier loss;
+all five official horizons `1/3/5/10/20` participate. Screen exactly twelve
+online mixtures on 2024: global, local-currency and hierarchical loss scopes;
+trailing loss windows 250 and 1,000 resolved events; and exponential-weight
+learning rates 2 and 5. The hierarchical estimate shrinks the local loss mean
+toward the global mean with fixed prior strength 250. A static 50/50 rank
+blend and the unchanged components are references. Apply the 2024-selected
+architecture unchanged to 2025/2026 and to the stale-20 expert.
+
+The selection objective is the maximum worst official case lift across all
+five horizons, followed by mean lift, subject to positive symmetric and
+future-only benefit at every horizon. A physical label-corruption test must
+show that changing every outcome whose horizon reach is after a cutoff cannot
+change any mixture score on or before that cutoff. Report the selected
+incumbent-weight path so regime adaptation remains auditable. Because the
+expert components' later performance was already inspected before this packet,
+the result is protocol-controlled retrospective evidence, not a pristine
+holdout claim.
+
 ## Packet L: delayed-feedback online expert mixture
 
 Frozen after packet K showed that hand-written fallback gates still sacrifice
