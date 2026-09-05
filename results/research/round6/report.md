@@ -718,7 +718,7 @@ but must be frozen and replicated prospectively.
   that earlier OOF predictions remain bit-identical.
 - The lifecycle handoff test verifies that regime scores cannot alter any
   pre-2024 decision.
-- Full suite: **89 tests passed** on 2026-09-05. The suite now also verifies
+- Full suite: **92 tests passed** on 2026-09-05. The suite now also verifies
   the byte hashes of every frozen prospective model input.
 - NBG and NBRB loaders verify aligned RUB/USD/CNY calendars, normalized units
   and physical future-corruption invariance. The new exponential threshold and
@@ -813,6 +813,26 @@ protocol-controlled but still retrospective:
 | CV | pre-2024 calendar prior | later min lift 1.611 | no transferable seasonal boost |
 | CW | weekly confidence policy with cap two | later min/mean 1.553 / 1.684 | cadence and future benefit deteriorated |
 | CX | post-gap regime modifier | later min/mean 1.605 / 1.866; lifecycle min 1.549 | descriptive gap effect did not survive formal transport |
+| CY | seven-bank shadow-RUB consensus | selected later min/mean 1.544 / 1.773 | robust cross-bank dispersion hurts short horizons; no promotion |
+| CZ | causal cross-bank uncertainty/veto | selected later min/mean 1.612 / 1.826 | low-dispersion confirmation nearly preserves h1 but trails overall |
+| DB | quarterly joint target+CBA+cross-bank ML stack | fresh logit screen min 1.378 versus stale20 1.181 | fresh information exists, but all joint learners trail the incumbent |
+
+Packets CY--DB were a direct test of whether the official local-central-bank
+archives could add a broad, explainable second view beyond Armenia. All local
+observations are strictly older than the signal date, domestic units cancel in
+the cross-rates, and physical future-corruption tests pass. The seven-bank
+median/dispersion family improved the 2024 screen but reversed on the sealed
+2025--2026 comparison. A causal low-dispersion confirmation reduced that loss
+but still finished below the incumbent at the aggregate objective.
+
+The joint ML layer was refit quarterly from post-24-February-2022 data and
+admitted a training row only after its h5 label was fully resolved. Its 32
+features combine the primary and geometry ranks, target ranges/returns,
+currency identity, 13 Armenian CBA measurements and six cross-bank summaries.
+Aligned logit and HistGB features beat their 20-row-stale twins on the 2024
+screen, which supports genuine timing information. Nevertheless, the frozen
+five-horizon selector retained the incumbent, so no 2025--2026 result was used
+to retune or promote this family.
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:

@@ -1,3 +1,4 @@
+import csv
 import datetime as dt
 import pickle
 from pathlib import Path
@@ -28,6 +29,10 @@ from research.round6_cny_error_regime import row_scores as regime_row_scores
 from research.round6_cny_trajectory_analogues import _scale as analogue_scale
 from research.round6_cny_waveform_features import (
     causality_check as waveform_causality_check,
+)
+from research.round6_crossbank_consensus import (
+    build_crossbank_features,
+    causality_check as crossbank_causality_check,
 )
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
@@ -126,6 +131,68 @@ def test_new_external_cross_features_ignore_future_values():
     cutoff = days[25]
     assert nbg_causality_check(index, references, local, cutoff=cutoff)
     assert nbrb_causality_check(index, references, local, cutoff=cutoff)
+
+
+def test_crossbank_consensus_cancels_each_sources_domestic_unit():
+    days = np.asarray([
+        dt.date(2025, 1, 1) + dt.timedelta(days=i) for i in range(20)
+    ], dtype=object)
+    base = {
+        "RUB": Series("RUB", days.copy(), .03 + np.arange(20) * 1e-5),
+        "USD": Series("USD", days.copy(), 3.0 + np.arange(20) * 1e-3),
+        "CNY": Series("CNY", days.copy(), .42 + np.arange(20) * 1e-4),
+    }
+    references = {
+        "USD": Series("USD", days.copy(), 90.0 + np.arange(20) * .02),
+        "CNY": Series("CNY", days.copy(), 12.5 + np.arange(20) * .005),
+    }
+    index = [(CORRIDORS[0], i, day) for i, day in enumerate(days[3:18])]
+    sources = {
+        f"source_{number}": {
+            code: Series(code, series.dates.copy(), series.values * scale)
+            for code, series in base.items()
+        }
+        for number, scale in enumerate((1.0, 10.0, 1000.0))
+    }
+    matrix, names, _ = build_crossbank_features(index, references, sources)
+    reference, reference_names, _ = build_crossbank_features(
+        index, references, {f"source_{number}": base for number in range(3)},
+    )
+    assert names == reference_names
+    np.testing.assert_allclose(matrix, reference, rtol=0, atol=1e-3)
+
+
+def test_crossbank_consensus_ignores_future_local_cb_values():
+    days = np.asarray([
+        dt.date(2025, 1, 1) + dt.timedelta(days=i) for i in range(40)
+    ], dtype=object)
+    references = {
+        "USD": Series("USD", days.copy(), 90.0 + np.arange(40) * .02),
+        "CNY": Series("CNY", days.copy(), 12.5 + np.arange(40) * .005),
+    }
+    sources = {}
+    for number, scale in enumerate((1.0, 4.0, 12.0)):
+        sources[f"source_{number}"] = {
+            "RUB": Series("RUB", days.copy(), scale * (.03 + np.arange(40) * 1e-5)),
+            "USD": Series("USD", days.copy(), scale * (3.0 + np.arange(40) * 1e-3)),
+            "CNY": Series("CNY", days.copy(), scale * (.42 + np.arange(40) * 1e-4)),
+        }
+    index = [(CORRIDORS[0], i, day) for i, day in enumerate(days[6:36])]
+    assert crossbank_causality_check(
+        index, references, sources, cutoff=days[25],
+    )
+
+
+def test_joint_external_refits_use_only_resolved_labels():
+    path = Path("results/research/round6/joint_external_stack/training_log.csv")
+    with path.open(newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    assert rows
+    for row in rows:
+        quarter = dt.date.fromisoformat(row["quarter"])
+        last_resolved = dt.date.fromisoformat(row["last_resolved"])
+        assert last_resolved < quarter
+        assert int(row["n_train"]) >= 1000
 
 
 def test_exponential_threshold_cannot_change_past_from_future_scores():
