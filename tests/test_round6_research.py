@@ -82,6 +82,7 @@ from research.round6_fixing_shape_proxies import (
     session_adjustments,
     shape_causality_check,
 )
+from research.round6_fixing_crossrate_projection import transmission_features
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -519,6 +520,28 @@ def test_fixing_shape_corrections_are_invariant_to_absolute_price_level():
         np.testing.assert_allclose(
             original[name], rescaled[name], rtol=0.0, atol=1e-11,
         )
+
+
+def test_crossrate_transmission_cannot_propagate_future_levels_backward():
+    dates = np.asarray([
+        dt.date(2025, 1, 1) + dt.timedelta(days=i) for i in range(40)
+    ], dtype=object)
+    target = Series("AMD", dates, np.exp(np.arange(40) * .012))
+    cny = Series("CNY", dates, np.exp(np.arange(40) * .010))
+    index = [("AMD", i, day) for i, day in enumerate(dates)]
+    original = transmission_features(index, {"AMD": target}, cny)
+
+    changed_target = target.values.copy()
+    changed_cny = cny.values.copy()
+    changed_target[30:] *= np.exp(np.arange(10) * .2)
+    changed_cny[30:] *= np.exp(-np.arange(10) * .1)
+    changed = transmission_features(
+        index,
+        {"AMD": Series("AMD", dates, changed_target)},
+        Series("CNY", dates, changed_cny),
+    )
+    for name in original:
+        np.testing.assert_array_equal(original[name][:30], changed[name][:30])
 
 
 def test_perpetual_online_weights_ignore_unresolved_future_outcomes():

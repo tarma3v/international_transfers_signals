@@ -2320,3 +2320,35 @@ cutoff session and all future candles must leave every earlier correction
 bit-identical, and multiplying all closes in one session by a common positive
 constant must leave every correction unchanged. Do not add another quantile,
 penalty, time block or blend weight after viewing the later result.
+
+## Packet EO: causal target-to-CNY transmission projection
+
+Frozen after packet EN and before evaluating any packet-EO target metric.
+Keep the packet-EB frozen 15:30 session-mean CNY basis and packet-ED noon
+fallback. For every target currency, align its normalized current CBR level
+with the latest CBR CNY level dated no later than that target row. Using only
+returns ending strictly before the row, estimate rolling target-on-CNY betas
+over the last 60 and 120 paired returns, requiring at least 20 and clipping the
+beta to [0,2]. Separately compute the current log target/CNY cross-rate and its
+positive mean-reversion displacement from the strictly preceding 60- and
+120-row medians in basis points.
+
+Define exactly six currency-specific raw scores: `beta_60 * fixing_basis`,
+`beta_120 * fixing_basis`, both cross-rate reversion displacements alone, and
+two projected moves equal to `beta * fixing_basis + 0.25 * reversion` at the
+matching lookback. Map them to same-currency causal percentiles with the
+unchanged 250-row window/minimum 20 and use the frozen noon rank when the
+current CNY session is unavailable. Also compare fixed 75/25 causal-rank
+mixtures of the availability router with the 60-row cross-reversion route and
+the 60-row projected-move route. No future target rate, `fav_h5`, benefit or
+post-hoc regime label may enter the transmission estimates.
+
+Screen once on 2024 by maximum worst official lift over h=1/3/5/10/20 and then
+mean lift, requiring h5 frequency in [1,2] and positive symmetric and
+future-only benefit at every horizon. Open 2025--2026 once for the selected
+candidate and unchanged router. The matched freshness control delays the
+selected currency-specific raw score by 20 target rows while retaining current
+market availability and noon fallback. Physically changing any target or CNY
+level after a cutoff must leave every earlier beta and reversion feature
+bit-identical. Do not add another window, beta bound, reversion coefficient or
+blend weight after viewing later results.
