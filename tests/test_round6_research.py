@@ -70,6 +70,7 @@ from research.round6_fixing_proxies import (
     proxy_scores,
 )
 from research.round6_fixing_availability_router import availability_route
+from research.round6_fixing_history import FIRST_AVAILABLE, YEARS as FIXING_YEARS
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -412,6 +413,22 @@ def test_fixing_availability_router_falls_back_without_dropping_rows():
             outputs["availability_route"][year]["test_idx"],
             outputs["noon_consensus"][year]["test_idx"],
         )
+
+
+def test_fixing_lifecycle_starts_at_archive_boundary_and_keeps_all_years():
+    path = Path("results/research/round6/fixing_history/outputs.pkl")
+    with path.open("rb") as handle:
+        output = pickle.load(handle)["fixing_basis"]
+    assert tuple(sorted(output)) == FIXING_YEARS
+    _X, _names, index, _series, *_rest = load_round5_features()
+    dates = np.asarray([row[2] for row in index], dtype=object)
+    first_rows = np.asarray(output[2022]["test_idx"], dtype=int)
+    assert len(first_rows)
+    assert min(dates[first_rows]) >= FIRST_AVAILABLE
+    for year in FIXING_YEARS:
+        rows = np.asarray(output[year]["test_idx"], dtype=int)
+        assert len(rows)
+        assert all(dates[row].year == year for row in rows)
 
 
 def test_shared_noon_horizon_refits_use_only_resolved_labels():

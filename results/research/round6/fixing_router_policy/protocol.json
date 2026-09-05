@@ -1,0 +1,50 @@
+{
+  "packet": "EF",
+  "source_candidate": "packet-ED availability_route",
+  "selection_period": 2024,
+  "selected_policy": {
+    "kind": "rolling",
+    "rate": 0.2,
+    "memory": 20
+  },
+  "default_policy": {
+    "kind": "rolling",
+    "rate": 0.22,
+    "memory": 20
+  },
+  "rates": [
+    0.2,
+    0.22,
+    0.24,
+    0.26
+  ],
+  "rolling_memories": [
+    15,
+    20,
+    30,
+    40,
+    60
+  ],
+  "exponential_half_lives": [
+    10,
+    20,
+    40
+  ],
+  "candidate_count": 32,
+  "selection_objective": "maximum worst official lift, then mean lift, then quarter cadence",
+  "selection_constraints": "h5 rate 1-2, minimum currency and quarter rate >=1, all benefits positive",
+  "threshold_history": "strictly earlier same-currency scores",
+  "physical_future_score_corruption_check": true,
+  "next_cbr_rate_used": false,
+  "combined_h5_minimum_currency_lift": 1.8294633394353983,
+  "point_gates": {
+    "all_five_lifts_at_least_1p30": true,
+    "annual_rate_between_1_and_2": true,
+    "minimum_currency_lift_at_least_1p30": true,
+    "minimum_quarter_rate_at_least_1": false,
+    "all_symmetric_benefits_positive": true,
+    "all_future_benefits_positive": true,
+    "point_operational_gates_pass": false
+  },
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}
