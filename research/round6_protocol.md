@@ -1919,3 +1919,21 @@ and future-only benefit at every horizon. Open 2025--2026 once for the selected
 candidate and its exact stale control. This is a retrospective causal
 challenger; do not tune the instruments, cutoff, feature set, model settings or
 weights after the later block is opened.
+
+## Packet DU: signed partial-fixing spot nowcast
+
+Frozen after packet DT retained the noon-futures consensus and before scoring
+any hand-built spot formula. Use only the two packet-DS noon bases to the
+current available CBR references. The economic sign is fixed in advance:
+positive spot-minus-current-CBR basis means ruble weakness in the observable
+partial session and therefore a potentially favourable current official rate.
+Test exactly six label-free scores: USD basis, CNY basis, their arithmetic
+mean, minimum, maximum, and lower quartile. No sign search is permitted.
+
+For every raw score compare 10%, 25%, and 40% causal-rank additions to both the
+CBA geometry incumbent and packet DO's noon-futures consensus. Construct an
+exact control by delaying only the new spot score 20 target rows within each
+currency. Screen on 2024 with the unchanged five-horizon/positive-benefit
+objective and open 2025--2026 once for the selected formula and matched stale
+control. This is a retrospective mechanistic challenger; do not tune signs,
+weights, rank memory or formula after later results are visible.
