@@ -7,6 +7,10 @@
 Последнее обновление: 05.09.2026. Для внутренней оптимизации сохраняется
 `h=5`, официальный scorecard теперь считается сразу на `h=1/3/5/10/20`.
 
+Самый свежий подробный отчёт с результатами до packet EO, приоритетами по ТЗ,
+сравнением всех семейств моделей и разбором крупнейших бустов:
+[PDF](output/pdf/ivan_detailed_experiment_report.pdf).
+
 Полная связная версия с постановкой задачи, provenance по веткам, графиками,
 статистическим аудитом и рекомендацией для пилота: [итоговый PDF](output/pdf/international_transfers_full_research_report.pdf).
 Редактируемый источник: [results/research/full_report/report-source.md](results/research/full_report/report-source.md).
