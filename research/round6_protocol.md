@@ -1536,3 +1536,29 @@ The register deliberately keeps attractive failures. In particular, neither
 the 10% Belarus point, the post-gap subgroup, nor an unselected joint learner
 may be promoted after looking at 2025--2026; they are hypotheses for future
 shadow data only.
+
+## Packet DC: within-source cross-bank revision dynamics
+
+Frozen after packet DB and before reading any packet-DC result. Packet CY may
+confound a real common move with a change in which local bank is available on
+a date. Build a paired panel for each of the same seven official banks first,
+then compute each source's own change in implied USD/RUB and CNY/RUB basis over
+1, 5 and 20 preceding signal dates. Only after differencing within source may
+the packet aggregate across banks.
+
+The fixed raw family contains, for each lag, the positive and negative median
+consensus revision and the fractions of banks whose USD and CNY revisions are
+jointly positive or jointly negative. Add exactly four multi-scale scores:
+positive/negative short-versus-medium acceleration, negative revision
+dispersion, and a level-reversion score equal to the negative product of the
+cross-bank median level and one-date median revision. Require at least three
+paired sources; otherwise emit the neutral score zero. Compare the 2024-selected
+raw score with the incumbent at fixed weights 5%, 10%, 20% and 30%.
+
+Select first by maximum worst case lift over h=1/3/5/10/20, then mean lift,
+requiring positive symmetric and future-only benefit at every horizon. Open
+2025--2026 only once after that selection. Every local observation remains
+strictly earlier than the signal date, the CBR reference is no later than the
+signal date, and a physical future-corruption check is mandatory. No next CBR
+course, target outcome, later membership change, or packet-CY/DB later metric
+may enter a packet-DC feature or selection.
