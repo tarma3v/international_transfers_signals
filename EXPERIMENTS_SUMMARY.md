@@ -22,6 +22,11 @@
   Его minimum-consensus с лидером поднимает point minimum до **1.659**, но
   paired CI прироста **[-0.183; +0.098]** пересекает ноль, поэтому incumbent
   пока не заменён.
+- Delayed multi-horizon weighting причинно меняет долю incumbent по уже
+  завершившимся исходам. Лучший online-вариант даёт point minimum **1.643**
+  против **1.623**, но paired CI прироста **[-0.144; +0.081]** включает ноль.
+  Fresh-versus-stale minimum gain **+0.262**, CI **[+0.111; +0.593]**:
+  информация MOEX настоящая, но её добавочный вес пока оценён неточно.
 - Официальная выгода считается относительно среднего в симметричном окне
   `-h..+h`; её значения у лидера **+18.0 / +31.3 / +38.1 / +47.1 / +70.3
   б.п.** Future-only выгода остаётся дополнительной строгой диагностикой.
@@ -554,6 +559,7 @@ cross-era diagnostic нашёл лучший минимальный lift тол�
 | Nonlinear incumbent/state agreement | fresh min 1.598 против stale 1.576 | timing настоящий, но единый trigger всё равно хуже лидера 1.623 |
 | MOEX perpetual CNYRUBF/USDRUBF ExtraTrees | five-horizon min 1.534; h5 1.770/1.645 по годам | новый свежий эксперт: stale20 падает до min 1.064, но incumbent сильнее |
 | Incumbent/futures minimum geometry | point min 1.659 против 1.623 | paired min-gain CI пересекает ноль; сохранить challenger, не продвигать |
+| Delayed all-horizon MOEX weighting | point min 1.643 против 1.623 | fresh beats stale значимо, но gain к incumbent CI [-0.144; +0.081]; не продвигать |
 
 Отрицательные результаты сохранены намеренно: они не дают снова повторять те же
 дорогие эксперименты и показывают, где именно нарушается переносимость.

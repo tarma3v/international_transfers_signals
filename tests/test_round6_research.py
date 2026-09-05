@@ -49,6 +49,7 @@ from research.round6_moex_perpetual_features import (
     causality_check as perpetual_futures_causality_check,
     load_perpetual_history,
 )
+from research.round6_perpetual_online_weighting import OnlineSpec, online_scores
 from research.round6_belarus_nbrb_features import (
     causality_check as nbrb_causality_check,
     load_nbrb,
@@ -310,6 +311,45 @@ def test_perpetual_futures_refits_use_only_resolved_labels():
             row["quarter"]
         )
         assert int(row["n_train"]) >= 2000
+
+
+def test_perpetual_online_weights_ignore_unresolved_future_outcomes():
+    days = np.asarray([
+        dt.date(2025, 1, 1) + dt.timedelta(days=i) for i in range(40)
+    ], dtype=object)
+    dates = np.tile(days, 2)
+    currencies = np.repeat(CORRIDORS[:2], len(days))
+    phase = np.tile(np.arange(len(days)), 2)
+    incumbent = .5 + .35 * np.sin(phase / 5.0)
+    futures = .5 + .35 * np.cos(phase / 6.0)
+    labels = np.column_stack([
+        ((phase + column) % (column + 2) == 0).astype(float)
+        for column in range(5)
+    ])
+    reaches = np.empty(labels.shape, dtype=object)
+    for column, horizon in enumerate((1, 3, 5, 10, 20)):
+        reaches[:, column] = np.asarray([
+            day + dt.timedelta(days=horizon) for day in dates
+        ], dtype=object)
+    spec = OnlineSpec("global", 20, 2.0)
+    score, weight = online_scores(
+        spec, incumbent, futures, labels, reaches, dates, currencies,
+    )
+    cutoff = days[25]
+    changed = labels.copy()
+    for column in range(changed.shape[1]):
+        future = np.asarray([value > cutoff for value in reaches[:, column]])
+        changed[future, column] = 1.0 - changed[future, column]
+    altered_score, altered_weight = online_scores(
+        spec, incumbent, futures, changed, reaches, dates, currencies,
+    )
+    np.testing.assert_array_equal(
+        score[dates <= cutoff], altered_score[dates <= cutoff],
+    )
+    np.testing.assert_array_equal(
+        weight[dates <= cutoff], altered_weight[dates <= cutoff],
+    )
+    assert np.any(score[dates > cutoff] != altered_score[dates > cutoff])
 
 
 def test_exponential_threshold_cannot_change_past_from_future_scores():
