@@ -331,6 +331,22 @@ def test_perpetual_hourly_archive_and_noon_cutoff_are_causal():
     assert hourly_futures_causality_check(index, history, references)
 
 
+def test_perpetual_hourly_refits_use_only_resolved_labels():
+    path = Path(
+        "results/research/round6/moex_perpetual_hourly_models/training_log.csv"
+    )
+    with path.open(newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    assert rows
+    assert {row["view"] for row in rows} == {"noon", "full"}
+    assert {row["stale"] for row in rows} == {"True", "False"}
+    for row in rows:
+        assert dt.date.fromisoformat(row["last_resolved"]) < dt.date.fromisoformat(
+            row["quarter"]
+        )
+        assert int(row["n_train"]) >= 2000
+
+
 def test_perpetual_online_weights_ignore_unresolved_future_outcomes():
     days = np.asarray([
         dt.date(2025, 1, 1) + dt.timedelta(days=i) for i in range(40)

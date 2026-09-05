@@ -718,7 +718,7 @@ but must be frozen and replicated prospectively.
   that earlier OOF predictions remain bit-identical.
 - The lifecycle handoff test verifies that regime scores cannot alter any
   pre-2024 decision.
-- Full suite: **99 tests passed** on 2026-09-05. The suite now also verifies
+- Full suite: **100 tests passed** on 2026-09-05. The suite now also verifies
   the byte hashes of every frozen prospective model input.
 - NBG and NBRB loaders verify aligned RUB/USD/CNY calendars, normalized units
   and physical future-corruption invariance. The new exponential threshold and
@@ -823,6 +823,8 @@ protocol-controlled but still retrospective:
 | DG/DH | lagged MOEX CNYRUBF/USDRUBF perpetual futures | selected later min/mean 1.534 / 1.648; stale 1.064 / 1.123 | strong fresh independent expert; incumbent remains stronger |
 | DI/DJ | incumbent/futures minimum geometry and paired audit | point min/mean 1.659 / 1.834; min-lift gain CI [-0.183, 0.098] | new Pareto point, but superiority is unresolved; incumbent retained |
 | DK/DL | delayed five-horizon online weighting of futures expert | point min/mean 1.643 / 1.845; gain CI [-0.144, 0.081] | causal regime adaptation, but no incumbent promotion |
+| DM/DN | official hourly perpetual futures, frozen 12:00 MSK cutoff | noon HistGB later min/mean 1.636 / 1.793 | strong fresh short-horizon state; stale20 min 0.776 |
+| DO/DP | label-free incumbent/noon rank consensus and paired audit | point min/mean **1.714 / 1.892**; gain CI [-0.137, 0.202] | new point leader, statistical promotion unresolved |
 
 Packets CY--DB were a direct test of whether the official local-central-bank
 archives could add a broad, explainable second view beyond Armenia. All local
@@ -895,6 +897,23 @@ varies causally from about 0.57 in 2024Q1 to 0.39 in 2026Q1. Packet DL finds a
 point minimum gain of +0.020 but paired CI [-0.144, +0.081], so it is not a
 replacement. Its fresh-versus-stale minimum gain is +0.262 with CI
 [+0.111, +0.593], and fresh lift beats stale after Holm at all five horizons.
+
+Packets DM/DN implement the timing requirement from the 05.09 case-owner Q&A.
+The frozen public archive contains 16,951 hourly CNYRUBF and 16,953 USDRUBF
+candles. A row at date T sees only candles ending before T 12:00 MSK; physical
+corruption of the noon candle and all future candles leaves earlier features
+unchanged. The 2024-selected `noon_hist` reaches h5 lift 1.830/1.942 at rates
+1.30/1.34 in 2025/2026, while its stale20 twin falls below lift one combined.
+
+Packet DO averages the causal percentile ranks of that noon score and the
+incumbent. Although a three-view family including the previous-session futures
+expert was screened, 2024 selected the simpler two-view arithmetic mean. On
+2025--2026 its official lifts are 1.714/1.954/1.961/2.010/1.819, so its minimum
+and mean are 1.714/1.892. Annual h5 lift is 2.062/1.873 at rate 1.25/1.47; all
+quarters exceed rate 1.09 and combined minimum-currency h5 lift is 1.748.
+Packet DP gives paired minimum-lift gain +0.091 with CI [-0.137, +0.202], so
+the new point leader remains a challenger. Its matched double-stale minimum is
+1.331 and fresh-versus-stale mean-lift gain is +0.430, CI [+0.209, +0.595].
 
 The new classification challenger is
 `primary75_shared_extra_geomean` under the unchanged 22%/rolling-60 policy:
