@@ -1986,3 +1986,40 @@ spot rank with packet DU's stale-20 rank. Select on 2024 by the unchanged
 maximum-worst-lift/mean-lift objective with positive benefits at all horizons,
 then open 2025--2026 once. This is retrospective causal research; no new
 formula, rank window or continuous weight search may follow the later result.
+
+## Packet DY: methodology-aligned 15:30 spot archive
+
+Frozen after checking the current Bank of Russia methodology and before
+downloading or scoring this packet. The published methodology defines the
+CNY/RUB TOM transaction window as 10:00 <= t < 15:30 Moscow; the Bank states
+that the new official rates are usually published by 18:00 and exact
+publication time is not regulated. Define a distinct pre-publication product
+variant at **15:30 Europe/Moscow** and never load the next official fixing.
+
+Download official MOEX ISS 10-minute candles for `CNYRUB_TOM` and
+`USD000UTSTOM` from 1 January 2022 through 3 September 2026. Preserve URLs,
+schema, timestamps, row counts and canonical digest; reject invalid or
+duplicate OHLC rows and retain missing volume/value as missing. For date T,
+admit only candles ending strictly before T 15:30. Build per instrument last,
+simple completed-candle mean, open-to-cutoff, last 10/30/60-minute returns,
+range, realised volatility, slope, range position, candle count, age/missing,
+and last/mean basis to the current CBR reference, plus cross-instrument bases
+and return divergences. Corrupting the 15:30 candle and future must not change
+any admissible row.
+
+## Packet DZ: signed 15:30 partial-fixing nowcast
+
+Frozen with packet DY before any target metric. The sign is fixed positive:
+a higher observable spot level relative to the current official reference
+means the current official target day may be cheaper than its future. Test
+exactly eight label-free scores: CNY last basis, CNY session-mean basis, USD
+last basis, USD session-mean basis, arithmetic mean of the two last bases,
+arithmetic mean of the two session-mean bases, maximum of the two last bases,
+and minimum of the two last bases. No sign or cutoff search is allowed.
+
+For each raw score compare fixed 10%, 25%, and 40% causal-rank additions to
+packet DO's noon consensus. Delay only the new 15:30 score by 20 target rows
+for matched controls. Select on 2024 by maximum worst official lift, then mean
+lift, with all benefits positive; open 2025--2026 once for the selected score
+and stale control. Treat this as a separate timed product and retrospective
+causal challenger, not as a replacement justified by the same viewed years.

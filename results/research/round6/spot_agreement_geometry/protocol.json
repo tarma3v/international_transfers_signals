@@ -1,0 +1,33 @@
+{
+  "packet": "DX",
+  "fixed_policy": {
+    "policy_type": "rolling",
+    "rate": 0.22,
+    "rolling": 20,
+    "cooldown": 0,
+    "history": 0,
+    "strong": 0.0,
+    "late": 0.0,
+    "late_weekday": 0,
+    "weekly_cap": 0
+  },
+  "experts": [
+    "packet-DO noon consensus",
+    "packet-DU signed spot"
+  ],
+  "rank_window": 250,
+  "rank_minimum": 20,
+  "formulas": [
+    "minimum",
+    "geometric",
+    "harmonic",
+    "arithmetic",
+    "min75_max25"
+  ],
+  "formula_labels_used": false,
+  "selection_period": 2024,
+  "selected": "signed_spot",
+  "matched_control": "signed spot delayed 20 target rows only",
+  "next_cbr_rate_used": false,
+  "later_period_status": "protocol-controlled retrospective opened after 2024 selection"
+}
