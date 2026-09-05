@@ -1,0 +1,10 @@
+{
+  "selected": "cny_hist50_urgent_cap2",
+  "selected_simple": "cny_cbr_w25_short_cap2",
+  "selection_year": 2023,
+  "allh_mature_before": "2024-01-01",
+  "joint_early_pass_count": 1,
+  "selected_joint_early_pass": true,
+  "selected_before_later_scorecard": true,
+  "conditional_availability": "AP2-D20 unchanged; not timestamp certified"
+}

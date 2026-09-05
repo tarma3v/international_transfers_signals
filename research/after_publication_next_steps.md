@@ -1,12 +1,86 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP2 and AP2-D20 complete. The user made after-publication research the
+Updated 2026-09-06, AP3 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
 
-## Current result: AP2-D20, publication-reference, actual new experiments
+## Current result: AP3 joint tradeoff, PROGRESS not goal completion
+
+Previous goal turn completed AP2-D20 and pushed0fc3d1a. This turn actually fit
+AP3: six normalized local/global/residual scores, five future-mean models,
+raw/rescaled controls, three causal controllers, three rank hybrids, six utility
+gates.57 policies. Same5755events,133features,AP2-D20 source hashes/time/target.
+Protocol after_publication_ap3_registered.md was frozen before packet evaluation.
+
+The2023 mature-label selector chose cny_hist50_urgent_cap2, the only candidate
+passing the early joint gates. No later winner replacement. Selected simple is
+cny_cbr_w25_short_cap2. Latest-published reference,18:30MSK,20min market delay;
+still CALENDAR-ASSUMED receipt, notcertified timestamps orfreshholdout.
+
+Selected adjusted h1/3/5/10/20 =1.503262/1.547591/1.630058/1.534857/1.546588.
+Later95%CI lift = [1.418,1.593]/[1.420,1.695]/[1.477,1.799]/[1.393,1.696]/[1.396,1.712].
+Symmetric benefitbp =19.6775/30.0769/33.3936/37.6495/46.8714;
+95%CI =[15.81,24.07]/[23.38,38.06]/[25.25,42.48]/[24.86,52.20]/[20.73,74.64].
+All pooled lowerbounds meet1.3/0, but NOT multiplicity-adjusted certification.
+h5 dates2024-01-09..2026-08-25,908/3260,hit.482379,frequency1.356670.
+Currency h5 rates1.337..1.375; max2/week, maxgap15days,noemptyfullmonths.
+9-12% of weeks are empty: notguaranteed1-2 EVERYweek.
+
+Mechanism: CNY and AP2marketHistGB each mapped to strictly prior63 midrankCDF,
+equal50/50blend, mixture ranked again against its prior63scores.40warmup.
+Sequential urgency threshold max(.45,.80-.04*calendar_days_since_last_sent),
+minimum2days gap,max2/ISOweek. No futureweek top-k. Initial age7. Neutral
+midrank may pass relaxed threshold; no unconditional quota, no qualityguarantee.
+
+VersusAP2mix1.6536 h5lift deltaCI[-.223,.193]: no superiority. Symmetric h5gain
++27.265bp pairedCI[14.973,39.117], maxgap34->15. Forward-only h5 declines
+71.204->54.907bp, paired deltaCI[-31.490,-.635]; h20forward51.695CI[-13.977,109.438].
+Do NOT call this universal predictive improvement. Symmetric utility improved
+partly by choosing different past-window geometries; future-only matters too.
+
+Year h5lift1.5454/1.9143/1.4882; pooledcurrency range1.5613..1.7217.
+Narrow UZS2026 has h3/h10/h20 =1.2884/1.2279/1.2137,45-49signals. Cross-slices
+selected_year_currency.csv are descriptive, not next-round selection holdouts.
+
+Negative results: rawlocalRidgeh5=1.4731; normalized1.3829; normalizedlocal+
+globalOOSresidual50%=1.2810. Gaps203/231/339days. Rescaling predictions alone
+also fails tosolve gaps. Full normalizedresidual1.2359meanlift,15emptymonths.
+Normalize-with-scale-as-feature paper evidence saved after_publication_ap3_literature.md.
+Utility gates predict futuremean only, reconstruct knownpast+predictedfuture.
+ExtraTrees gate_all h5=1.8329,sym69.8748bp butrate.64845,gap94,6emptymonths;
+CNYgate_all1.7448,rate.69776. Not selected, too sparse. Softutility worth testing.
+
+142 tests passed,7new AP3,17quarterorigins/maturity/OOSlogs verified.
+Results results/research/after_publication/ap3 preserve all predictions/signals,
+selection,early300 andlater1000paired20datebootstrap, benefitdiffs/cross-slices.
+PDF output/pdf/ivan_after_publication_ap3.pdf; manuscript after_publication_ap3_report.md.
+AP2audit generalized output/keys/pairs only; old numerical mechanics unchanged.
+
+## NEXT bounded stage AP4: better lift without losing utility/cadence
+
+1. Retain AP3 selected policy as fixed control. Predeclare diverse new candidates
+   and early-only selection before running later scores. Never silently promote
+   AP2ExtraTrees or hardutilitygate merely for higher opened-period lift.
+2. Test CNY/HistGB/ExtraTree rank-blend weights and SOFT predicted utility rather
+   than hardpositive gates. Compare knownpast-only utility versus fullforecast
+   to identify whether gains come from actual future prediction or knowngeometry.
+   Keep sequentialmax2controller; allh symbenefit andfuture-only diagnostics.
+3. Consider genuinely delayed expert weighting/calibration, updates only when
+   h20 resolves before currenttime plus embargo. Record each weight snapshot.
+   No OnlineHedge updates on future labels or retrospective weekly top-k.
+4. Try a distinct first-passage/survival or price-change-distribution target,
+   not just tune tree depth. Protect against double-counting known firststep.
+5. Assess year×currency/quarter and bootstrapblock sensitivity. UZS2026 and
+   forwardh20 are weak descriptive slices, notfresh validation sets. Preserve
+   all negatives. Actualreceipt/prospective checks remain future limitations;
+   do not stall all actual model experiments waiting for new months.
+
+Target active; hourlyautomation deleted. Continue untiluserstops. Scopedchecked
+pushes authorized onlyivan-experiments. No bankactions ormain/forcepush.
+
+## Historical AP2-D20 result, preserved below
 
 Previous goal turn was PROGRESS: AP1/QA committed and pushed as1aeab71.
 This goal turn completed55 policies with two full model/feature/policy replays.
@@ -52,7 +126,7 @@ results/research/after_publication/ap2 and ap2_delay20 retain predictions,
 selections,traininglogs,coverage,pairedboot,benefit andclustering. Four-page PDF
 output/pdf/ivan_after_publication_ap2.pdf. Main PDF emphasizes delayed scenario.
 
-## NEXT bounded stage AP3: diagnose and improve joint criteria
+## Completed AP3 starting plan (results and NEXT AP4 above)
 
 1. Read AP2-D20 saved diagnostic_breakdown.csv and clustering.csv. Investigate
    long no-signal runs: how raw regression scale, volatility and quarterly

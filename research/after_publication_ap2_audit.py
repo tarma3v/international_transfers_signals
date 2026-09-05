@@ -7,14 +7,14 @@ from research.after_publication_ap1 import HORIZONS, SEED, paired_bootstrap, sco
 from research.after_publication_ap2 import OUT, KINDS
 
 
-def main(output=OUT):
+def main(output=OUT,diagnostic_keys=None,ablation_pairs=None):
     OUT = output
     panel = pd.read_csv(OUT/'announcement_panel.csv')
     panel['date'] = pd.to_datetime(panel.date)
     selection = json.loads((OUT/'selection.json').read_text())
-    keys = list(dict.fromkeys([selection['selected'],selection['selected_simple'],
-                             'change_z_r25','cny_last_r25','stale20_cny_r35',
-                             *[kind+'_r25' for kind in KINDS]]))
+    if diagnostic_keys is None:
+        diagnostic_keys=['change_z_r25','cny_last_r25','stale20_cny_r35',*[kind+'_r25' for kind in KINDS]]
+    keys = list(dict.fromkeys([selection['selected'],selection['selected_simple'],*diagnostic_keys]))
     with np.load(OUT/'outputs.npz') as saved:
         scope=saved['later']; idx=np.where(scope)[0]
         _,date_id=np.unique(panel.date.to_numpy()[idx],return_inverse=True)
@@ -59,8 +59,10 @@ def main(output=OUT):
         signals={k.removeprefix('signal__'):saved[k] for k in saved.files if k.startswith('signal__')}
         outcomes={k:saved[k] for k in saved.files if k.startswith(('y','sym','forward','floor'))}
         ablations=[]
-        for base,candidates in [('cbr_hist_r25',['market_hist_r25']),
-                                ('local_ridge_r25',['residual_w25_r25','residual_w50_r25','residual_w100_r25'])]:
+        if ablation_pairs is None:
+            ablation_pairs=[('cbr_hist_r25',['market_hist_r25']),
+                           ('local_ridge_r25',['residual_w25_r25','residual_w50_r25','residual_w100_r25'])]
+        for base,candidates in ablation_pairs:
             b=paired_bootstrap(pp,outcomes,signals,scope,saved['groups'],candidates,base)
             ablations.append(b)
         pd.concat(ablations).to_csv(OUT/'paired_model_ablations.csv',index=False)
