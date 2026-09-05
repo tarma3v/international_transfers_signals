@@ -1690,3 +1690,23 @@ every formula construct a matched control using the already fitted stale20
 futures expert while leaving the incumbent aligned. Open 2025--2026 once for
 incumbent, the selected geometry and its exact stale control. Do not tune the
 rank memory, formula family, gates or weights after any later result is read.
+
+## Packet DJ: paired multi-horizon audit of futures agreement
+
+Frozen after all packet-DI point estimates were written and before paired
+inference. On identical 2025--2026 rows compare the selected minimum geometry
+against incumbent and against its matched stale20 geometry at each of
+h=1/3/5/10/20. Use the same four-week moving-block draws across all horizons
+so every draw also yields a paired difference in the minimum and mean lift over
+the five horizons. Keep all currencies and corridor-year base rates inside
+each sampled week.
+
+Report paired lift, symmetric-benefit and future-benefit differences with 95%
+intervals and one-sided p-values. Holm-adjust each metric family across the ten
+predeclared horizon comparisons (five geometry-versus-incumbent and five
+fresh-versus-stale). A robust-minimum promotion requires: selected minimum
+lift above incumbent in point estimate, paired minimum-lift lower bound above
+zero, both annual h5 lifts at least 1.30, both annual rates 1--2, minimum
+currency h5 lift at least 1.30, and all five selected point benefits positive.
+Freshness is a separate claim and requires its matched paired lift lower bound
+above zero after Holm. Do not alter packet-DI after this audit.
