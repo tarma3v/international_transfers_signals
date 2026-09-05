@@ -1,0 +1,7 @@
+{
+  "first": "2025-01-10",
+  "last": "2026-08-26",
+  "n_rows": 2020,
+  "bootstrap": "4000 paired moving 4-week blocks, same dates and currencies",
+  "confidence_status": "conditional on fixed candidates; does not erase research selection bias"
+}

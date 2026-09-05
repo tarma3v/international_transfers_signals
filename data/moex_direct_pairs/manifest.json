@@ -1,0 +1,82 @@
+[
+  {
+    "ticker": "KZTRUB_TOM",
+    "facevalue": 100.0,
+    "rows": 55357,
+    "sha256": "5811c9f5efa0bb2b7aeace8d22c16ed32f1bb6a87e72f4fdcfbb0521b924ad1b",
+    "first": "2022-01-10 16:00:00",
+    "last": "2026-09-03 18:58:32"
+  },
+  {
+    "ticker": "KZTRUB_TOD",
+    "facevalue": 100.0,
+    "rows": 983,
+    "sha256": "3256be403a40b9303b44fd7985b055eaafebd6da62635caee0939bb7cb57ab4c",
+    "first": "2022-01-10 11:30:00",
+    "last": "2026-09-01 11:31:31"
+  },
+  {
+    "ticker": "AMDRUB_TOM",
+    "facevalue": 100.0,
+    "rows": 33666,
+    "sha256": "63ae7574b6357404fca71245ee57c1bd786d34c5cadc9676b2868def562aacaf",
+    "first": "2022-06-27 14:30:00",
+    "last": "2026-09-03 18:39:32"
+  },
+  {
+    "ticker": "AMDRUB_TOD",
+    "facevalue": 100.0,
+    "rows": 164,
+    "sha256": "b3dfa7c7979b9482ba0b7f6eb3c37884c25bcc3bad5ef9d5b25c0b443dff5c28",
+    "first": "2022-12-07 09:50:00",
+    "last": "2024-11-22 10:11:31"
+  },
+  {
+    "ticker": "KGSRUB_TOM",
+    "facevalue": 100.0,
+    "rows": 6308,
+    "sha256": "86c15125bfe307d7883903144610718196e555c2dfb48311d1ab64895a39acaa",
+    "first": "2022-11-03 14:50:00",
+    "last": "2026-09-03 12:46:31"
+  },
+  {
+    "ticker": "KGSRUB_TOD",
+    "facevalue": 100.0,
+    "rows": 2,
+    "sha256": "89311788c3c8f59a5fc7e111b468bfe9f342bc3141dd8511e7a9d48da57766e3",
+    "first": "2022-11-15 10:10:00",
+    "last": "2023-10-27 09:24:31"
+  },
+  {
+    "ticker": "TJSRUB_TOM",
+    "facevalue": 10.0,
+    "rows": 18,
+    "sha256": "e4bcf22e4ab1cda99650d7fea714ffe7f0b66e9ef7072535d3254847a3327218",
+    "first": "2022-11-07 13:20:00",
+    "last": "2024-10-30 11:44:30"
+  },
+  {
+    "ticker": "TJSRUB_TOD",
+    "facevalue": 10.0,
+    "rows": 14,
+    "sha256": "1c529de49bbaf038b634f27fe5d6129f0c88efee54b7c47b5089896c3a0e44f7",
+    "first": "2023-06-07 10:30:00",
+    "last": "2024-10-31 10:16:30"
+  },
+  {
+    "ticker": "UZSRUB_TOM",
+    "facevalue": 10000.0,
+    "rows": 2471,
+    "sha256": "728ef4cc4e4b4692a2b02a84d079a969194dce9f5d0f87e3fd619c4115405c92",
+    "first": "2022-09-12 12:30:00",
+    "last": "2026-09-03 18:39:59"
+  },
+  {
+    "ticker": "UZSRUB_TOD",
+    "facevalue": 10000.0,
+    "rows": 30,
+    "sha256": "a643fd4327182ac4bfb11d8f4abd1f1e777f5502cdb4756b8229f658e3ca0832",
+    "first": "2022-09-13 10:30:00",
+    "last": "2023-10-12 09:56:32"
+  }
+]
