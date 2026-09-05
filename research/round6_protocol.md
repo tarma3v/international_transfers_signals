@@ -1531,6 +1531,7 @@ candidate lists are saved in each packet's
 | CY | Aggregate seven strictly lagged local-CB implied USD/RUB and CNY/RUB cross-rates into a robust shadow-RUB consensus. | The 2024-selected 30% negative-dispersion blend transfers at min/mean lift 1.544/1.773 versus incumbent 1.623/1.855; rejected. |
 | CZ | Treat cross-bank dispersion as causal uncertainty: nonlinear penalties, confirmations and hard vetoes. | The 2024-selected low-dispersion confirmation transfers at min/mean lift 1.612/1.826; useful diagnostic, no promotion. |
 | DB | Fit a quarterly joint logit/HistGB/ExtraTrees layer over target state, both incumbent ranks, CBA and cross-bank features using only resolved h5 labels. | Fresh logit and HistGB beat stale20 controls on 2024, but no joint learner beats the incumbent; the frozen selection remains incumbent. |
+| DC | Difference each source against its own earlier cross-rate before aggregating revisions across banks. | No raw revision feature reaches screen min lift 1.01 with both benefits positive; the 2024 selector retains incumbent without using 2025--2026. |
 
 The register deliberately keeps attractive failures. In particular, neither
 the 10% Belarus point, the post-gap subgroup, nor an unselected joint learner
