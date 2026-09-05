@@ -1563,3 +1563,25 @@ strictly earlier than the signal date, the CBR reference is no later than the
 signal date, and a physical future-corruption check is mandatory. No next CBR
 course, target outcome, later membership change, or packet-CY/DB later metric
 may enter a packet-DC feature or selection.
+
+## Packet DD: causally normalized cross-bank latent level
+
+Frozen after packet DC and before reading any packet-DD result. Raw cross-bank
+levels are not directly comparable because every country has a different
+structural spread, regulation and domestic-currency market. For every source,
+map the current implied RUB basis to a percentile and robust z-score against
+at most 250 strictly earlier signal dates from that same source, with at least
+60 finite earlier observations. Score the current value before adding it to
+history. Then aggregate the comparable source states across banks.
+
+Test exactly: positive and negative median/mean percentile; lower and upper
+percentile quartiles; breadth below 0.25 and above 0.75; positive and negative
+median/trimmed robust z-score; negative z-score dispersion; signed median-z to
+dispersion; and high/low agreement between the Armenian source percentile and
+the cross-bank median percentile. The raw family is label-free. Select one raw
+orientation on 2024 and compare its fixed 5%, 10%, 20% and 30% causal-rank
+blends with the incumbent. Use the same five-horizon objective, benefits,
+rolling-20 22% policy, as-of boundary and one-time later opening as packet DC.
+Physical future corruption must leave every earlier normalized feature exactly
+unchanged. The 250/60 memory, feature list and blend grid may not be changed in
+response to packet-DD results.
