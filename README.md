@@ -222,6 +222,16 @@
 > local pass. Validation 2023–2024 снова лучше в точке, но CI/gates не прошли;
 > 2025–2026 не открывались и T37 не изменён.
 >
+> T44 заранее отделил probability fit от проверки компетентности: Platt
+> обучается на mature январе–июне прошлого года, а разрешение nonlinear expert
+> выдаётся только по disjoint mature июлю–декабрю и при non-inferiority всех
+> пяти валют. Он закрыл expert во всех screen-годах 2019–2022, поэтому результат
+> стал побитово равен prior вместо прежнего вреда. На validation открылся только
+> 2023: Brier delta **−0,00098**, ECE **−0,00749**, AUC **+0,12835**, **7/7**
+> local pass. Но paired CI пересекли ноль, а screen не доказал gain сверх
+> безопасного равенства baseline. Gate не ослаблен; 2025–2026 model metrics не
+> открывались, T37 остаётся неизменным.
+>
 > Новый T15/T16 закрывает вечер до 23:00 завершёнными perpetual-свечами
 > CNYRUBF и USDRUBF. Ни один новый probability-кандидат не улучшил сильный
 > T7B-control на screen-2024, поэтому вечерняя температура не меняется только
@@ -266,8 +276,8 @@
 > Новый nonlinear AP44 дал h20 **2,560**, но также потерял cadence. AP45
 > формально проходит gates, однако это AP37 плюс 2 сигнала без доказанного
 > улучшения. Основным остаётся более простой AP37.
-> Исследование активно, без почасовой автоматизации; после T18 полный набор из
-> **392 теста** проходят.
+> Исследование активно, без почасовой автоматизации; после T44 полный набор из
+> **421 теста** проходит.
 
 > **Сохранённый ориентир до публикации:** причинный `availability_route` на
 > срезе 15:30. На ретроспективе 2025–2026 он даёт adjusted lift **2,053** при
@@ -305,6 +315,7 @@
 [T41: причинный квартальный вес не спас history-эксперт](research/temperature_t41_mature_quarterly_shrink_report.md) ·
 [T42: OOD-усадка распознала режим, но не спасла history-эксперт](research/temperature_t42_ood_history_shrink_report.md) ·
 [T43: нелинейный history-эксперт улучшил rank, но не probability](research/temperature_t43_nonlinear_history_report.md) ·
+[T44: disjoint mature gate безопасен, но не доказывает gain](research/temperature_t44_calibration_quality_gate_report.md) ·
 [пример обязательной таблицы ТЗ](output/signals_example_2026-09-01_2115_h5.csv) ·
 [пример до receipt](output/signals_example_2026-09-01_1845_no_receipt_h5.csv) ·
 [пример после verified receipt](output/signals_example_2026-09-01_1845_verified_receipt_h5.csv) ·
@@ -313,7 +324,7 @@
 [парное fast-vs-slow сравнение](research/fast_slow_paired_report.md) ·
 [вечерний роутер T16](research/temperature_t16_evening_router_registered.md) ·
 [финальный алгоритм простыми словами, PDF](output/pdf/ivan_final_anytime_algorithm_for_everyone.pdf) ·
-[подробный any-time отчёт, 50 страниц](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
+[подробный any-time отчёт, 51 страница](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
 [финальная презентация с интерфейсом](output/presentation/international_transfers_final_with_interface_2026-09-06_v2.pptx) ·
 [та же презентация в PDF](output/pdf/international_transfers_final_with_interface_2026-09-06_v2.pdf) ·
 [самый эффективный подход: подробное объяснение на 30 страниц](output/pdf/описание_подробное.pdf) ·
@@ -972,7 +983,7 @@ PYTHONPATH=. .venv/bin/python -m research.after_publication_ap37_effective_audit
 PYTHONPATH=. .venv/bin/python -m research.build_after_publication_ap39_effective_report
 ```
 
-Полный набор содержит **406 тестов** причинности, реконструкции и метрик.
+Полный набор содержит **421 тест** причинности, реконструкции и метрик.
 Повторная загрузка данных MOEX требует
 сети: `PYTHONPATH=. .venv/bin/python -m research.round7_direct_pairs_data`.
 XGBoost на macOS может потребовать `brew install libomp`.
@@ -1033,8 +1044,11 @@ T42 затем проверил label-free OOD-усадку: она распоз
 T40, но всё равно проиграла causal prior на screen и прошла 0/9 local groups.
 T43 дал нелинейной модели те же 41 признаки: AUC вырос сильнее, но Brier/ECE и
 локальные gates опять отклонили кандидат до открытия 2025–2026.
-Следующий шаг - genuinely prospective shadow и наблюдаемый state-aware replay,
-либо заранее зарегистрированный gate на disjoint mature calibration evidence,
-без настройки по 2025–2026.
+T44 выполнил заранее зарегистрированный disjoint mature gate: он полностью
+убрал вред на раннем screen, а на 2023 улучшил proper scores и AUC, но
+безопасное равенство prior не является доказанным gain, а validation CI
+пересекают ноль. T44 остаётся prospective control без изменения T37.
+Следующий шаг - genuinely prospective shadow либо новый независимый
+observable source-state replay, без настройки по 2025–2026.
 Отдельно нужно подтвердить фактический timestamp получения курса и исполняемый
 банковский курс.

@@ -2264,3 +2264,25 @@ Platt slope, причинно доступный из предыдущего г�
 160 итераций, probabilities, bootstrap/gates, maturity/embargo и
 future-prefix corruption. `production_promoted=false`; T37 неизменён.
 Результаты: `results/research/temperature/t43_nonlinear_history/`.
+
+## T44: disjoint mature quality gate безопасен, но не доказывает gain
+
+T44 заранее отделил обучение probability-map от проверки её компетентности.
+Для query year `Y` raw T43-модель по-прежнему обучается до `Y-1`; Platt fit
+использует только mature январь-июнь `Y-1`, а решение допустить эксперта
+принимается на mature июле-декабре. Требуются лучшие pooled Brier/log-loss/AUC,
+допустимая ECE, положительный Platt slope и non-inferiority всех пяти валют.
+При отказе прогноз года побитово равен causal prior.
+
+Gate закрыл эксперт во всех screen-годах 2019-2022, поэтому 4 920 строк дали
+точные нулевые deltas и 9/9 local pass. На validation он открыл только 2023:
+pooled 2023-2024 Brier delta **-0,00098**, log-loss **-0,00357**, ECE
+**-0,00749**, AUC delta **+0,12835**, local pass **7/7**. Но Brier и AUC
+paired CI пересекают ноль. Кроме того, frozen screen требует доказанного
+улучшения, а не просто безопасного равенства baseline, поэтому formal gate
+провален и 2025-2026 model metrics не открыты.
+
+Вывод: delayed competence gate успешно предотвращает вред T43, но пока не
+создаёт доказанный predictive gain. Порог не ослаблен; T37, runtime, push и
+expected future bps не изменены. T44 остаётся prospective control.
+Результаты: `results/research/temperature/t44_calibration_quality_gate/`.

@@ -1263,7 +1263,38 @@ Brier/ECE, а в 2022 AUC delta −0,04390. Нелинейность умеет 
 только по disjoint mature evidence. 2025–2026 не открывались, T37 не изменён.
 
 ---page---
-# 48. Строгая сверка с ТЗ
+# 48. T44: mature quality gate убрал вред, но не доказал gain
+
+## Безопасное воздержание не равно улучшенной модели
+
+T44 реализовал ровно следующий preregistered механизм. Для query year `Y`
+raw nonlinear expert обучается до `Y-1`; Platt fit использует только mature
+январь-июнь `Y-1`, а решение допустить expert принимается на disjoint mature
+июле-декабре. Требуются лучшие pooled Brier/log-loss/AUC, ECE не хуже +0,01,
+положительный Platt slope и non-inferiority всех пяти валют. При отказе весь
+следующий год побитово равен causal prior.
+
+| Стадия | Brier delta | Log-loss delta | ECE delta | AUC delta | Local pass |
+|---|---:|---:|---:|---:|---:|
+| 2019–2022 screen | **0** | **0** | **0** | **0** | **9 / 9** |
+| 2023–2024 validation | **−0,00098** | **−0,00357** | **−0,00749** | **+0,12835** | **7 / 7** |
+
+Gate закрыл expert во всех четырёх screen-годах и открыл только 2023 на
+historical validation. Значит, он действительно предотвратил прежний вред
+T43. Но frozen screen требовал доказанного положительного gain: нулевые deltas
+и нулевые интервалы у точного prior не проходят строгие знаки. На validation
+20/50-date Brier upper CI равны +0,00101/+0,00112, AUC lower CI
+−0,00116/−0,00413, поэтому интервалы также пересекают ноль.
+
+T44 не подбирался по query-year и не менял thresholds после результата. Аудит
+восстановил обе Platt calibration, восемь annual gates, exact-prior rejected
+years, maturity/embargo и future-prefix corruption. 2025–2026 model metrics не
+открывались; T37, runtime, push и benefit остаются неизменными. T44 нужно
+сохранить как prospective control, а не объявлять победителем за умение
+воздержаться.
+
+---page---
+# 49. Строгая сверка с ТЗ
 
 ## Что закрыто и что остаётся открытым
 
@@ -1280,7 +1311,7 @@ Brier/ECE, а в 2022 AUC delta −0,04390. Нелинейность умеет 
 | Fast vs slow | PASS proxy | цена ожидания посчитана на ЦБ |
 | Тексты и конфликты | PASS | past/present-only, AP37 router |
 | Реальный receipt ЦБ | PARTIAL | production gate готов, история timestamp неполна |
-| h20 any-time | PARTIAL, сильный pooled/year shadow | T37 40/40 pooled state; T38 619/680 local; T39/T41/T42/T43 repair отклонены; T40 long-history gate провален до открытия 2025–2026 |
+| h20 any-time | PARTIAL, сильный pooled/year shadow | T37 40/40 pooled state; T38 619/680 local; T39/T41/T42/T43 repair отклонены; T44 safe gate без доказанного gain |
 | Fresh independent holdout | GAP | нужен prospective shadow |
 | Реальная банковская экономика | GAP за рамками хакатона | нужен пилот с quote и клиентским holdout |
 
@@ -1294,10 +1325,13 @@ T40 дополнительно показал, что хороший 2023–2024
 что причинная квартальная усадка по mature feedback смягчает, но не устраняет
 этот regime failure. T42 показал то же для label-free OOD-усадки: 2022
 распознаётся как необычный, но screen остаётся хуже causal prior. T43 улучшил
-rank нелинейными interactions, но не proper score и локальную калибровку.
+rank нелинейными interactions, но не proper score и локальную калибровку. T44
+на disjoint mature evidence убрал вред до exact prior и дал сильную позднюю
+point validation, однако screen не доказал gain, а validation CI пересекли
+ноль.
 
 ---page---
-# 49. Итоговая схема решения
+# 50. Итоговая схема решения
 
 ## Что делает система в production
 
@@ -1329,9 +1363,11 @@ screen 2019–2022 провален, хотя 2023–2024 выглядел лу�
 адаптировал вес T40 по mature квартальной ошибке, но также не прошёл screen и
 не открыл поздние model metrics. T42 распознал covariate shift без target и
 сократил вред, но screen всё равно проиграл prior. T43 добавил нелинейные
-state interactions и улучшил AUC, но Brier/ECE остались хуже prior. Следующий
-доказательный шаг - новые prospective outcomes или заранее замороженный
-disjoint mature quality gate, а не настройка ещё одного веса на открытом
+state interactions и улучшил AUC, но Brier/ECE остались хуже prior. T44
+заранее заморозил disjoint mature quality gate: он безопасно сохранил prior на
+screen и улучшил 2023, но не доказал положительный gain под строгими CI.
+Следующий доказательный шаг - новые prospective outcomes или новый независимый
+observable source-state replay, а не настройка ещё одного веса на открытом
 интервале.
 Главный следующий бизнес-шаг: заморозить систему, подключить реальные bank
 quotes и запустить user-level prospective pilot.

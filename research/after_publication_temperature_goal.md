@@ -152,6 +152,23 @@ and T37 remains unchanged. The available pre-2025 OOS years do not support a
 stable currency-specific alpha; the next calibration change needs genuinely
 prospective outcomes or a new independent source-state replay.
 
+T40-T43 then tested whether substantially longer annual history, mature
+quarterly shrinkage, label-free OOD distance or nonlinear feature interactions
+could supply that missing state. None passed the preregistered 2019-2024
+historical gates. T43 produced the best early rank but still worsened Brier,
+log-loss and ECE on 2019-2022.
+
+T44 preregistered the causal competence gate suggested by that failure. An
+early-half Platt map was evaluated on the disjoint mature second half of the
+previous year, and the nonlinear expert was admitted only if pooled proper
+scores/AUC and all five currency tolerances passed. It closed the expert in all
+four 2019-2022 screen years, making the candidate exactly equal to prior, and
+opened only 2023 on historical validation. Validation improved Brier by
+0.00098 and AUC by 0.12835 with 7/7 local groups, but paired intervals crossed
+zero. The strict screen requires positive evidence rather than safe abstention,
+so T44 failed without opening 2025-2026 model metrics. Keep it as a prospective
+control; do not weaken its gate or reinterpret identity as a winner.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -226,9 +243,14 @@ and weekends produce an explicit stale state, not imputed current prices.
    challenger, retain T25/T30/T31/T33/T34 only as diagnostic controls, and use
    T38 as its local-stability evidence packet. T39 has already tested and
    rejected the disjoint pre-2025 currency-alpha map because it improved
-   aggregate scores while worsening local calibration. The next change needs
-   genuinely prospective outcomes or a new independent source-state replay;
-   do not reconsider the 50% weight on the opened 2025-2026 period.
+   aggregate scores while worsening local calibration. T40-T43 reject longer
+   stationary history, delayed shrinkage, OOD-only shrinkage and unconditionally
+   enabled nonlinear interactions. T44's disjoint mature quality gate safely
+   abstains through the early screen and improves the later point estimate, but
+   cannot prove positive gain under the frozen historical gates. Keep T44 as a
+   prospective control. The next change needs genuinely prospective outcomes
+   or a new independent source-state replay; do not reconsider the 50% weight
+   on the opened 2025-2026 period.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.
 3. Implement `score_as_of(currency, timestamp, horizon)` that selects the latest
