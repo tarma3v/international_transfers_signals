@@ -1453,3 +1453,16 @@ T22 only as an after-`verified_receipt_at` shadow challenger; never activate it
 from a fixed clock. Historical receipts remain uncertified and 2025--2026 is
 open diagnostic. Full outputs:
 `results/research/temperature/t22_h20_rank_correction/`.
+
+## T23: delayed online h20 calibration rejected
+
+Monthly mappings used only fully matured rows before each origin minus embargo,
+with a chronological 75/25 fit/screen split. Nevertheless, 181 of 800 monthly
+states switched away from identity on noisy screens. Mean AUC falls 0.576 to
+0.554, Brier rises 0.11828 to 0.12020 and no state passes the strict gate.
+
+After-receipt point deltas remain favourable but block intervals cross zero;
+frozen T22 remains stronger at 6/6 gates. Do not update receipt mapping monthly,
+shorten the screen or relax gates on opened 2025--2026. Keep T22 as frozen
+receipt-only shadow and seek new causal pre-receipt observables. Full outputs:
+`results/research/temperature/t23_h20_delayed_online/`.

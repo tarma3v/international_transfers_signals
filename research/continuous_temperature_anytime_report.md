@@ -682,7 +682,33 @@ receipt-времён T22 остаётся frozen shadow-challenger. Production �
 frozen h20 с limited confidence.
 
 ---page---
-# 27. Строгая сверка с ТЗ
+# 27. T23: частая delayed-калибровка добавляет шум
+
+## Созревшие метки ещё не гарантируют устойчивый выбор
+
+T23 обновлял mapping раз в месяц. Каждый fit видел только h20-исходы, которые
+полностью созрели до monthly origin минус embargo. Последние 200 полных дат
+делились 75/25: ранняя часть обучала anchor/joint logit, trailing screen выбирал
+между ними и frozen identity. Текущий месяц был полностью скрыт.
+
+| Модель | AUC | Brier | Log-loss | ECE |
+|---|---:|---:|---:|---:|
+| Frozen h20 | **0,576** | **0,11828** | **0,39694** | **0,03482** |
+| Delayed selected | 0,554 | 0,12020 | 0,40635 | 0,04175 |
+| Всегда anchor-logit | 0,417 | 0,13459 | 0,46324 | 0,09239 |
+| Всегда joint-logit | 0,536 | 0,13795 | 0,44875 | 0,09014 |
+
+Из 800 месячных состояний identity выбран 619 раз, joint 156, anchor 25. Эти
+181 переключение оказалось достаточно, чтобы итог прошёл 0/40 gates. На
+after-receipt states point AUC/Brier улучшаются, но block-bootstrap пересекает
+ноль; frozen T22 остаётся сильнее с 6/6 passes.
+
+Практический вывод: не обновлять mapping чаще и не ослаблять gate. После
+verified receipt замораживаем T22 как shadow; до receipt ищем новые признаки,
+а не маскируем слабую discrimination перекалибровкой.
+
+---page---
+# 28. Строгая сверка с ТЗ
 
 ## Что закрыто и что остаётся открытым
 
@@ -709,7 +735,7 @@ frozen h20 с limited confidence.
 калибровка температуры пока слабее h3/h5.
 
 ---page---
-# 28. Итоговая схема решения
+# 29. Итоговая схема решения
 
 ## Что делает система в production
 
@@ -728,7 +754,7 @@ frozen h20 с limited confidence.
 прошлого baseline примерно с 11:45, достигает AUC около 0,70 до receipt и около
 0,72 после receipt.
 
-Главный следующий модельный шаг: заморозить T22 после реального receipt как
-shadow и проверять outcomes prospectively; до receipt не менять frozen h20.
+Главный следующий модельный шаг: заморозить T22 после real receipt как shadow;
+до receipt искать новые causal observables, не применять T23 recalibration.
 Главный следующий бизнес-шаг: заморозить систему, подключить реальные bank
 quotes и запустить user-level prospective pilot.

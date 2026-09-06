@@ -31,6 +31,12 @@ worsen. This makes the information event, not a wall-clock threshold, the
 candidate boundary. Keep T22 in frozen shadow after actual verified receipts;
 retain frozen identity everywhere else until prospective evidence matures.
 
+T23 tested whether monthly delayed recalibration could safely adapt other
+states. It passes 0/40 gates and worsens mean h20 AUC/Brier. Mature labels alone
+are not enough when a short trailing screen repeatedly selects noisy mappings.
+Do not shorten the update interval or relax the gate on the opened period.
+The frozen receipt-only T22 shadow remains the next prospective candidate.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score

@@ -1836,3 +1836,20 @@ router обязан включать challenger по фактическому `v
 только frozen shadow, не production promotion. Аудит подтверждает 116 400
 строк, maturity, source-time, alpha rebuild и target corruption invariance.
 Результаты: `results/research/temperature/t22_h20_rank_correction/`.
+
+## T23: delayed online mapping не переносится
+
+T23 обновлял h20 mapping раз в месяц и видел только полностью созревшие исходы
+до monthly origin минус embargo. Внутри максимум 200 полных дат делились 75/25
+по времени; trailing screen выбирал identity, anchor-logit или joint-logit.
+Текущий месяц не участвовал ни в fit, ни в выборе.
+
+Итог 0/40 gates. Selector оставил identity в 619 из 800 месячных состояний,
+выбрал joint 156 раз и anchor 25 раз. Средний AUC 0,576→0,554, Brier
+0,11828→0,12020, log-loss 0,39694→0,40635; high-ECE строк 266 против 240.
+Даже зрелая история остаётся слишком шумной для частого выбора mapping.
+
+After-receipt point-deltas сохраняют правильный знак, но bootstrap пересекает
+ноль; frozen T22 с 6/6 gates сильнее. Решение: не переобучать receipt mapping
+ежемесячно, держать T22 frozen shadow и искать новые pre-receipt observables.
+Результаты: `results/research/temperature/t23_h20_delayed_online/`.

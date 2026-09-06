@@ -108,6 +108,9 @@ caused the change.
    calibration. It is harmful as an all-day model, but all six post-receipt
    replay states pass: mean h20 AUC 0.534 to 0.671 and Brier 0.12058 to 0.11379.
    The correction is therefore a receipt-gated shadow challenger only.
-8. Next: freeze the receipt-only route on actual verified events and collect
-   prospective outcomes. Before receipt retain identity; do not tune another
-   weight or calendar clock on opened 2024--2026.
+8. T23 tested monthly delayed calibration using only matured past outcomes. It
+   passes 0/40 states and worsens mean AUC/Brier; short trailing screens select
+   unstable mappings. Do not update the receipt mapping frequently.
+9. Next: freeze T22 receipt-only on actual verified events and collect
+   prospective outcomes. Before receipt retain identity and seek new causal
+   observables; do not tune another weight or clock on opened 2024--2026.
