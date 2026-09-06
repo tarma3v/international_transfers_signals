@@ -1815,3 +1815,24 @@ rank-поправку к frozen anchor, но нельзя показывать �
 `source_at <= query_at`, полный bootstrap-grid и независимость predictions от
 evaluation labels. Полный набор: 359 тестов. Результаты:
 `results/research/temperature/t21_h20_curve_head/`.
+
+## T22: calibration-constrained rank correction разделила receipt-фазы
+
+T22 оставил frozen h20 logit якорем и добавлял только малую остаточную часть
+cross-horizon rank. Вес из 0/0,01/0,025/0,05/0,10/0,20 выбирался на disjoint
+конце 2024 под жёсткими ограничениями Brier/log-loss/ECE; 2025–2026 не
+участвовал в выборе.
+
+Как единая модель подход отклонён: средний AUC 0,576→0,569, Brier
+0,11828→0,11897, всего 6/40 gates. Но прошли ровно все шесть
+`calendar_assumed_replay` states с 18:45 до 23:15, то есть состояния после
+появления нового announced CBR. На них AUC 0,534→0,671, Brier
+0,12058→0,11379, log-loss 0,40723→0,38313; ECE не ухудшился. В
+`no_same_day_receipt` поправка вредна.
+
+Следствие: новый CBR-record действительно меняет полезное h20-состояние, но
+router обязан включать challenger по фактическому `verified_receipt_at`, а не
+по 18:00/18:30. Из-за открытого теста и несертифицированной истории receipt это
+только frozen shadow, не production promotion. Аудит подтверждает 116 400
+строк, maturity, source-time, alpha rebuild и target corruption invariance.
+Результаты: `results/research/temperature/t22_h20_rank_correction/`.

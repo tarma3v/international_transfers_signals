@@ -104,6 +104,10 @@ caused the change.
    0/40 gates and is rejected. A logistic control improves AUC in 40/40 states
    (mean 0.576 to 0.682) but catastrophically shifts probability calibration,
    so it remains a rank-only research feature.
-7. Next: preregister a small rank correction around the frozen probability, or
-   freeze a prospective online update with a fixed forgetting rule. Do not tune
-   its strength or another calibration map on opened 2024--2026.
+7. T22 constrained a small rank correction using only disjoint pre-2025
+   calibration. It is harmful as an all-day model, but all six post-receipt
+   replay states pass: mean h20 AUC 0.534 to 0.671 and Brier 0.12058 to 0.11379.
+   The correction is therefore a receipt-gated shadow challenger only.
+8. Next: freeze the receipt-only route on actual verified events and collect
+   prospective outcomes. Before receipt retain identity; do not tune another
+   weight or calendar clock on opened 2024--2026.

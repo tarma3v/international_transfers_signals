@@ -1,0 +1,48 @@
+{
+  "packet": "temperature-T22",
+  "primary_candidate": "rank_correction_selected",
+  "alpha_grid": [
+    0.0,
+    0.01,
+    0.025,
+    0.05,
+    0.1,
+    0.2
+  ],
+  "selection_on_open_period": false,
+  "evaluation_rows": 116400,
+  "state_rows": 40,
+  "passing_states": 6,
+  "selected_alpha_counts": {
+    "0.0": 10,
+    "0.01": 2,
+    "0.025": 4,
+    "0.05": 10,
+    "0.1": 8,
+    "0.2": 6
+  },
+  "high_ece_currency_year_rows": {
+    "identity_h20": 240,
+    "rank_correction_selected": 265
+  },
+  "checks": {
+    "all_base_labels_mature": true,
+    "all_calibration_labels_mature": true,
+    "base_and_calibration_disjoint": true,
+    "all_horizon_sources_no_later_than_query": true,
+    "base_only_residualization": true,
+    "opened_evaluation_only": true,
+    "changes_push_policy": false,
+    "historical_receipts_certified": false,
+    "bank_execution_validated": false
+  },
+  "source_sha256": {
+    "research/temperature_t22_h20_rank_correction_registered.md": "4cb0122fa7b39a2d293e7d9e9c3efead2bff56ad8dd43502a324cf5729957909",
+    "research/temperature_t22_h20_rank_correction.py": "d4307659a56018152c2d4be1354b2a180d710159a7212ff44c7f5443dbc07bef",
+    "research/temperature_t21_h20_curve_head.py": "c2ae016b884c9c65ada61e362c9a69b1ca5794b909ce4962f256427487745d7b",
+    "research/temperature_t19_anytime_quality_audit.py": "a37b1145d44d9ddf8b03c2dfa8d490ae04aab017f38719441c3731e88edf4ab4",
+    "results/research/temperature/t17_spot_availability_repair/metadata.json": "90b473b7642d543d8132264981afd5f03b1b639468cd682406e4fa01e991df99",
+    "results/research/temperature/t17_spot_availability_repair/snapshots.csv.gz": "2c22c3b9b94f30e4491345713ab8fbdb093f12f80abf6146201c1ab5d2287092",
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2"
+  }
+}

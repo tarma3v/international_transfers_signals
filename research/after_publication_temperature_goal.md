@@ -24,6 +24,13 @@ but Brier rose from 0.118 to 0.443. It is therefore not a user-facing
 temperature. Any next blend must be fixed on earlier mature data or prospective
 outcomes, not tuned on the opened 2025--2026 diagnostic.
 
+T22 tested that small correction. It fails as an all-day replacement, but all
+six after-receipt replay states pass the strict AUC/Brier/log-loss/ECE gate:
+mean h20 AUC 0.534 to 0.671 and Brier 0.12058 to 0.11379. No-receipt states
+worsen. This makes the information event, not a wall-clock threshold, the
+candidate boundary. Keep T22 in frozen shadow after actual verified receipts;
+retain frozen identity everywhere else until prospective evidence matures.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score

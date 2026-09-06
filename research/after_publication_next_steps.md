@@ -1439,3 +1439,17 @@ temperature. The next packet may preregister a small correction around the
 frozen logit or delayed online calibration. Its strength must not be selected
 on opened 2025--2026. Full outputs are in
 `results/research/temperature/t21_h20_curve_head/`; 359 tests pass.
+
+## T22: small h20 correction works only after receipt
+
+The rank correction kept frozen h20 as the probability anchor and selected its
+weight only on disjoint mature pre-2025 calibration. It fails as an all-day
+replacement: AUC 0.576 to 0.569 and Brier 0.11828 to 0.11897.
+
+Exactly the six assumed-receipt states from 18:45 through 23:15 pass the strict
+paired gate. Their mean AUC is 0.534 to 0.671, Brier 0.12058 to 0.11379 and
+log-loss 0.40723 to 0.38313, with stable ECE. No-receipt states worsen. Freeze
+T22 only as an after-`verified_receipt_at` shadow challenger; never activate it
+from a fixed clock. Historical receipts remain uncertified and 2025--2026 is
+open diagnostic. Full outputs:
+`results/research/temperature/t22_h20_rank_correction/`.

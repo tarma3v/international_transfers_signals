@@ -653,11 +653,36 @@ Logistic rank улучшает AUC во всех 40/40 состояниях. Н�
 
 116 400 evaluation-строк прошли независимый audit source time, maturity,
 embargo, bounded probability и подмену test target. AP37 и production router не
-изменены. Следующий кандидат — заранее фиксированная малая rank-поправка к
-frozen probability либо prospective delayed calibration.
+изменены. T22 ниже проверяет заранее фиксированную малую rank-поправку.
 
 ---page---
-# 26. Строгая сверка с ТЗ
+# 26. T22: h20-поправка полезна после receipt
+
+## Граница проходит по информации, а не по часам
+
+T22 сохранил frozen probability anchor и добавлял к его logit малую
+cross-horizon rank-поправку. Вес выбирался только на disjoint конце 2024 под
+ограничениями Brier, log-loss и ECE; открытый 2025–2026 вес не менял.
+
+| Срез | AUC frozen → T22 | Brier frozen → T22 | PASS |
+|---|---:|---:|---:|
+| Весь день, 40 states | 0,576 → 0,569 | 0,11828 → 0,11897 | 6 / 40 |
+| После assumed receipt, 6 states | **0,534 → 0,671** | **0,12058 → 0,11379** | **6 / 6** |
+| No same-day receipt | Δ −0,0387 | Δ +0,00242 | 0 / 20 |
+
+Прошли ровно шесть состояний 18:45–23:15, где доступен новый announced CBR.
+Их средний log-loss снизился с 0,40723 до 0,38313, ECE не ухудшился. Во всех
+сценариях без receipt поправка вредна. Следовательно, полезно само событие
+получения записи, а не наступление фиксированных 18:00 или 18:30.
+
+116 400 строк прошли независимый audit maturity, source time, alpha selection
+и target corruption. Из-за открытого evaluation и условных исторических
+receipt-времён T22 остаётся frozen shadow-challenger. Production может включать
+его только после фактического `verified_receipt_at`; до события сохраняется
+frozen h20 с limited confidence.
+
+---page---
+# 27. Строгая сверка с ТЗ
 
 ## Что закрыто и что остаётся открытым
 
@@ -674,6 +699,7 @@ frozen probability либо prospective delayed calibration.
 | Fast vs slow | PASS proxy | цена ожидания посчитана на ЦБ |
 | Тексты и конфликты | PASS | past/present-only, AP37 router |
 | Реальный receipt ЦБ | PARTIAL | production gate готов, история timestamp неполна |
+| h20 после receipt | PARTIAL | T22 проходит 6/6 replay states, нужен prospective shadow |
 | Fresh independent holdout | GAP | нужен prospective shadow |
 | Реальная банковская экономика | GAP за рамками хакатона | нужен пилот с quote и клиентским holdout |
 
@@ -683,7 +709,7 @@ frozen probability либо prospective delayed calibration.
 калибровка температуры пока слабее h3/h5.
 
 ---page---
-# 27. Итоговая схема решения
+# 28. Итоговая схема решения
 
 ## Что делает система в production
 
@@ -702,7 +728,7 @@ frozen probability либо prospective delayed calibration.
 прошлого baseline примерно с 11:45, достигает AUC около 0,70 до receipt и около
 0,72 после receipt.
 
-Главный следующий модельный шаг: заранее зарегистрированная малая rank-поправка
-к frozen h20 либо prospective delayed calibration с фиксированным forgetting.
+Главный следующий модельный шаг: заморозить T22 после реального receipt как
+shadow и проверять outcomes prospectively; до receipt не менять frozen h20.
 Главный следующий бизнес-шаг: заморозить систему, подключить реальные bank
 quotes и запустить user-level prospective pilot.
