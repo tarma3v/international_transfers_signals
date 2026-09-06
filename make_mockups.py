@@ -114,6 +114,28 @@ def render(chrome: str, html: str, width: int, height: int, dest: Path) -> None:
     print(f"  {dest}  ({dest.stat().st_size // 1024} КБ)")
 
 
+def crop_to_content(dest: Path, pad: int = 12) -> None:
+    """Обрезать белые поля вокруг экрана.
+
+    Телефоны разной высоты, поэтому фиксированный размер окна одному оставляет
+    пустое поле в полстраницы, а другому режет низ. Рендерим с запасом и режем
+    по фактическому содержимому.
+    """
+    from PIL import Image
+
+    img = Image.open(dest).convert("RGB")
+    bg = Image.new("RGB", img.size, (255, 255, 255))
+    from PIL import ImageChops
+
+    box = ImageChops.difference(img, bg).getbbox()
+    if box is None:
+        return
+    left, top, right, bottom = box
+    left, top = max(0, left - pad), max(0, top - pad)
+    right, bottom = min(img.width, right + pad), min(img.height, bottom + pad)
+    img.crop((left, top, right, bottom)).save(dest)
+
+
 def main() -> None:
     if not SRC.exists():
         sys.exit(f"нет исходника {SRC}")
@@ -156,6 +178,15 @@ def main() -> None:
     doc = head + f'<div class="row">{row}</div></body></html>'
     render(chrome, doc, 2780, 830, OUT / "06-makety-interfeysa.png")
     render_pdf(chrome, doc, 2780, 830, OUT / "06-makety-interfeysa.pdf")
+
+    # Отдельные экраны: на слайдах клиентского пути каждый шаг показывается
+    # своим экраном, а не общей полосой из семи. Имена привязаны к позиции в
+    # исходнике — тот же порядок, что у caps выше.
+    for k in range(len(caps)):
+        one = head + f'<div class="row">{phones[k]}</div></body></html>'
+        dest = OUT / f"ekran-{k + 1:02d}.png"
+        render(chrome, one, 430, 900, dest)
+        crop_to_content(dest)
 
     states = extract_block(src, r'<div class="states">')
     doc = head + f'<div style="max-width:1120px">{states}</div></body></html>'
