@@ -66,6 +66,12 @@ after-receipt forecast anchored to yesterday's effective rate from being shown
 the next morning as if it described today's current rate. `source_at` must never
 exceed the requested `as_of`.
 
+T18 additionally separates research replay from production availability. The
+historical 18:30 assumption is never enough to activate a same-day receipt row
+in the default CLI. The caller must provide a verified same-day receipt event;
+otherwise the router holds the latest pre-receipt state. A late receipt shifts
+all dependent snapshots and their provenance forward to the actual event time.
+
 Provenance may differ by horizon. Optional `source_at_h*`, `source_kind_h*`,
 `phase_h*`, `confidence_h*` and `availability_evidence_h*` override row-level
 fields. For example, at 09:15 h1/h3 may be fresh CNYRUBF estimates while h5,
@@ -91,3 +97,6 @@ fields `date`, `corridor`, `indicator`, `direction`, `strength`,
 payload. `case_output_table_as_of` returns one available row per corridor for an
 arbitrary timezone-aware timestamp. Direction and scenario are machine-readable
 policy states; customer-facing `label` remains historical and non-prescriptive.
+Production callers use `case_output_runtime_as_of` or
+`case_output_runtime_table_as_of`, which require an observed receipt event
+before any same-day after-publication row can be selected.

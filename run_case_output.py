@@ -1,10 +1,16 @@
 """Export the mandatory case signal table at an arbitrary timestamp.
 
-Example:
-    python run_case_output.py --as-of 2026-09-01T21:15:00+03:00 --horizon 5
+Example before a verified receipt:
+    python run_case_output.py --as-of 2026-09-01T18:45:00+03:00 --horizon 5
 
-The default artifact is the T17 observed-availability replay. Use `--output`
-to save a CSV; without it the same table is written to stdout.
+Example after the ingestion layer recorded a same-day receipt:
+    python run_case_output.py --as-of 2026-09-01T18:45:00+03:00 \
+      --verified-receipt-at 2026-09-01T18:42:00+03:00 --horizon 5
+
+The default artifact is the T17 observed-availability replay, but case queries
+apply the T18 verified-receipt gate. Use `--output` to save a CSV; without it
+the same table is written to stdout. Calendar-assumed after-publication replay
+is available only through an explicit research flag.
 """
 from __future__ import annotations
 
@@ -14,7 +20,10 @@ from pathlib import Path
 
 import pandas as pd
 
-from ml.transfer_temperature import case_output_table_as_of
+from ml.transfer_temperature import (
+    case_output_runtime_table_as_of,
+    case_output_table_as_of,
+)
 
 
 DEFAULT_SNAPSHOTS = Path(
@@ -38,17 +47,34 @@ def parse_args(argv=None):
         "--horizon", type=int, choices=(1, 3, 5, 10, 20), default=5,
     )
     parser.add_argument("--snapshots", type=Path, default=DEFAULT_SNAPSHOTS)
+    parser.add_argument(
+        "--verified-receipt-at",
+        help="Observed timezone-aware receipt timestamp for the as_of Moscow day",
+    )
+    parser.add_argument(
+        "--historical-calendar-assumption", action="store_true",
+        help="Research only: allow the artifact's assumed 18:30 receipt",
+    )
     parser.add_argument("--output", type=Path)
     return parser.parse_args(argv)
 
 
-def build_table(snapshot_path, as_of, horizon):
+def build_table(snapshot_path, as_of, horizon, verified_receipt_at=None,
+                historical_calendar_assumption=False):
     timestamp = pd.Timestamp(as_of)
     if timestamp.tzinfo is None:
         raise ValueError("--as-of must include a timezone offset")
+    if verified_receipt_at is not None and historical_calendar_assumption:
+        raise ValueError(
+            "verified receipt and historical calendar assumption are exclusive")
     snapshots = pd.read_csv(snapshot_path)
-    table = case_output_table_as_of(
-        snapshots, timestamp.to_pydatetime(), horizon=horizon)
+    if historical_calendar_assumption:
+        table = case_output_table_as_of(
+            snapshots, timestamp.to_pydatetime(), horizon=horizon)
+    else:
+        table = case_output_runtime_table_as_of(
+            snapshots, timestamp.to_pydatetime(), horizon=horizon,
+            verified_receipt_at=verified_receipt_at)
     if table.empty:
         raise ValueError("no admissible snapshot at the requested as_of")
     ordered = [*REQUIRED_COLUMNS,
@@ -59,7 +85,11 @@ def build_table(snapshot_path, as_of, horizon):
 
 def main(argv=None):
     args = parse_args(argv)
-    table = build_table(args.snapshots, args.as_of, args.horizon)
+    table = build_table(
+        args.snapshots, args.as_of, args.horizon,
+        verified_receipt_at=args.verified_receipt_at,
+        historical_calendar_assumption=args.historical_calendar_assumption,
+    )
     if args.output is None:
         table.to_csv(sys.stdout, index=False)
     else:

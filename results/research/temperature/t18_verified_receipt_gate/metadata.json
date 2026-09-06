@@ -1,0 +1,18 @@
+{
+  "packet": "temperature-T18",
+  "example_day": "2026-09-01",
+  "predictive_outputs_refit": false,
+  "selection_used_open_outcomes": false,
+  "production_default_requires_verified_receipt": true,
+  "historical_calendar_assumption_explicit_only": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "source_sha256": {
+    "results/research/temperature/t17_spot_availability_repair/metadata.json": "90b473b7642d543d8132264981afd5f03b1b639468cd682406e4fa01e991df99",
+    "results/research/temperature/t17_spot_availability_repair/snapshots.csv.gz": "2c22c3b9b94f30e4491345713ab8fbdb093f12f80abf6146201c1ab5d2287092",
+    "research/temperature_t18_verified_receipt_gate_registered.md": "4d010a99d4ca0ea215f63796add1753db0cde39a018e6dad59d88646b771b1c7",
+    "research/temperature_t18_verified_receipt_gate.py": "3511290ca59f749d03cf19ade2b41bf0d0acf19ba081f9f52dbd66ac6bc22e98",
+    "ml/transfer_temperature.py": "049394f3edcdfa44e2c165d9a034e5b435df80e0d8e72533b6927789315927d1",
+    "run_case_output.py": "8caa9edc4e24c5e2a9acd421ff906d32259bb73352fe55312d5544b95e27382c"
+  }
+}

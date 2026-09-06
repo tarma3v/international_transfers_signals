@@ -1,0 +1,11 @@
+{
+  "all_five_corridors_before_receipt": true,
+  "no_same_day_receipt_model_without_event": true,
+  "verified_event_activates_cbr_row": true,
+  "assumed_1830_replaced_by_verified_1842": true,
+  "late_receipt_delays_1900_market_update": true,
+  "numeric_outputs_and_push_preserved": true,
+  "future_row_corruption_prefix_invariant": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false
+}

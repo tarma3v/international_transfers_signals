@@ -33,3 +33,34 @@ def test_build_table_rejects_timezone_free_query(tmp_path):
     _snapshots().to_csv(source, index=False)
     with pytest.raises(ValueError, match='timezone'):
         build_table(source, '2026-09-04T16:00:00', 5)
+
+
+def test_build_table_defaults_to_verified_receipt_gate(tmp_path):
+    source = tmp_path / 'snapshots.csv'
+    snapshots = _snapshots()
+    receipt = snapshots.copy()
+    receipt['valid_from'] = '2026-09-04T18:30:00+03:00'
+    receipt['source_at'] = '2026-09-04T18:30:00+03:00'
+    receipt['source_kind'] = 'cbr_receipt'
+    receipt['phase'] = 'after_new_cbr'
+    receipt['availability_evidence'] = 'calendar_assumed'
+    receipt['probability_h5'] = .91
+    pd.concat([snapshots, receipt], ignore_index=True).to_csv(source, index=False)
+
+    held = build_table(source, '2026-09-04T18:45:00+03:00', 5)
+    assert held.source_kind.eq('moex_prefix').all()
+    verified = build_table(
+        source, '2026-09-04T18:45:00+03:00', 5,
+        verified_receipt_at='2026-09-04T18:42:00+03:00')
+    assert verified.source_kind.eq('cbr_receipt').all()
+    assert verified.receipt_verified.all()
+
+
+def test_build_table_requires_one_receipt_mode(tmp_path):
+    source = tmp_path / 'snapshots.csv'
+    _snapshots().to_csv(source, index=False)
+    with pytest.raises(ValueError, match='exclusive'):
+        build_table(
+            source, '2026-09-04T18:45:00+03:00', 5,
+            verified_receipt_at='2026-09-04T18:42:00+03:00',
+            historical_calendar_assumption=True)

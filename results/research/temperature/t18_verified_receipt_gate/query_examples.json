@@ -1,0 +1,230 @@
+{
+  "without_receipt": [
+    {
+      "corridor": "AMD",
+      "source_kind": "post_window_market",
+      "phase": "pre_receipt_bridge",
+      "probability_now_best_h": 0.3641134898447095,
+      "expected_future_cbr_bps_h": 86.50453449915537,
+      "last_source_at": "2026-09-01T17:29:59+03:00",
+      "receipt_verified": false,
+      "receipt_at": null,
+      "push_now": false
+    },
+    {
+      "corridor": "KGS",
+      "source_kind": "post_window_market",
+      "phase": "pre_receipt_bridge",
+      "probability_now_best_h": 0.3547366387811099,
+      "expected_future_cbr_bps_h": 84.05003968671565,
+      "last_source_at": "2026-09-01T17:29:59+03:00",
+      "receipt_verified": false,
+      "receipt_at": null,
+      "push_now": false
+    },
+    {
+      "corridor": "KZT",
+      "source_kind": "post_window_market",
+      "phase": "pre_receipt_bridge",
+      "probability_now_best_h": 0.3190257538484281,
+      "expected_future_cbr_bps_h": 78.4956275086943,
+      "last_source_at": "2026-09-01T17:29:59+03:00",
+      "receipt_verified": false,
+      "receipt_at": null,
+      "push_now": false
+    },
+    {
+      "corridor": "TJS",
+      "source_kind": "post_window_market",
+      "phase": "pre_receipt_bridge",
+      "probability_now_best_h": 0.3913312317380276,
+      "expected_future_cbr_bps_h": 88.47310568175965,
+      "last_source_at": "2026-09-01T17:29:59+03:00",
+      "receipt_verified": false,
+      "receipt_at": null,
+      "push_now": false
+    },
+    {
+      "corridor": "UZS",
+      "source_kind": "post_window_market",
+      "phase": "pre_receipt_bridge",
+      "probability_now_best_h": 0.3548000241865803,
+      "expected_future_cbr_bps_h": 78.25172366032095,
+      "last_source_at": "2026-09-01T17:29:59+03:00",
+      "receipt_verified": false,
+      "receipt_at": null,
+      "push_now": false
+    }
+  ],
+  "with_receipt": [
+    {
+      "corridor": "AMD",
+      "source_kind": "cbr_receipt",
+      "phase": "after_new_cbr",
+      "probability_now_best_h": 0.6102492943461651,
+      "expected_future_cbr_bps_h": 11.784920379352458,
+      "last_source_at": "2026-09-01T18:42:00+03:00",
+      "receipt_verified": true,
+      "receipt_at": "2026-09-01T18:42:00+03:00",
+      "push_now": false
+    },
+    {
+      "corridor": "KGS",
+      "source_kind": "cbr_receipt",
+      "phase": "after_new_cbr",
+      "probability_now_best_h": 0.5573647805895889,
+      "expected_future_cbr_bps_h": 11.53134091426216,
+      "last_source_at": "2026-09-01T18:42:00+03:00",
+      "receipt_verified": true,
+      "receipt_at": "2026-09-01T18:42:00+03:00",
+      "push_now": false
+    },
+    {
+      "corridor": "KZT",
+      "source_kind": "cbr_receipt",
+      "phase": "after_new_cbr",
+      "probability_now_best_h": 0.4237694780367426,
+      "expected_future_cbr_bps_h": 65.13267092920862,
+      "last_source_at": "2026-09-01T18:42:00+03:00",
+      "receipt_verified": true,
+      "receipt_at": "2026-09-01T18:42:00+03:00",
+      "push_now": false
+    },
+    {
+      "corridor": "TJS",
+      "source_kind": "cbr_receipt",
+      "phase": "after_new_cbr",
+      "probability_now_best_h": 0.6226783182448312,
+      "expected_future_cbr_bps_h": 25.397774721973505,
+      "last_source_at": "2026-09-01T18:42:00+03:00",
+      "receipt_verified": true,
+      "receipt_at": "2026-09-01T18:42:00+03:00",
+      "push_now": false
+    },
+    {
+      "corridor": "UZS",
+      "source_kind": "cbr_receipt",
+      "phase": "after_new_cbr",
+      "probability_now_best_h": 0.5193762410284923,
+      "expected_future_cbr_bps_h": 15.51528333552876,
+      "last_source_at": "2026-09-01T18:42:00+03:00",
+      "receipt_verified": true,
+      "receipt_at": "2026-09-01T18:42:00+03:00",
+      "push_now": false
+    }
+  ],
+  "late_receipt": [
+    {
+      "corridor": "AMD",
+      "source_kind": "post_receipt_market",
+      "phase": "after_new_cbr_market_update",
+      "probability_now_best_h": 0.604703521885809,
+      "expected_future_cbr_bps_h": 12.848473862185806,
+      "last_source_at": "2026-09-01T19:02:00+03:00",
+      "receipt_verified": true,
+      "receipt_at": "2026-09-01T19:02:00+03:00",
+      "push_now": false
+    },
+    {
+      "corridor": "KGS",
+      "source_kind": "post_receipt_market",
+      "phase": "after_new_cbr_market_update",
+      "probability_now_best_h": 0.5506338981583541,
+      "expected_future_cbr_bps_h": 11.755865894705485,
+      "last_source_at": "2026-09-01T19:02:00+03:00",
+      "receipt_verified": true,
+      "receipt_at": "2026-09-01T19:02:00+03:00",
+      "push_now": false
+    },
+    {
+      "corridor": "KZT",
+      "source_kind": "post_receipt_market",
+      "phase": "after_new_cbr_market_update",
+      "probability_now_best_h": 0.4133301679062247,
+      "expected_future_cbr_bps_h": 62.84206128591991,
+      "last_source_at": "2026-09-01T19:02:00+03:00",
+      "receipt_verified": true,
+      "receipt_at": "2026-09-01T19:02:00+03:00",
+      "push_now": false
+    },
+    {
+      "corridor": "TJS",
+      "source_kind": "post_receipt_market",
+      "phase": "after_new_cbr_market_update",
+      "probability_now_best_h": 0.6167743122241056,
+      "expected_future_cbr_bps_h": 24.0095299023229,
+      "last_source_at": "2026-09-01T19:02:00+03:00",
+      "receipt_verified": true,
+      "receipt_at": "2026-09-01T19:02:00+03:00",
+      "push_now": false
+    },
+    {
+      "corridor": "UZS",
+      "source_kind": "post_receipt_market",
+      "phase": "after_new_cbr_market_update",
+      "probability_now_best_h": 0.5116084139868472,
+      "expected_future_cbr_bps_h": 13.844966801056302,
+      "last_source_at": "2026-09-01T19:02:00+03:00",
+      "receipt_verified": true,
+      "receipt_at": "2026-09-01T19:02:00+03:00",
+      "push_now": false
+    }
+  ],
+  "assumed_replay": [
+    {
+      "corridor": "AMD",
+      "source_kind": "cbr_receipt",
+      "phase": "after_new_cbr",
+      "probability_now_best_h": 0.6102492943461651,
+      "expected_future_cbr_bps_h": 11.784920379352458,
+      "last_source_at": "2026-09-01T18:30:00+03:00",
+      "receipt_verified": false,
+      "receipt_at": null,
+      "push_now": false
+    },
+    {
+      "corridor": "KGS",
+      "source_kind": "cbr_receipt",
+      "phase": "after_new_cbr",
+      "probability_now_best_h": 0.5573647805895889,
+      "expected_future_cbr_bps_h": 11.53134091426216,
+      "last_source_at": "2026-09-01T18:30:00+03:00",
+      "receipt_verified": false,
+      "receipt_at": null,
+      "push_now": false
+    },
+    {
+      "corridor": "KZT",
+      "source_kind": "cbr_receipt",
+      "phase": "after_new_cbr",
+      "probability_now_best_h": 0.4237694780367426,
+      "expected_future_cbr_bps_h": 65.13267092920862,
+      "last_source_at": "2026-09-01T18:30:00+03:00",
+      "receipt_verified": false,
+      "receipt_at": null,
+      "push_now": false
+    },
+    {
+      "corridor": "TJS",
+      "source_kind": "cbr_receipt",
+      "phase": "after_new_cbr",
+      "probability_now_best_h": 0.6226783182448312,
+      "expected_future_cbr_bps_h": 25.397774721973505,
+      "last_source_at": "2026-09-01T18:30:00+03:00",
+      "receipt_verified": false,
+      "receipt_at": null,
+      "push_now": false
+    },
+    {
+      "corridor": "UZS",
+      "source_kind": "cbr_receipt",
+      "phase": "after_new_cbr",
+      "probability_now_best_h": 0.5193762410284923,
+      "expected_future_cbr_bps_h": 15.51528333552876,
+      "last_source_at": "2026-09-01T18:30:00+03:00",
+      "receipt_verified": false,
+      "receipt_at": null,
+      "push_now": false
+    }
+  ]
+}

@@ -84,7 +84,7 @@ proxy направления, но не исполнимая банковска�
 | По коридорам | PASS point-wise | `submission/12-final-case-metric-matrix.md` содержит обе цели, все пять `h` и все пять валют | — |
 | Пороги отдельно по коридорам | PASS по механике | ranks, maturity precision и cadence-state считаются внутри валюты; общий prior используется со shrinkage | явно описать, где global shrinkage, а где currency-specific решение |
 | Walk-forward/purge/embargo | PASS | mature-label mask, квартальные OOS fits, embargo 2 дня, target reach по публикациям | — |
-| Защита от будущего | PASS для исследовательских артефактов | corruption-prefix и независимые audit scripts; полный тестовый набор | production ingestion должен проверять фактический receipt |
+| Защита от будущего | PASS для артефактов и runtime gate | corruption-prefix, независимые audit scripts; T18 не активирует same-day after-publication строки без verified receipt и сдвигает поздний receipt | production ingestion должен сохранить фактическое событие и payload id |
 | Стабильность OOT | PARTIAL | отбор на 2023, разрезы 2024/2025/2026 и по валютам положительные | `fresh_holdout=false`; заморозить AP37/T17 и запустить prospective shadow |
 | Произвольная дата/время | PASS | `signals_as_of(T)` причинно режет дневной ряд; `score_snapshot_as_of` выбирает последний допустимый снимок; `case_output_table_as_of` и `run_case_output.py` выдают все валюты | — |
 | Обязательная схема строки | PASS | `case_output_as_of` возвращает date/corridor/indicator/direction/strength/speed/scenario и полный audit payload; сохранён демонстрационный CSV | — |
@@ -92,7 +92,7 @@ proxy направления, но не исполнимая банковска�
 | Комбинирование/конфликты | PASS | AP37: core AP26, fallback AP23, mature-precision gate, cooldown/cap | перевести reason codes 1/2/3 в человекочитаемые сценарии |
 | Библиотека текстов | PASS | `submission/11-biblioteka-tekstov.md` и `ml/copy_library.py` покрывают push/widget/stale/alert; автотест запрещает явные обещания | перед пилотом нужна смысловая комплаенс-проверка, не только словарь |
 | Клиентские формулировки | PASS для API | подписи заменены на исторические формулировки без «подождать/будет/гарантируем» | распространить тот же lint на библиотеку текстов и презентацию |
-| Время/часовые пояса/staleness | PARTIAL | Москва, `source_at`, `age`, `freshness`, `valid_from/until` реализованы | отдельно задать user-local rendering и фактический event receipt ЦБ |
+| Время/часовые пояса/staleness | PARTIAL | Москва, `source_at`, `age`, `freshness`, `valid_from/until`; T18 требует фактический event receipt вместо wall-clock | отдельно задать user-local rendering и подключить event store ingestion |
 | Прототип/полный путь | PASS/PARTIAL | финальная ветка имеет 7 экранов; `main`-презентация задаёт indicator/alert/selection | синхронизировать экраны с AP37/T17 и убрать устаревшие цифры |
 | Реальная цена банка | честно не заявляется | в metadata: `bank_execution_validated=false` | для пилота добавить quote, fee, limit, validity и latency |
 

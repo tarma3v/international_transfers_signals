@@ -26,6 +26,15 @@
 > прежними; в выходной router теперь удерживает более ранний источник, а не
 > изображает свежее рыночное обновление.
 >
+> T18 устранил ещё один availability-риск: время 18:30 в историческом replay
+> больше не активирует after-publication модель в production-style запросе.
+> По умолчанию CLI требует фактический `verified_receipt_at`; без него в 18:45
+> все пять валют остаются на последнем честном pre-receipt состоянии. Если
+> receipt пришёл, например, в 18:42, новая CBR-модель становится доступна с
+> 18:42. Поздний receipt также сдвигает зависимые 19:00/20:00 обновления, а не
+> позволяет им появиться раньше входных данных. Старое календарное допущение
+> доступно только отдельным research-флагом.
+>
 > Новый T15/T16 закрывает вечер до 23:00 завершёнными perpetual-свечами
 > CNYRUBF и USDRUBF. Ни один новый probability-кандидат не улучшил сильный
 > T7B-control на screen-2024, поэтому вечерняя температура не меняется только
@@ -70,8 +79,8 @@
 > Новый nonlinear AP44 дал h20 **2,560**, но также потерял cadence. AP45
 > формально проходит gates, однако это AP37 плюс 2 сигнала без доказанного
 > улучшения. Основным остаётся более простой AP37.
-> Исследование активно, без почасовой автоматизации; полный набор из **328
-> тестов** прошёл после T16.
+> Исследование активно, без почасовой автоматизации; после T18 полный набор из
+> **352 тестов** проходит.
 
 > **Сохранённый ориентир до публикации:** причинный `availability_route` на
 > срезе 15:30. На ретроспективе 2025–2026 он даёт adjusted lift **2,053** при
@@ -83,7 +92,10 @@
 [контракт прогноза для интерфейса](research/interface_prediction_contract.md) ·
 [строгая сверка с ТЗ и бизнес-направление](research/tz_compliance_and_business_direction_2026-09-06.md) ·
 [ремонт доступности T17](research/temperature_t17_spot_availability_repair_registered.md) ·
+[T18: verified receipt gate](research/temperature_t18_verified_receipt_gate_report.md) ·
 [пример обязательной таблицы ТЗ](output/signals_example_2026-09-01_2115_h5.csv) ·
+[пример до receipt](output/signals_example_2026-09-01_1845_no_receipt_h5.csv) ·
+[пример после verified receipt](output/signals_example_2026-09-01_1845_verified_receipt_h5.csv) ·
 [past/present-only библиотека текстов](submission/11-biblioteka-tekstov.md) ·
 [финальная матрица обеих целей](submission/12-final-case-metric-matrix.md) ·
 [парное fast-vs-slow сравнение](research/fast_slow_paired_report.md) ·
@@ -98,13 +110,23 @@
 [лучший подход простыми словами](output/pdf/ivan_after_publication_best_simple_explained.pdf) ·
 [активный исследовательский checkpoint](research/after_publication_next_steps.md)
 
-Обязательную таблицу на произвольный момент можно воспроизвести командой:
+Обязательную таблицу до подтверждённого receipt можно воспроизвести командой:
 
 ```bash
 python run_case_output.py \
-  --as-of 2026-09-01T21:15:00+03:00 \
+  --as-of 2026-09-01T18:45:00+03:00 \
   --horizon 5 \
-  --output output/signals_example_2026-09-01_2115_h5.csv
+  --output output/signals_example_2026-09-01_1845_no_receipt_h5.csv
+```
+
+После фактического события ingestion timestamp передаётся явно:
+
+```bash
+python run_case_output.py \
+  --as-of 2026-09-01T18:45:00+03:00 \
+  --verified-receipt-at 2026-09-01T18:42:00+03:00 \
+  --horizon 5 \
+  --output output/signals_example_2026-09-01_1845_verified_receipt_h5.csv
 ```
 
 ## Последние AP40-E/AP45-E: optimal stopping и nonlinear meta-model

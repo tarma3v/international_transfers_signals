@@ -1,12 +1,35 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, T16 complete. The user made after-publication research the
+Updated 2026-09-06, T18 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
-user's explicit request. An ACTIVE TARGET drives continuous work in the same
+user’s explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
 
-## LATEST COMPLETED CHECKPOINT: T16 EVENING BENEFIT ROUTER
+## LATEST COMPLETED CHECKPOINT: T18 VERIFIED RECEIPT GATE
+
+T17 first removed 6,800 planned spot snapshots for which no completed same-day
+CNYRUB_TOM candle physically existed and replaced 32,620 retained spot source
+times with the actual last candle end. T18 then closed the remaining runtime
+availability defect: the default case CLI no longer activates an
+after-publication row merely because the historical replay clock reached the
+calendar-assumed 18:30.
+
+The production-style API now requires a timezone-aware verified same-day receipt
+event. With no event, a 2026-09-01 18:45 query holds the 17:30 pre-receipt state
+for all five corridors. With an illustrative receipt at 18:42 it activates the
+CBR row at 18:42. A receipt at 19:02 shifts the planned 19:00 market correction
+to 19:02 and makes every dependent source timestamp at least the receipt time.
+Future, wrong-day and timezone-free events are rejected. An explicit
+`--historical-calendar-assumption` flag preserves the old research replay.
+
+T18 does not refit predictions, change AP37 decisions or claim a new lift. Its
+independent audit exactly rebuilds saved outputs, verifies source hashes,
+checks future-row corruption and confirms all selected sources are no later
+than `as_of`. Historical receipt timestamps and executable bank quotes remain
+uncertified. The full suite now contains 352 tests and passes.
+
+## PREVIOUS CHECKPOINT: T16 EVENING BENEFIT ROUTER
 
 T15 preregistered completed perpetual prefixes at 20:00/21:00/22:00/23:00 and
 tested CNY-only logit, dual CNYRUBF+USDRUBF logit, dual HGB and a dual residual

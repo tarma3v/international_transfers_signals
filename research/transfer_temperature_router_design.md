@@ -9,7 +9,9 @@ snapshot model is valid at every clock time.
 Route by **information state**, not by a hard-coded claim that publication
 always happens at 18:00. The production trigger is receipt of a new CBR record
 with its real `received_at`. The historical after-publication replay currently
-uses 18:00 only as a clearly labelled calendar assumption.
+uses 18:30 only as a clearly labelled calendar assumption. T18 enforces that
+distinction in code: the default case query cannot activate a receipt-dependent
+row without a caller-supplied verified event.
 
 At a query time `as_of`, select the latest expert whose entire input prefix is
 available. A newer information event may cause an honest jump in temperature;
@@ -19,12 +21,13 @@ the UI should label the cause rather than artificially smoothing through it.
 
 | Information phase | Score source | What is already supported | Remaining gap |
 |---|---|---|---|
-| Overnight to first live slice | latest CBR/history-only score | daily CBR history and stale metadata | a dedicated start-of-day calibration is not yet built |
-| 10:30--15:30 | latest completed market cutoff expert | causal cutoffs at 10:30, 11:30, 12:30, 13:30, 14:30, 15:00, 15:20, 15:30 | only 15:20/15:30 received full later comparison; each slice needs widget calibration |
-| 15:30 until actual CBR receipt | 15:30 anchor plus post-window market correction | holding the 15:30 score is causal; post-15:30 CNY/USD candles exist in the archive | correction model at fixed later slices is not yet trained |
-| After actual CBR receipt | calibrated AP49 horizon probabilities | tomorrow's announced CBR is now a valid feature; four causal OOS heads exist | probabilities need causal calibration; receipt timestamps are assumed historically |
-| After receipt with new market candles | AP49 anchor plus since-receipt market correction | data archive contains later candles | combined event-time model and honest timestamp replay are not yet built |
-| Closed market/weekend | latest valid CBR score, held with increasing age | explicit missing/stale behavior is possible | validate weekend text/bands and avoid fictitious interpolation |
+| Overnight to first live slice | latest CBR/history-only score | T4 causal history calibration and stale metadata | discrimination remains weaker than intraday |
+| 09:00--10:30 | horizon-aware perpetual/spot prefix or history fallback | T13/T14 and T10; only physically completed candles | h5/10/20 often remain history-only |
+| 10:30--15:30 | latest completed market cutoff expert | T5 calibration at every fixed cutoff | fresh independent confirmation remains unavailable |
+| 15:30 until actual CBR receipt | anchor plus post-window market correction | T3/T12 at 16:30/17:30; T17 removes missing-candle clocks | actual receipt event must come from ingestion |
+| After actual CBR receipt | calibrated AP50/AP51 horizon probabilities | T18 verified-event gate; tomorrow's announced CBR becomes a valid feature | historical receipt timestamps remain uncertified |
+| After receipt with new market candles | receipt anchor plus completed-candle correction | T7B at 19:00/20:00; T15/T16 benefit updates to 23:00 | later probability candidates did not pass screen gates |
+| Closed market/weekend | latest valid score with increasing age | T17 removes fictitious updates; stale state and safe copy tested | user-local display and live bank quote remain pilot work |
 
 ## What “the 15:30 model works from 11:00 to 18:00” can mean
 
@@ -68,7 +71,7 @@ and labels must mature before the fit origin plus embargo.
 - 09:30: start-of-day/stale-CBR control;
 - 10:30, 11:30, 12:30, 13:30, 14:30, 15:00, 15:20, 15:30: existing market prefixes;
 - 16:30 and 17:30: new post-fixing-window corrections;
-- actual receipt event in production; calendar-assumed 18:00 only in the
+- actual receipt event in production; calendar-assumed 18:30 only in the
   historical research branch;
 - 18:30 and 20:00: after-publication score plus fresh-market correction;
 - market close and next morning: held score with explicit increasing staleness.
@@ -85,13 +88,13 @@ recomputed temperature, not the historical push score; the payload may also say
 whether temperature rose, held, or fell since the push and which new source
 caused the change.
 
-## Immediate experiments
+## Completed sequence and next experiment
 
-1. Finish causal calibration of AP49 probabilities and future-only benefit.
-2. Build `score_as_of` with held-score/staleness semantics and tests.
-3. Extend the CNY/USD candle feature builder to 16:30 and 17:30 and compare
-   anchor hold versus anchor-plus-post-window-delta without using tomorrow CBR.
-4. Under the calendar-assumed research branch, add 18:30 and 20:00 corrections
-   on top of AP49. Keep this separate from timestamp-certified claims.
-5. Only after those stages, train a single phase-aware calibrator and compare it
-   to the piecewise experts. Preserve each simpler expert as a control.
+1. T3--T7B completed causal phase calibration, pre-receipt benefit and later
+   market corrections.
+2. T8B--T17 assembled latest-valid routing, early/perpetual coverage, separate
+   probability/benefit provenance and physical spot availability.
+3. T18 now gates every same-day receipt-dependent output on an observed event.
+4. Next: run a unified clock/currency/year reliability audit on the final T18
+   production path. Any recalibration candidate must be frozen using only
+   earlier mature data; 2024--2026 remains an open diagnostic period.

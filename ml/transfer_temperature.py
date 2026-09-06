@@ -13,6 +13,11 @@ from ml.data import CORRIDORS
 
 MOSCOW = ZoneInfo('Europe/Moscow')
 HORIZONS = (1, 3, 5, 10, 20)
+RECEIPT_DEPENDENT_SOURCE_KINDS = frozenset({
+    'cbr_receipt',
+    'post_receipt_market',
+    'post_receipt_perpetual',
+})
 
 
 def _freshness(age_minutes):
@@ -194,7 +199,16 @@ def score_snapshot_as_of(snapshots, currency, as_of, horizon=5):
         & np.isfinite(probability_values.to_numpy()))
     if not len(candidates):
         return None
-    i = int(candidates[np.argmax(valid_from.iloc[candidates].astype('int64'))])
+    if '_selection_tiebreak_at' in frame:
+        tiebreak = pd.to_datetime(
+            frame['_selection_tiebreak_at'], utc=True, errors='coerce',
+            format='mixed').astype('int64').to_numpy()
+        valid_values = valid_from.astype('int64').to_numpy()
+        order = np.lexsort((tiebreak[candidates], valid_values[candidates]))
+        i = int(candidates[order[-1]])
+    else:
+        i = int(candidates[np.argmax(
+            valid_from.iloc[candidates].astype('int64'))])
     row = frame.iloc[i]
     source_at = pd.to_datetime(_horizon_provenance(
         row, 'source_at', horizon, row.source_at), utc=True)
@@ -229,6 +243,12 @@ def score_snapshot_as_of(snapshots, currency, as_of, horizon=5):
         row, 'benefit_availability_evidence', horizon,
         availability_evidence))
     temperature = 100. * probability
+    receipt_at = row.get('receipt_at')
+    if pd.isna(receipt_at):
+        receipt_at = None
+    else:
+        receipt_at = pd.to_datetime(receipt_at, utc=True).tz_convert(
+            MOSCOW).isoformat()
     return {
         'currency': currency,
         'horizon_publications': horizon,
@@ -249,23 +269,119 @@ def score_snapshot_as_of(snapshots, currency, as_of, horizon=5):
         'confidence': confidence,
         'source_kind': source_kind,
         'availability_evidence': availability_evidence,
+        'receipt_verified': bool(row.get('receipt_verified', False)),
+        'receipt_at': receipt_at,
         'push_now': bool(row.get('push_now', False)),
     }
 
 
-def case_output_as_of(snapshots, currency, as_of, horizon=5):
-    """Return the mandatory case schema plus the full auditable model payload.
+def _receipt_dependent_rows(frame):
+    source_kind = frame.source_kind.astype(str)
+    phase = (frame.phase.astype(str) if 'phase' in frame
+             else pd.Series('', index=frame.index))
+    return (source_kind.isin(RECEIPT_DEPENDENT_SOURCE_KINDS)
+            | phase.str.startswith('after_new_cbr'))
 
-    The required `direction` and `recommended_scenario` fields are deliberately
-    machine-readable. Customer-facing copy remains a historical statement in
-    `label`; it contains neither a future promise nor an instruction to wait.
+
+def _verified_receipt_timestamp(as_of, verified_receipt_at):
+    if verified_receipt_at is None:
+        return None
+    receipt = pd.Timestamp(verified_receipt_at)
+    if receipt.tzinfo is None:
+        raise ValueError('verified_receipt_at must be timezone-aware')
+    receipt = receipt.tz_convert('UTC')
+    query = pd.Timestamp(as_of).tz_convert('UTC')
+    if receipt > query:
+        raise ValueError('verified_receipt_at cannot be later than as_of')
+    if receipt.tz_convert(MOSCOW).date() != query.tz_convert(MOSCOW).date():
+        raise ValueError(
+            'verified_receipt_at must belong to the as_of Moscow date')
+    return receipt
+
+
+def _shift_timestamp_column(frame, rows, column, receipt):
+    if column not in frame:
+        return
+    values = pd.to_datetime(frame[column], utc=True, errors='coerce',
+                            format='mixed')
+    selected = values.loc[rows]
+    selected = selected.mask(selected.isna() | (selected < receipt), receipt)
+    frame.loc[rows, column] = selected
+
+
+def receipt_gated_snapshots(snapshots, as_of, verified_receipt_at=None):
+    """Materialise a production-safe view for the query's Moscow date.
+
+    Historical artifacts contain calendar-assumed after-publication rows for
+    research. A production-style query may use those rows only after its caller
+    supplies the actual receipt event. No wall-clock threshold fabricates it.
     """
-    result = score_snapshot_as_of(snapshots, currency, as_of, horizon)
+    if as_of.tzinfo is None or as_of.utcoffset() is None:
+        raise ValueError('as_of must be timezone-aware')
+    frame = snapshots.copy()
+    if frame.empty:
+        return frame
+    frame['valid_from'] = pd.to_datetime(
+        frame.valid_from, utc=True, format='mixed')
+    frame['source_at'] = pd.to_datetime(
+        frame.source_at, utc=True, format='mixed')
+    frame['_selection_tiebreak_at'] = frame['valid_from']
+    query_day = pd.Timestamp(as_of).tz_convert(MOSCOW).date()
+    row_days = frame.valid_from.dt.tz_convert(MOSCOW).dt.date
+    same_day_dependent = row_days.eq(query_day) & _receipt_dependent_rows(frame)
+    receipt = _verified_receipt_timestamp(as_of, verified_receipt_at)
+    if receipt is None:
+        frame = frame.loc[~same_day_dependent].copy()
+        frame['receipt_verified'] = False
+        frame['receipt_at'] = None
+        return frame
+
+    rows = frame.index[same_day_dependent]
+    frame['receipt_verified'] = False
+    frame['receipt_at'] = None
+    frame.loc[rows, 'receipt_verified'] = True
+    frame.loc[rows, 'receipt_at'] = receipt.isoformat()
+    _shift_timestamp_column(frame, rows, 'valid_from', receipt)
+    _shift_timestamp_column(frame, rows, 'source_at', receipt)
+    for h in HORIZONS:
+        _shift_timestamp_column(frame, rows, f'source_at_h{h}', receipt)
+        _shift_timestamp_column(
+            frame, rows, f'benefit_source_at_h{h}', receipt)
+    evidence_columns = [
+        'availability_evidence',
+        *(f'availability_evidence_h{h}' for h in HORIZONS),
+        *(f'benefit_availability_evidence_h{h}' for h in HORIZONS),
+    ]
+    marker = 'verified_cbr_receipt_at=' + receipt.isoformat()
+    row_evidence = frame.loc[rows, 'availability_evidence'].fillna(
+        'unspecified').astype(str)
+    for column in evidence_columns:
+        if column not in frame:
+            continue
+        if column == 'availability_evidence':
+            original = row_evidence
+        else:
+            original = frame.loc[rows, column]
+            present = original.notna() & original.astype(str).ne('')
+            original = original.where(present, row_evidence).astype(str)
+        frame.loc[rows, column] = marker + ';' + original
+    return frame
+
+
+def score_runtime_as_of(snapshots, currency, as_of, horizon=5,
+                        verified_receipt_at=None):
+    """Production-style lookup gated by an observed same-day CBR receipt."""
+    frame = receipt_gated_snapshots(
+        snapshots, as_of, verified_receipt_at=verified_receipt_at)
+    return score_snapshot_as_of(frame, currency, as_of, horizon)
+
+
+def _case_output_from_result(result, as_of):
     if result is None:
         return None
     required = {
         'date': pd.Timestamp(as_of).date().isoformat(),
-        'corridor': currency,
+        'corridor': result['currency'],
         'indicator': 'calibrated_transfer_temperature:' + result['source_kind'],
         'direction': _case_direction(
             result['probability_now_best_h'],
@@ -279,9 +395,40 @@ def case_output_as_of(snapshots, currency, as_of, horizon=5):
     return {**required, **result}
 
 
+def case_output_as_of(snapshots, currency, as_of, horizon=5):
+    """Return the mandatory schema for the calendar-assumed research replay.
+
+    Use `case_output_runtime_as_of` for a production-style query. The required
+    direction and scenario fields are machine-readable; customer-facing copy
+    remains historical and non-prescriptive.
+    """
+    result = score_snapshot_as_of(snapshots, currency, as_of, horizon)
+    return _case_output_from_result(result, as_of)
+
+
+def case_output_runtime_as_of(snapshots, currency, as_of, horizon=5,
+                              verified_receipt_at=None):
+    """Mandatory schema with receipt-dependent rows gated by a real event."""
+    result = score_runtime_as_of(
+        snapshots, currency, as_of, horizon,
+        verified_receipt_at=verified_receipt_at)
+    return _case_output_from_result(result, as_of)
+
+
 def case_output_table_as_of(snapshots, as_of, horizon=5,
                             corridors=CORRIDORS):
     """One mandatory-schema row per available corridor at an arbitrary time."""
     rows = [case_output_as_of(snapshots, currency, as_of, horizon)
             for currency in corridors]
+    return pd.DataFrame([row for row in rows if row is not None])
+
+
+def case_output_runtime_table_as_of(snapshots, as_of, horizon=5,
+                                    corridors=CORRIDORS,
+                                    verified_receipt_at=None):
+    """One production-gated mandatory-schema row per available corridor."""
+    rows = [case_output_runtime_as_of(
+        snapshots, currency, as_of, horizon,
+        verified_receipt_at=verified_receipt_at)
+        for currency in corridors]
     return pd.DataFrame([row for row in rows if row is not None])

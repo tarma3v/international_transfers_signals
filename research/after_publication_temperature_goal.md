@@ -50,9 +50,11 @@ must leave the returned historical prefix unchanged.
 
 The current historical CBR replay has calendar-assumed receipt events rather
 than certified publication timestamps. Therefore its after-publication widget
-is a daily latest-valid-snapshot prototype. Between two valid updates the score
-is held constant and becomes progressively stale; time passing alone must not
-invent a fresh prediction.
+is a daily latest-valid-snapshot prototype. T18 now gates production-style
+queries on a caller-supplied verified same-day receipt and shifts later dependent
+snapshots to that event; only an explicit research flag permits the old calendar
+assumption. Between valid updates the score is held constant and becomes
+progressively stale; time passing alone must not invent a fresh prediction.
 
 A truly varying intraday temperature requires timestamped information such as
 completed MOEX candles or executable bank quotes. It must be replayed at fixed
