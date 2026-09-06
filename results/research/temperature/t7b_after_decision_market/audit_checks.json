@@ -1,0 +1,10 @@
+{
+  "source_hashes_verified": true,
+  "two_physical_future_candle_checks_passed": true,
+  "probability_models_rebuilt_exactly": 8,
+  "benefit_models_rebuilt_exactly": 8,
+  "new_information_starts_after_1830_delayed_boundary": true,
+  "future_market_target_maturity_prefix_invariant": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false
+}

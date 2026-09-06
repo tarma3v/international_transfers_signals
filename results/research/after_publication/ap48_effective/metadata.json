@@ -1,0 +1,20 @@
+{
+  "packet": "AP48-E",
+  "model": "causal AP46 primary with same-week AP23 veto substitution",
+  "n_fresh_models": 0,
+  "n_fresh_policies": 1,
+  "selected": "joint_allh_ap23_sameweek_substitution_cap2",
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap46_effective/metadata.json": "222a821b211a0e257024eb498a6b1c077e00da294897d1485f5ceb4122636558",
+    "results/research/after_publication/ap46_effective/outputs.npz": "9121c9d7964f7825a40b53b77441c8e1cdfb548ad174613dfea2d8fa7b1d5adb",
+    "results/research/after_publication/ap47_effective/metadata.json": "da49609a68342ca1be7543525c84645843dfa64acebf658b93485668fa59f4f0",
+    "results/research/after_publication/ap47_effective/outputs.npz": "ca4ccdd872369f4d08e6a0606967cec04e5ee0ad52966d4a1f70d287fe7aac57",
+    "research/after_publication_ap48_effective_registered.md": "da7ca4768ca423bd968af1d0fdfd945a6f09c048801f3c6be6b522b4dbf47a26"
+  }
+}

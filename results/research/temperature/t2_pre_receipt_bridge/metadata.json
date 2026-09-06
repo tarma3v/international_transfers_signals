@@ -1,0 +1,17 @@
+{
+  "packet": "temperature-T2",
+  "anchor_clock": "15:30:00",
+  "query_clocks": [
+    "16:30:00",
+    "17:30:00"
+  ],
+  "update": "anchor plus one-for-one post-window CNY log return",
+  "tomorrow_cbr_used": false,
+  "historical_receipt_certified": false,
+  "physical_future_candle_corruption_passed": true,
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "source_sha256": {
+    "data/moex_spot_fx_10min_2022_2026.json": "7f20d7e90bc79d44431de37c96102ad018ae9d5ec90d0ea1097f0d042c020e28",
+    "research/temperature_t2_pre_receipt_bridge_registered.md": "02118bfd8e2a7e824f6e2545d1b266697cabc5fcd23c6f17d5066ed790278f0c"
+  }
+}

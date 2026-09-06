@@ -1,0 +1,19 @@
+{
+  "packet": "AP49-E",
+  "model": "four quarterly horizon CatBoost heads, geometric consensus",
+  "n_features": 25,
+  "n_fresh_models": 4,
+  "n_fresh_policies": 1,
+  "selected": "four_horizon_cat_geomean_ap37_fallback_cap2",
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap48_effective/metadata.json": "cbbfbedca314ee5aeec4f51f99cf28f2c7863693dbe9e35468ceb3cc330d1f9b",
+    "results/research/after_publication/ap48_effective/outputs.npz": "a0f3e6d5aca437b694e83e33f249e565d8fe52acbe9f024469f435dcd7586779",
+    "research/after_publication_ap49_effective_registered.md": "be2bb30cba610c2acad7f18c76cfa519befbb64c299c35df5031a9f0c7c50b07"
+  }
+}

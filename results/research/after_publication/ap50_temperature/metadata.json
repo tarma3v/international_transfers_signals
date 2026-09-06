@@ -1,0 +1,21 @@
+{
+  "packet": "AP50-T",
+  "model": "quarterly mature-only Platt calibration of AP49 heads",
+  "horizons": [
+    3,
+    5,
+    10,
+    20
+  ],
+  "push_candidate_unchanged": "four_horizon_cat_geomean_ap37_fallback_cap2",
+  "historical_receipts_certified": false,
+  "availability_evidence": "calendar_assumed",
+  "bank_execution_validated": false,
+  "intraday_widget_validated": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap49_effective/metadata.json": "35193602326c1148591a1a4669872fc2911ae059d2ab30f8d2350dfc28416265",
+    "results/research/after_publication/ap49_effective/outputs.npz": "6375c974a610026207b14831dbf57ea7683788806de7df1f6a5872bc468a9d7a",
+    "research/after_publication_ap50_temperature_registered.md": "f98693fd12dec9dd3561f3def4374d235501522e7d5457bacfe7101502f400c8"
+  }
+}

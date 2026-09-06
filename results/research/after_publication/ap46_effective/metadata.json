@@ -1,0 +1,21 @@
+{
+  "packet": "AP46-E",
+  "model": "quarterly mature-only joint y3/y5/y10/y20 CatBoost",
+  "n_features": 25,
+  "n_fresh_models": 1,
+  "n_fresh_policies": 1,
+  "selected": "joint_allh_cat_core_ap37_fallback_cap2",
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap45_effective/metadata.json": "afaf9536048473097a63a70b93fd0ea6748cc7ad77985ff66a5bdbabefa6341d",
+    "results/research/after_publication/ap45_effective/outputs.npz": "3a29fe6a2bf8a35860616ccf8c7887a3bb4c7ce06e79ba8dd1e31f46e4df432b",
+    "results/research/after_publication/ap37_effective/metadata.json": "3afd737cd187792235f76aaee267383e8fe3dc68fb9eecc6eaf355aa97cdc619",
+    "results/research/after_publication/ap37_effective/outputs.npz": "0051a46660dbb2dfa29c1c0bdc4ff8e5d257f5ed9bb80b593cff58554bbea6a3",
+    "research/after_publication_ap46_effective_registered.md": "feaf4139452a9e0fa7b11152082c70f400b0f0eba3010d455739e8fecb18f637"
+  }
+}

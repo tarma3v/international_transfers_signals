@@ -1,0 +1,19 @@
+{
+  "packet": "temperature-T7B",
+  "base_clock": "18:30:00",
+  "query_clocks": [
+    "19:00:00",
+    "20:00:00"
+  ],
+  "market_delay_minutes": 20,
+  "h1_is_known_not_forecast": true,
+  "historical_receipts_certified": false,
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "bank_execution_validated": false,
+  "source_sha256": {
+    "results/research/after_publication/ap51_benefit/metadata.json": "e6bbeb1a45c262118064cfcf888bd4c24ac3b7b580b102cecd6edc93e8eb00c5",
+    "results/research/after_publication/ap51_benefit/outputs.npz": "18ffa0498c8d801e549c1908463581f293c29fd3242566f2c5a3189264996529",
+    "research/temperature_t7b_after_decision_market_registered.md": "abc048b58c7ee2330f597eb0cb4219a54fecc468910ab3af9b5bd03785923903",
+    "data/moex_spot_fx_10min_2022_2026.json": "7f20d7e90bc79d44431de37c96102ad018ae9d5ec90d0ea1097f0d042c020e28"
+  }
+}

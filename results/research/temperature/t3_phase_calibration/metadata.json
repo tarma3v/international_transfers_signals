@@ -1,0 +1,15 @@
+{
+  "packet": "temperature-T3",
+  "min_train_date": "2022-02-24",
+  "calibration": "quarterly Platt, mature-only, two-day embargo",
+  "half_life_days": 730,
+  "retrospective_methodological_repair": true,
+  "tomorrow_cbr_used": false,
+  "historical_receipt_certified": false,
+  "physical_future_candle_corruption_inherited_from_t2": true,
+  "source_sha256": {
+    "results/research/temperature/t2_pre_receipt_bridge/metadata.json": "6e6838c2890c14538cb404fcb638e7bd8bbc554a6b2f7194d750d551ef83912c",
+    "results/research/temperature/t2_pre_receipt_bridge/scores.npz": "0bd8ccb20f948425354fe2853f7c18378d7b8c7c06bb36edcbfb143980175d01",
+    "research/temperature_t3_phase_calibration_registered.md": "2480bb97f723660e0d9eb7d2b26c63ed9a4b95f8e4a3ccd2daaca8423c2766ce"
+  }
+}

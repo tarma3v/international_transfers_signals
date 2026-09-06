@@ -1,0 +1,19 @@
+{
+  "packet": "AP47-E",
+  "model": "frozen AP46 joint probability with AP45 rate-1.20 buffer",
+  "rate_floor": 1.2,
+  "n_fresh_models": 0,
+  "n_fresh_policies": 1,
+  "selected": "joint_allh_cat_rate120_ap37_fallback_cap2",
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap46_effective/metadata.json": "222a821b211a0e257024eb498a6b1c077e00da294897d1485f5ceb4122636558",
+    "results/research/after_publication/ap46_effective/outputs.npz": "9121c9d7964f7825a40b53b77441c8e1cdfb548ad174613dfea2d8fa7b1d5adb",
+    "research/after_publication_ap47_effective_registered.md": "215dfb0c5f4b201edf1e01a5aa8a6e6886c228f46f06a2ac8bbe740a227a5509"
+  }
+}

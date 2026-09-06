@@ -1,0 +1,16 @@
+{
+  "selected_early": "four_horizon_cat_geomean_ap37_fallback_cap2",
+  "fresh_early_joint_pass": true,
+  "late_min_lift": 2.448228669607893,
+  "late_mean_lift": 2.5234387593085152,
+  "late_min_rate": 0.9542066027689032,
+  "late_max_rate": 1.0087336244541485,
+  "late_max_weekly_signals": 2,
+  "late_strict_success": false,
+  "late_core_veto_count": 37,
+  "late_decision_changes_vs_ap37": {
+    "same_selected": 658,
+    "removed_from_ap37": 37,
+    "added_vs_ap37": 1
+  }
+}

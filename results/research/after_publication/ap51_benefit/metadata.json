@@ -1,0 +1,14 @@
+{
+  "packet": "AP51-T",
+  "model": "quarterly mature-only winsorized Ridge future benefit",
+  "units": "CBR future-only basis points",
+  "push_policy_changed": false,
+  "bank_execution_validated": false,
+  "intraday_widget_validated": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap50_temperature/metadata.json": "37ea83f2051012fbd6ccf6759a8033483128ac416cf5ded9325a0bde5e8e8758",
+    "results/research/after_publication/ap50_temperature/outputs.npz": "0b0e968a32aa9a969ad91667730e0aa9bea523ef153086e0d37961bda5f698f9",
+    "research/after_publication_ap51_benefit_registered.md": "14f3101f9ecec78ee5c7f045532ed3e24b9ccf096ba0253c048150967d480d02"
+  }
+}

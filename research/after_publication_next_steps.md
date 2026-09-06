@@ -1,10 +1,75 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP45-E complete. The user made after-publication research the
+Updated 2026-09-06, T8B complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
+
+## LATEST COMPLETED CHECKPOINT: T8B ANY-TIME ROUTER
+
+The main-branch intermediate presentation has no literal app mockup, but slide
+12 defines an on-screen indicator, a level notification and recipient
+selection. T8B now supplies the first two through a single causal contract:
+temperature 0--100, probabilities and expected future-only CBR basis points for
+h=1/3/5/10/20, timestamps, freshness, phase, confidence, source and a separate
+sparse push flag. The persisted 2024--2026 artifact contains 45,990 unique
+currency/event snapshots and supports an admissible query on every calendar day
+for all five currencies. The interface mapping is frozen in
+`research/interface_prediction_contract.md`; the query function is
+`ml.transfer_temperature.score_snapshot_as_of`.
+
+Phase quality must be communicated honestly. T4 premarket history-only is only
+a limited-confidence fallback: opened 2025--2026 AUC is about .594/.604/.596 on
+h1/3/5 and it does not beat the prior on all longer horizons. T5 uses completed
+market candles and improves mean all-horizon AUC from .7568 at 10:30 to .7852 at
+15:30 while mean Brier falls .15622 -> .14767. T3 provides post-window 16:30 and
+17:30 calibration without tomorrow's CBR; T6 expected-benefit MAE improves from
+the 135.26 bp prior to 120.45 at 15:30 and 120.17 at 16:30, but the premarket
+benefit head is slightly worse than prior and should not be trusted for magnitude.
+
+AP50/AP51 handle the saved after-publication decision. AP50 overall calibrated
+Brier on h3/5/10/20 is .16479/.16298/.16374/.13292. AP51 MAE is
+56.65/85.91/132.68/197.08 bp versus prior 93.80/113.06/148.78/206.96. T7 was
+invalidated after T8 exposed that the base timestamp was already 18:30 with a
+20-minute market delay, so its supposed post-receipt candles overlapped the base
+information. Corrected T7B adds only newly eligible candles: at 19:00 opened
+mean Brier improves .150707 -> .149202, mean AUC .712446 -> .716130 and benefit
+MAE 123.55 -> 122.74. The 20:00 update lowers Brier similarly but harms AUC.
+
+T8B audit verifies source hashes, source_at<=valid_from, finite/bounded heads,
+unique snapshots, every-day queryability, future-snapshot prefix invariance,
+weekend stale behavior and push only on the after-decision snapshot. Push counts
+AMD/KGS/KZT/TJS/UZS are 142/139/138/139/137 across the full open period. The
+artifact still does NOT certify historical CBR receipt timestamps or executable
+bank economics. Production must replace calendar-assumed receipt with observed
+events. Next accuracy focus: strengthen morning discrimination, keep the prior
+when morning magnitude regression is worse, validate receipt/event timestamps,
+and test phase-specific ensembles without retuning on the same open years.
+Full suite after T8B: 320 tests passed.
+
+## LATEST PRODUCT GOAL: continuous transfer temperature plus sparse push
+
+The user explicitly added a second output on 2026-09-06. Keep the sparse push
+policy optimized for the strongest decisions and ТЗ lift, but also produce a
+continuous per-currency "transfer temperature" for a user who opens the app at
+any later moment. The widget must expose a calibrated 0--100 score, horizon,
+data timestamp/freshness, decision phase and uncertainty; it must not present a
+raw rank as probability or claim bank savings without executable quotes/fees.
+
+The two products share causal features but have different evaluations. Push:
+lift, 1--2 signals/week, benefit and future-only diagnostics. Widget: OOS Brier/
+log-loss, reliability/calibration error, rank discrimination, expected
+future-only benefit calibration, stability and stale-data behavior. On daily
+CBR events alone the after-publication score is necessarily piecewise constant
+within a day. A genuinely changing intraday widget requires timestamped market
+or bank quotes available at each `as_of`; never backfill end-of-day values into
+earlier queries. Detailed acceptance contract:
+`research/after_publication_temperature_goal.md`.
+
+AP49 already supplies four continuous causal OOS head scores for h=3/5/10/20;
+the next widget stage must calibrate them using mature prior labels only and
+provide a latest-valid-snapshot API before claiming any intraday validation.
 
 ## LATEST USER CLARIFICATION: TODAY-EFFECTIVE REFERENCE, not announced reference
 

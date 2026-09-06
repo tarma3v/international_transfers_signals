@@ -1,0 +1,16 @@
+{
+  "selected_early": "joint_allh_ap23_sameweek_substitution_cap2",
+  "fresh_early_joint_pass": true,
+  "late_min_lift": 2.428516129299252,
+  "late_mean_lift": 2.486616391893667,
+  "late_min_rate": 1.0163755458515285,
+  "late_max_rate": 1.0608324439701171,
+  "late_max_weekly_signals": 2,
+  "late_strict_success": true,
+  "late_core_veto_count": 43,
+  "late_decision_changes_vs_ap37": {
+    "same_selected": 695,
+    "removed_from_ap37": 0,
+    "added_vs_ap37": 1
+  }
+}

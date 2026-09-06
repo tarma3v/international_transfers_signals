@@ -1,0 +1,11 @@
+{
+  "source_hashes_verified": true,
+  "four_quarterly_calibrators_rebuilt_exactly": true,
+  "mature_label_and_two_day_embargo_checked": true,
+  "future_score_label_maturity_corruption_prefix_invariant": true,
+  "latest_valid_asof_lookup_prefix_invariant": true,
+  "push_policy_changed": false,
+  "historical_receipts_certified": false,
+  "intraday_widget_validated": false,
+  "bank_execution_validated": false
+}

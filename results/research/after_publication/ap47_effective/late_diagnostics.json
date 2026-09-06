@@ -1,0 +1,16 @@
+{
+  "selected_early": "joint_allh_cat_rate120_ap37_fallback_cap2",
+  "fresh_early_joint_pass": true,
+  "late_min_lift": 2.4287940172353553,
+  "late_mean_lift": 2.483395856951133,
+  "late_min_rate": 1.0163755458515285,
+  "late_max_rate": 1.0608324439701171,
+  "late_max_weekly_signals": 2,
+  "late_strict_success": true,
+  "late_core_veto_count": 0,
+  "late_decision_changes_vs_ap37": {
+    "same_selected": 695,
+    "removed_from_ap37": 0,
+    "added_vs_ap37": 2
+  }
+}

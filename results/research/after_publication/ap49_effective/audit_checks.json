@@ -1,0 +1,16 @@
+{
+  "source_hashes_verified": true,
+  "policy_state_and_cap_exact": true,
+  "future_input_corruption_prefix_invariant": true,
+  "early_selection_rebuilt": true,
+  "known_down_veto_inherited_and_checked": true,
+  "h1_excluded_from_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "four_horizon_specific_targets_exact": true,
+  "four_horizon_specific_maturities_exact": true,
+  "sixty_eight_quarterly_meta_cat_fits_exact": true,
+  "geometric_probability_consensus_exact": true,
+  "annual_and_post2022_features_absent": true
+}

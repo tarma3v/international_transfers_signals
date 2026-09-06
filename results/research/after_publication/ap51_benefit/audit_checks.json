@@ -1,0 +1,12 @@
+{
+  "source_hashes_verified": true,
+  "four_quarterly_benefit_models_rebuilt_exactly": true,
+  "train_only_winsorization_rebuilt_exactly": true,
+  "mature_label_and_two_day_embargo_checked": true,
+  "future_feature_target_maturity_corruption_prefix_invariant": true,
+  "latest_valid_lookup_exposes_expected_bps": true,
+  "push_policy_changed": false,
+  "units": "CBR future-only basis points",
+  "bank_execution_validated": false,
+  "intraday_widget_validated": false
+}

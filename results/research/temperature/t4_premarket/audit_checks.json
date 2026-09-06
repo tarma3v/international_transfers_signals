@@ -1,0 +1,10 @@
+{
+  "source_hashes_verified": true,
+  "physical_future_cbr_feature_prefix_invariant": true,
+  "five_quarterly_models_rebuilt_exactly": true,
+  "ten_quarterly_calibrators_rebuilt_exactly": 10,
+  "future_feature_target_maturity_corruption_prefix_invariant": true,
+  "post_2022_training_boundary_verified": true,
+  "tomorrow_cbr_used": false,
+  "market_data_used": false
+}

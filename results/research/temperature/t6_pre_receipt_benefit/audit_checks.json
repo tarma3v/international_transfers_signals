@@ -1,0 +1,9 @@
+{
+  "source_hashes_verified": true,
+  "fifty_five_models_rebuilt_exactly": 55,
+  "future_state_feature_target_maturity_prefix_invariant": true,
+  "post_2022_training_boundary_verified": true,
+  "units": "CBR future-only basis points",
+  "tomorrow_cbr_used": false,
+  "bank_execution_validated": false
+}

@@ -1,0 +1,49 @@
+candidate,h,control,lift_lo,lift_hi,delta_lo,delta_hi,draws,block
+ap26_core_mature_precision_calendar_fallback_cap2,1,ap26_core_mature_precision_calendar_fallback_cap2,1.7804690066615385,2.1141909126101104,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+ap26_core_mature_precision_calendar_fallback_cap2,3,ap26_core_mature_precision_calendar_fallback_cap2,2.1384579213424955,2.76199443031675,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+ap26_core_mature_precision_calendar_fallback_cap2,5,ap26_core_mature_precision_calendar_fallback_cap2,2.193520873432673,2.8729830649744574,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+ap26_core_mature_precision_calendar_fallback_cap2,10,ap26_core_mature_precision_calendar_fallback_cap2,2.13037754368913,2.9124184248063627,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+ap26_core_mature_precision_calendar_fallback_cap2,20,ap26_core_mature_precision_calendar_fallback_cap2,2.1050344795755414,3.014074704354652,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+ap26_core_mature_precision_calendar_fallback_cap2,mean,ap26_core_mature_precision_calendar_fallback_cap2,,,0.0,0.0,1000,
+joint_allh_cat_core_ap37_fallback_cap2,1,ap26_core_mature_precision_calendar_fallback_cap2,1.7857392846893645,2.1188874236562905,-0.004192014296624219,0.014238806610321796,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,3,ap26_core_mature_precision_calendar_fallback_cap2,2.1453103567893033,2.756940204296445,-0.02563258193481268,0.03121243428769482,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,5,ap26_core_mature_precision_calendar_fallback_cap2,2.2097149512223564,2.877515055856616,-0.03098410301952129,0.06022666165337473,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,10,ap26_core_mature_precision_calendar_fallback_cap2,2.1558803415795587,2.932385271613276,-0.022699697720634703,0.09035029662821566,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,20,ap26_core_mature_precision_calendar_fallback_cap2,2.1620383676887265,3.0549678527771325,-0.03108680353659299,0.12741498754085442,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,mean,ap26_core_mature_precision_calendar_fallback_cap2,,,-0.014569235557702353,0.055956326116443016,1000,
+weekly_optimal_stopping_logit_ap37_fallback_cap2,1,weekly_optimal_stopping_logit_ap37_fallback_cap2,1.7919000900376423,2.1190149072398805,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+weekly_optimal_stopping_logit_ap37_fallback_cap2,3,weekly_optimal_stopping_logit_ap37_fallback_cap2,2.1602129480560066,2.77919468533175,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+weekly_optimal_stopping_logit_ap37_fallback_cap2,5,weekly_optimal_stopping_logit_ap37_fallback_cap2,2.229844742413579,2.8862776440101308,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+weekly_optimal_stopping_logit_ap37_fallback_cap2,10,weekly_optimal_stopping_logit_ap37_fallback_cap2,2.1546035675360584,2.9046654846081217,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+weekly_optimal_stopping_logit_ap37_fallback_cap2,20,weekly_optimal_stopping_logit_ap37_fallback_cap2,2.1256958275485403,2.9734920409307706,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+weekly_optimal_stopping_logit_ap37_fallback_cap2,mean,weekly_optimal_stopping_logit_ap37_fallback_cap2,,,0.0,0.0,1000,
+joint_allh_cat_core_ap37_fallback_cap2,1,weekly_optimal_stopping_logit_ap37_fallback_cap2,1.7857392846893645,2.1188874236562905,-0.015496539323789698,0.0030475232397892517,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,3,weekly_optimal_stopping_logit_ap37_fallback_cap2,2.1453103567893033,2.756940204296445,-0.061247123344072674,0.0068492712067536946,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,5,weekly_optimal_stopping_logit_ap37_fallback_cap2,2.2097149512223564,2.877515055856616,-0.07821032408359438,0.029150452811304746,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,10,weekly_optimal_stopping_logit_ap37_fallback_cap2,2.1558803415795587,2.932385271613276,-0.06419004311049135,0.06903211824083937,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,20,weekly_optimal_stopping_logit_ap37_fallback_cap2,2.1620383676887265,3.0549678527771325,-0.015231736190791243,0.15105160128466785,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,mean,weekly_optimal_stopping_logit_ap37_fallback_cap2,,,-0.04068116250703881,0.043577246888776934,1000,
+meta_y20_cat_core_ap37_fallback_cap2,1,meta_y20_cat_core_ap37_fallback_cap2,1.7833324437428826,2.1162012756536637,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+meta_y20_cat_core_ap37_fallback_cap2,3,meta_y20_cat_core_ap37_fallback_cap2,2.131786271218199,2.755065923644804,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+meta_y20_cat_core_ap37_fallback_cap2,5,meta_y20_cat_core_ap37_fallback_cap2,2.1980631476221024,2.881658341571333,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+meta_y20_cat_core_ap37_fallback_cap2,10,meta_y20_cat_core_ap37_fallback_cap2,2.143292756530993,2.905059178149537,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+meta_y20_cat_core_ap37_fallback_cap2,20,meta_y20_cat_core_ap37_fallback_cap2,2.143790581782262,3.0758102213480467,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+meta_y20_cat_core_ap37_fallback_cap2,mean,meta_y20_cat_core_ap37_fallback_cap2,,,0.0,0.0,1000,
+joint_allh_cat_core_ap37_fallback_cap2,1,meta_y20_cat_core_ap37_fallback_cap2,1.7857392846893645,2.1188874236562905,-0.0016020802338897631,0.008330706904996384,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,3,meta_y20_cat_core_ap37_fallback_cap2,2.1453103567893033,2.756940204296445,-0.008625942406703047,0.03179330797078905,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,5,meta_y20_cat_core_ap37_fallback_cap2,2.2097149512223564,2.877515055856616,-0.0320602111965734,0.054378087461832376,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,10,meta_y20_cat_core_ap37_fallback_cap2,2.1558803415795587,2.932385271613276,-0.036693358704965824,0.07430933262579115,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,20,meta_y20_cat_core_ap37_fallback_cap2,2.1620383676887265,3.0549678527771325,-0.06942325464057818,0.08206113889857435,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,mean,meta_y20_cat_core_ap37_fallback_cap2,,,-0.02411866444517071,0.04406004044399598,1000,
+dual_gate_meta_precision_rate120_cap2,1,dual_gate_meta_precision_rate120_cap2,1.779401977359433,2.1145390785339355,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+dual_gate_meta_precision_rate120_cap2,3,dual_gate_meta_precision_rate120_cap2,2.1388212780359104,2.7618429811340732,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+dual_gate_meta_precision_rate120_cap2,5,dual_gate_meta_precision_rate120_cap2,2.1900284334266393,2.8701676076465827,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+dual_gate_meta_precision_rate120_cap2,10,dual_gate_meta_precision_rate120_cap2,2.130375390615552,2.9082930257067177,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+dual_gate_meta_precision_rate120_cap2,20,dual_gate_meta_precision_rate120_cap2,2.1004445929444535,3.010376387197085,0.0,0.0,1000,"20 announcement dates, circular, all currencies together"
+dual_gate_meta_precision_rate120_cap2,mean,dual_gate_meta_precision_rate120_cap2,,,0.0,0.0,1000,
+joint_allh_cat_core_ap37_fallback_cap2,1,dual_gate_meta_precision_rate120_cap2,1.7857392846893645,2.1188874236562905,-0.004859900707438014,0.014816371584149984,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,3,dual_gate_meta_precision_rate120_cap2,2.1453103567893033,2.756940204296445,-0.02611471971421788,0.03134673942385585,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,5,dual_gate_meta_precision_rate120_cap2,2.2097149512223564,2.877515055856616,-0.02871252873167467,0.06779148678710292,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,10,dual_gate_meta_precision_rate120_cap2,2.1558803415795587,2.932385271613276,-0.02246666278354924,0.09693464890752795,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,20,dual_gate_meta_precision_rate120_cap2,2.1620383676887265,3.0549678527771325,-0.03226757061201122,0.13498950889572087,1000,"20 announcement dates, circular, all currencies together"
+joint_allh_cat_core_ap37_fallback_cap2,mean,dual_gate_meta_precision_rate120_cap2,,,-0.013192678461468876,0.05897044396073457,1000,

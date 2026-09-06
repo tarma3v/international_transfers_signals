@@ -1,0 +1,10 @@
+{
+  "source_hashes_verified": true,
+  "calibrators_rebuilt_exactly": 20,
+  "post_2022_min_train_date_verified": true,
+  "mature_label_and_two_day_embargo_checked": true,
+  "future_score_label_maturity_corruption_prefix_invariant": true,
+  "physical_future_candle_corruption_inherited_from_t2": true,
+  "tomorrow_cbr_used": false,
+  "historical_receipts_certified": false
+}

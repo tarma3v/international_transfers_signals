@@ -1,0 +1,21 @@
+{
+  "packet": "temperature-T7",
+  "invalidated": true,
+  "invalidated_by": "temperature-T7B",
+  "invalidation_reason": "AP49/AP50 base decision is 18:30 with a 20-minute market delay, not an 18:00 snapshot",
+  "receipt_clock_assumption": "18:00:00",
+  "query_clocks": [
+    "18:30:00",
+    "20:00:00"
+  ],
+  "h1_is_known_not_forecast": true,
+  "historical_receipts_certified": false,
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "bank_execution_validated": false,
+  "source_sha256": {
+    "results/research/after_publication/ap51_benefit/metadata.json": "e6bbeb1a45c262118064cfcf888bd4c24ac3b7b580b102cecd6edc93e8eb00c5",
+    "results/research/after_publication/ap51_benefit/outputs.npz": "18ffa0498c8d801e549c1908463581f293c29fd3242566f2c5a3189264996529",
+    "research/temperature_t7_after_receipt_market_registered.md": "71df65c66f8d40cfd62f9081ac4c00e9f1a108af6e2ae6c9d71f598bab9a49c0",
+    "data/moex_spot_fx_10min_2022_2026.json": "7f20d7e90bc79d44431de37c96102ad018ae9d5ec90d0ea1097f0d042c020e28"
+  }
+}

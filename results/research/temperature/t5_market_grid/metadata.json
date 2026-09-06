@@ -1,0 +1,22 @@
+{
+  "packet": "temperature-T5",
+  "cutoffs": [
+    "10:30:00",
+    "11:30:00",
+    "12:30:00",
+    "13:30:00",
+    "14:30:00",
+    "15:00:00",
+    "15:20:00",
+    "15:30:00"
+  ],
+  "min_train_date": "2022-02-24",
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "tomorrow_cbr_used": false,
+  "physical_future_candle_corruption_all_cutoffs": true,
+  "historical_receipt_certified": false,
+  "source_sha256": {
+    "data/moex_spot_fx_10min_2022_2026.json": "7f20d7e90bc79d44431de37c96102ad018ae9d5ec90d0ea1097f0d042c020e28",
+    "research/temperature_t5_market_grid_registered.md": "5f1e7c732f7f00bb316ba6bdc6fdea2c27fc237a1443816870f889e9d30efbfc"
+  }
+}

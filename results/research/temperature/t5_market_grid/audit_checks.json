@@ -1,0 +1,9 @@
+{
+  "source_hashes_verified": true,
+  "eight_physical_future_candle_checks_passed": true,
+  "forty_calibrators_rebuilt_exactly": 40,
+  "future_score_label_maturity_corruption_prefix_invariant": true,
+  "post_2022_training_boundary_verified": true,
+  "tomorrow_cbr_used": false,
+  "historical_receipts_certified": false
+}
