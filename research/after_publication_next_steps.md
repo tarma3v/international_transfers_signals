@@ -1,12 +1,91 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP7 complete. The user made after-publication research the
+Updated 2026-09-06, AP8 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
 
-## Latest completed AP7: PROGRESS, trajectory distributions did not improve
+## Latest completed AP8: PROGRESS, later simple alternative but no superiority
+
+Previous turn pushed AP7 as244f3b1. This turn fit fixed directHist/survivalHist
+at18:10/18:30/18:50/19:30, same133 features and20min feed delay. Generalized
+market_features optionalcutoff preserving default.68fits logs (4clocks*17origins,
+two model families per log), mature20<quarterorigin-2d since2022; no hypergrid.
+CBR source features are frozen publication snapshot, targets start from latest
+announced fixing. CALENDAR-ASSUMED actualreceipt, NOT certified18:00 availability.
+Earlier18:10 conditional on publication actuallyreceived. Laterdata cannot be
+advertised as improvement at18:30. No bank execution savings assertion.
+
+20policies=12 primary (4times*3 CNY/CNYHist50/CNYsurvival50) +6 frozen18:30
+snapshots later1850/1930 +2 exactAP3/AP4 controls. Freeze ENTIRE snapshot/score,
+inclage, no newdata; signals exact18:30. DirectHist preservesrawmarketfloats,
+hazard preservesAP4 CSVroundtrip representation; exact18:30 model maxerrors0
+forCNY/directHist/hazardallh. Saved raw+hX for everyclock.
+
+13earlypassrows,7primarypasses (5newtiming variants). Selected
+t1930_cny_urgent_cap2: earlyminlift1.392638,benefitLB1.362567,fwd-ratio1.078324.
+Lateh1/3/5/10/20=1.506676/1.572046/1.652568/1.633637/1.586246.
+h5 905/3260,2024-01-09..2026-08-25,rate1.352188,sym35.114453,fwd59.221593.
+181signalspercurrency, identicaldates across5corridors inlateperiod: do NOT
+call905independentdecisions. Block dates allcurrenciesjoint. Maxgap14days,
+max2/week,noemptyfullmonths,9.4203%emptyweeks. MainAP3/AP4 retained at18:30;
+AP8simple1930 is a distinct later-time alternative, notconfirmedimprovement.
+
+h5deltaAP3 CI[-.093693,.150194],AP4[-.087410,.138163],symAP3deltaCI
+[-7.422264,11.421188],fwd[-9.019021,17.418494]. AllpooledliftLB>1.3/symLB>0
+with20/50dateblocks, buth20fwd58.182656 CI[-3.053233,113.490130],50date
+[-11.860483,127.872995]. WeakKGS2025h20=1.172999,KZT2026h1=1.253314.
+No newh5candidate lowerdeltaCI>0 vsAP4. Allopened early/later periods and
+conditional/notsearchadjustedCIs; nofreshholdout.
+
+Rawtimingh5 CNY/Histmix/survmix:
+1810 1.503186/1.552996/1.583324
+1830 1.638273/1.630058/1.630232
+1850 1.564379/1.651329/1.661292
+1930 1.652568/1.586931/1.605308.
+1810vs1830simpleCI[-.217673,-.057628],Histmix[-.149432,-.010869],worse.
+1930vs1830simpleCI[-.072194,.108710],1850Histmix[-.038982,.077205],no gain.
+LateHistBrier1830 .188132->1850 .182669, notsameasliftimprovement.
+CNYmeanbarcounts47/49/51/54.003, medianlasttradeage20.0167/20.0167/20.0167/
+30.0167min. NewCNYbars to1850/1930on100%lateh5rows,19:30basisdiff99.2331%.
+Directlocal1930new44.7546%,available71.5031%,medianage53.983min.
+
+186tests passed9new. Reconstructed4*5755=23020snapshot events,all68trainmasks,
+21063rawinstrument/date source-deadline rows, allscore/policy/target/support.
+Reranfinalaudit after normalizingCSV None/NaN comparison. Same oldpredictions
+exact. Tests featurefuturecorruption, actual+nominalboundary, overnightmissing,
+frozen/policyprefix, actualHist/survivalfuture/immaturelabelcorruption.
+3pagePDF output/pdf/ivan_after_publication_ap8.pdf allpagesrendered/checked;
+verification.json recordschecks. No live model/test/audit remains.
+
+## NEXT bounded AP9: use already resolved partial outcomes, not unknown futures
+
+1. Current requirement fullmature20 for everytrainingevent is conservative but
+   delays available short-horizon feedback. Investigate incremental outcome
+   availability and right-censoring as a genuinely different information-use
+   mechanism. Keep2day embargo and fullmature20 control; do NOT relax causality.
+2. Read primary discrete-time survival/censoring sources, then freeze compact
+   protocol beforefitting. Directh5 may use mature5. Hazard intervals1/2-3/4-5/
+   6-10/11-20 can use only intervals whose outcome is already determined before
+   origin-2d. Start from conservative completedintervals; if using already
+   observed failures beforeintervalend, explicitly derive their availability
+   from firstfailure receipt and at-risk eligibility, NOT ultimate fullpath.
+3. Beware outcome-dependent inclusion/immature-negative bias: censored partial
+   exposure must be treated correctly, not simply add earlyknownfailures while
+   ignoring censoredsurvivors. Prefer per-observation discretehazards or a
+   proper censoring likelihood with known exposure lengths. Validate analytically
+   and test against fullmaturecontrol on synthetic censored trajectories.
+4. Bounded quarterly/monthly refresh comparison isolates feedbackage from more
+   modelsearch; fixeddirectHist/survivalHist and simpleCNY control. Main18:30
+   and separate19:30 anchor are differentclockproducts. Start18:30, do not
+   silently substitute laterinformation or pick clocks bylate2026 errors.
+5. Sourceprefix/labelcorruption tests, counts exposure/risk/firstfailure/max
+   receiptlogs, trainstatistics only, sameearlyjointcriterion/late support,
+   allhbenefit/fwd/cadence, blockuncertainty, preservePDF/results/checkpush.
+   Goalactive, hourlyautomationdeleted; continue actual experiments.
+
+## Historical AP7: trajectory distributions did not improve
 
 Previous turn pushed AP6 as71fcd0e. This turn implemented eleven path-distribution
 families and70signal policies, fit/replayed all, 177 tests passed (9new), audited
@@ -59,7 +138,7 @@ Jan2025 library3610,lastprediction2024-12-02,lastmaturity2024-12-28;
 split2023-10-05,structure2055(estmaturitymax2023-10-02),estimation1445.
 All late+early dates repeatedly inspected, nofreshholdout/searchadjustedCIs.
 
-## NEXT bounded stage AP8: marginal value of completed evening market data
+## Completed AP8 starting plan: marginal value of evening market data
 
 1. Several new model families failed. Re-focus on available information, whose
    earlier AP2 ablation was the largest gain. User explicitly wants AFTER the

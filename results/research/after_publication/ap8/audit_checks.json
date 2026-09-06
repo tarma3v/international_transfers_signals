@@ -1,0 +1,15 @@
+{
+  "source_hashes_verified": true,
+  "snapshots_rebuilt": 4,
+  "n_snapshot_events": 23020,
+  "training_masks_rebuilt": 68,
+  "n_origins": 17,
+  "same_cbr_references_and_outcomes": true,
+  "same_evaluation_support": true,
+  "all_frozen_policies_exact": true,
+  "named_controls_exact": true,
+  "all_scores_and_signals_rebuilt": true,
+  "all_survival_curves_valid": true,
+  "raw_source_deadline_rows": 21063,
+  "historical_receipts_certified": false
+}

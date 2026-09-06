@@ -59,7 +59,7 @@ def session_state(frame, day, cutoff=CUTOFF, feed_delay_minutes=0):
     return state
 
 
-def market_features(panel, series, frames, feed_delay_minutes=0):
+def market_features(panel, series, frames, feed_delay_minutes=0, cutoff=CUTOFF):
     day_frames = {ticker: {day: f for day,f in frame.groupby(frame['begin'].dt.date)}
                   for ticker,frame in frames.items()}
     empty = pd.DataFrame({k: pd.Series(dtype='datetime64[ns]' if k in ('begin','end') else float)
@@ -68,7 +68,7 @@ def market_features(panel, series, frames, feed_delay_minutes=0):
     def state(ticker, day):
         key = ticker,day
         if key not in cache:
-            cache[key] = session_state(day_frames.get(ticker,{}).get(day,empty),day,
+            cache[key] = session_state(day_frames.get(ticker,{}).get(day,empty),day,cutoff,
                                        feed_delay_minutes=feed_delay_minutes)
         return cache[key]
     receipts = calendar_assumed_records(series['CNY'])
@@ -76,7 +76,7 @@ def market_features(panel, series, frames, feed_delay_minutes=0):
     records = []
     for row in panel.itertuples():
         day = row.date
-        decision = dt.datetime.combine(day,CUTOFF,tzinfo=MOSCOW)
+        decision = dt.datetime.combine(day,cutoff,tzinfo=MOSCOW)
         j = bisect_right(times,decision)-1
         ref = float(series['CNY'].values[j]) if j >= 0 else np.nan
         cv = np.diff(np.log(series['CNY'].values[max(0,j-20):j+1]))*1e4
