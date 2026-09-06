@@ -1,0 +1,16 @@
+{
+  "packet": "AP10-E extended",
+  "n_models": 12,
+  "n_policies": 27,
+  "reference": "today-effective CBR",
+  "n_rows": 5755,
+  "frozen_previous_predictions": true,
+  "same_clock_information_withholding_not_before_release": true,
+  "fresh_holdout": false,
+  "historical_receipts_certified": false,
+  "source_sha256": {
+    "results/research/after_publication/ap10_effective/metadata.json": "e4d8ec35e379878f282f8abef86d4ec502a554bcc646a3363a1fad63796f0c17",
+    "results/research/after_publication/ap10_effective/outputs.npz": "6e2955f718a89110c27b2956e6c6ddd8a85caf489bf35e6ae8dae6174eac4701",
+    "research/after_publication_effective_market_control_registered.md": "13dffa8bf745eee0d36c302b01d9267718a06274a91107bc17830275a1b7d109"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "source_hashes_verified": true,
+  "events_reindexed_and_labels_checked": 5755,
+  "training_records_checked": 68,
+  "all_four_information_masks_identical": true,
+  "all_old_predictions_unchanged": true,
+  "effective_market_rebase_checks": 27555,
+  "max_rebase_abs_error": 1.021405182655144e-13,
+  "gated_h1_known_and_exact": true,
+  "all_survival_curves_valid": true,
+  "historical_receipts_certified": false,
+  "fresh_holdout": false
+}

@@ -1,12 +1,113 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP9 complete. The user made after-publication research the
+Updated 2026-09-06, AP10-E complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
 
-## Latest completed AP9: resolved partial feedback did not improve lift
+## LATEST USER CLARIFICATION: TODAY-EFFECTIVE REFERENCE, not announced reference
+
+During AP10 user explicitly said lift should start from CURRENT EFFECTIVE CBR,
+even after receipt of tomorrow's fixing, and expected a strong benefit from
+knowing it. Follow this clarification over the older goal wording about latest
+announced reference. The overarching after-publication/causality/allmetrics goal
+continues; publication-reference remains a separate diagnostic, not main target.
+Do NOT go back to optimizing AP3's announced-price target as the main task.
+Do NOT claim that rescore of old AP3 signals proves knowledge is harmful.
+Models must be retrained to the SAME effective target in with/without ablations.
+TЗ note updated: initial announced-reference choice was our conservative team
+interpretation, not an organizer ruling. Bank execution still NOT validated.
+
+## Latest completed AP10-E: strong matched information gain, simple rule selected
+
+Previous pushed AP9 b4d9b5b. First AP10volume source scan found ALLvolume/value
+null in173455mainbars(CNY74442+10directarchives) and183frozenCETSchecks; fresh
+scopedCETS2026-09-02 response55bars metadata bothundefined/allnull. AP9probe
+checked columns only; correct availability inference. InitialAP10OHLCshape
+protocol/module PAUSED BEFORE FIT by usertarget clarification; no shape/volume
+model evaluated. Preserve unexecuted draft, do not treat it as a negative model.
+
+Actuallyfit AP10-E: 4information sets pastCBR,announcedCBR,pastCBR+market,
+announcedCBR+market; HistGB/logit/coarseSurvivalHist,12variants/27policies.
+Original3sets9models/23policies saved ap10_effective. Then separately registered
+strongmarket control,3models/4policies added ap10_effective_extended, prior
+predictions EXACTunchanged. Registered docs effective_information_registered.md
+and effective_market_control_registered.md. Main scripts correspondingnames.
+
+Same5755events18:30/20delay, current_index reference, announced=current+1.
+Past-only independently rebuilds ALLcurrencies' features from effectiveprefix,
+including CNY/USD/EUR; knownchange/gapzero. Strongpastmarket rebaseseachlocal/CNY
+priceandvol to effectiveprefix, no algebraicfuture input. Same rawmarketbars.
+This is same18:30 information-withholding, NOT actual15:30 prepublication.
+Same17quarterorigins2022Q3..2026Q3,train2022+,keepOLDpublicationfullh20<origin−2
+cap to matchrows across4sets; effective targets mature evenearlier. 68logrows,
+each3fits. No hypersearch. Hist160/.05/15leaves/min40/L2=5/noES; logitC.1.
+
+Target current<=minnext h observations. h1knownafterreceipt, knownnextdown
+makesallhfailure. Gatedpoliciesveto exactlynextdown; ungatedsameoutputscontrols.
+Samepast63CDF40warmup urgentcap2. Simpleknown-signcd3; zknownchangegated; oldAP3
+frozen diagnosticonly. Select2023 jointminlift1.3/rate1..2/symLB>0/cap2/fwd.8
+relativeknown-sign; 15pass. Selected known_change_z_urgent_cap2 in bothpackets.
+Earlyminlift1.755432,benefitLB2.883796,fwd-ratiomin1.136258, rates1.177..1.327.
+Late h1/3/5/10/20=1.935727/2.071153/2.054037/2.077536/2.075095.
+h5=927/3260,2024-01-09..2026-08-25,rate1.385059,sym55.313108,fwd87.565409.
+h5CI[1.860043,2.263515],50[1.832863,2.305466]. AllpooledliftLB>1.3 AND sym/fwdLB>0
+at20/50dates. Fwdh20=86.739589 CI[28.041345,143.282781],50[11.943804,158.971125].
+75year/currency/h points min1.650022, not75simultaneousCIclaims. Maxgap21,max2,
+noemptyfullmonths,4.3–9.4%emptyweeks. h1notunknownfutureforecast! Receiptsstill
+CALENDAR-ASSUMED,late/earlyopenedrepeatedly,nofreshholdout/searchadjustedCI.
+
+SameCBRHist 0.997804->1.975266 withnewfixing deltaCI[.784993,1.211539].
+SAME MARKET Hist1.717072->2.049456 deltaCI[.184434,.472143], gate->2.072437
+vsoldCI[.202896,.496957]. MarketSurvh5 1.760820->2.041189,gate2.083183;
+gated vswithoutCI[.180986,.462866]. Logitmarket1.613942->1.984409,gate2.083477.
+Complex2.083477 vsselectedsimple2.054037 CI[-.040035,.098267], no superiority.
+Signcd3=1.949810,knownz2.054037 deltaCI[.015262,.195382], improvedsimple.
+OldAP1publication change_z_r25 matchedcurrenth5=2.259851 stillstrongerpoint;
+differentcontroller/longhistory/cadence, MUST keep ascontrol next, notnewrecord.
+
+All206tests passed, collectcount206 (11new). Finalindependentaudit terminal:
+5755currentindices/targets,all68masks/riskcounts,allprioroutputs exact;
+27555marketrebasings maxerror1.0214e−13. Tests all-currencyfuturepricecorruption,
+futurebars,announcedmetadataignore,actualHist/logit/surv future/immaturelabels,
+gates/policyprefix. Audit initially includedunscoredNaNtailinh1assert; fixedmask
+only, reran successfully, no forecasts/metricschanges. Allprocessesterminal.
+
+Also ran after_publication_reference_comparison.py: ALL510policyinstances in11
+AP1..AP9packs re-scored bothreferences,10200rows,matchedsupportperh/samefired.
+sourcehashes preserved, originalsunchanged,no newwinner. AP3old1.630->current
+1.031 is targetmismatch, not evidenceagainst information. Alloutputs in
+results/research/after_publication/reference_comparison. ThreepagePDF
+output/pdf/ivan_after_publication_effective_information.pdf rendered/allchecked.
+Goalactive; nohourlyautomation. Current effective main; pubdiagnostic retained.
+
+## NEXT bounded AP11-E: unknown remainder, known buffer, strong old-rule control
+
+1. Evaluate old AP1 knownchange_z rank25(window250) on EXACTsame currenttarget,
+   dates and cadence constraints before claiming newrecord. Save unmodifiedold
+   signals and causal cap2/cooldown adaptations separately; earlyselection only.
+   New2.054 is feasible cap2 anchor, oldmatched2.260 notforgotten. Do not report
+   bestlate policy as a selectedwinner; inspectallh/cadence/benefit andslices.
+2. Exploit exact structure: announced<current impliesallhzero, h1known. For
+   announced>=current learn remaining h−1 unknown observations conditionalon
+   normalized known buffer log(announced/current). Never learn alreadyknownh1
+   as if newforecastskill. Fix simple knownz and identicalcurrentmarket controls.
+3. Bounded genuinelydifferent approaches: conditional survival (excludeknown
+   first interval), localcurrency simple logistic/Ridge anchor plus global OOS
+   residual trainedmatureonly, barrier probabilities from available pathscenario
+   distributions relativeknownmargin (AP7 distributionmethod adapted to current
+   reference, notreusezero-barrierpubscores). Need correcth−1 trajectoryindices.
+4. Keep train-only statistics/empiricalresidual distributions, h20 maturity
+   and2dayembargo; initialcontrolsharedcap, exploreeffectivematurityfreshness
+   separately ifworth. Neverlate2026regimeroutefit. Ifscenariosresampled dates,
+   dependence handledbydateblocks; zero/knownfuture contributionseparated.
+5. Freezeprotocol/testsfirst, allh/pairedCI/cadence/PDF/summary/checkpushownbranch.
+   Newround currenteffective primary; originalpub scorecardseparatediagnostic.
+   Userexpectsstronger model but do notpromise/exaggerate; aimtoprovesuperiority
+   overalreadystrong simpleknownfixing andold2.26policy, notweakCBR-onlybaseline.
+
+## Historical AP9: resolved partial feedback did not improve lift
 
 Previous pushed commit d8373c7 (AP8). AP9 actually fit 12 variants, 34 policies:
 quarterly17/monthly51 origins, direct full20/mature5, coarse5-bin full20/partial,
@@ -52,7 +153,7 @@ Results results/research/after_publication/ap9; 4pagePDF allpagesrendered and
 visually checked, verification.json records finalhashes. No live processes.
 AP3 main/AP4 alternative retained; goal ACTIVE, no hourlyautomation.
 
-## NEXT bounded AP10: unused completed-candle volume and turnover
+## Paused AP10 starting plan: volume unavailable, target clarified before shape fit
 
 1. Sourceprobe without targets saved inAP9/next_source_probe.json. Frozen
    data/moex_spot_fx_10min_2022_2026.json CNYRUB_TOM74442 bars contain

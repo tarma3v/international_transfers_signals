@@ -1,0 +1,18 @@
+{
+  "requested_on": "2026-09-06",
+  "scope": "all saved policies AP1 through AP9, including both AP2 delays and AP1 targets",
+  "n_packets": 11,
+  "n_policy_instances": 510,
+  "n_score_rows": 10200,
+  "training_performed": false,
+  "signals_changed": false,
+  "winner_reselected": false,
+  "same_dates_and_signals_within_h": true,
+  "h_units": "next observations starting at the chosen reference; endpoints differ by one observation",
+  "effective_h1": "already known after receipt, not a prediction of unknown prices",
+  "bank_execution_validated": false,
+  "historical_receipts_certified": false,
+  "fresh_holdout": false,
+  "data_sha256": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+  "script_sha256": "c27bf2ee676e654e9c87842fb64495de5a97aab946042873ea1aa0d45d684b46"
+}

@@ -1,0 +1,10 @@
+{
+  "selected": "known_change_z_urgent_cap2",
+  "selected_simple": "known_next_not_lower_cd3",
+  "reference": "today-effective CBR",
+  "selection_year": 2023,
+  "n_early_pass": 15,
+  "selected_before_later_scorecard": true,
+  "h1_is_already_known_after_receipt": true,
+  "fresh_holdout": false
+}

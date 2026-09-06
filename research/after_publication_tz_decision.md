@@ -1,5 +1,26 @@
 # Case-conformance checkpoint, live primary page checked 2026-09-06
 
+## User clarification on 2026-09-06: effective reference is now primary
+
+The user explicitly clarified that lift must start at the TODAY-EFFECTIVE CBR
+price even after tomorrow's fixing has been received. This is the operative
+research target from AP10-E onward. Keep publication-reference results as a
+separate diagnostic, not as the same task or the same score. The prior choice
+below was our conservative indexing interpretation, NOT a case-owner ruling
+that the future effective price must become today's evaluation reference.
+
+Distinguish information availability (tomorrow's rate is known and may be an
+input) from the action/evaluation price (today-effective CBR). A frozen model
+trained to rank the announced-price target cannot measure information gain by
+simply being rescored against today's price. AP10-E refits the SAME algorithms
+on one today-effective target, same rows/hyperparameters, with/without the
+announced fixing. The strong control also has identical evening market bars.
+Case indexing remains an explicitly documented team assumption; this is not
+proof of bank execution at the CBR fixing. h1 after receipt is already known,
+while h3/5/10/20 retain unknown steps. No guaranteed18:00 publication claim.
+
+The historical interpretation/evidence below is retained to explain AP1-AP9.
+
 Source: https://talenttrack.aitalenthub.ru/hackathon/cases/455,
 “Как поймать выгодный момент для перевода за рубеж”. Read through the user's
 authenticated in-app tab after the web retrieval tool failed. No forms submitted;
