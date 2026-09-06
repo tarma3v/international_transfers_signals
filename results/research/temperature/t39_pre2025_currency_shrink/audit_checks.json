@@ -1,0 +1,15 @@
+{
+  "source_hashes_match": true,
+  "screen_grid_rebuilt": true,
+  "validation_gates_rebuilt": true,
+  "frozen_map_rebuilt": true,
+  "open_predictions_rebuilt": true,
+  "all_metric_packets_rebuilt": true,
+  "expected_grids_complete": true,
+  "pre2025_selection_only": true,
+  "future_prefix_corruption_passed": true,
+  "non_history_exact_t37": true,
+  "retrospective_repair_passed": false,
+  "production_promoted": false,
+  "fresh_independent_holdout": false
+}

@@ -2145,3 +2145,24 @@ AUC - в **674/680**; оставшиеся шесть не нарушают до
 валютно-фазовая shrinkage-карта только на disjoint pre-2025 OOS predictions или
 genuinely prospective shadow. Результаты:
 `results/research/temperature/t38_h20_local_stability/`.
+
+## T39: pre-2025 currency alpha улучшает aggregate, но портит локальную ECE
+
+T39 реализовал следующий допустимый шаг без open-period selection. Для каждой
+валюты один из alpha `0/.25/.5/.75/1` выбирался по Brier на 226 mature OOS
+строках 2023 и отдельно проверялся на 228 mature OOS строках 2024. Все валюты
+на screen выбрали alpha=1. Validation разрешила его только AMD и UZS;
+KGS/KZT/TJS вернулись к T37 alpha=0,5 из-за ECE/AUC gates.
+
+Frozen карта прошла 40/40 объединённых состояний против T37 и даже улучшила
+pooled Brier примерно на -0,00072/-0,00078 и AUC на +0,020/+0,022. Но строгая
+локальная картина ухудшилась: **619→594/680** clock-строк, **25→22/34** pooled
+групп и **4→3/4** year-групп. Новые failures сосредоточены в AMD-2026, UZS и
+объединённом 2026. Усиление улучшает rank, но делает probability локально
+переуверенной.
+
+`retrospective_repair_passed=false`, `production_promoted=false`; T37 остаётся
+без изменения. Две pre-2025 OOS выборки не поддерживают более подробную
+currency-specific константу. Следующий шаг - prospective shadow или новый
+действительно независимый source-state replay. Результаты:
+`results/research/temperature/t39_pre2025_currency_shrink/`.

@@ -178,3 +178,10 @@ caused the change.
     T37 as pooled/year-stable, not production-calibrated for every currency.
     Any repair must come from disjoint pre-2025 OOS data or new prospective
     outcomes, never another open-period currency weight.
+25. T39 tested that disjoint option: select currency alpha on mature 2023 OOS,
+    validate it on mature 2024 OOS, then freeze before 2025-2026. AMD and UZS
+    retained alpha=1, while KGS/KZT/TJS fell back to 0.5. Aggregate Brier/AUC
+    improved and all 40 pairwise clock gates passed, but local pass counts fell
+    to 594/680 clock and 22/34 pooled, with a year group also lost. Reject T39
+    and keep T37 exactly. Further currency splitting needs new independent
+    source-state history or prospective outcomes.

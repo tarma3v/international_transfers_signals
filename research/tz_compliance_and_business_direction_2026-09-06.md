@@ -128,6 +128,13 @@ currency-local ECE у TJS и интервалы малых `currency x year` г�
 периоде, но не создаёт fresh holdout и не доказывает production-калибровку
 каждой валюты: `production_promoted=false`.
 
+T39 затем проверил ровно предложенный pre-2025 repair: currency alpha выбирался
+на mature OOS 2023, проходил отдельный gate на mature OOS 2024 и только потом
+применялся к 2025-2026. AMD/UZS получили alpha=1, остальные сохранили 0,5.
+Несмотря на лучший pooled Brier/AUC и 40/40 non-inferiority против T37,
+локальные проходы снизились с 619 до 594/680, pooled local с 25 до 22/34, year
+с 4 до 3/4. T39 отклонён; это усиливает, а не снимает статус `PARTIAL`.
+
 Повторная сверка 06.09 проведена непосредственно по текущей авторизованной
 странице кейса, обеим Q&A-сводкам (04.09 и 05.09) и PDF-презентации из `main`.
 Ключевое уточнение страницы: курс на завтра допустим после публикации, потому
@@ -202,7 +209,7 @@ proxy направления, но не исполнимая банковска�
 | Защита от будущего | PASS для артефактов и runtime gate | corruption-prefix, независимые audit scripts; T18 не активирует same-day after-publication строки без verified receipt и сдвигает поздний receipt | production ingestion должен сохранить фактическое событие и payload id |
 | Стабильность OOT | PARTIAL | отбор на 2023, разрезы 2024/2025/2026 и по валютам положительные | `fresh_holdout=false`; заморозить AP37/T17 и запустить prospective shadow |
 | Произвольная дата/время | PASS | `signals_as_of(T)` причинно режет дневной ряд; `score_snapshot_as_of` выбирает последний допустимый снимок; `case_output_table_as_of` и `run_case_output.py` выдают все валюты | — |
-| Any-time calibration | PARTIAL, сильный pooled/year shadow | T37 проходит 40/40 объединённых scenario-clock gates; T38 подтверждает 80/80 year-clock и 4/4 pooled year, но только 619/680 clock-local и 25/34 pooled currency/year/currency-year групп | не подбирать валютные веса на 2025-2026; использовать disjoint pre-2025 OOS map или genuinely prospective outcomes |
+| Any-time calibration | PARTIAL, сильный pooled/year shadow | T37 проходит 40/40 объединённых scenario-clock gates; T38 даёт 619/680 clock-local и 25/34 pooled local; T39 pre-2025 map ухудшает их до 594/680 и 22/34 | T39 отклонён; нужен genuinely prospective outcome или новый независимый source-state replay |
 | Обязательная схема строки | PASS | `case_output_as_of` возвращает date/corridor/indicator/direction/strength/speed/scenario и полный audit payload; сохранён демонстрационный CSV | — |
 | Fast vs slow | PASS как CBR-proxy | на общем support h5 adjusted lift 2,134 → 2,677; Δ +0,525 CI [+0,193; +0,934]; future-only Δ +21,79 б.п. [+3,35; +42,92] | реальную цену ожидания по bank quote можно измерить только в пилоте |
 | Комбинирование/конфликты | PASS | AP37: core AP26, fallback AP23, mature-precision gate, cooldown/cap | перевести reason codes 1/2/3 в человекочитаемые сценарии |
@@ -341,8 +348,9 @@ CTR — только диагностическая метрика: хороши
 ## Ближайший порядок работ
 
 1. Заморозить AP37 sparse push и T37 h20 widget-shadow без новых настроек на
-   открытом 2025-2026; считать T38 обязательным локальным evidence packet и
-   сохранять фактические source/receipt timestamps.
+   открытом 2025-2026; считать T38 обязательным локальным evidence packet,
+   T39 - отрицательной проверкой currency-alpha, и сохранять фактические
+   source/receipt timestamps.
 2. Перевести reason codes AP37 в человекочитаемые indicator/scenario в
    демонстрационном журнале решений.
 3. Обновить презентацию: сохранить продуктовую историю из `main`, но заменить
@@ -350,4 +358,6 @@ CTR — только диагностическая метрика: хороши
    только 2-3 decision metrics: worst-corridor lift, `±h` benefit, cadence.
 4. На слайде задачи со звёздочкой показать T37 как причинный source-driven
    pooled/year-stable shadow, рядом указать T38 `619/680` и `25/34`, а также
-   `fresh_holdout=false`; не смешивать его Brier/AUC с метриками sparse push.
+   `fresh_holdout=false`. T39 вынести только в backup как доказательство, что
+   aggregate improvement не заменяет local calibration; не смешивать Brier/AUC
+   виджета с метриками sparse push.

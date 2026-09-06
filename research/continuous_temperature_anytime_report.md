@@ -1122,11 +1122,36 @@ Brier улучшается во всех **680/680** локальных point-с
 
 Это не повод ослабить лимит или подобрать TJS-вес на 2025-2026. Корректный
 статус: T37 силён pooled и по годам, но локальная валютная калибровка ещё не
-production-proven. Следующий repair допустим только на disjoint pre-2025 OOS
-predictions или новых prospective outcomes.
+production-proven. T39 ниже проверяет disjoint pre-2025 repair без выбора на
+открытом периоде.
 
 ---page---
-# 43. Строгая сверка с ТЗ
+# 43. T39: currency alpha не перенеслась
+
+## Aggregate стал лучше, локальная устойчивость хуже
+
+T39 выбрал alpha из `0/0,25/0,5/0,75/1` отдельно для каждой валюты на mature
+OOS 2023 и проверил его на disjoint mature OOS 2024. Только AMD и UZS сохранили
+alpha=1; KGS/KZT/TJS вернулись к T37 alpha=0,5.
+
+| Проверка | T37 | T39 |
+|---|---:|---:|
+| Clock-local pass | **619 / 680** | 594 / 680 |
+| Pooled local pass | **25 / 34** | 22 / 34 |
+| Pooled year pass | **4 / 4** | 3 / 4 |
+
+При этом T39 прошёл 40/40 общих clock-gates против T37. Pooled Brier улучшился
+ещё на -0,00072/-0,00078, AUC - на +0,020/+0,022. Средняя метрика скрыла 25
+новых failures: 17 для AMD-2026, 7 для UZS и одну объединённую строку 2026.
+
+Например, calendar AMD-2026 имеет Brier delta -0,00798 и AUC delta +0,14270,
+но ECE ухудшается на +0,02115. Эксперт лучше ранжирует, однако число 0-100
+становится локально переуверенным. `retrospective_repair_passed=false`:
+currency-map отклонена, T37 остаётся неизменным. Следующий шаг требует новых
+prospective outcomes или независимого source-state replay.
+
+---page---
+# 44. Строгая сверка с ТЗ
 
 ## Что закрыто и что остаётся открытым
 
@@ -1143,7 +1168,7 @@ predictions или новых prospective outcomes.
 | Fast vs slow | PASS proxy | цена ожидания посчитана на ЦБ |
 | Тексты и конфликты | PASS | past/present-only, AP37 router |
 | Реальный receipt ЦБ | PARTIAL | production gate готов, история timestamp неполна |
-| h20 any-time | PARTIAL, сильный pooled/year shadow | T37 40/40 pooled state gates; T38 619/680 local clock и 25/34 pooled local |
+| h20 any-time | PARTIAL, сильный pooled/year shadow | T37 40/40 pooled state; T38 619/680 local; T39 repair отклонён |
 | Fresh independent holdout | GAP | нужен prospective shadow |
 | Реальная банковская экономика | GAP за рамками хакатона | нужен пилот с quote и клиентским holdout |
 
@@ -1151,9 +1176,10 @@ predictions или новых prospective outcomes.
 Самые важные оговорки не меняют scorecard, но запрещают завышать вывод:
 ретроспектива открыта, официальный курс не равен исполнению, T37 ещё не видел
 нового независимого периода, а T38 обнаружил валютно-локальные calibration gaps.
+T39 подтвердил, что улучшение aggregate Brier/AUC само по себе их не закрывает.
 
 ---page---
-# 44. Итоговая схема решения
+# 45. Итоговая схема решения
 
 ## Что делает система в production
 
@@ -1178,8 +1204,9 @@ shadow. До рынка он осторожно использует T34 history
 T19, после реального receipt подключает T22. T35 доказал, почему часы плохи,
 T36 - почему raw rank нельзя без усадки называть вероятностью, T37 прошёл
 40/40 объединённых scenario-clock gates. T38 подтвердил перенос по годам, но
-обнаружил currency-local ECE и маломощные currency-year срезы. Следующий
-доказательный шаг - disjoint pre-2025 OOS карта либо новые prospective
-outcomes, а не настройка ещё одного веса на открытом интервале.
+обнаружил currency-local ECE и маломощные currency-year срезы. T39 уже проверил
+disjoint pre-2025 currency-map: aggregate стал лучше, local stability хуже.
+Следующий доказательный шаг - новые prospective outcomes или независимый
+source-state replay, а не настройка ещё одного веса на открытом интервале.
 Главный следующий бизнес-шаг: заморозить систему, подключить реальные bank
 quotes и запустить user-level prospective pilot.

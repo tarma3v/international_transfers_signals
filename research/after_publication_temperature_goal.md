@@ -142,6 +142,16 @@ Do not repair TJS on the opened 2025-2026 evaluation. Any currency-phase
 shrinkage must be learned on disjoint pre-2025 OOS predictions or evaluated
 prospectively.
 
+T39 executed that pre-2025 option. Each currency alpha was selected on mature
+2023 OOS rows and accepted or reset to 0.50 on separate mature 2024 OOS rows.
+Only AMD and UZS retained alpha=1.00. The frozen map improved pooled 2025-2026
+Brier and AUC and stayed non-inferior in all 40 aggregate clock states, but
+local stability fell from 619 to 594 of 680 clock rows, from 25 to 22 of 34
+pooled local groups, and from four to three pooled year groups. T39 is rejected
+and T37 remains unchanged. The available pre-2025 OOS years do not support a
+stable currency-specific alpha; the next calibration change needs genuinely
+prospective outcomes or a new independent source-state replay.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -214,8 +224,10 @@ and weekends produce an explicit stale state, not imputed current prices.
    stacking, and T34 proves that missing mature feedback must retain identity
    instead of activating an arbitrary equal mixture. Freeze T37 as the routed
    challenger, retain T25/T30/T31/T33/T34 only as diagnostic controls, and use
-   T38 as its local-stability evidence packet. The next change may use only a
-   disjoint pre-2025 OOS currency-phase map or genuinely prospective outcomes;
+   T38 as its local-stability evidence packet. T39 has already tested and
+   rejected the disjoint pre-2025 currency-alpha map because it improved
+   aggregate scores while worsening local calibration. The next change needs
+   genuinely prospective outcomes or a new independent source-state replay;
    do not reconsider the 50% weight on the opened 2025-2026 period.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.

@@ -186,6 +186,12 @@
 > пересекают ноль. Поэтому T37 остаётся сильным pooled/year-stable shadow, но
 > не production-ready локальной калибровкой.
 >
+> T39 честно проверил currency-specific alpha без выбора на 2025-2026:
+> 2023 использован как screen, 2024 как validation. Alpha=1 прошёл только для
+> AMD/UZS, но на открытом периоде aggregate-метрики улучшились ценой локальной
+> устойчивости: **594/680** clock и **22/34** pooled local против 619/680 и
+> 25/34 у T37. Карта отклонена, T37 остаётся неизменным shadow.
+>
 > Новый T15/T16 закрывает вечер до 23:00 завершёнными perpetual-свечами
 > CNYRUBF и USDRUBF. Ни один новый probability-кандидат не улучшил сильный
 > T7B-control на screen-2024, поэтому вечерняя температура не меняется только
@@ -264,6 +270,7 @@
 [T36: source-driven route и ECE-проблема](research/temperature_t36_source_driven_h20_router_report.md) ·
 [T37: единый h20 shadow проходит gates](research/temperature_t37_source_driven_h20_shrink50_report.md) ·
 [T38: локальная устойчивость T37](research/temperature_t38_h20_local_stability_report.md) ·
+[T39: pre-2025 валютная усадка отклонена](research/temperature_t39_pre2025_currency_shrink_report.md) ·
 [пример обязательной таблицы ТЗ](output/signals_example_2026-09-01_2115_h5.csv) ·
 [пример до receipt](output/signals_example_2026-09-01_1845_no_receipt_h5.csv) ·
 [пример после verified receipt](output/signals_example_2026-09-01_1845_verified_receipt_h5.csv) ·
@@ -272,7 +279,7 @@
 [парное fast-vs-slow сравнение](research/fast_slow_paired_report.md) ·
 [вечерний роутер T16](research/temperature_t16_evening_router_registered.md) ·
 [финальный алгоритм простыми словами, PDF](output/pdf/ivan_final_anytime_algorithm_for_everyone.pdf) ·
-[подробный any-time отчёт, 41 страница](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
+[подробный any-time отчёт, 46 страниц](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
 [финальная презентация с интерфейсом](output/presentation/international_transfers_final_with_interface_2026-09-06_v2.pptx) ·
 [та же презентация в PDF](output/pdf/international_transfers_final_with_interface_2026-09-06_v2.pdf) ·
 [самый эффективный подход: подробное объяснение на 30 страниц](output/pdf/описание_подробное.pdf) ·
@@ -931,7 +938,7 @@ PYTHONPATH=. .venv/bin/python -m research.after_publication_ap37_effective_audit
 PYTHONPATH=. .venv/bin/python -m research.build_after_publication_ap39_effective_report
 ```
 
-Полный набор содержит **403 теста** причинности, реконструкции и метрик.
+Полный набор содержит **406 тестов** причинности, реконструкции и метрик.
 Повторная загрузка данных MOEX требует
 сети: `PYTHONPATH=. .venv/bin/python -m research.round7_direct_pairs_data`.
 XGBoost на macOS может потребовать `brew install libomp`.
@@ -946,7 +953,7 @@ XGBoost на macOS может потребовать `brew install libomp`.
 | `research/after_publication_ap33_*` | лидер calendar-router, протокол и аудит |
 | `research/after_publication_ap34_*`–`ap36_*` | residual, distributional и causal Hedge |
 | `research/after_publication_ap37_*`–`ap39_*` | mature precision, core veto и runway |
-| `research/temperature_t24_*`–`temperature_t38_*` | h20 rank, source-driven shadow и local stability audit |
+| `research/temperature_t24_*`–`temperature_t39_*` | h20 rank, source-driven shadow и local stability/repair audits |
 | `data/moex_direct_pairs/` | архив прямых CETS-пар с SHA-256 и FACEVALUE |
 | `results/research/round7/` | полные результаты последнего раунда |
 | `results/research/after_publication/ap33_effective/` | scorecards и аудит AP33 |
@@ -980,8 +987,9 @@ live/prospective shadow без изменения порогов. Для any-tim
 объединяет T34 history, T19 market/hold и T22 after-receipt по реально
 доступному source state и проходит 40/40 pooled-state gates. T38 уточняет:
 годовые срезы устойчивы, но currency-local ECE и часть currency-year CI ещё не
-проходят. T37 не повышен в production; следующий шаг - pre-2025 OOS
-currency-phase shrinkage или genuinely prospective shadow, без настройки по
-2025–2026.
+проходят. T39 проверил pre-2025 OOS currency shrinkage и отклонил её: aggregate
+стал лучше, но local pass-count снизился. T37 не повышен в production;
+следующий шаг - genuinely prospective shadow или новый независимый
+source-state replay, без настройки по 2025–2026.
 Отдельно нужно подтвердить фактический timestamp получения курса и исполняемый
 банковский курс.

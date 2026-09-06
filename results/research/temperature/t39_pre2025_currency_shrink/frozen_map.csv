@@ -1,0 +1,6 @@
+currency,selected_alpha,validation_pass,final_alpha,changed_from_t37
+AMD,1.0,True,1.0,True
+KGS,1.0,False,0.5,False
+KZT,1.0,False,0.5,False
+TJS,1.0,False,0.5,False
+UZS,1.0,True,1.0,True
