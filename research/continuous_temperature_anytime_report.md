@@ -1151,7 +1151,35 @@ currency-map отклонена, T37 остаётся неизменным. Сл
 prospective outcomes или независимого source-state replay.
 
 ---page---
-# 44. Строгая сверка с ТЗ
+# 44. T40: длинная история не подтверждает единый эксперт
+
+## 2019–2024 открыты только по заранее заданному протоколу
+
+T40 ежегодно обучал одну `StandardScaler + L2 LogisticRegression` на данных до
+предыдущего года, калибровал frozen score на предыдущем году и смешивал его
+50/50 в log-odds с причинной базовой частотой. Использованы те же 41
+history-only CBR-признак без market/receipt-информации. Никакого выбора весов,
+валют или годов после результата не было.
+
+| Стадия | Brier delta | Log-loss delta | ECE delta | AUC delta | Local pass |
+|---|---:|---:|---:|---:|---:|
+| 2019–2022 screen | **+0,00654** | **+0,02260** | +0,02503 | +0,00439 | **0 / 9** |
+| 2023–2024 validation | **−0,00239** | **−0,00927** | −0,01865 | +0,09832 | 5 / 7 |
+
+Screen провален во всех локальных группах. Самый сильный regime failure —
+2022: Brier delta +0,02122, ECE +0,08080 и AUC delta −0,10322. Но это не
+только СВО: каждый год 2019–2022 нарушает хотя бы один допуск. Validation
+лучше за счёт 2023, однако 2024 теряет AUC, KZT слегка нарушает proper-score
+допуски, а оба bootstrap-интервала пересекают ноль.
+
+По preregistration open 2025–2026 не был оценён:
+`historical_gate_passed=false`, `open_evaluated=false`. Аудит пересобрал все
+annual fits, prior, bootstrap и gates; future-prefix corruption прошла. T37
+остаётся без изменения. Результат отвергает идею одного стационарного
+history-only эксперта и усиливает требование state-aware prospective shadow.
+
+---page---
+# 45. Строгая сверка с ТЗ
 
 ## Что закрыто и что остаётся открытым
 
@@ -1168,7 +1196,7 @@ prospective outcomes или независимого source-state replay.
 | Fast vs slow | PASS proxy | цена ожидания посчитана на ЦБ |
 | Тексты и конфликты | PASS | past/present-only, AP37 router |
 | Реальный receipt ЦБ | PARTIAL | production gate готов, история timestamp неполна |
-| h20 any-time | PARTIAL, сильный pooled/year shadow | T37 40/40 pooled state; T38 619/680 local; T39 repair отклонён |
+| h20 any-time | PARTIAL, сильный pooled/year shadow | T37 40/40 pooled state; T38 619/680 local; T39 repair отклонён; T40 long-history gate провален до открытия 2025–2026 |
 | Fresh independent holdout | GAP | нужен prospective shadow |
 | Реальная банковская экономика | GAP за рамками хакатона | нужен пилот с quote и клиентским holdout |
 
@@ -1177,9 +1205,11 @@ prospective outcomes или независимого source-state replay.
 ретроспектива открыта, официальный курс не равен исполнению, T37 ещё не видел
 нового независимого периода, а T38 обнаружил валютно-локальные calibration gaps.
 T39 подтвердил, что улучшение aggregate Brier/AUC само по себе их не закрывает.
+T40 дополнительно показал, что хороший 2023–2024 режим не переносится на
+2019–2022: длинная OOS-история важнее красивого позднего среднего.
 
 ---page---
-# 45. Итоговая схема решения
+# 46. Итоговая схема решения
 
 ## Что делает система в production
 
@@ -1206,7 +1236,9 @@ T36 - почему raw rank нельзя без усадки называть в
 40/40 объединённых scenario-clock gates. T38 подтвердил перенос по годам, но
 обнаружил currency-local ECE и маломощные currency-year срезы. T39 уже проверил
 disjoint pre-2025 currency-map: aggregate стал лучше, local stability хуже.
-Следующий доказательный шаг - новые prospective outcomes или независимый
-source-state replay, а не настройка ещё одного веса на открытом интервале.
+T40 затем провёл annual replay 2019–2024 и остановился до открытия 2025–2026:
+screen 2019–2022 провален, хотя 2023–2024 выглядел лучше. Следующий
+доказательный шаг - новые prospective outcomes и observable state-aware
+challenger, а не настройка ещё одного веса на открытом интервале.
 Главный следующий бизнес-шаг: заморозить систему, подключить реальные bank
 quotes и запустить user-level prospective pilot.

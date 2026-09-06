@@ -192,6 +192,13 @@
 > устойчивости: **594/680** clock и **22/34** pooled local против 619/680 и
 > 25/34 у T37. Карта отклонена, T37 остаётся неизменным shadow.
 >
+> T40 расширил проверку на ежегодный OOS replay 2019–2024 без подбора после
+> результата. Один 41-feature CBR-logit провалил screen 2019–2022:
+> Brier delta **+0,00654**, AUC delta +0,00439 и **0/9** локальных групп.
+> Validation 2023–2024 была лучше, но bootstrap пересёк ноль. По заранее
+> зафиксированному gate 2025–2026 не открывались. T37 снова сохранён без
+> изменения; длинная история не поддерживает одну стационарную формулу.
+>
 > Новый T15/T16 закрывает вечер до 23:00 завершёнными perpetual-свечами
 > CNYRUBF и USDRUBF. Ни один новый probability-кандидат не улучшил сильный
 > T7B-control на screen-2024, поэтому вечерняя температура не меняется только
@@ -271,6 +278,7 @@
 [T37: единый h20 shadow проходит gates](research/temperature_t37_source_driven_h20_shrink50_report.md) ·
 [T38: локальная устойчивость T37](research/temperature_t38_h20_local_stability_report.md) ·
 [T39: pre-2025 валютная усадка отклонена](research/temperature_t39_pre2025_currency_shrink_report.md) ·
+[T40: длинная rolling-origin история отклоняет единый эксперт](research/temperature_t40_long_rolling_history_report.md) ·
 [пример обязательной таблицы ТЗ](output/signals_example_2026-09-01_2115_h5.csv) ·
 [пример до receipt](output/signals_example_2026-09-01_1845_no_receipt_h5.csv) ·
 [пример после verified receipt](output/signals_example_2026-09-01_1845_verified_receipt_h5.csv) ·
@@ -953,7 +961,7 @@ XGBoost на macOS может потребовать `brew install libomp`.
 | `research/after_publication_ap33_*` | лидер calendar-router, протокол и аудит |
 | `research/after_publication_ap34_*`–`ap36_*` | residual, distributional и causal Hedge |
 | `research/after_publication_ap37_*`–`ap39_*` | mature precision, core veto и runway |
-| `research/temperature_t24_*`–`temperature_t39_*` | h20 rank, source-driven shadow и local stability/repair audits |
+| `research/temperature_t24_*`–`temperature_t40_*` | h20 rank, source-driven shadow, local stability и long-history audits |
 | `data/moex_direct_pairs/` | архив прямых CETS-пар с SHA-256 и FACEVALUE |
 | `results/research/round7/` | полные результаты последнего раунда |
 | `results/research/after_publication/ap33_effective/` | scorecards и аудит AP33 |
@@ -965,15 +973,17 @@ XGBoost на macOS может потребовать `brew install libomp`.
 
 ## Что читать
 
-1. [AP37–AP39: mature precision](output/pdf/ivan_after_publication_ap39_effective.pdf) —
+1. [Короткий отчёт: AP37, температура и бизнес-логика](output/pdf/ivan_production_model_business_brief.pdf) —
+   12 страниц простым языком о метриках, модели, push и пилоте.
+2. [AP37–AP39: mature precision](output/pdf/ivan_after_publication_ap39_effective.pdf) —
    актуальный scorecard, новый strict leader и цена фильтрации слабого core.
-2. [Текущее решение](docs/05-tekushchee-reshenie.md) — актуальная короткая
+3. [Текущее решение](docs/05-tekushchee-reshenie.md) — актуальная короткая
    техническая и продуктовая картина.
-3. [Round 7: прямые пары и виджет](output/pdf/ivan_direct_pairs_and_widget_report.pdf) —
+4. [Round 7: прямые пары и виджет](output/pdf/ivan_direct_pairs_and_widget_report.pdf) —
    последний отчёт с графиками и весами.
-4. [Объяснение лучшего подхода простыми словами](output/pdf/ivan_best_approach_explained_simply.pdf).
-5. [Подробная история экспериментов](EXPERIMENTS_SUMMARY.md).
-6. Документы `docs/01`–`docs/04` — ранний продуктовый этап; они сохранены как
+5. [Объяснение лучшего подхода простыми словами](output/pdf/ivan_best_approach_explained_simply.pdf).
+6. [Подробная история экспериментов](EXPERIMENTS_SUMMARY.md).
+7. Документы `docs/01`–`docs/04` — ранний продуктовый этап; они сохранены как
    история и не являются текущим model scorecard.
 
 ## Текущий статус
@@ -988,8 +998,10 @@ live/prospective shadow без изменения порогов. Для any-tim
 доступному source state и проходит 40/40 pooled-state gates. T38 уточняет:
 годовые срезы устойчивы, но currency-local ECE и часть currency-year CI ещё не
 проходят. T39 проверил pre-2025 OOS currency shrinkage и отклонил её: aggregate
-стал лучше, но local pass-count снизился. T37 не повышен в production;
-следующий шаг - genuinely prospective shadow или новый независимый
-source-state replay, без настройки по 2025–2026.
+стал лучше, но local pass-count снизился. T40 затем провалил заранее
+зарегистрированный screen 2019–2022 и поэтому не открыл модельные метрики
+2025–2026, несмотря на сильную 2023–2024 validation. T37 не повышен в
+production; следующий шаг - genuinely prospective shadow и наблюдаемый
+state-aware replay, без настройки по 2025–2026.
 Отдельно нужно подтвердить фактический timestamp получения курса и исполняемый
 банковский курс.

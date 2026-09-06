@@ -79,7 +79,7 @@ def build(source=SOURCE, output=OUTPUT, title="Курс ЦБ на завтра: 
         canvas.setFont("Arial",7.5)
         canvas.setFillColor(NAVY)
         canvas.drawString(18*mm,10*mm,"international_transfers_signals | проверка доступности и пользы")
-        canvas.drawRightString(192*mm,10*mm,f"06.09.2026  •  {doc.page}")
+        canvas.drawRightString(192*mm,10*mm,f"07.09.2026  •  {doc.page}")
         canvas.restoreState()
     output.parent.mkdir(parents=True,exist_ok=True)
     doc = SimpleDocTemplate(str(output), pagesize=A4, leftMargin=18*mm, rightMargin=18*mm, topMargin=17*mm, bottomMargin=21*mm, title=title, author="international_transfers_signals")

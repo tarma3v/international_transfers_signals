@@ -1,0 +1,15 @@
+{
+  "source_hashes_match": true,
+  "annual_fits_rebuilt": true,
+  "causal_prior_rebuilt": true,
+  "historical_metrics_rebuilt": true,
+  "historical_bootstrap_rebuilt": true,
+  "historical_gates_rebuilt": true,
+  "annual_currency_grids_complete": true,
+  "embargo_proofs_passed": true,
+  "future_prefix_corruption_passed": true,
+  "historical_gate_passed": false,
+  "open_evaluated": false,
+  "open_outputs_rebuilt": false,
+  "production_promoted": false
+}

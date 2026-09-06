@@ -2166,3 +2166,30 @@ pooled Brier примерно на -0,00072/-0,00078 и AUC на +0,020/+0,022. 
 currency-specific константу. Следующий шаг - prospective shadow или новый
 действительно независимый source-state replay. Результаты:
 `results/research/temperature/t39_pre2025_currency_shrink/`.
+
+## T40: длинный annual rolling-origin replay отвергает стационарный CBR-эксперт
+
+T40 был зарегистрирован до fit и до просмотра новых метрик. Для каждого года
+2019–2026 один `StandardScaler + L2 LogisticRegression(C=0.1)` обучался на
+истории до начала предыдущего года с mature h20 labels и embargo два дня.
+Frozen raw-score калибровался на предыдущем году, затем 50/50 смешивался в
+log-odds с причинной глобальной базовой частотой. Использовались фиксированные
+41 T24 CBR-признак без market/receipt данных и без выбора гиперпараметров.
+
+Исторический screen 2019–2022 провален: на 4 920 строках Brier delta к prior
+**+0,00654**, log-loss **+0,02260**, ECE **+0,02503**, AUC delta +0,00439;
+локально прошли **0/9** year/currency групп. В 2022 AUC delta упала до
+-0,10322, но провал не ограничен одной датой режима: каждый год 2019–2022
+нарушил хотя бы один допуск, а Brier ухудшился во всех пяти валютах.
+
+Отдельная validation 2023–2024 дала Brier delta **-0,00239** и AUC delta
+**+0,09832**, но только **5/7** локальных групп прошли, а 20/50-date paired
+bootstrap пересёк ноль по Brier и AUC. По frozen протоколу
+`historical_gate_passed=false`, поэтому 2025–2026 model metrics не открывались:
+`open_evaluated=false`, `production_promoted=false`.
+
+Аудит пересобрал восемь annual fits, causal prior, метрики, bootstrap и gate,
+проверил maturity/embargo и future-prefix corruption. T37 остаётся неизменным.
+Вывод: длинная CBR-история без наблюдаемого state router не решает h20
+калибровку; хороший 2023–2024 режим нельзя экстраполировать назад или вперёд.
+Результаты: `results/research/temperature/t40_long_rolling_history/`.
