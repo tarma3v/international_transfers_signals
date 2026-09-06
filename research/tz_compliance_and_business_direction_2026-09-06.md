@@ -69,6 +69,10 @@ T27 добавил 247 OOS publication dates 2023 и смог проверить
 а не переименован в победителя. Это усиливает защиту от утечки; статус
 `PARTIAL` остаётся без изменений.
 
+T28 разнёс выбор веса по Q3 и validation по Q4. Слабый w30-update улучшал
+calibration loss, но нарушал AUC gate на Q4, поэтому не включён. Это сохраняет
+строгость chronological OOS и не меняет `PARTIAL`.
+
 ## Что именно требует ТЗ
 
 ### Сигнальный слой
@@ -137,7 +141,7 @@ proxy направления, но не исполнимая банковска�
 | Защита от будущего | PASS для артефактов и runtime gate | corruption-prefix, независимые audit scripts; T18 не активирует same-day after-publication строки без verified receipt и сдвигает поздний receipt | production ingestion должен сохранить фактическое событие и payload id |
 | Стабильность OOT | PARTIAL | отбор на 2023, разрезы 2024/2025/2026 и по валютам положительные | `fresh_holdout=false`; заморозить AP37/T17 и запустить prospective shadow |
 | Произвольная дата/время | PASS | `signals_as_of(T)` причинно режет дневной ряд; `score_snapshot_as_of` выбирает последний допустимый снимок; `case_output_table_as_of` и `run_case_output.py` выдают все валюты | — |
-| Any-time calibration | PARTIAL | T22 6/6 after receipt; T25 early map AUC 0,563/Brier 0,11825; T27 pre-2025 OOS история отвергла w250 | T22/T25 держать shadow; проверить слабый w30-shrink или prospective calibration |
+| Any-time calibration | PARTIAL | T22 6/6 after receipt; T25 early map AUC 0,563/Brier 0,11825; T27/T28 отвергли w250 и daily weak-w30 | T22/T25 держать shadow; coarse-period или prospective calibration |
 | Обязательная схема строки | PASS | `case_output_as_of` возвращает date/corridor/indicator/direction/strength/speed/scenario и полный audit payload; сохранён демонстрационный CSV | — |
 | Fast vs slow | PASS как CBR-proxy | на общем support h5 adjusted lift 2,134 → 2,677; Δ +0,525 CI [+0,193; +0,934]; future-only Δ +21,79 б.п. [+3,35; +42,92] | реальную цену ожидания по bank quote можно измерить только в пилоте |
 | Комбинирование/конфликты | PASS | AP37: core AP26, fallback AP23, mature-precision gate, cooldown/cap | перевести reason codes 1/2/3 в человекочитаемые сценарии |

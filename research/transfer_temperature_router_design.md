@@ -127,3 +127,6 @@ caused the change.
 13. T27 supplied 247 OOS publication dates from 2023 and rejected w250 on the
     pre-2025 screen. T25 remains primary; a weak preregistered shrink toward
     w30 is the only remaining delayed-calibration direction supported there.
+14. T28 nested Q3 selection and Q4 validation for weak w30 doses. Q4 rejected
+    the selected beta on AUC. Daily intercept updates alter cross-day rank; a
+    future test must hold level fixed over a coarser period.

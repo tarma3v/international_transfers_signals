@@ -63,6 +63,11 @@ gain is not a stable preselected rule. w30 remains the only direction that
 improves pre-2025 Brier/AUC, but full strength fails ECE; only a preregistered
 weak blend is a defensible next calibration experiment.
 
+T28 tested that weak blend with a nested Q3/Q4 decision. Q3 selected 50%, but
+Q4 rejected it because AUC dropped 0.03794; even 10% exceeded the rank-loss
+allowance. Daily delayed levels are not rank-neutral across dates. Retain T25;
+the next defensible update must be frozen for a coarse period or prospective.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -125,8 +130,9 @@ and weekends produce an explicit stale state, not imputed current prices.
 
 1. Keep frozen AP49/T17 probability as the anchor, T22 after verified receipt
    and T25 before receipt as shadow ranks. T26's delayed selector is rejected;
-   T27's earlier rolling-origin history rejects w250. Test only a fixed weak
-   blend toward w30 on 2024-H2, or wait for prospective outcomes.
+   T27 rejects w250 and T28 rejects a daily weak w30 blend. If level adaptation
+   is tested again, estimate it only at a month/quarter boundary and hold it
+   fixed inside the period, or wait for prospective outcomes.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.
 3. Implement `score_as_of(currency, timestamp, horizon)` that selects the latest

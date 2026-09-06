@@ -1,0 +1,17 @@
+{
+  "source_hashes_match": true,
+  "prediction_rows": 2910,
+  "evaluation_dates": 582,
+  "screen_selected": "blend_w30_b050",
+  "validation_passed": false,
+  "selected_model": "t25_base",
+  "passed": false,
+  "nested_masks_disjoint_and_mature": true,
+  "historical_fit_causal": true,
+  "feedback_trace_causal": true,
+  "selected_prediction_rebuilt": true,
+  "probabilities_finite_and_bounded": true,
+  "paired_interval_grid_complete": true,
+  "selection_on_open_2025_2026": false,
+  "fresh_independent_holdout": false
+}

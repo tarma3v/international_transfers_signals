@@ -1,10 +1,23 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, T27 complete. The user made after-publication research the
+Updated 2026-09-06, T28 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user’s explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
+
+## LATEST COMPLETED CHECKPOINT: T28 WEAK W30 BLEND
+
+T28 nested the pre-2025 decision: mature 2024-Q3 selected among 10--50% w30
+logit doses, then mature Q4 independently validated the frozen choice. Q3 chose
+50%, improving every metric. Q4 rejected it because AUC fell 0.03794; even the
+10% control fell 0.00772 against the 0.005 allowance. Final output remains T25.
+
+The mechanism is now clear: a daily global intercept is monotone within a day
+but varies between days, so it can damage chronological rank. A next packet may
+freeze an intercept for a whole month/quarter, estimated only from outcomes
+mature at the boundary, while leaving within-period T25 rank unchanged. Full
+outputs: `results/research/temperature/t28_weak_w30_blend/`.
 
 ## LATEST COMPLETED CHECKPOINT: T27 PRE-2025 ROLLING-ORIGIN HISTORY
 
@@ -1552,3 +1565,10 @@ With 247 causal 2023 publication dates, w250 is distinguishable before 2025 and
 performs much worse than T25 on the 2024-H2 screen. The known 2025--2026 gain is
 therefore regime-specific hindsight, not a robust window. Retain T25. Only a
 small preregistered shrink toward w30 remains justified by pre-2025 evidence.
+
+## T28: weak w30 dose fails nested Q4 rank
+
+Mature Q3 selects beta 0.50, but a disjoint mature Q4 rejects it on AUC. Every
+candidate improves Q4 calibration loss while changing cross-day order too much.
+Retain T25; if delayed level adaptation is tested again, hold one correction
+fixed over a coarse period rather than updating it each day.
