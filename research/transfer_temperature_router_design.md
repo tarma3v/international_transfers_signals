@@ -100,6 +100,10 @@ caused the change.
    strict paired gate and local currency-year calibration drifts materially.
 5. T20 preregistered and tested one-shot hierarchical calibration on mature
    pre-2025 data. It passes 0/120 state gates and is not adopted.
-6. Next: build a genuinely new h20 discrimination head on earlier data, or
+6. T21 tested a genuinely new cross-horizon h20 head. Primary HGB+Platt passes
+   0/40 gates and is rejected. A logistic control improves AUC in 40/40 states
+   (mean 0.576 to 0.682) but catastrophically shifts probability calibration,
+   so it remains a rank-only research feature.
+7. Next: preregister a small rank correction around the frozen probability, or
    freeze a prospective online update with a fixed forgetting rule. Do not tune
-   another calibration map on opened 2024--2026.
+   its strength or another calibration map on opened 2024--2026.

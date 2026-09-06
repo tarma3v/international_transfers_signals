@@ -31,6 +31,11 @@ split: иерархическая карта обучалась только н�
 прошла 0/120 gates и не включена в решение. Следовательно, строгий статус
 `PARTIAL` сохраняется, а не улучшается косметически.
 
+T21 проверил уже не карту, а новую h20 discrimination-голову. Primary прошёл
+0/40 gates. Контрольная logistic-модель улучшила AUC во всех состояниях, но
+сильно испортила Brier/ECE из-за regime shift. Поэтому и этот результат не
+меняет `PARTIAL`: rank-информация есть, пользовательской калибровки пока нет.
+
 ## Что именно требует ТЗ
 
 ### Сигнальный слой
@@ -99,7 +104,7 @@ proxy направления, но не исполнимая банковска�
 | Защита от будущего | PASS для артефактов и runtime gate | corruption-prefix, независимые audit scripts; T18 не активирует same-day after-publication строки без verified receipt и сдвигает поздний receipt | production ingestion должен сохранить фактическое событие и payload id |
 | Стабильность OOT | PARTIAL | отбор на 2023, разрезы 2024/2025/2026 и по валютам положительные | `fresh_holdout=false`; заморозить AP37/T17 и запустить prospective shadow |
 | Произвольная дата/время | PASS | `signals_as_of(T)` причинно режет дневной ряд; `score_snapshot_as_of` выбирает последний допустимый снимок; `case_output_table_as_of` и `run_case_output.py` выдают все валюты | — |
-| Any-time calibration | PARTIAL | T19: 193 400 запросов; 111/200 probability и 119/200 benefit state gates проходят | h20 0/40; нужна иерархическая causal recalibration локальных срезов |
+| Any-time calibration | PARTIAL | T19: 193 400 запросов; 111/200 probability и 119/200 benefit gates; T20/T21 не прошли | h20 0/40; rank можно улучшить, но probability mapping требует prospective delayed calibration |
 | Обязательная схема строки | PASS | `case_output_as_of` возвращает date/corridor/indicator/direction/strength/speed/scenario и полный audit payload; сохранён демонстрационный CSV | — |
 | Fast vs slow | PASS как CBR-proxy | на общем support h5 adjusted lift 2,134 → 2,677; Δ +0,525 CI [+0,193; +0,934]; future-only Δ +21,79 б.п. [+3,35; +42,92] | реальную цену ожидания по bank quote можно измерить только в пилоте |
 | Комбинирование/конфликты | PASS | AP37: core AP26, fallback AP23, mature-precision gate, cooldown/cap | перевести reason codes 1/2/3 в человекочитаемые сценарии |

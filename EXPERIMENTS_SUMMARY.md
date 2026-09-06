@@ -1795,3 +1795,23 @@ ECE > 0,08 становится 816 против 789 у frozen identity.
 Модель не продвигается. Это показывает, что h20 требует новой discrimination
 головы, а локальный drift нельзя вылечить единственным fit на 2024. Полные
 результаты: `results/research/temperature/t20_hierarchical_calibration/`.
+
+## T21: cross-horizon h20 head нашла rank-сигнал, но не probability
+
+T21 был зарегистрирован до расчёта и использовал только causal h1/h3/h5/h10/h20
+probability/benefit-кривые, валюту, relative cross-currency признаки, возраст и
+режим. Base заканчивается до 01.09.2024, отдельная calibration — до 2025;
+обе части содержат только созревшие h20-метки с двухдневным embargo. Открытый
+2025–2026 остаётся diagnostic.
+
+Primary HGB+Platt прошёл 0/40 gates: средний Δ AUC +0,010, но Δ Brier +0,06289,
+Δ log-loss +0,15102 и Δ ECE +0,20374. Он отклонён. Не выбранная primary
+контрольная logistic-модель показала важный механизм: AUC вырос с 0,576 до
+0,682 и улучшился во всех 40/40 состояниях, но Brier ухудшился до 0,443 из-за
+сильного сдвига уровня вероятности. Поэтому score можно исследовать как малую
+rank-поправку к frozen anchor, но нельзя показывать пользователю как 0–100.
+
+Независимый аудит подтверждает 116 400 evaluation-строк, maturity, embargo,
+`source_at <= query_at`, полный bootstrap-grid и независимость predictions от
+evaluation labels. Полный набор: 359 тестов. Результаты:
+`results/research/temperature/t21_h20_curve_head/`.

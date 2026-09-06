@@ -1424,3 +1424,18 @@ archive lacks per-instrument FACEVALUE metadata; verify normalization as well.
 Record failures too; preserve frozen packets. Update PDF at meaningful completed
 stages. Checked commit/push only to ivan-experiments under standing authorization.
 No main/force-push, bank transfers, client notifications or bank contact.
+
+## T21: h20 curve head — useful rank, unacceptable calibration
+
+The preregistered primary `curve_hgb_platt` used only pre-2025 mature labels
+and was evaluated at the same 20 clocks and two receipt scenarios. It passed
+0/40 gates: mean AUC delta +0.00995 does not compensate for Brier +0.06289,
+log-loss +0.15102 and ECE +0.20374. The router remains unchanged.
+
+The `curve_logit` control exposed a more useful mechanism: mean h20 AUC rises
+from 0.576 to 0.682 and improves in all 40 states, while Brier deteriorates
+from 0.118 to 0.443. This is rank-only diagnostic evidence, not a calibrated
+temperature. The next packet may preregister a small correction around the
+frozen logit or delayed online calibration. Its strength must not be selected
+on opened 2025--2026. Full outputs are in
+`results/research/temperature/t21_h20_curve_head/`; 359 tests pass.

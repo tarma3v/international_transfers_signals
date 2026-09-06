@@ -17,6 +17,13 @@ of high-ECE local slices. The frozen probability therefore remains the current
 product output; this negative result prevents a cosmetic recalibration from
 being mistaken for better forecasting.
 
+T21 then changed discrimination rather than only calibration. Its chosen
+HGB+Platt head passed 0/40 h20 gates. A logistic control did improve AUC in all
+40 states (mean 0.576 to 0.682), proving useful cross-horizon rank information,
+but Brier rose from 0.118 to 0.443. It is therefore not a user-facing
+temperature. Any next blend must be fixed on earlier mature data or prospective
+outcomes, not tuned on the opened 2025--2026 diagnostic.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -77,9 +84,9 @@ and weekends produce an explicit stale state, not imputed current prices.
 
 ## Model plan
 
-1. Calibrate the four AP49 OOS probabilities quarterly using only mature prior
-   rows. Compare logistic calibration with a train-prior baseline; do not select
-   a mapper on opened 2024--2026.
+1. Keep frozen AP49/T17 probability as the anchor. Test a preregistered small
+   cross-horizon rank correction and delayed calibration using only mature
+   prior rows; do not select its strength on opened 2024--2026.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.
 3. Implement `score_as_of(currency, timestamp, horizon)` that selects the latest

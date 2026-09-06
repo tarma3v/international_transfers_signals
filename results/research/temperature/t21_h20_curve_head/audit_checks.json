@@ -1,0 +1,12 @@
+{
+  "source_hashes_match": true,
+  "prediction_rows": 116400,
+  "state_rows": 40,
+  "passing_states": 0,
+  "all_fit_labels_mature": true,
+  "all_sources_no_later_than_query": true,
+  "identity_control_rebuilt": true,
+  "probabilities_finite_and_bounded": true,
+  "paired_bootstrap_grid_complete": true,
+  "selection_on_open_period": false
+}
