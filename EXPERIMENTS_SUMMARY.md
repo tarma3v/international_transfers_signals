@@ -8,6 +8,41 @@
 Для внутренней оптимизации сохраняется
 `h=5`, официальный scorecard теперь считается сразу на `h=1/3/5/10/20`.
 
+## Последний AP14-E: восстановление частоты почти без потери lift
+
+[PDF](output/pdf/ivan_after_publication_ap14_effective.pdf) ·
+[подробный отчёт](research/after_publication_ap14_effective_report.md) ·
+[protocol](research/after_publication_ap14_effective_registered.md) ·
+[результаты](results/research/after_publication/ap14_effective).
+
+До результата зарегистрированы4 fixed score: AP13 rolling2/local, outcome-free
+50/50 blend и AP12 expanding ExtraTrees. Для каждого проверены top32.5,top35,
+silence14/r80,silence21/r70 и causal adaptive105 -20fresh policy. Все используют
+prior250 rank,warmup40,known-down veto,max2/week; adaptive видит только прошлые
+решения.14 политик прошли early2023 gates.
+
+Early selector выбрал `extra_roll2_silence21_r70_cap2`. Поздние h3/5/10/20=
+**2,425379/2,485115/2,423254/2,431420**, но h5rate0,968196,
+mincurrency0,933831: поздний cadence gate провален. Точность против AP12 не
+отличается, deltaCI[-0,075784;0,096772]. Это честно выбранный score, не продукт.
+
+Самый полезный поздний diagnostic `extra_ap12_silence14_r80_cap2`: h5
+**2,480451**,rate**1,004055**,mincurrency0,986126,sym67,255,future133,096.
+Он добавляет23 net решения к frozen AP12 и почти точно сохраняет lift:
+delta+0,005223,CI**[-0,027293;0,036963]**. Против AP13 reserve7 прирост доказан:
+CI[0,038489;0,259375]. Один пустой полный месяц остаётся, поэтому это
+near-cadence, а не literal strict pass.
+
+Строгий `extra_ap12_top35_cap2`: h3/5/10/20=
+2,326256/**2,374829**/2,305872/2,369384; rate по валютам1,031-1,113,
+zero empty months,max2/week. Цена к AP12 доказана: -0,100399,
+CI[-0,171546;-0,037851]. Но он доказанно выше AP10 known-z и AP11 hazard.
+Adaptive105 даёт h52,433364 и mincurrency h5>1, но имеет редкие пустые месяцы.
+Простой50/50 ensemble фронт не улучшил.
+
+Audit пересобрал5755targets,20 policy, controller state и prefix-corruption
+checks; **229 тестов** прошли. Это opened retrospective, не fresh holdout.
+
 ## Последний AP13-E: recent/local ExtraTrees и цена cadence
 
 [PDF](output/pdf/ivan_after_publication_ap13_effective.pdf) ·

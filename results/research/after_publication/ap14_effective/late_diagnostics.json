@@ -1,0 +1,14 @@
+{
+  "early_selected": "extra_roll2_silence21_r70_cap2",
+  "best_late_fresh_h5": "local_extra_silence14_r80_cap2",
+  "near_cadence_candidate": "extra_ap12_silence14_r80_cap2",
+  "near_cadence_h5_lift": 2.480450988593377,
+  "near_cadence_h5_rate": 1.0040554962646744,
+  "near_cadence_h5_currency_rate_min": 0.9861259338313768,
+  "near_cadence_empty_complete_months": 1,
+  "strict_all_h_cadence_candidate": "extra_ap12_top35_cap2",
+  "strict_all_h_min_lift": 2.305872150730562,
+  "strict_all_h_h5_lift": 2.3748289686508297,
+  "adaptive_candidate": "extra_ap12_adaptive105_cap2",
+  "adaptive_h5_lift": 2.433364114123702
+}

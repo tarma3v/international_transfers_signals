@@ -1,6 +1,6 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP13-E complete. The user made after-publication research the
+Updated 2026-09-06, AP14-E complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
@@ -18,6 +18,41 @@ Do NOT claim that rescore of old AP3 signals proves knowledge is harmful.
 Models must be retrained to the SAME effective target in with/without ablations.
 TЗ note updated: initial announced-reference choice was our conservative team
 interpretation, not an organizer ruling. Bank execution still NOT validated.
+
+## Latest completed AP14-E: light cadence repair preserves 2.48
+
+Protocol frozen before all AP14 scorecards. Same5755 effective-reference rows,
+known-down veto,early2023 selection/opened2024-2026 later diagnostic. Reuse
+frozen AP13 roll2/local and AP12 Extra scores; add outcome-free50/50 roll/local.
+Five controllers each: top32.5,top35,silence14/r80,silence21/r70,adaptive105.
+20fresh policies. All prior250 causal ranks,warmup40,max2/week; adaptive uses
+only trailing decisions, no labels.14 pass early joint gates.
+
+Selected BEFORE late: extra_roll2_silence21_r70_cap2. Late h3/5/10/20=
+2.425379/2.485115/2.423254/2.431420; h5rate.968196,mincurrency.933831,
+sym75.9683,fwd137.0053. Accuracy delta vsAP12 fullExtra=.009887,
+CI[-.075784,.096772], but late cadence fails. Preserve as honest selected result,
+not product winner.
+
+Most useful late diagnostic: extra_ap12_silence14_r80_cap2. Against frozen AP12
+it adds28/removes5 decisions, net+23. Late h3/5/10/20=
+2.395377/2.480451/2.360775/2.417480,minunknown2.360775. h5rate1.004055,
+currency.986126..1.023479,sym67.2550CI[54.1800,83.4382],fwd133.0959
+CI[110.0200,156.4562]. Delta vsAP12 +.005223 CI[-.027293,.036963]: cadence
+is nearly free. Delta vs AP13reserve7 +.140213 CI[.038489,.259375]. One empty
+full month and two currencies.986 mean near-cadence, NOT literal strict pass.
+
+Literal strict diagnostic: extra_ap12_top35_cap2. Late h3/5/10/20=
+2.326256/2.374829/2.305872/2.369384,min2.305872. Rate across all unknown h and
+currencies>=1.016, h5currency1.031..1.113,zero empty months,max2/week. It loses
+significantly vsAP12: -.100399 CI[-.171546,-.037851], but beats AP10 and AP11.
+Adaptive105 h5=2.433364,rate1.030950,mincurrencyh5=1.008538 but rare empty
+months. Fixed50/50 blend did not improve frontier.
+
+Audit regenerated targets,frozen scores,exact blend,all20 policies/controller
+state,early selection,known-down/cap and all-policy future-corruption prefix
+invariance. Paired20/50date CIs complete.229tests passed. PDF
+output/pdf/ivan_after_publication_ap14_effective.pdf is the current report.
 
 ## Latest completed AP13-E: recent/local models and cadence Pareto-front
 
@@ -108,23 +143,21 @@ AP12audit rebuilt source hashes,5755targets,17masks,85logs,compactsubset,
 local/class counts, all scores/signals, veto/prefix/weeklycap. PDF
 output/pdf/ivan_after_publication_ap12_effective.pdf rendered4pages and checked.
 
-## NEXT bounded AP14-E: light causal cadence repair without giving away 0.14 lift
+## NEXT bounded AP15-E: close the last two-signal and one-month gap
 
-1. Freeze protocol/policies before late scores. Keep AP12 fullExtra, AP13
-   rolling2/local primary, rolling2 reserve7, selected router, AP10/AP11/AP1
-   controls. Do not promote AP13 point winners using the already-open late set.
-2. The measured gap is narrow: primary needs about50-70 extra signals to reach
-   mincurrency rate1, while reserve7 added about150. Test only a compact,
-   registered repair family: silence14 and silence21 with high reserve rank;
-   fixed top32.5/top35 primary thresholds; one causal adaptive threshold driven
-   by trailing matured signal rate. No broad grid or future week/month ranking.
-3. Target product frontier: unknown-h minimum near2.4-2.45, each-currency
-   rate>=1, max2/ISO-week, zero empty complete months. Report point precision
-   and cadence separately; do not conceal statistically real lift cost.
-4. Select on early2023 using h3/h5/h10/h20, rate/currency/cadence/benefit gates.
-   Audit maturity/prefix invariance, paired20/50dateCI, all horizons, years and
-   currencies. The 2024-2026 result remains opened retrospective evidence;
-   live shadow after a real receipt and executable bank quote is final evidence.
+1. Freeze before scoring. Keep AP12 top30, AP14 near-cadence/strict/adaptive and
+   AP14 honest-selected as controls. Do not call a later diagnostic validated.
+2. Use only AP12 Extra score. Test a compact policy family derived from counts,
+   not late lift: silence14/r80 plus a single month-end high-rank rescue when a
+   month is still empty; one narrow adaptive controller that lowers threshold
+   only to.675; and one fixed approximately top31-32% threshold computed from
+   the number of missing decisions. No broad micro-grid.
+3. Target: each-currency decision rate>=1 on h5 and ideally all unknown-h scopes,
+   zero empty complete month,max2/week,min unknown-h lift>2.35. Primary objective
+   is to preserve near-cadence h52.48, not maximize an opened-period point.
+4. Early selection remains2023 h3/h5/h10/h20 with mature labels and benefits.
+   Audit exact net additions,monthly rescue state,prefix corruption and paired
+   CIs. Final evidence remains future live shadow with actual receipt/execution.
 
 ## Latest completed AP10-E: strong matched information gain, simple rule selected
 

@@ -1,0 +1,16 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "frozen_scores_unchanged": true,
+  "fixed_blend_exact": true,
+  "all_signals_and_controller_state_rebuilt": true,
+  "future_score_prefix_invariance_all_20_policies": true,
+  "known_down_veto_all_policies": true,
+  "weekly_cap_checked_by_common_audit": true,
+  "early_selection_rebuilt": "extra_roll2_silence21_r70_cap2",
+  "h1_excluded_from_selection": true,
+  "best_late_fresh_h5": "local_extra_silence14_r80_cap2",
+  "strict_all_h_cadence": "extra_ap12_top35_cap2",
+  "historical_receipts_certified": false,
+  "fresh_holdout": false
+}
