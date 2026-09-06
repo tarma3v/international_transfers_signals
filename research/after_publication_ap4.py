@@ -116,7 +116,7 @@ def build_policies(panel, saved, model_scores):
     return raw, signals, utility
 
 
-def choose_early(panel, outcomes, signals, early, groups):
+def choose_early(panel, outcomes, signals, early, groups, output=OUT):
     frame = pd.DataFrame([{'candidate': key, **row} for key, fired in signals.items()
                           for row in scorecard(panel, outcomes, fired, early, groups)])
     boot = benefit_bootstrap(panel, outcomes, signals, early)
@@ -133,14 +133,14 @@ def choose_early(panel, outcomes, signals, early, groups):
     ranked = summary.sort_values(['selection_value', 'mean_lift'], ascending=False, kind='stable')
     feasible = ranked[ranked.joint_early_pass]
     selected = feasible.index[0] if len(feasible) else INCUMBENT
-    frame.to_csv(OUT / 'early_all_horizons.csv', index=False)
-    boot.to_csv(OUT / 'early_benefit_uncertainty.csv', index=False)
-    summary.to_csv(OUT / 'early_summary.csv')
+    frame.to_csv(output / 'early_all_horizons.csv', index=False)
+    boot.to_csv(output / 'early_benefit_uncertainty.csv', index=False)
+    summary.to_csv(output / 'early_summary.csv')
     selection = {'selected': selected, 'selected_simple': INCUMBENT, 'incumbent': INCUMBENT,
         'selection_year': 2023, 'allh_mature_before': '2024-01-01',
         'joint_early_pass_count': int(len(feasible)), 'selected_before_later_scorecard': True,
         'historical_receipts_certified': False, 'fresh_holdout': False}
-    (OUT / 'selection.json').write_text(json.dumps(selection, indent=2))
+    (output / 'selection.json').write_text(json.dumps(selection, indent=2))
     print(json.dumps(selection, indent=2), flush=True)
     return selection
 

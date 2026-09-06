@@ -1,0 +1,25 @@
+{
+  "packet": "AP5",
+  "n_rows": 5755,
+  "n_policies": 66,
+  "experts": [
+    "cny",
+    "hist",
+    "extra",
+    "survival_hist",
+    "survival_logit",
+    "survival_local"
+  ],
+  "calendar_assumed": true,
+  "decision": "18:30 MSK",
+  "market_delay_minutes": 20,
+  "reference": "latest announced CBR",
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap4/outputs.npz": "c9b8dfe40decba0e5aaa8c5afddfc561a8f202b925800bef95b8848213b112fc",
+    "results/research/after_publication/ap4/metadata.json": "ad683dbe439fccada8d40ed3f90eac4054101314ef2f2e741e7e48b0a5475abd",
+    "results/research/after_publication/ap3/outputs.npz": "d2c91b367ca81dcce47786d6c6378952a9ce00179f92cb622e80403b4525be01",
+    "research/after_publication_ap5_registered.md": "d575e8ee451ea5776779f4efbeaa8f3f378fac0092043c15a89969d090fa5a6d"
+  }
+}

@@ -1,12 +1,84 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP4 complete. The user made after-publication research the
+Updated 2026-09-06, AP5 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
 
-## Latest completed AP4: PROGRESS, alternative not universal improvement
+## Latest completed AP5: PROGRESS, no new early-feasible policy
+
+Previous goal turn AP4 pushedcb69c08. This turn actually fit monthly OOS
+calibrators and replayed delayed weights:66policies,6experts,5calibrationmodes,
+12adaptive weights, frozenweights, exactAP3/AP4controls. All159tests passed,
+9newAP5. No newly selected solution: only oldAP3/AP4 pass earlyjointcriteria;
+AP4 selected again. Do not describe its1.630232 as an AP5 improvement.
+
+Expert order fixed in metadata: CNY,directHist,directExtra,survivalHist,
+survivalGlobalLogit,survivalLocalLogit. Features arcsinhCNY orclippedlogit(basep).
+Monthly2022July..2026Sept (51origins*5modes=255logs), using only priorbase OOS
+withmatureh20<origin-2days. ExpandingpositivePlatt,rolling365,local365shrink
+n/(n+250),expandingisotonic,frozenJan2023. Complete source support exactly same
+asAP4. Labels reconstructed and source hashes checked. Monotone h projection.
+
+Rolling calibration earlyBrier global/localLogit .327073/.343570->.243656/.247054;
+later .202411/.231051->.198274/.208238. But lateh5lift1.396538/1.379569->
+1.345907/1.296764, maxgap81/126days. Frozenmonotone CNY/global/localLogit
+has ZERO changed later signals vsraw: calibration cannot invent ranking skill.
+
+Delayedweights use the rolling365 ISSUED probabilities, five-h Brier. Eligibility
+dates<T AND mature20<T-2days; equivalent feedbackavailablematureday+3. Exponential
+decay of revealedrows byfeedbackage, half63/252caldays, eta2/10/30,10%uniformfloor.
+Global orlocalmeanloss shrunkwith effective_mass/(mass+50). Same-day currencies
+see same global state.67,210 rowweight logs (13*5170); arrays andlosses saved.
+Frozenweights atJan2023, equal before, still uses evolving rollingcalibrated
+experts afterward. It freezesweights, notthebaseforecasts/calibration.
+
+Example2025-01-09:3025revealedrows, lastmaturity2024-12-28,lastprediction2024-12-02.
+No nextfutureanswers used. Meanlate global252eta10weights:
+.185947/.178149/.168658/.176140/.149318/.141789. Mostly modest equalweightadjustment.
+
+Late h5 equalrolling1.664972,rate1.296905,sym33.767338,fwd58.427628;
+global252eta10 1.673687,rate1.299893,sym33.804224,fwd58.039835;
+frozenweights1.686736,rate1.298399,sym33.612597,fwd58.502363.
+Adaptivevsequal deltaCI[-.004133,.027258],vsfrozen[-.032291,.001785]. All12
+adaptivevsequal h5CIs cross0. Brier .186302(equal)/.185696(adaptive)/.185701(frozen).
+Maxgap28days. Isotonicequal h5=1.703826,rate1.343223,notearlyselected.
+Early equalrolling minlift1.295984,minsymLB-21.761257,minforwardratio.784625.
+Newmodels fail someearlyjointgate. Do NOT promote via laterpretty numbers.
+
+Files after_publication_ap5*.py; results/research/after_publication/ap5 include
+all66scores/signals,5probabilitytensors,13weightarrays,67kweightlog,calibrationlog,
+sourcehashes,probabilityaccuracy,pairedcalibration/rawcontrols,20/50blocks,
+yearcurrency andclustering. AP4 choose_early only generalized outputdirectory;
+default oldbehavior preserved, no priorresult overwritten. PDF
+output/pdf/ivan_after_publication_ap5.pdf, source after_publication_ap5_report.md.
+Verification.json has finalPDF/source/time/test evidence. Goal remains active.
+
+## NEXT bounded stage AP6: OOS stacking / conditional errors, not just Brier
+
+1. Preserve AP3/AP4 controls and all negatives. AP5 scalar Brier weighting did
+   not beat equal/frozen; avoid anotherlarge eta/half-lifegrid. Its meanloss
+   objective differs from selecting favorable points at1-2/week.
+2. Predeclare a diverse OOS meta-learning packet: simple multi-expert logistic
+   orconstrainedlinear stacker, globalHistGB stacker andshrunken/local variants,
+   trained only on genuinely past expert predictions plusAVAILABLE regime
+   features. Candidate regime features may include currency,knownCBRchange,
+   CNYbasis/volatility, disagreement/marketavailability; neverfutureerrors.
+3. Predict case h5/multihorizon orfirstpassage labels directly; residual/correction
+   orconditional weighting is useful only if errors can be forecast fromknown
+   context. Do not train meta on in-sample basepredictions. Matureallh20 and2day
+   embargo. Compare simpler equal/handrank andsourceonlymodels.
+4. Consider direct utility/ranking objective only with causal normalization and
+   nofutureweeklytop-k. Keepjointcriteria/futureguard, early2023 selection fixed
+   beforelater evaluation. Already-viewed2024-2026 stayretrospective evenwhen
+   used as priortrainingrows bywalkforward learning.
+5. Review early2023 calibration versus2022 marketregime withoutchoosing a
+   UZS/KZT2026-specific rule. Testsforfuturecorruption,monthly/quarter origins,
+   sourcehashes. Saveall/PDF. Historicalreceipts andprospective validation remain
+   limitations, not an excuse tostop actualexperiments orredo bankaudits.
+
+## Historical AP4: alternative not universal improvement
 
 Previous goal turn pushed AP3 as203ae4a. This turn actually trained three
 first-passage/hazard families (globalHistGB/globalLogit/localLogit), restricted
@@ -62,7 +134,7 @@ restrictedlabels,17trainlogs,sourcehashes,early/laterselection,20/50blockdiagnos
 PDF output/pdf/ivan_after_publication_ap4.pdf, source after_publication_ap4_report.md.
 See verification.json for final full-suite/PDF checks. No OnlineHedge fit inAP4.
 
-## NEXT bounded stage AP5: causal calibration / delayed expert adaptation
+## Completed AP5 starting plan (AP6 next above)
 
 1. Read current AP4 outputs before acting. Keep AP3 and AP4 fixed controls;
    do not tune specifically to opened KZT/UZS2026. All later periods are repeated
