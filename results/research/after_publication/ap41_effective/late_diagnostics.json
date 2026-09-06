@@ -1,0 +1,14 @@
+{
+  "selected_early": "weekly_optimal_stopping_logit_rate110_cap2",
+  "late_min_lift": 2.4305045030487458,
+  "late_mean_lift": 2.478972698721245,
+  "late_min_rate": 0.9858078602620088,
+  "late_max_weekly_signals": 2,
+  "late_strict_success": false,
+  "late_core_veto_count": 16,
+  "late_decision_changes_vs_ap37": {
+    "same_selected": 679,
+    "removed_from_ap37": 16,
+    "added_vs_ap37": 2
+  }
+}

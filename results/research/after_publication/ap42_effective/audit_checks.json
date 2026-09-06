@@ -1,0 +1,12 @@
+{
+  "source_hashes_verified": true,
+  "policy_state_and_cap_exact": true,
+  "future_input_corruption_prefix_invariant": true,
+  "early_selection_rebuilt": true,
+  "known_down_veto_inherited_and_checked": true,
+  "h1_excluded_from_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "ap38_quality_and_ap23_binary_exact": true
+}

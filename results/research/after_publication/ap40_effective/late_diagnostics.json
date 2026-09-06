@@ -1,0 +1,26 @@
+{
+  "selected_early": "weekly_optimal_stopping_logit_ap37_fallback_cap2",
+  "fresh_early_joint_pass": true,
+  "late_min_lift": 2.4537333884510724,
+  "late_mean_lift": 2.5015112899443577,
+  "late_min_rate": 0.9475982532751092,
+  "late_max_rate": 0.9861259338313768,
+  "late_max_weekly_signals": 2,
+  "late_strict_success": false,
+  "late_core_veto_count": 47,
+  "late_reason_counts": {
+    "none": 2636,
+    "model_or_unavailable_core": 527,
+    "precision_late_week_fallback": 1,
+    "silence_fallback": 22,
+    "friday_core_guard": 1,
+    "rate_deficit_core_guard": 79,
+    "silence_core_guard": 19,
+    "month24_core_guard": 0
+  },
+  "late_decision_changes_vs_ap37": {
+    "same_selected": 648,
+    "removed_from_ap37": 47,
+    "added_vs_ap37": 1
+  }
+}

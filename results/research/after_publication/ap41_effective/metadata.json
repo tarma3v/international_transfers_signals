@@ -1,0 +1,19 @@
+{
+  "packet": "AP41-E",
+  "model": "AP40 logistic weekly optimal stopping with rate 1.10 guard",
+  "rate_floor": 1.1,
+  "n_fresh_models": 0,
+  "n_fresh_policies": 1,
+  "selected": "weekly_optimal_stopping_logit_rate110_cap2",
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap40_effective/metadata.json": "219e2c55f6389d8483be6c1b55e3286122194cd01fd113ee9522fdae2391d3e3",
+    "results/research/after_publication/ap40_effective/outputs.npz": "24d595a53731a1c5e525bff63b75c317182becf1c79828a1150b51a8b887ea69",
+    "research/after_publication_ap41_effective_registered.md": "20e97e0dcb6160dfcd1002b786f5afd55d79cd880d4fbbd0ee208ee363b3849d"
+  }
+}

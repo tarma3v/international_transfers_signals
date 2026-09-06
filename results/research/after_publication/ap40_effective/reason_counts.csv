@@ -1,0 +1,9 @@
+reason,count
+none,2636
+model_or_unavailable_core,527
+precision_late_week_fallback,1
+silence_fallback,22
+friday_core_guard,1
+rate_deficit_core_guard,79
+silence_core_guard,19
+month24_core_guard,0

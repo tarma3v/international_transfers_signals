@@ -4,7 +4,7 @@
 выгоднее переводить рубли в **AMD, KGS, KZT, TJS или UZS**, и сформировать не
 больше нескольких полезных сигналов в неделю.
 
-> **Уточнённая задача AP10-E/AP39-E:** после получения завтрашнего курса считаем lift
+> **Уточнённая задача AP10-E/AP45-E:** после получения завтрашнего курса считаем lift
 > от **действующего сегодня ЦБ**. Знание нового курса — вход, а не новая опора.
 > Новый лучший строгий point-result — AP37 mature-precision router:
 > **h3/5/10/20 = 2,429 / 2,509 / 2,479 / 2,525**, min rate **1,009**,
@@ -17,9 +17,12 @@
 > Исторические receipts условные, не новый закрытый тест и не банковская экономия.
 > На h1 ответ после публикации уже известен; h3/5/10/20 ещё содержат неизвестное.
 > Старые AP3/AP4 **1,630** относятся к другой, новой опубликованной опоре.
-> AP38 поднял h5 до **2,521** и h20 до **2,597**, но провалил частоту; AP39
-> также не восстановил min rate. Они остаются accuracy-frontier, не продуктом.
-> Исследование активно, без почасовой автоматизации; **289 тестов** прошли.
+> Новый AP40 optimal-stopping поднял h3/h5/h10 до **2,454 / 2,541 / 2,500**,
+> но снизил min rate до **0,948**: это accuracy-mode, не полный победитель ТЗ.
+> Новый nonlinear AP44 дал h20 **2,560**, но также потерял cadence. AP45
+> формально проходит gates, однако это AP37 плюс 2 сигнала без доказанного
+> улучшения. Основным остаётся более простой AP37.
+> Исследование активно, без почасовой автоматизации; **299 тестов** прошли.
 
 > **Сохранённый ориентир до публикации:** причинный `availability_route` на
 > срезе 15:30. На ретроспективе 2025–2026 он даёт adjusted lift **2,053** при
@@ -29,8 +32,33 @@
 
 [Краткая история всех экспериментов](EXPERIMENTS_SUMMARY.md) ·
 [решение 15:30 подробно](docs/05-tekushchee-reshenie.md) ·
-[новый PDF: AP37–AP39 mature precision](output/pdf/ivan_after_publication_ap39_effective.pdf) ·
+[новый PDF: подробные итоги AP40-AP45](output/pdf/ivan_after_publication_ap45_effective.pdf) ·
+[лучший подход простыми словами](output/pdf/ivan_after_publication_best_simple_explained.pdf) ·
 [активный исследовательский checkpoint](research/after_publication_next_steps.md)
+
+## Последние AP40-E/AP45-E: optimal stopping и nonlinear meta-model
+
+AP40 обучает quarterly OOS logistic решать, брать ли текущую сильную opportunity
+или сохранить слот для лучшей возможности той же валюты позже в ISO-неделе.
+Метка учитывает самый поздний contributing h20 outcome, поэтому maturity и
+двухдневный embargo остаются строгими. Поздние h3/h5/h10/h20 = **2,454 / 2,541 /
+2,500 / 2,511**. Он удалил 47 сигналов AP37, улучшил h5 symmetric benefit с
+74,55 до **78,30 bp**, но min rate **0,948** нарушает ТЗ.
+
+AP41-AP43 проверили защиту частоты и замещение другим специалистом. Rate guard
+1,10 почти восстановил поток, бинарный fallback оказался слишком редким, а
+непрерывные ranks восстановили cadence ценой статистически значимого падения
+h3/h5. AP44 - новый 28-feature mature-only meta-CatBoost - дал h20 **2,560**,
+но min lift **2,420** и min rate **0,948**. AP45 с dual gate и rate 1,20
+проходит point-gates, но не удаляет ни одного AP37 сигнала и добавляет только 2;
+усложнять production им нет смысла.
+
+[Технический отчёт AP40-AP45](research/after_publication_ap45_effective_report.md) ·
+[простое объяснение AP37/AP40](research/after_publication_best_simple_explained.md) ·
+[результаты AP40](results/research/after_publication/ap40_effective) ·
+[результаты AP44](results/research/after_publication/ap44_effective) ·
+[результаты AP45](results/research/after_publication/ap45_effective).
+Все fits, targets, routers и future-corruption prefix audits прошли.
 
 ## Последние AP37-E/AP39-E: новый строгий лидер
 

@@ -1,0 +1,16 @@
+{
+  "selected_early": "ap26_core_mature_precision_calendar_fallback_cap2",
+  "fresh_early_joint_pass": false,
+  "late_min_lift": 2.4198138456212304,
+  "late_mean_lift": 2.494245242666327,
+  "late_min_rate": 0.9475982532751092,
+  "late_max_rate": 0.9935965848452508,
+  "late_max_weekly_signals": 2,
+  "late_strict_success": false,
+  "late_core_veto_count": 38,
+  "late_decision_changes_vs_ap37": {
+    "same_selected": 657,
+    "removed_from_ap37": 38,
+    "added_vs_ap37": 3
+  }
+}

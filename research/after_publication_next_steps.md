@@ -1,6 +1,6 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP39-E complete. The user made after-publication research the
+Updated 2026-09-06, AP45-E complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
@@ -18,6 +18,50 @@ Do NOT claim that rescore of old AP3 signals proves knowledge is harmful.
 Models must be retrained to the SAME effective target in with/without ablations.
 TЗ note updated: initial announced-reference choice was our conservative team
 interpretation, not an organizer ruling. Bank execution still NOT validated.
+
+## Latest completed AP40-E/AP45-E: weekly stopping and nonlinear meta quality
+
+AP40 registered one weekly optimal-stopping target before scoring. For each
+eligible AP26/AP23 opportunity, take-now=1 iff mean(y3,y5,y10,y20) is no worse
+than every later opportunity of the same currency/ISO week; target maturity is
+the latest publication-h20 maturity among all compared opportunities. Twenty
+current-only features feed quarterly standardized LogisticRegression C=.1,
+balanced, half-life730, mature-before-origin-minus2d. AP37 frequency guards and
+fallback remain causal. It passed early but missed late cadence. Late
+h3/5/10/20=2.453733/2.540882/2.500001/2.511429,minlift2.453733,
+meanlift2.501511,minrate.947598,h5=649 signals/sym78.3044/fwd133.9364. Versus
+AP37 it keeps648,removes47,adds1. Lift deltas +.0251/+.0317/+.0207/-.0136 all
+20/50-date CIs cross0; symmetric bp deltas on h3/h5/h10 have positive20- and
+50-date CIs. Preserve as accuracy-mode, not strict leader.
+
+AP41 froze rate floor1.10 and restored32 AP40 rejections, but late minrate=.985808
+and point metrics largely reverted: 2.430505/2.507634/2.469783/2.507969. AP42
+used AP38 quality plus AP23 binary substitution; early failed, late minrate
+.962882 and h3/h5=2.408154/2.469831 despite h20=2.569100. AP43 used AP23
+continuous pre-controller pace>.55/reserve>.70: minrate1.016009 but h3/h5 fell
+to2.359622/2.374719 and one empty month; paired20/50-date h3 and h5 deltas to
+AP37 are significantly negative. Do not use broad external-rank substitution.
+
+AP44 registered a new 28-feature quarterly CatBoostClassifier for mature y20:
+240 trees,depth5,half-life730,balanced classes, OOS quarter fits. Added currency
+one-hot, annual sin/cos and fixed post-2022 flag to AP40 features. Late
+h3/5/10/20=2.419814/2.511389/2.485529/2.560249,minrate.947598. All lift deltas
+to AP37 cross0. Annual sin/cos account for about43% mean importance; treat as
+transport risk, not proof. AP45 required both AP38 and AP44 to reject and used
+rate floor1.20. It passes point gates at2.428794/2.505628/2.476403/2.522759,
+minrate1.016376, but removes0 AP37 signals and adds2; every delta CI crosses0.
+AP37 remains the simpler practical strict leader.
+
+AP40 independent audit rebuilds weekly labels/latest maturity,20 features,17
+quarterly fits,predictions and router. AP42-AP45 combined audit rebuilds all
+inputs/models/routers. Monday-boundary corruption of every future feature,
+label,rank and upstream decision leaves all prior predictions/signals exact.
+Full suite:299 tests. Current reports:
+output/pdf/ivan_after_publication_ap45_effective.pdf and
+output/pdf/ivan_after_publication_best_simple_explained.pdf. Both were rendered
+page-by-page and visually checked. Next honest classes: horizon-specific models
+only if product semantics permit, leave-one-year-out seasonal residual, actual
+receipt timestamps, executable bank quotes, or new prospective shadow data.
 
 ## Latest completed AP37-E/AP39-E: mature precision and guarded regimes
 

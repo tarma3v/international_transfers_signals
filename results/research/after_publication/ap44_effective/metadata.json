@@ -1,0 +1,21 @@
+{
+  "packet": "AP44-E",
+  "model": "quarterly mature-only nonlinear y20 meta-CatBoost",
+  "n_features": 28,
+  "n_fresh_models": 1,
+  "n_fresh_policies": 1,
+  "selected": "ap26_core_mature_precision_calendar_fallback_cap2",
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap43_effective/metadata.json": "69129d6bae30bb50b0bf09f99ce6e18a317bc91df7d9014452659b67164df4bb",
+    "results/research/after_publication/ap43_effective/outputs.npz": "ff8896a6972f5446728a6678aa18e04568a2640cdb164e0855d81eb5c8188511",
+    "results/research/after_publication/ap37_effective/metadata.json": "3afd737cd187792235f76aaee267383e8fe3dc68fb9eecc6eaf355aa97cdc619",
+    "results/research/after_publication/ap37_effective/outputs.npz": "0051a46660dbb2dfa29c1c0bdc4ff8e5d257f5ed9bb80b593cff58554bbea6a3",
+    "research/after_publication_ap44_effective_registered.md": "dc7ceaed04e08a6066681de746be615d70e0286207193e891a6835ac7295132f"
+  }
+}

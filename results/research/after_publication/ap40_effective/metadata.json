@@ -1,0 +1,29 @@
+{
+  "packet": "AP40-E",
+  "n_rows": 5755,
+  "model": "standardized logistic weekly optimal stopping",
+  "n_features": 20,
+  "n_fresh_models": 1,
+  "n_fresh_policies": 1,
+  "n_frozen_controls": 11,
+  "selection_horizons": [
+    3,
+    5,
+    10,
+    20
+  ],
+  "selected": "weekly_optimal_stopping_logit_ap37_fallback_cap2",
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap39_effective/metadata.json": "f804059068525e60c4070d796308733c1899910686292ce18b468d3d9e18e946",
+    "results/research/after_publication/ap39_effective/outputs.npz": "c833228ac4e719745f9dc2f6b17ce5a7ebea69b374ec3529cf219a4ba4227b08",
+    "results/research/after_publication/ap37_effective/metadata.json": "3afd737cd187792235f76aaee267383e8fe3dc68fb9eecc6eaf355aa97cdc619",
+    "results/research/after_publication/ap37_effective/outputs.npz": "0051a46660dbb2dfa29c1c0bdc4ff8e5d257f5ed9bb80b593cff58554bbea6a3",
+    "research/after_publication_ap40_effective_registered.md": "382e19f735af1ce1404a6ab5eae7c87091c877acf897891508ba8814112044ac"
+  }
+}

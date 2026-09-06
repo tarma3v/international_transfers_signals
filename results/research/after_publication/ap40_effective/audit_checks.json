@@ -1,0 +1,15 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "weekly_target_and_latest_label_maturity_exact": true,
+  "twenty_current_only_features_exact": true,
+  "quarterly_logistic_predictions_exact": true,
+  "causal_router_state_and_cap_exact": true,
+  "future_feature_label_and_policy_corruption_prefix_invariant": true,
+  "early_selection_rebuilt": true,
+  "known_down_veto_inherited_and_checked": true,
+  "h1_excluded_from_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false
+}

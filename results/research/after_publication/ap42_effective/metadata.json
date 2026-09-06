@@ -1,0 +1,22 @@
+{
+  "packet": "AP42-E",
+  "model": "AP38 core quality plus AP23 rate105 substitution",
+  "core_rate_floor": 1.0,
+  "fallback_rate_floor": 1.05,
+  "n_fresh_models": 0,
+  "n_fresh_policies": 1,
+  "selected": "ap26_core_mature_precision_calendar_fallback_cap2",
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap41_effective/metadata.json": "234f0fc7f0e1ed08bd38001ab09ecf3625c9e5cf7615abfbabe9c7ad7d00c835",
+    "results/research/after_publication/ap41_effective/outputs.npz": "ed06478e53c62bc031d3064865e83f1eeff710cafe49509dcfdf54d7f12c429c",
+    "results/research/after_publication/ap38_effective/metadata.json": "2d45b7fbeb6cfb5336e9a0f762392d6ded18ed0e877091769022bfd888127c3b",
+    "results/research/after_publication/ap38_effective/outputs.npz": "ba4439732db2e0231021d93b05ea9b20e5fc81d99258049e2b8e802caaf78db8",
+    "research/after_publication_ap42_effective_registered.md": "38f67e41a8b66f468518b57930ce57b74aefcc56c2f0892869c09a8d37f454b3"
+  }
+}

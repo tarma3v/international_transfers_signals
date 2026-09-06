@@ -54,9 +54,21 @@ def build(source=SOURCE, output=OUTPUT, title="Курс ЦБ на завтра: 
                 table.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,0),NAVY), ("ROWBACKGROUNDS",(0,1),(-1,-1),[colors.HexColor("#edf4f8"),colors.white]),("VALIGN",(0,0),(-1,-1),"TOP"),("LEFTPADDING",(0,0),(-1,-1),7),("RIGHTPADDING",(0,0),(-1,-1),7),("TOPPADDING",(0,0),(-1,-1),6),("BOTTOMPADDING",(0,0),(-1,-1),6)]))
                 story += [table, Spacer(1,8)]
             elif block.startswith("- "):
-                story += [p("• "+line[2:]) for line in block.splitlines()]
+                items = []
+                for line in block.splitlines():
+                    if line.startswith("- "):
+                        items.append(line[2:].strip())
+                    elif items:
+                        items[-1] += " " + line.strip()
+                story += [p("• " + item) for item in items]
             elif re.match(r"\d\. ",block):
-                story += [p(line) for line in block.splitlines()]
+                items = []
+                for line in block.splitlines():
+                    if re.match(r"\d\. ", line):
+                        items.append(line.strip())
+                    elif items:
+                        items[-1] += " " + line.strip()
+                story += [p(item) for item in items]
             else:
                 story.append(p(" ".join(block.splitlines())))
 
