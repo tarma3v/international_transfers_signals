@@ -8,6 +8,35 @@
 Для внутренней оптимизации сохраняется
 `h=5`, официальный scorecard теперь считается сразу на `h=1/3/5/10/20`.
 
+## Последний AP33-E: календарный fallback улучшает strict frontier
+
+[PDF](output/pdf/ivan_after_publication_ap33_effective.pdf) ·
+[отчёт](research/after_publication_ap33_effective_report.md) ·
+[protocol](research/after_publication_ap33_effective_registered.md) ·
+[results](results/research/after_publication/ap33_effective).
+
+AP33 проверил ровно одну заранее зарегистрированную decision-policy. Frozen AP26
+core имеет приоритет; frozen AP23 fallback разрешается только при trailing365
+rate ниже1, после84-дневного warmup и либо в четверг/пятницу без сигнала текущей
+ISO-недели, либо после10 дней причинного молчания. Новый поток снова ограничен
+max2/week. Ни outcomes, ни будущая часть недели, ни score models не читаются.
+
+Политика прошла early2023 joint gate и поздние strict gates. Late
+h3/h5/h10/h20=**2,420521/2,489967/2,470952/2,516300**, min lift
+**2,420521**, mean lift **2,474435**, min currency rate **1,008734**, zero
+empty months,max2/week. H5:704 сигнала,rate1,051868,currency1,02348–1,06830,
+hit72,73%,symmetric74,60б.п.,future-only132,94б.п. Причины:673 core,
+18 late-week fallback,13 silence-10 fallback.
+
+Против AP32 lift-delta h3/h5/h10/h20 равна
++0,0174/+0,0211/+0,0153/+0,0271, но все paired lift-CI пересекают ноль.
+Future-only delta к AP32 на h3 +1,87б.п. CI[+0,30;+4,57] и h5 +2,80б.п.
+CI[+0,28;+7,28] положительна на20-date и сохраняется на50-date blocks.
+Ранние AP33/AP32/AP26 decisions совпадают, поэтому early pass не доказывает
+преимущество calendar-filter. AP33 — новый лучший strict point и frozen shadow
+challenger, но не independent holdout winner. Audit прошёл; полный набор —
+**279 тестов**.
+
 ## Последние AP28-E/AP32-E: ансамбль на уровне решений
 
 [PDF](output/pdf/ivan_after_publication_ap32_effective.pdf) ·

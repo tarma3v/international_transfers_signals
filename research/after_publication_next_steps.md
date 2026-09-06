@@ -1,6 +1,6 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP32-E complete. The user made after-publication research the
+Updated 2026-09-06, AP33-E complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
@@ -18,6 +18,29 @@ Do NOT claim that rescore of old AP3 signals proves knowledge is harmful.
 Models must be retrained to the SAME effective target in with/without ablations.
 TЗ note updated: initial announced-reference choice was our conservative team
 interpretation, not an organizer ruling. Bank execution still NOT validated.
+
+## Latest completed AP33-E: calendar-aware decision fallback
+
+AP33 froze exactly one policy before scoring. AP26 y20-shrink200 decisions keep
+priority. AP23 fallback requires the combined stream's prior trailing365 rate<1,
+84-day warmup, and either Thursday/Friday with no earlier current-week decision
+or >=10 calendar days since the previous combined decision. A new sequential
+max2/week follows. No scores, outcomes or future-week state are read.
+
+The candidate passed early2023 joint gates and all late strict gates. Late
+h3/5/10/20=2.420521/2.489967/2.470952/2.516300,minlift2.420521,
+meanlift2.474435,minrate1.008734,zeroempty,max2/week. H5 has704 decisions,
+rate1.051868,currency1.02348..1.06830,sym74.5964,fwd132.9394; reasons673 core,
+18 late-week fallback,13 silence10 fallback. Versus AP32 lift deltas are
++.0174/+.0211/+.0153/+.0271 and all20/50-date CIs cross0. Future-only deltas
+on h3/h5 are positive under both block sizes; h10 is positive only at50-date.
+
+Early AP33,AP32,AP26 and several controls are identical, so early pass validates
+the gate but does not independently validate calendar-filter superiority. AP33
+is the new best strict point and frozen challenger, not an independent holdout
+winner. Audit rebuilt inputs,targets,rate,warmup,silence,week,reasons,cap and
+future-source prefix invariance. Full suite:279 tests. Current report:
+output/pdf/ivan_after_publication_ap33_effective.pdf.
 
 ## Latest completed AP28-E/AP32-E: hierarchy, survival and decision routing
 
@@ -279,17 +302,18 @@ AP12audit rebuilt source hashes,5755targets,17masks,85logs,compactsubset,
 local/class counts, all scores/signals, veto/prefix/weeklycap. PDF
 output/pdf/ivan_after_publication_ap12_effective.pdf rendered4pages and checked.
 
-## NEXT bounded AP33-E: freeze frontier and one calendar-aware fallback
+## NEXT bounded AP34-E: freeze AP33 and test one genuinely new predictor
 
-1. Freeze AP23, AP27 and AP32 exactly for prospective shadow; do not move their
-   thresholds on opened 2024-2026. Keep AP26 only as the accuracy anchor.
-2. Test exactly one pre-specified calendar-aware decision fallback: AP26 core
-   retains priority, while AP23 fallback is allowed only in a late ISO-week slot
-   or after causal silence. No threshold grid and no late selector.
+1. Freeze AP23, AP26, AP32 and AP33 exactly for prospective shadow; do not tune
+   AP33 warmup, silence or weekdays on opened 2024-2026.
+2. Test one genuinely new mature-only predictor, not another router threshold.
+   Preferred direction: a simple per-currency state-space/residual probability
+   anchored on the already announced change, pooled globally only for residuals.
+   Register one architecture and one policy before any scorecard.
 3. Preserve quarterly chronological OOS fits, publication-h20 maturity cap,
    2-day embargo, known-down veto, causal ranks/state and max2/week.
-4. Do not repeat hierarchical weight4, competence backstop, fixed rank blends or
-   factorized y3/y20; AP28-AP31 already preserve those negative results.
+4. Do not repeat hierarchical weight4, competence backstop, fixed rank blends,
+   factorized y3/y20 or calendar threshold search; AP28-AP33 preserve evidence.
 5. Acceptance remains minlift>2.4 on h3/5/10/20,min currency rate>=1,zeroempty,
    max2/week with paired uncertainty. Final product validation additionally needs
    actual receipt timestamps and an executable bank price, not only official CBR.

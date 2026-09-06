@@ -1,0 +1,24 @@
+{
+  "packet": "AP33-E",
+  "n_rows": 5755,
+  "n_fresh_policies": 1,
+  "n_frozen_controls": 7,
+  "selection_horizons": [
+    3,
+    5,
+    10,
+    20
+  ],
+  "selected": "ap26_core_ap23_calendar_fallback_cap2",
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap32_effective/metadata.json": "d1842b4e8274f781cfec484e5b9d60cebaf3fa46b2f363318b320d89cbc827a1",
+    "results/research/after_publication/ap32_effective/outputs.npz": "33f3da8f1981e1f68225b31bd98aac834cfb40aeca3e017c13c5b9da83ef92f3",
+    "research/after_publication_ap33_effective_registered.md": "418e36c22502c4e2344550464bba90fc936464275a17021f4dab3ce6a60a290d"
+  }
+}
