@@ -1466,3 +1466,18 @@ frozen T22 remains stronger at 6/6 gates. Do not update receipt mapping monthly,
 shorten the screen or relax gates on opened 2025--2026. Keep T22 as frozen
 receipt-only shadow and seek new causal pre-receipt observables. Full outputs:
 `results/research/temperature/t23_h20_delayed_online/`.
+
+## T24: strong history-only h20 rank, mapping not promoted
+
+The compact 41-feature logistic model is fit before 2024 and uses only trailing
+multiscale level/trend/volatility, USD/CNY/peer context, cyclic calendar and
+currency one-hot. Its AUC is 0.742 on selection-2024 and 0.702 on opened
+2025--2026 versus 0.374 early identity; evaluation Brier is 0.11744 versus
+0.12429. AUC improves in every currency and both evaluation years.
+
+The registered selector nevertheless retains identity because the pre-2025
+Platt mapping worsens selection Brier/ECE. Do not promote the attractive open
+evaluation result. Freeze compact logit as a premarket rank shadow and test one
+predeclared anchor-preserving mapping; no post-2022 switch or weight may be
+chosen on 2025--2026. Full outputs:
+`results/research/temperature/t24_history_h20_anchor/`.

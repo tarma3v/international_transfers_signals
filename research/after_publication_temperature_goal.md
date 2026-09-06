@@ -37,6 +37,13 @@ are not enough when a short trailing screen repeatedly selects noisy mappings.
 Do not shorten the update interval or relax the gate on the opened period.
 The frozen receipt-only T22 shadow remains the next prospective candidate.
 
+T24 supplied the missing pre-receipt discrimination candidate. A 41-feature
+history-only logistic ranker reached AUC 0.742 on selection-2024 and 0.702 on
+opened 2025--2026 versus 0.374 early identity. Its selection-period Platt map
+failed Brier/ECE, so identity correctly remains the user-facing temperature.
+Freeze the compact rank separately and test only a predeclared mapping that
+preserves the anchor's probability level.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score

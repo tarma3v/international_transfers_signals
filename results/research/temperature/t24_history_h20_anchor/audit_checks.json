@@ -1,0 +1,14 @@
+{
+  "source_hashes_match": true,
+  "prediction_rows": 2910,
+  "evaluation_dates": 582,
+  "selected_model": "identity_early",
+  "passed": false,
+  "all_sources_no_later_than_query": true,
+  "publication_mapping_causal": true,
+  "fit_calibration_selection_mature": true,
+  "selected_prediction_rebuilt": true,
+  "probabilities_finite_and_bounded": true,
+  "paired_bootstrap_grid_complete": true,
+  "selection_on_open_period": false
+}

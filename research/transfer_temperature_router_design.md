@@ -111,6 +111,10 @@ caused the change.
 8. T23 tested monthly delayed calibration using only matured past outcomes. It
    passes 0/40 states and worsens mean AUC/Brier; short trailing screens select
    unstable mappings. Do not update the receipt mapping frequently.
-9. Next: freeze T22 receipt-only on actual verified events and collect
-   prospective outcomes. Before receipt retain identity and seek new causal
-   observables; do not tune another weight or clock on opened 2024--2026.
+9. T24 found a new history-only compact ranker: pre-2025 selection AUC 0.742 and
+   opened 2025--2026 AUC 0.702 versus 0.374 early identity. It was not selected
+   because its selection-period probability calibration failed; keep it as a
+   rank-only shadow, not a temperature.
+10. Next: freeze T22 receipt-only and T24 premarket rank in shadow. Test one
+    predeclared mapping that preserves the frozen probability level; do not tune
+    it, a regime switch or a clock on opened 2024--2026.

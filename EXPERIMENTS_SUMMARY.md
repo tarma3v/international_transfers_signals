@@ -1853,3 +1853,22 @@ After-receipt point-deltas сохраняют правильный знак, н�
 ноль; frozen T22 с 6/6 gates сильнее. Решение: не переобучать receipt mapping
 ежемесячно, держать T22 frozen shadow и искать новые pre-receipt observables.
 Результаты: `results/research/temperature/t23_h20_delayed_online/`.
+
+## T24: новый history-only h20 rank переносится, mapping пока нет
+
+T24 проверил новые multiscale daily observables вместо очередной калибровки.
+Model fit заканчивается до 2024, calibration и selection разнесены по двум
+частям 2024, evaluation 2025–2026 открыт. Выходные держат score последней
+публикации и не создают нулевые returns.
+
+Selector сохранил identity, потому что compact Platt на selection дал Brier
+0,21555 против 0,20538 и ECE 0,14093. При этом rank compact-logit был сильным
+до evaluation: AUC 0,742. На открытом 2025–2026 он сохранил AUC 0,702 против
+0,374 baseline, Brier 0,11744 против 0,12429, AUC 0,662–0,743 по валютам и
+0,616/0,699 по годам.
+
+Это первый сильный pre-receipt h20 discrimination signal после T19, но не
+production temperature: formal primary не прошёл, а 2026 local calibration
+дрейфует. Compact сохраняется как frozen rank shadow; следующий mapping должен
+быть зарегистрирован без подбора по открытому evaluation. Результаты:
+`results/research/temperature/t24_history_h20_anchor/`.

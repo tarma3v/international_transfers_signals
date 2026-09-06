@@ -48,6 +48,12 @@ production-путь: частый adaptive mapping без большой нез�
 добавляет selection noise. После receipt лучше frozen shadow T22; до receipt —
 frozen h20 и limited confidence.
 
+T24 нашёл сильный causal history-only rank до рынка: AUC 0,742 на selection и
+0,702 на открытом evaluation. Но его selection-period probability calibration
+не прошла, поэтому статус ТЗ не завышен: это shadow-rank, а не готовая
+температура. Результат усиливает техническую ветку premarket, не отменяя
+требование prospective проверки.
+
 ## Что именно требует ТЗ
 
 ### Сигнальный слой
@@ -116,7 +122,7 @@ proxy направления, но не исполнимая банковска�
 | Защита от будущего | PASS для артефактов и runtime gate | corruption-prefix, независимые audit scripts; T18 не активирует same-day after-publication строки без verified receipt и сдвигает поздний receipt | production ingestion должен сохранить фактическое событие и payload id |
 | Стабильность OOT | PARTIAL | отбор на 2023, разрезы 2024/2025/2026 и по валютам положительные | `fresh_holdout=false`; заморозить AP37/T17 и запустить prospective shadow |
 | Произвольная дата/время | PASS | `signals_as_of(T)` причинно режет дневной ряд; `score_snapshot_as_of` выбирает последний допустимый снимок; `case_output_table_as_of` и `run_case_output.py` выдают все валюты | — |
-| Any-time calibration | PARTIAL | T19: 111/200; T20/T21 не прошли; T22 6/6 after-receipt; T23 online 0/40 | receipt-only gain требует real events/prospective shadow; pre-receipt h20 limited, frequent mapping rejected |
+| Any-time calibration | PARTIAL | T22 6/6 after receipt; T24 early rank AUC 0,702, но mapping не прошёл selection; T23 online 0/40 | T22/T24 держать shadow; нужны real events и prospective probability calibration |
 | Обязательная схема строки | PASS | `case_output_as_of` возвращает date/corridor/indicator/direction/strength/speed/scenario и полный audit payload; сохранён демонстрационный CSV | — |
 | Fast vs slow | PASS как CBR-proxy | на общем support h5 adjusted lift 2,134 → 2,677; Δ +0,525 CI [+0,193; +0,934]; future-only Δ +21,79 б.п. [+3,35; +42,92] | реальную цену ожидания по bank quote можно измерить только в пилоте |
 | Комбинирование/конфликты | PASS | AP37: core AP26, fallback AP23, mature-precision gate, cooldown/cap | перевести reason codes 1/2/3 в человекочитаемые сценарии |

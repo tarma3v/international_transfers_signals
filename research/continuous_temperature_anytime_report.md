@@ -708,7 +708,32 @@ verified receipt замораживаем T22 как shadow; до receipt ище
 а не маскируем слабую discrimination перекалибровкой.
 
 ---page---
-# 28. Строгая сверка с ТЗ
+# 28. T24: history-only h20 rank стал сильным
+
+## Новый сигнал найден, но probability gate его остановил
+
+T24 использует 41 объяснимый признак из завершённой истории: положение курса в
+диапазонах 30/90/180, returns до 250 публикаций, volatility, moving averages,
+USD/CNY/peer context, cyclical calendar и currency one-hot. Выходной удерживает
+score последней публикации и не добавляет фиктивные нулевые изменения.
+
+| Период | AUC frozen | AUC compact | Brier frozen → compact |
+|---|---:|---:|---:|
+| Selection-2024 | ниже 0,742 | **0,742** | 0,20538 → 0,21555 |
+| Open 2025–2026 | 0,374 | **0,702** | **0,12429 → 0,11744** |
+
+Rank переносится: compact AUC равен 0,662–0,743 по пяти валютам и 0,616/0,699
+по 2025/2026. Но selection-period Platt mapping сильно недооценил base rate и
+ухудшил ECE до 0,141. Зарегистрированный selector поэтому оставил identity, а
+красивый открытый результат не использован для post-hoc promotion.
+
+Это первый сильный premarket h20 rank после T19. В shadow можно сохранять его
+рядом с текущей температурой; в UI он попадёт только после заранее заданного
+anchor-preserving mapping и независимой проверки. T22 остаётся отдельным
+after-receipt shadow.
+
+---page---
+# 29. Строгая сверка с ТЗ
 
 ## Что закрыто и что остаётся открытым
 
@@ -735,7 +760,7 @@ verified receipt замораживаем T22 как shadow; до receipt ище
 калибровка температуры пока слабее h3/h5.
 
 ---page---
-# 29. Итоговая схема решения
+# 30. Итоговая схема решения
 
 ## Что делает система в production
 
@@ -754,7 +779,7 @@ verified receipt замораживаем T22 как shadow; до receipt ище
 прошлого baseline примерно с 11:45, достигает AUC около 0,70 до receipt и около
 0,72 после receipt.
 
-Главный следующий модельный шаг: заморозить T22 после real receipt как shadow;
-до receipt искать новые causal observables, не применять T23 recalibration.
+Главный следующий модельный шаг: T22 после receipt и T24 premarket держать как
+два frozen shadow; для T24 проверить только anchor-preserving probability map.
 Главный следующий бизнес-шаг: заморозить систему, подключить реальные bank
 quotes и запустить user-level prospective pilot.

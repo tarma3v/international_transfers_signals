@@ -1,0 +1,5 @@
+metric,block_dates,mean_delta,ci_low,ci_high
+brier,20,0.0,0.0,0.0
+auc,20,0.0,0.0,0.0
+brier,50,0.0,0.0,0.0
+auc,50,0.0,0.0,0.0
