@@ -96,6 +96,12 @@ T32 removed T31's cold start with a disjoint Q4-2022 OOS warm-up. It made the
 recent2y expert just before the regime changed again. Reject warm-start
 promotion; recent outcomes alone are not a stable regime state.
 
+T33 held mixture weights fixed for each quarter. This recovered most of the
+rank lost by daily adaptation: 2023 AUC reached 0.607 and proper scores improved
+strongly, but the frozen +0.02 AUC gate was missed by 0.00160. Do not relax the
+gate after inspection. Freeze `qstack_w125_r100` only as a prospective control;
+quarterly stabilization is supported as a mechanism, not promoted as runtime.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -161,8 +167,9 @@ and weekends produce an explicit stale state, not imputed current prices.
    T27 rejects w250, T28 rejects a daily weak w30 blend, T29 rejects the
    month/quarter-held correction, T30 rejects the retrospective regime selector
    T31 rejects promotion of a mature-only Hedge on its frozen 2023 screen, and
-   T32 rejects disjoint recent-data warm-up. Freeze T25 plus the declared
-   T30/T31 controls and wait for prospective
+   T32 rejects disjoint recent-data warm-up, while T33 supports but does not
+   promote quarterly-frozen stacking. Freeze T25 plus the declared T30/T31/T33
+   controls and wait for prospective
    outcomes before reconsidering level adaptation.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.

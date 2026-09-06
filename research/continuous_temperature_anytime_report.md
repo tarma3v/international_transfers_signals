@@ -958,7 +958,38 @@ weighting исключено; следующий адаптер должен с�
 или использовать observable state. Production router не изменён.
 
 ---page---
-# 37. Строгая сверка с ТЗ
+# 37. T33: quarterly stacking почти прошёл
+
+## Вес фиксирован внутри квартала
+
+T33 оценивал simplex-веса трёх frozen экспертов только на границе квартала по
+предыдущим полностью созревшим h20 outcomes. Затем один набор весов применялся
+ко всем публикациям квартала. Grid состоял из 4 окон feedback и 4 ridge к
+равным весам; pre-2023 warm-up не использовался.
+
+| Срез / модель | AUC | Brier | Log-loss | ECE |
+|---|---:|---:|---:|---:|
+| 2023 identity | 0,58840 | 0,22651 | 0,64313 | 0,18576 |
+| 2023 w125/r1 | **0,60680** | **0,19007** | **0,56511** | **0,02435** |
+| 2024 w125/r1 | **0,61988** | **0,15645** | **0,48795** | **0,01896** |
+| Open T25 | 0,56054 | 0,12932 | 0,43650 | 0,04677 |
+| Open w250/r0, не выбран | **0,72503** | **0,11986** | **0,39346** | **0,03663** |
+
+На screen лучший AUC delta равен +0,01840 при frozen gate +0,020. Не хватило
+0,00160. Proper scores улучшены сильно, но near miss не является pass: менять
+порог или донастраивать ridge после результата запрещено. Формальный selector
+снова вернул identity, `passed=false`.
+
+Тот же w125/r1 проходит все gates на 2024, а невыбранный w250/r0 выглядит
+сильно на validation и open. Но ни 2024, ни 2025–2026 не могут заменить screen.
+
+Сравнение механизмов подтверждает гипотезу о rank-noise: T32 warm-up дал
+максимум AUC 0,5522, T31 daily Hedge - 0,6041, T33 quarterly hold - 0,6068.
+Квартальная стабилизация является лучшим направлением адаптации, но пока только
+prospective control. Runtime и push не изменены.
+
+---page---
+# 38. Строгая сверка с ТЗ
 
 ## Что закрыто и что остаётся открытым
 
@@ -985,7 +1016,7 @@ weighting исключено; следующий адаптер должен с�
 калибровка температуры пока слабее h3/h5.
 
 ---page---
-# 38. Итоговая схема решения
+# 39. Итоговая схема решения
 
 ## Что делает система в production
 
@@ -1005,10 +1036,10 @@ weighting исключено; следующий адаптер должен с�
 0,72 после receipt.
 
 Главный следующий модельный шаг: T22 после receipt и T25 premarket держать как
-два frozen shadow; `all_platt_b050` T30 и mature-only Hedge T31 - отдельные
-prospective controls. T27–T32 исключили promotion w250, daily weak-w30,
+два frozen shadow; `all_platt_b050` T30, mature-only Hedge T31 и quarterly
+stack T33 - отдельные prospective controls. T27–T33 исключили promotion w250, daily weak-w30,
 coarse-period intercept, hindsight regime switch, Hedge, не прошедший frozen
-screen, и recent-data warm-up. Следующий доказательный шаг - новые prospective outcomes, а не
+screen, recent-data warm-up и near-miss stacking. Следующий доказательный шаг - новые prospective outcomes, а не
 настройка ещё одного веса на открытом интервале.
 Главный следующий бизнес-шаг: заморозить систему, подключить реальные bank
 quotes и запустить user-level prospective pilot.

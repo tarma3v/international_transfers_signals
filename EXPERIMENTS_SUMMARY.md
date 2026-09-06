@@ -2040,3 +2040,22 @@ Hedge уже к концу 2022 отдал 99,61% веса recent2y и почт�
 recent-data weighting исключён; следующий адаптер должен стабилизировать
 междневной rank или использовать observable state. Результаты:
 `results/research/temperature/t32_oos_warm_hedge/`.
+
+## T33: квартальный hold почти проходит frozen screen
+
+T33 оценивал simplex-веса только на границе квартала по полностью созревшим
+предыдущим h20 outcomes и держал их неизменными до следующего квартала. Grid:
+окна 60/125/250/expanding и ridge 0/0,01/0,10/1,00. Pre-2023 warm-up после T32
+не использовался.
+
+Лучший screen rank `w125/ridge1` дал AUC 0,60680 против 0,58840, Brier
+0,19007 против 0,22651, log-loss 0,56511 против 0,64313 и ECE 0,02435 против
+0,18576. AUC delta +0,01840 недобрала 0,00160 до frozen gate +0,020. Поэтому
+feasible-строк ноль и final равен identity; почти пройденный порог не изменён.
+
+На 2024 эта же строка проходит все gates с AUC 0,61988 и Brier 0,15645.
+Невыбранный `w250/ridge0` имеет validation AUC/Brier 0,66370/0,15305 и open
+0,72503/0,11986 против 0,56054/0,12932 у T25. Квартальный hold подтверждает
+вред daily rank-noise, но открытый период не выбирает окно/ridge. Freeze
+`w125/ridge1` только как prospective control. Результаты:
+`results/research/temperature/t33_quarterly_stacking/`.

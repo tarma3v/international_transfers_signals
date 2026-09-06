@@ -148,3 +148,8 @@ caused the change.
     weight on recent2y and reduced 2023 screen AUC to 0.552 versus 0.588
     identity. Reject blind recent-data warm starts. The next adapter must hold
     cross-date rank stable or route on an observable information state.
+19. T33 held simplex weights fixed inside each quarter. Screen AUC improved to
+    0.607, missing the frozen +0.02 gate by 0.00160; validation was strong. Keep
+    `qstack_w125_r100` as a prospective control only. Do not tune around the
+    near miss; the next experiment must be a distinct observable-state gate or
+    a preregistered lower-frequency hold.
