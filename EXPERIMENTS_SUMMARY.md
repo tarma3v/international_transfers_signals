@@ -8,6 +8,48 @@
 Для внутренней оптимизации сохраняется
 `h=5`, официальный scorecard теперь считается сразу на `h=1/3/5/10/20`.
 
+## Последний AP13-E: recent/local ExtraTrees и цена cadence
+
+[PDF](output/pdf/ivan_after_publication_ap13_effective.pdf) ·
+[подробный отчёт](research/after_publication_ap13_effective_report.md) ·
+[protocol](research/after_publication_ap13_effective_registered.md) ·
+[результаты](results/research/after_publication/ap13_effective).
+
+До fit были зарегистрированы шесть новых scores: ExtraTrees с rolling train
+730/1095 дней, recency half-life730, отдельный local ExtraTrees со shrink к
+frozen global, meta-router AP12 Extra/localHist и causal Brier365-router. Для
+каждого score проверены primary top30, reserve после 7 дней молчания и rescue
+с 24-го числа месяца. Всего 18 свежих политик и 8 frozen controls; выбор только
+по раннему 2023, неизвестным h3/5/10/20 и заранее заданным cadence/benefit gates.
+
+Поздний local ExtraTrees дал новый точечный h5 **2,531074**, rate **0,905443**,
+hit **74,59%**. Rolling2 дал h5 **2,517586** и лучший minimum по неизвестным
+горизонтам: h3/5/10/20 **2,435721/2,517586/2,470410/2,468674**, min **2,435721**.
+Но прирост к AP12 full ExtraTrees 2,475 не доказан: local CI
+**[-0,022661;0,149765]**, rolling2 **[-0,038610;0,125435]**. Оба доказанно
+выше AP1 cap2: соответственно **[0,052128;0,388392]** и
+**[0,021824;0,389225]**.
+
+Строгий rolling2 reserve7 даёт h5 **2,340238**, rate **1,154963**, диапазон
+валют **1,1206–1,1953**, максимум2/ISO-week, maxgap29дней и ни одного пустого
+полного месяца. Rolling3 reserve7 похож: **2,352265**, rate **1,177375**.
+Добор примерно150 событий имеет реальную цену к AP12: rolling2 delta CI
+**[-0,260273;-0,024701]**, но всё ещё доказанно выше AP10 и AP11 hazard.
+
+Ранний selector выбрал `router_extra_local_month24_cap2`: поздний h5
+**2,348520**, rate **1,027962**, sym **69,7836**, future **125,527**. Он
+доказанно хуже AP12 ExtraTrees, CI **[-0,250426;-0,008052]**, поэтому не заменяет
+простой контроль. Router также хуже калиброван: Brier0,225916 против0,211861 у
+AP12; лучший AP13 Brier0,210891 у decay730. Главный отрицательный результат:
+сложный causal выбор эксперта менее устойчив, чем одно большое лесное ранжирование.
+
+Train-only importance rolling2 показывает совместную роль annual phase,
+вечернего CNY basis, `known_change_z`, движений announced/effective рядов,
+волатильности и USD/TJS факторов. Это impurity importance, не причинные эффекты.
+Аудит восстановил5755targets,17origins,102 fit/router записи и все сигналы;
+**224 теста** прошли. Период 2024–2026 уже открыт многими итерациями: результаты
+— retrospective candidates, а не fresh holdout.
+
 ## Последние AP11-E/AP12-E: новый ExtraTrees до 2,475
 
 [PDF](output/pdf/ivan_after_publication_ap12_effective.pdf) ·

@@ -1,0 +1,16 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "quarterly_origins_checked": 17,
+  "training_log_rows_checked": 102,
+  "old_ap12_expert_predictions_unchanged": true,
+  "rolling_decay_local_and_meta_masks_rebuilt": true,
+  "brier365_same_date_mature_only_weights_rebuilt": true,
+  "all_predictions_bounded": true,
+  "all_signals_rebuilt": true,
+  "all_non_exact_controls_veto_known_down": true,
+  "h1_excluded_from_selection": true,
+  "best_late_diagnostic": "local_extra_primary_cap2",
+  "historical_receipts_certified": false,
+  "fresh_holdout": false
+}

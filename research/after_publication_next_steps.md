@@ -1,6 +1,6 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP12-E complete. The user made after-publication research the
+Updated 2026-09-06, AP13-E complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
@@ -18,6 +18,49 @@ Do NOT claim that rescore of old AP3 signals proves knowledge is harmful.
 Models must be retrained to the SAME effective target in with/without ablations.
 TЗ note updated: initial announced-reference choice was our conservative team
 interpretation, not an organizer ruling. Bank execution still NOT validated.
+
+## Latest completed AP13-E: recent/local models and cadence Pareto-front
+
+Protocol was frozen before fits. Same5755 rows,17quarterly origins,
+early2023 selection/later2024-2026 diagnostic, publication-h20 maturity cap and
+2-day embargo. Six new causal scores: rolling730/1095-day ExtraTrees,
+decay730-weighted ExtraTrees, per-currency localExtra shrunk global, frozen
+AP12 Extra/localHist meta-router and same-date mature-only Brier365 router.
+Three policies per score: primary top30 prior250 cap2; reserve7 after silence;
+month24 rescue.18fresh policies +8controls. Select only fresh on 2023,
+h3/5/10/20,rate1..2,symCI>0,max2/week,fwd>=.8knownsign,no empty full months.
+
+Selected BEFORE late: router_extra_local_month24_cap2. Late h3/5/10/20=
+2.324480/2.348520/2.315348/2.324251; h5rate1.027962,
+currency.978655..1.083240,sym69.7836,fwd125.527,maxgap45,noemptyfullmonths.
+It beats AP10 and AP11hazard, but is significantly WORSE than AP12 fullExtra:
+20-date deltaCI[-.250426,-.008052],50-date[-.249022,-.005452]. Do not replace
+AP12 with this router. Meta lateBrier.225916 and Brier-router.218253 are worse
+than AP12.211861; complex routing did not generalize.
+
+Late point diagnostics found stronger new candidates. localExtra primary h5=
+2.531074,rate.905443,hit.745875; rolling2 primary h3/5/10/20=
+2.435721/2.517586/2.470410/2.468674 and has best all-unknown-h minimum2.435721.
+Neither increment over AP12 fullExtra2.475228 is proven: local deltaCI
+[-.022661,.149765],rolling2[-.038610,.125435]. Both prove improvement over
+AP1cap2: local[.052128,.388392],rolling2[.021824,.389225]. These are strong
+next-period challengers, not fresh-holdout records.
+
+Cadence repair is useful but expensive. rolling2 reserve7 h5=2.340238,
+rate1.154963,currency1.1206..1.1953,hit.6895,sym73.9568,fwd121.996,maxgap29,
+noemptyfullmonths. rolling3 reserve7 h5=2.352265,rate1.177375,maxgap27.
+Reserve adds roughly150 events and rolling2 loses significantly vs AP12:
+deltaCI[-.260273,-.024701], though it proves gains over AP10[.119026,.453165]
+and AP11hazard[.059059,.354456]. Best AP13 probability accuracy is decay730
+Brier.210891, but its lift does not prove improvement over AP12.
+
+Latest rolling2 train-only impurity leaders: annual_sin.0713,
+market_cny_basis_post_z.0520,known_change_z.0487,market_cny_basis_last_z.0390,
+announced_ret1.0350,market_cny_basis_mean_z.0349,TJS_ret1.0303,
+known_change.0301,effective_vol20.0254,USD_ret1.0222. Treat as correlated-tree
+importance, not causal attribution. Audit rebuilt hashes,targets,17masks,
+102fit/router logs,Brier weights,scores/signals,veto/cap/prefix.224tests passed.
+PDF output/pdf/ivan_after_publication_ap13_effective.pdf rendered4pages/checked.
 
 ## Latest completed AP11-E/AP12-E: conditional remainder and strong ExtraTrees
 
@@ -65,27 +108,23 @@ AP12audit rebuilt source hashes,5755targets,17masks,85logs,compactsubset,
 local/class counts, all scores/signals, veto/prefix/weeklycap. PDF
 output/pdf/ivan_after_publication_ap12_effective.pdf rendered4pages and checked.
 
-## NEXT bounded AP13-E: preserve 2.4 while repairing cadence/regime shift
+## NEXT bounded AP14-E: light causal cadence repair without giving away 0.14 lift
 
-1. Freeze before fitting. Keep AP12 fullExtra as primary strong challenger,
-   localHist early-selected, AP11hazard, knownz and AP1 exact/cap as controls.
-   Do not reselect AP12 by its now-open late score.
-2. New model families: rolling2y/3y and deterministic recency-weighted
-   ExtraTrees (if weights supported, otherwise weighted bootstrap with fixed
-   seed); ExtraTrees trained on post-2022 prefixes only already is expanding,
-   so compare fixed recent windows. Consider balanced/local shrink only as
-   prespecified variants, no broad depth grid.
-3. New causal regime controller must update only after h5 resolves. Candidate:
-   trailing252-day performance router between fullExtra/localHist/hazard, with
-   fixed shrink/minhistory; and a fixed feature-gated regime classifier trained
-   only on matured prior rows. No use of future year identity or late winner.
-4. Repair frequency with an online reserve/fallback: primary top30 Extra score,
-   then causal known70/hazard score only after a fixed silence threshold, while
-   respecting max2/week. Target mincurrency rate>=1 and no empty complete month;
-   report any lift cost. Never rank future days within a week.
-5. Early selection must excludeh1 and use unknownh3/5/10/20; allh reporting,
-   paired20/50dateCI,cadence/year/currency/audit/tests/PDF/push ownbranch. No
-   freshholdout claim; next truly independent evidence must be live shadow data.
+1. Freeze protocol/policies before late scores. Keep AP12 fullExtra, AP13
+   rolling2/local primary, rolling2 reserve7, selected router, AP10/AP11/AP1
+   controls. Do not promote AP13 point winners using the already-open late set.
+2. The measured gap is narrow: primary needs about50-70 extra signals to reach
+   mincurrency rate1, while reserve7 added about150. Test only a compact,
+   registered repair family: silence14 and silence21 with high reserve rank;
+   fixed top32.5/top35 primary thresholds; one causal adaptive threshold driven
+   by trailing matured signal rate. No broad grid or future week/month ranking.
+3. Target product frontier: unknown-h minimum near2.4-2.45, each-currency
+   rate>=1, max2/ISO-week, zero empty complete months. Report point precision
+   and cadence separately; do not conceal statistically real lift cost.
+4. Select on early2023 using h3/h5/h10/h20, rate/currency/cadence/benefit gates.
+   Audit maturity/prefix invariance, paired20/50dateCI, all horizons, years and
+   currencies. The 2024-2026 result remains opened retrospective evidence;
+   live shadow after a real receipt and executable bank quote is final evidence.
 
 ## Latest completed AP10-E: strong matched information gain, simple rule selected
 
