@@ -1,0 +1,40 @@
+{
+  "packet": "temperature-T11",
+  "states": [
+    "cutoff_1030",
+    "cutoff_1130",
+    "cutoff_1230",
+    "cutoff_1330",
+    "cutoff_1430",
+    "cutoff_1500",
+    "cutoff_1520",
+    "cutoff_1530",
+    "early_1000",
+    "premarket",
+    "update_1630",
+    "update_1730"
+  ],
+  "weights": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "window_days": 730,
+  "half_life_days": 730.0,
+  "min_train_rows": 500,
+  "tomorrow_cbr_used": false,
+  "source_sha256": {
+    "results/research/temperature/t3_phase_calibration/metadata.json": "c3c92d0cd76a842481444eb4f77816e715e43db31146cd6d9289a0bcfa3c7d0c",
+    "results/research/temperature/t4_premarket/metadata.json": "5dcfdfe1418585e2c7687c930026523991db96c962f354670bae79bfd0db586a",
+    "results/research/temperature/t5_market_grid/metadata.json": "19688bde502f87fbe66329e73c45102bc39e1a4a635ed2bd0f0744eafb2d3df2",
+    "results/research/temperature/t6_pre_receipt_benefit/metadata.json": "ce330f91edbb4958f34b0f6deca5fb941daf61cde3feab3090a597f30f41ec9e",
+    "results/research/temperature/t10_early1000/metadata.json": "a5aaee89c35d8b4ee90c84b49138f02f8da7ee50838b10470a7102352e561f43",
+    "results/research/temperature/t6_pre_receipt_benefit/outputs.npz": "6e9c830e419763ab84b21ab074b3c89e7e4ed0734a517ffd77d96f2ade716c6c",
+    "results/research/temperature/t10_early1000/outputs.npz": "15f27eee7f328a143c44a8b81423991eed35756844a43725d28e0c3c58c320c9",
+    "research/temperature_t11_causal_benefit_gate_registered.md": "4961ae5441cea54d7e99230b2de0e71ef72df6159ad2ba22cf7a74d04f1c5f34",
+    "research/temperature_t11_causal_benefit_gate.py": "c46676e512fc95a654b8d73eee8c37c149a45e59e6589fe4799330bd94e8ead6",
+    "research/temperature_t11_causal_benefit_gate_models.py": "dbcfc9b6d0981086a95b2f8454625eeb21985ffc1728896fec12c39ed526376d"
+  }
+}

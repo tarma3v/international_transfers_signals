@@ -1,23 +1,44 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, T8B complete. The user made after-publication research the
+Updated 2026-09-06, T12 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
 
-## LATEST COMPLETED CHECKPOINT: T8B ANY-TIME ROUTER
+## LATEST COMPLETED CHECKPOINT: T12 EARLY-MARKET AND STABLE-BENEFIT ROUTER
 
-The main-branch intermediate presentation has no literal app mockup, but slide
-12 defines an on-screen indicator, a level notification and recipient
-selection. T8B now supplies the first two through a single causal contract:
+The main-branch presentation generator includes a seven-screen app mockup on
+the demonstration slide: amount screen, sparse push, late-open state, level
+alert and corridor list. T12 supplies the model-owned fields through a single
+causal contract:
 temperature 0--100, probabilities and expected future-only CBR basis points for
 h=1/3/5/10/20, timestamps, freshness, phase, confidence, source and a separate
-sparse push flag. The persisted 2024--2026 artifact contains 45,990 unique
+sparse push flag. The persisted 2024--2026 artifact contains 48,585 unique
 currency/event snapshots and supports an admissible query on every calendar day
 for all five currencies. The interface mapping is frozen in
 `research/interface_prediction_contract.md`; the query function is
-`ml.transfer_temperature.score_snapshot_as_of`.
+`ml.transfer_temperature.score_snapshot_as_of`, including 2,595 physically
+available 10:00 market updates.
+
+T9 measured the exchange schedule rather than assuming it. Same-day CNY candle
+coverage on opened 2025--2026 is zero through 09:30 and 79.2% at 10:00. T10
+therefore emits no earlier market state and exactly falls back to T4 when the
+10:00 candle is absent. At h5 on opened 2025--2026 the routed 10:00 probability
+improves Brier .19515 -> .17162 and AUC .55465 -> .73007. Paired 20/50-date
+Brier delta intervals are [-.0326,-.0154] and [-.0331,-.0154]. Screen-2024 h5
+also improves with intervals fully below zero; h1/h3 are likewise stable, while
+h20 improvement is point-only and uncertain.
+
+T11 addresses a newly exposed magnitude-regression failure: pure T6/T10 Ridge
+looked good on 2025--2026 but was worse than prior on 2024. A quarterly
+mature-only gate chooses convex weight 0/.25/.5/.75/1 from trailing730 MAE. At
+15:30 screen-2024 adaptive MAE h1/h3/h5/h10 is
+54.50/81.13/98.13/126.06 versus prior 61.71/87.70/102.65/131.77; opened values
+are 55.32/84.85/108.96/148.19 versus 70.54/97.51/119.39/159.11. T12 uses this
+adaptive estimate only from 10:30 through 17:30 and retains prior for h20 and
+for premarket/10:00. This is directly the user's proposed error-regime router,
+implemented without future outcomes.
 
 Phase quality must be communicated honestly. T4 premarket history-only is only
 a limited-confidence fallback: opened 2025--2026 AUC is about .594/.604/.596 on
@@ -37,7 +58,7 @@ information. Corrected T7B adds only newly eligible candles: at 19:00 opened
 mean Brier improves .150707 -> .149202, mean AUC .712446 -> .716130 and benefit
 MAE 123.55 -> 122.74. The 20:00 update lowers Brier similarly but harms AUC.
 
-T8B audit verifies source hashes, source_at<=valid_from, finite/bounded heads,
+T12 audit verifies source hashes, source_at<=valid_from, finite/bounded heads,
 unique snapshots, every-day queryability, future-snapshot prefix invariance,
 weekend stale behavior and push only on the after-decision snapshot. Push counts
 AMD/KGS/KZT/TJS/UZS are 142/139/138/139/137 across the full open period. The
@@ -46,7 +67,10 @@ bank economics. Production must replace calendar-assumed receipt with observed
 events. Next accuracy focus: strengthen morning discrimination, keep the prior
 when morning magnitude regression is worse, validate receipt/event timestamps,
 and test phase-specific ensembles without retuning on the same open years.
-Full suite after T8B: 320 tests passed.
+T9--T12 independent audits exactly rebuilt every persisted array, verified all
+six physical candle prefixes, exact unavailable fallback, fixed probability
+selection, mature-only benefit weights and future target/maturity invariance.
+The full repository suite contains 324 tests; all passed after T12.
 
 ## LATEST PRODUCT GOAL: continuous transfer temperature plus sparse push
 

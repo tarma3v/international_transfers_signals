@@ -85,7 +85,8 @@ def load_temperature_artifact(folder):
 
 
 def _snapshot_freshness(age_minutes, source_kind):
-    if source_kind in {'moex_prefix', 'post_window_market'}:
+    if source_kind in {'moex_early_prefix', 'moex_prefix',
+                       'post_window_market'}:
         fresh, aging = 90., 4 * 60.
     elif source_kind == 'cbr_history':
         fresh, aging = 36 * 60., 72 * 60.

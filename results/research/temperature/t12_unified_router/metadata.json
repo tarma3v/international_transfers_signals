@@ -1,0 +1,29 @@
+{
+  "packet": "temperature-T12",
+  "snapshot_rows": 48585,
+  "early_1000_rows": 2595,
+  "first_valid_from": "2024-01-09T15:30:00+00:00",
+  "last_valid_from": "2026-09-02T14:30:00+00:00",
+  "horizons": [
+    1,
+    3,
+    5,
+    10,
+    20
+  ],
+  "push_candidate": "ap26_core_mature_precision_calendar_fallback_cap2",
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "source_sha256": {
+    "results/research/temperature/t3_phase_calibration/metadata.json": "c3c92d0cd76a842481444eb4f77816e715e43db31146cd6d9289a0bcfa3c7d0c",
+    "results/research/temperature/t4_premarket/metadata.json": "5dcfdfe1418585e2c7687c930026523991db96c962f354670bae79bfd0db586a",
+    "results/research/temperature/t5_market_grid/metadata.json": "19688bde502f87fbe66329e73c45102bc39e1a4a635ed2bd0f0744eafb2d3df2",
+    "results/research/temperature/t7b_after_decision_market/metadata.json": "45fd09997b3219d602e5b9c987bdebfdfe8be3844bb82a9e8e41fc3a6ded54b3",
+    "results/research/after_publication/ap51_benefit/metadata.json": "e6bbeb1a45c262118064cfcf888bd4c24ac3b7b580b102cecd6edc93e8eb00c5",
+    "results/research/temperature/t10_early1000/metadata.json": "a5aaee89c35d8b4ee90c84b49138f02f8da7ee50838b10470a7102352e561f43",
+    "results/research/temperature/t11_causal_benefit_gate/metadata.json": "36583c4137cc400e2c9391252b89ba0244b1dae840d2f61b029bce4706439056",
+    "research/temperature_t12_unified_router_registered.md": "6a748177489272c9bc70094cf37dd1c80addc709dd68adc73580561e81d4783c",
+    "research/temperature_t12_unified_router.py": "760e7d4c136a4a5a729d4b3aee5a184425b71c8e708b9ee3738c768df2aa1e2e",
+    "ml/transfer_temperature.py": "affe6d5beb128c41b684e9bb51318848838ddcf2df7565abcdb1b66cc1a99cb9"
+  }
+}

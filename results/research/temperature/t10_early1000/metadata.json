@@ -1,0 +1,24 @@
+{
+  "packet": "temperature-T10",
+  "clock": "10:00:00",
+  "selected_probability_heads": {
+    "1": "hybrid_hgb",
+    "3": "cny_rank",
+    "5": "cny_rank",
+    "10": "cny_rank",
+    "20": "cny_rank"
+  },
+  "fallback_when_unavailable": "T4 probability plus T6 benefit",
+  "min_train_date": "2022-02-24",
+  "tomorrow_cbr_used": false,
+  "source_sha256": {
+    "results/research/temperature/t4_premarket/metadata.json": "5dcfdfe1418585e2c7687c930026523991db96c962f354670bae79bfd0db586a",
+    "results/research/temperature/t4_premarket/outputs.npz": "0f6202768eed0bb97d283d2d3240655cf4cb2b6ae231662da3fd471a14f2901a",
+    "results/research/temperature/t6_pre_receipt_benefit/metadata.json": "ce330f91edbb4958f34b0f6deca5fb941daf61cde3feab3090a597f30f41ec9e",
+    "results/research/temperature/t6_pre_receipt_benefit/outputs.npz": "6e9c830e419763ab84b21ab074b3c89e7e4ed0734a517ffd77d96f2ade716c6c",
+    "results/research/temperature/t9_early_market/metadata.json": "d52f1153b2a916f65f3c9af6d264e3f345afdb28d9eab96aaffa8c759a217e99",
+    "results/research/temperature/t9_early_market/outputs.npz": "9f2b28ea24949ae6fc1b936d6188861b3e8688e664ceb33b29e13351a65a8958",
+    "research/temperature_t10_early1000_registered.md": "d2e653c6db5c2e2dd5768d50bbf599af2e577fcf4b142d74f209fa8b439ddde3",
+    "research/temperature_t10_early1000.py": "632037ac4d174ea31222402e38ff6e4992fe703273753c05ca015279310d8e27"
+  }
+}

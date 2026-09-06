@@ -1,0 +1,7 @@
+{
+  "source_hashes_verified": true,
+  "all_persisted_arrays_exactly_rebuilt": true,
+  "selected_probability_identity_on_available_rows": true,
+  "exact_t4_t6_fallback_on_unavailable_rows": true,
+  "future_benefit_target_maturity_prefix_invariant": true
+}

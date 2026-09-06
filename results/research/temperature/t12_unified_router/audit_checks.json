@@ -1,0 +1,23 @@
+{
+  "source_hashes_verified": true,
+  "snapshot_rows": 48585,
+  "early_1000_rows": 2595,
+  "unique_currency_event_rows": true,
+  "source_at_never_after_valid_from": true,
+  "all_horizon_values_finite_and_bounded": true,
+  "early_market_physical_timing_verified": true,
+  "stable_benefit_source_policy_verified": true,
+  "every_calendar_day_and_currency_queryable": true,
+  "future_snapshot_corruption_prefix_invariant": true,
+  "weekend_stale_behavior_verified": true,
+  "push_only_on_after_decision_snapshot": true,
+  "push_counts_by_currency": {
+    "AMD": 142,
+    "KGS": 139,
+    "KZT": 138,
+    "TJS": 139,
+    "UZS": 137
+  },
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false
+}

@@ -1,0 +1,23 @@
+{
+  "packet": "temperature-T9",
+  "clocks": [
+    "07:30:00",
+    "08:00:00",
+    "08:30:00",
+    "09:00:00",
+    "09:30:00",
+    "10:00:00"
+  ],
+  "market_feature_count": 32,
+  "min_train_date": "2022-02-24",
+  "tomorrow_cbr_used": false,
+  "historical_exchange_availability_certified": false,
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "source_sha256": {
+    "data/moex_spot_fx_10min_2022_2026.json": "7f20d7e90bc79d44431de37c96102ad018ae9d5ec90d0ea1097f0d042c020e28",
+    "results/research/temperature/t4_premarket/outputs.npz": "0f6202768eed0bb97d283d2d3240655cf4cb2b6ae231662da3fd471a14f2901a",
+    "research/temperature_t9_early_market_registered.md": "8236189c3d7564fb812d4adb6a8dc738af2cd5401a8e09f8ebb7eba67e7efe0b",
+    "research/temperature_t9_early_market.py": "cd97de029d36e8fef5d94259f5a101ac503f4e404a09019612f8e4a38c91da07",
+    "research/temperature_t9_early_market_models.py": "57ab6011baa27d0fbc17dd8610fee602427929d9598d9c49e85a48957c8bcc22"
+  }
+}

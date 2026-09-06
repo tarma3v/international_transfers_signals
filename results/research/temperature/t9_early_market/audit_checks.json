@@ -1,0 +1,7 @@
+{
+  "source_hashes_verified": true,
+  "all_persisted_arrays_exactly_rebuilt": true,
+  "physical_future_candle_corruption_all_clocks": true,
+  "future_target_and_maturity_prefix_invariant": true,
+  "tomorrow_cbr_used": false
+}
