@@ -1,0 +1,11 @@
+clock,h,best_screen_candidate,screen_brier,control_brier,adopted,selected,selection_period
+perp_0900,1,perp_basis_rank,0.22530312579005168,0.24364898712441263,True,perp_basis_rank,screen_2024
+perp_0900,3,perp_basis_rank,0.23146825473599567,0.24546815150064996,True,perp_basis_rank,screen_2024
+perp_0900,5,perp_basis_rank,0.22544297806717278,0.2356154705557163,False,control,screen_2024
+perp_0900,10,perp_hybrid_hgb,0.20069311711305904,0.20069311711305904,False,control,screen_2024
+perp_0900,20,perp_hybrid_hgb,0.15525699829187709,0.15525699829187709,False,control,screen_2024
+perp_1000,1,perp_basis_rank,0.2141146343890498,0.1977507016180943,False,control,screen_2024
+perp_1000,3,perp_basis_rank,0.2256437882118203,0.21771856526208005,False,control,screen_2024
+perp_1000,5,perp_hybrid_hgb,0.220030458927886,0.2166609750358982,False,control,screen_2024
+perp_1000,10,perp_hybrid_hgb,0.19250219395420257,0.19343315163415606,False,control,screen_2024
+perp_1000,20,perp_hybrid_hgb,0.15093527753327618,0.15226788819221687,False,control,screen_2024

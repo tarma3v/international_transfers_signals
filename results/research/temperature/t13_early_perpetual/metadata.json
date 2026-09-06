@@ -1,0 +1,32 @@
+{
+  "packet": "temperature-T13",
+  "clocks": [
+    "09:00:00",
+    "10:00:00"
+  ],
+  "candidates": [
+    "perp_basis_rank",
+    "perp_open_rank",
+    "perp_hybrid_hgb"
+  ],
+  "screen": "2024 only",
+  "opened_diagnostic": "2025-2026",
+  "controls": {
+    "perp_0900": "T4",
+    "perp_1000": "T10"
+  },
+  "tomorrow_cbr_used": false,
+  "historical_exchange_availability_certified": false,
+  "bank_execution_validated": false,
+  "payload_sha256": "3dcba9b0169242ffcfad5b690a386ae331813125526d9b3dcd861265888feea4",
+  "source_sha256": {
+    "data/moex_perpetual_fx_hourly_2022_2026.json": "8415ed4ccdc1a607d28b46dfcf3e53f3b91992bfdce67cb43c467e45519285e1",
+    "results/research/temperature/t4_premarket/metadata.json": "5dcfdfe1418585e2c7687c930026523991db96c962f354670bae79bfd0db586a",
+    "results/research/temperature/t4_premarket/outputs.npz": "0f6202768eed0bb97d283d2d3240655cf4cb2b6ae231662da3fd471a14f2901a",
+    "results/research/temperature/t10_early1000/metadata.json": "a5aaee89c35d8b4ee90c84b49138f02f8da7ee50838b10470a7102352e561f43",
+    "results/research/temperature/t10_early1000/outputs.npz": "15f27eee7f328a143c44a8b81423991eed35756844a43725d28e0c3c58c320c9",
+    "research/temperature_t13_early_perpetual_registered.md": "ea755cdd254ccc2c92e28ab9ae4332c8367c70b78eba0375058163cd55865a10",
+    "research/temperature_t13_early_perpetual.py": "415d19baeef9f1fbb5364a2dc82082200bb3f19fbc0a2c1e2d40457e06cc2970",
+    "research/temperature_t13_early_perpetual_models.py": "098d3afccf25065c776f7fc1efeedc47f4567499313d19cacf42a244c96d068c"
+  }
+}

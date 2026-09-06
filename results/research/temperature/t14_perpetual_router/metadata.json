@@ -1,0 +1,29 @@
+{
+  "packet": "temperature-T14",
+  "snapshot_rows": 50515,
+  "new_0900_rows": 1930,
+  "selected_0900_probability_heads": {
+    "1": "perp_basis_rank",
+    "3": "perp_basis_rank",
+    "5": "control",
+    "10": "control",
+    "20": "control"
+  },
+  "magnitude_0900": "T11 mature premarket prior",
+  "horizon_specific_provenance": true,
+  "historical_exchange_availability_certified": false,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "source_sha256": {
+    "results/research/temperature/t11_causal_benefit_gate/metadata.json": "36583c4137cc400e2c9391252b89ba0244b1dae840d2f61b029bce4706439056",
+    "results/research/temperature/t11_causal_benefit_gate/outputs.npz": "f051f256cf3b59288a9df7854c68cf07b1525f47836e0b518d43e06d56a8890b",
+    "results/research/temperature/t12_unified_router/metadata.json": "319d89f04a4e796002f376be9fd670dd2837c3ea9f28dfee63cb44d35372e598",
+    "results/research/temperature/t12_unified_router/snapshots.csv.gz": "9209a68011cb0c9c4e7fa7ff05df117a7cf128f757b759d8adbb37ed8d4306b7",
+    "results/research/temperature/t13_early_perpetual/metadata.json": "aebd5c527ca03a11a05411a240c54cfd887d4da480ad235b6b08e6c0045280e7",
+    "results/research/temperature/t13_early_perpetual/outputs.npz": "01baf06022d085f510314e133ebdf6e25fc037d1679ab0dd5ccde4443636eaeb",
+    "results/research/temperature/t13_early_perpetual/selection.csv": "b8a94f364991f00b7a8d7a23e75223aca3c651005d0c374fea8125dac1372e85",
+    "research/temperature_t14_perpetual_router_registered.md": "66886386161f3d95b5b7cc5a73c8e9f5e0963537443218e7099d1e9144794396",
+    "research/temperature_t14_perpetual_router.py": "2edd275d2da01dfb51095661df6d37f1748c01b3c1a69d1c40ae85d2c64926c1",
+    "ml/transfer_temperature.py": "064907e52d87273c2f90f3c9ccbaea5b6f517834de1b6deceb37ab3c97ab2987"
+  }
+}

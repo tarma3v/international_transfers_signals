@@ -1,0 +1,19 @@
+{
+  "source_hashes_verified": true,
+  "all_persisted_arrays_exactly_rebuilt": true,
+  "metric_tables_rebuilt": true,
+  "source_at_strictly_before_as_of": true,
+  "same_day_nominally_complete_candles_only": true,
+  "future_market_corruption_prefix_invariant": true,
+  "future_target_maturity_prefix_invariant": true,
+  "exact_control_fallback": true,
+  "paired_bootstrap_exactly_rebuilt": true,
+  "selection_exactly_rebuilt_from_screen_2024": true,
+  "adopted_0900_horizons": [
+    1,
+    3
+  ],
+  "no_1000_perpetual_replacement": true,
+  "tomorrow_cbr_used": false,
+  "bank_execution_validated": false
+}

@@ -85,7 +85,7 @@ def load_temperature_artifact(folder):
 
 
 def _snapshot_freshness(age_minutes, source_kind):
-    if source_kind in {'moex_early_prefix', 'moex_prefix',
+    if source_kind in {'moex_perpetual_prefix', 'moex_early_prefix', 'moex_prefix',
                        'post_window_market'}:
         fresh, aging = 90., 4 * 60.
     elif source_kind == 'cbr_history':
@@ -113,6 +113,13 @@ def _temperature_label(temperature, freshness, confidence):
     else:
         label = 'вероятно, лучше подождать'
     return f'{label}; {qualifier}' if qualifier else label
+
+
+def _horizon_provenance(row, field, horizon, default):
+    key = f'{field}_h{horizon}'
+    if key in row.index and pd.notna(row[key]) and str(row[key]) != '':
+        return row[key]
+    return default
 
 
 def score_snapshot_as_of(snapshots, currency, as_of, horizon=5):
@@ -148,13 +155,17 @@ def score_snapshot_as_of(snapshots, currency, as_of, horizon=5):
     if not len(candidates):
         return None
     i = int(candidates[np.argmax(valid_from.iloc[candidates].astype('int64'))])
-    source_at = pd.to_datetime(frame.iloc[i].source_at, utc=True)
+    row = frame.iloc[i]
+    source_at = pd.to_datetime(_horizon_provenance(
+        row, 'source_at', horizon, row.source_at), utc=True)
     if source_at > as_utc:
         raise AssertionError('future source selected')
     age = max((as_utc - source_at).total_seconds() / 60., 0.)
-    source_kind = str(frame.iloc[i].source_kind)
+    source_kind = str(_horizon_provenance(
+        row, 'source_kind', horizon, row.source_kind))
     freshness = _snapshot_freshness(age, source_kind)
-    confidence = str(frame.iloc[i].get('confidence', 'limited'))
+    confidence = str(_horizon_provenance(
+        row, 'confidence', horizon, row.get('confidence', 'limited')))
     probability = float(probability_values.iloc[i])
     expected_key = 'expected_future_bps_h' + str(horizon)
     expected = None
@@ -162,7 +173,10 @@ def score_snapshot_as_of(snapshots, currency, as_of, horizon=5):
             pd.Series([frame.iloc[i][expected_key]]), errors='coerce').iloc[0]):
         expected = float(frame.iloc[i][expected_key])
     temperature = 100. * probability
-    phase = str(frame.iloc[i].phase)
+    phase = str(_horizon_provenance(row, 'phase', horizon, row.phase))
+    availability_evidence = str(_horizon_provenance(
+        row, 'availability_evidence', horizon,
+        row.get('availability_evidence', 'unknown')))
     return {
         'currency': currency,
         'horizon_publications': horizon,
@@ -177,7 +191,6 @@ def score_snapshot_as_of(snapshots, currency, as_of, horizon=5):
         'phase': phase,
         'confidence': confidence,
         'source_kind': source_kind,
-        'availability_evidence': str(
-            frame.iloc[i].get('availability_evidence', 'unknown')),
-        'push_now': bool(frame.iloc[i].get('push_now', False)),
+        'availability_evidence': availability_evidence,
+        'push_now': bool(row.get('push_now', False)),
     }

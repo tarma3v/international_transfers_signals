@@ -43,11 +43,12 @@ the latest admissible snapshot rather than the old push payload.
 ## Any-day behaviour
 
 The router selects by information state. Overnight it uses the weaker CBR-only
-expert. In the modern 2025--2026 MOEX archive there is no same-day CNY candle
-through 09:30, so no market freshness is claimed before 10:00. At 10:00 it emits
-an early-market snapshot only when a completed candle physically exists;
-otherwise T4 remains latest. During the later market session it moves through
-completed-candle experts.
+expert. In the modern 2025--2026 MOEX spot archive there is no same-day CNY
+candle through 09:30, but T13 found a physically completed CNYRUBF perpetual
+hour by 09:00 on 76.3% of opened rows. T14 uses it only for the screen-confirmed
+h1/h3 heads. At 10:00 it emits the T10 spot snapshot only when a completed
+candle physically exists; otherwise the earlier admissible state remains.
+During the later market session it moves through completed-candle experts.
 Between 15:30 and the actual CBR receipt it uses the frozen market anchor plus a
 validated post-window correction. After receipt it can use the newly announced
 rate. Weekends and missing feeds retain the latest score with explicit aging or
@@ -57,6 +58,11 @@ Every snapshot has `valid_from` and optional `valid_until`. This prevents an
 after-receipt forecast anchored to yesterday's effective rate from being shown
 the next morning as if it described today's current rate. `source_at` must never
 exceed the requested `as_of`.
+
+Provenance may differ by horizon. Optional `source_at_h*`, `source_kind_h*`,
+`phase_h*`, `confidence_h*` and `availability_evidence_h*` override row-level
+fields. For example, at 09:15 h1/h3 may be fresh CNYRUBF estimates while h5,
+h10 and h20 remain CBR-history estimates with limited confidence.
 
 Therefore the widget is queryable on every calendar day for AMD, KGS, KZT, TJS
 and UZS. “Any day” does not mean equally fresh information: during a weekend or

@@ -1,12 +1,39 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, T12 complete. The user made after-publication research the
+Updated 2026-09-06, T14 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
 
-## LATEST COMPLETED CHECKPOINT: T12 EARLY-MARKET AND STABLE-BENEFIT ROUTER
+## LATEST COMPLETED CHECKPOINT: T14 HORIZON-AWARE 09:00 ROUTER
+
+T13 tested physically completed hourly perpetual FX candles at 09:00 and 10:00.
+Selection used 2024 only. At 09:00 CNYRUBF causal basis rank passed both 20/50
+date-block Brier gates for h1 and h3: screen Brier .24365 -> .22530 and .24547
+-> .23147. On opened 2025-2026 it gives h1 Brier/AUC .20239/.75254 versus
+.24496/.58719, and h3 .18983/.73365 versus .21726/.58615. H5 improved on the
+opened period but failed both screen intervals, so it was not adopted. No 10:00
+perpetual candidate displaced T10.
+
+T14 inserts 1,930 physically available 09:00 rows, bringing the artifact to
+50,515 snapshots. Only h1/h3 consume the new candle; h5/h10/h20 and every
+magnitude head retain their prior routes. The API now supports horizon-specific
+source timestamp, kind, phase, confidence and availability evidence, so a 09:15
+h1 response cites CNYRUBF 08:59:59 while h5 honestly cites CBR history 00:00.
+All T12 rows and AP37 push counts remain unchanged. Exact rebuild, future market
+and target corruption, every-day coverage and provenance audits passed.
+
+The exchange-hours distinction is now explicit. The MOEX currency spot main
+session runs from 10:00, with TOM/SPT trading ending at 19:00, while the
+derivatives market has morning, main and evening sessions from 07:00 through
+23:50. Therefore the next phase-specific experiment should test completed
+perpetual FX candles after the spot close, rather than treating the longer
+stock-market schedule as spot-FX availability. Official references:
+<https://www.moex.com/ru/markets/currency> and
+<https://www.moex.com/torgovye-sessii-na-srochnom-rynke>.
+
+## PREVIOUS CHECKPOINT: T12 EARLY-MARKET AND STABLE-BENEFIT ROUTER
 
 The main-branch presentation generator includes a seven-screen app mockup on
 the demonstration slide: amount screen, sparse push, late-open state, level
@@ -70,7 +97,7 @@ and test phase-specific ensembles without retuning on the same open years.
 T9--T12 independent audits exactly rebuilt every persisted array, verified all
 six physical candle prefixes, exact unavailable fallback, fixed probability
 selection, mature-only benefit weights and future target/maturity invariance.
-The full repository suite contains 324 tests; all passed after T12.
+The full repository suite contains 326 tests after T14; all passed.
 
 ## LATEST PRODUCT GOAL: continuous transfer temperature plus sparse push
 
