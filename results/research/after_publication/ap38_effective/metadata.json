@@ -1,0 +1,29 @@
+{
+  "packet": "AP38-E",
+  "n_rows": 5755,
+  "experts": [
+    "ap26_y20",
+    "ridge_survival",
+    "distributional_cat"
+  ],
+  "n_fresh_policies": 1,
+  "n_frozen_controls": 9,
+  "selection_horizons": [
+    3,
+    5,
+    10,
+    20
+  ],
+  "selected": "ap26_core_mature_precision_calendar_fallback_cap2",
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap37_effective/metadata.json": "3afd737cd187792235f76aaee267383e8fe3dc68fb9eecc6eaf355aa97cdc619",
+    "results/research/after_publication/ap37_effective/outputs.npz": "0051a46660dbb2dfa29c1c0bdc4ff8e5d257f5ed9bb80b593cff58554bbea6a3",
+    "research/after_publication_ap38_effective_registered.md": "1f9aff336a8647df66f823ec88b0eb465e04e5d6970242a68a4686ac4f3e6249"
+  }
+}

@@ -1,0 +1,16 @@
+candidate,currency,n_signals,empty_complete_months,weekly_max,weekly_zero_share,calendar_gap_max
+ap26_core_mature_precision_calendar_fallback_cap2,AMD,142,0,2,0.34057971014492755,37
+ap26_core_mature_precision_calendar_fallback_cap2,KGS,139,0,2,0.32608695652173914,31
+ap26_core_mature_precision_calendar_fallback_cap2,KZT,138,0,2,0.32608695652173914,39
+ap26_core_mature_precision_calendar_fallback_cap2,TJS,139,0,2,0.3333333333333333,37
+ap26_core_mature_precision_calendar_fallback_cap2,UZS,137,0,2,0.34782608695652173,43
+known_next_not_lower_cd3,AMD,193,0,2,0.036231884057971016,13
+known_next_not_lower_cd3,KGS,188,0,2,0.057971014492753624,18
+known_next_not_lower_cd3,KZT,193,0,2,0.028985507246376812,18
+known_next_not_lower_cd3,TJS,197,0,2,0.050724637681159424,17
+known_next_not_lower_cd3,UZS,186,0,2,0.050724637681159424,17
+ap26_guarded_core_mature_precision_fallback_cap2,AMD,133,0,2,0.3695652173913043,37
+ap26_guarded_core_mature_precision_fallback_cap2,KGS,132,0,2,0.35507246376811596,31
+ap26_guarded_core_mature_precision_fallback_cap2,KZT,129,0,2,0.35507246376811596,39
+ap26_guarded_core_mature_precision_fallback_cap2,TJS,135,0,2,0.34782608695652173,37
+ap26_guarded_core_mature_precision_fallback_cap2,UZS,133,0,2,0.3695652173913043,43

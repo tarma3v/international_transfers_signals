@@ -4,23 +4,22 @@
 выгоднее переводить рубли в **AMD, KGS, KZT, TJS или UZS**, и сформировать не
 больше нескольких полезных сигналов в неделю.
 
-> **Уточнённая задача AP10-E/AP36-E:** после получения завтрашнего курса считаем lift
+> **Уточнённая задача AP10-E/AP39-E:** после получения завтрашнего курса считаем lift
 > от **действующего сегодня ЦБ**. Знание нового курса — вход, а не новая опора.
-> Новый лучший строгий point-result — AP33 calendar decision-router:
-> **h3/5/10/20 = 2,421 / 2,490 / 2,471 / 2,516**, min rate **1,009**,
-> zero empty months и max2/week. AP26 y20 specialist остаётся точным core, а
-> AP23 fallback допускается только поздно в неделе или после 10 дней молчания.
-> AP33 прошёл ранний selector, но ранние решения совпали с AP32/AP26; различия
+> Новый лучший строгий point-result — AP37 mature-precision router:
+> **h3/5/10/20 = 2,429 / 2,509 / 2,479 / 2,525**, min rate **1,009**,
+> zero empty months и max2/week. Он сохраняет AP26 core и причинно фильтрует
+> только поздненедельный fallback по созревшей точности согласия трёх моделей.
+> AP37 прошёл ранний selector, но ранние решения совпали с AP33; различия
 > lift на открытом позднем периоде имеют CI, пересекающие ноль. Это сильный
 > ретроспективный challenger, не fresh independent winner.
 > Период h5: **09.01.2024–25.08.2026**.
 > Исторические receipts условные, не новый закрытый тест и не банковская экономия.
 > На h1 ответ после публикации уже известен; h3/5/10/20 ещё содержат неизвестное.
 > Старые AP3/AP4 **1,630** относятся к другой, новой опубликованной опоре.
-> AP34–AP36 проверили residual survival, monotone distributional CatBoost и
-> mature-only Brier Hedge. Ни один не обошёл AP33; AP35 h20 и AP36 h5/h20
-> статистически хуже него. Исследование активно, без почасовой автоматизации;
-> **284 теста** прошли.
+> AP38 поднял h5 до **2,521** и h20 до **2,597**, но провалил частоту; AP39
+> также не восстановил min rate. Они остаются accuracy-frontier, не продуктом.
+> Исследование активно, без почасовой автоматизации; **289 тестов** прошли.
 
 > **Сохранённый ориентир до публикации:** причинный `availability_route` на
 > срезе 15:30. На ретроспективе 2025–2026 он даёт adjusted lift **2,053** при
@@ -30,8 +29,35 @@
 
 [Краткая история всех экспериментов](EXPERIMENTS_SUMMARY.md) ·
 [решение 15:30 подробно](docs/05-tekushchee-reshenie.md) ·
-[новый PDF: AP34–AP36 residual и Hedge](output/pdf/ivan_after_publication_ap36_effective.pdf) ·
+[новый PDF: AP37–AP39 mature precision](output/pdf/ivan_after_publication_ap39_effective.pdf) ·
 [активный исследовательский checkpoint](research/after_publication_next_steps.md)
+
+## Последние AP37-E/AP39-E: новый строгий лидер
+
+AP37 считает, сколько из трёх честных OOS-моделей поддерживают текущий день в
+top-30 tail. Надёжность такого support-stratum оценивается отдельно по валюте,
+но только на уже созревших прошлых y3/y5/y10/y20. AP26 core не меняется;
+AP23 late-week fallback допускается лишь при precision не хуже causal baseline,
+а silence-10 rescue сохраняется.
+
+| Кандидат | h3 | h5 | h10 | h20 | Min rate | Статус |
+|---|---:|---:|---:|---:|---:|---|
+| AP33 calendar | 2,421 | 2,490 | 2,471 | 2,516 | 1,009 | прежний strict leader |
+| **AP37 mature precision** | **2,429** | **2,509** | **2,479** | **2,525** | **1,009** | новый strict point |
+| AP38 guarded core | 2,432 | **2,521** | 2,486 | **2,597** | 0,955 | accuracy-only |
+| AP39 one-week runway | **2,435** | 2,509 | 2,478 | 2,572 | 0,971 | cadence fail |
+
+AP37 сохранил 693 решения AP33, удалил 11 и добавил 2 поздних; h5 future-only
+вырос с 132,94 до **133,73 б.п.** Все lift-delta CI AP37–AP33 пересекают ноль,
+поэтому это frozen retrospective challenger, не fresh winner. AP38 показал
+реальный слабый режим внутри core, но потерял частоту; подбирать runway дальше
+по открытому периоду нельзя.
+
+[Отчёт AP37–AP39](research/after_publication_ap39_effective_report.md) ·
+[результаты AP37](results/research/after_publication/ap37_effective) ·
+[результаты AP38](results/research/after_publication/ap38_effective) ·
+[результаты AP39](results/research/after_publication/ap39_effective).
+Все maturity/precision/router/runway/future-prefix audits прошли.
 
 ## Последние AP34-E/AP36-E: новые модели не обошли AP33
 
@@ -607,13 +633,13 @@ python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 PYTHONPATH=. .venv/bin/pytest -q
 
-# Воспроизвести последний after-publication раунд на сохранённых данных
-PYTHONPATH=. .venv/bin/python -m research.after_publication_ap36_effective
-PYTHONPATH=. .venv/bin/python -m research.after_publication_ap36_effective_audit
-PYTHONPATH=. .venv/bin/python -m research.build_after_publication_ap36_effective_report
+# Воспроизвести новый строгий результат AP37 на сохранённых данных
+PYTHONPATH=. .venv/bin/python -m research.after_publication_ap37_effective
+PYTHONPATH=. .venv/bin/python -m research.after_publication_ap37_effective_audit
+PYTHONPATH=. .venv/bin/python -m research.build_after_publication_ap39_effective_report
 ```
 
-Полный набор содержит **284 теста**. Повторная загрузка данных MOEX требует
+Полный набор содержит **289 тестов**. Повторная загрузка данных MOEX требует
 сети: `PYTHONPATH=. .venv/bin/python -m research.round7_direct_pairs_data`.
 XGBoost на macOS может потребовать `brew install libomp`.
 
@@ -626,18 +652,20 @@ XGBoost на macOS может потребовать `brew install libomp`.
 | `research/round7_*` | прямые пары, residual-модели, аудит и виджет |
 | `research/after_publication_ap33_*` | лидер calendar-router, протокол и аудит |
 | `research/after_publication_ap34_*`–`ap36_*` | residual, distributional и causal Hedge |
+| `research/after_publication_ap37_*`–`ap39_*` | mature precision, core veto и runway |
 | `data/moex_direct_pairs/` | архив прямых CETS-пар с SHA-256 и FACEVALUE |
 | `results/research/round7/` | полные результаты последнего раунда |
 | `results/research/after_publication/ap33_effective/` | scorecards и аудит AP33 |
 | `results/research/after_publication/ap34_effective/`–`ap36_effective/` | последние scorecards и аудиты |
+| `results/research/after_publication/ap37_effective/`–`ap39_effective/` | новый leader и accuracy-frontier |
 | `tests/` | проверки корректности и отсутствия утечек |
 | `docs/` | продуктовые документы и интерпретация результатов |
 | `output/pdf/` | отчёты для чтения и защиты |
 
 ## Что читать
 
-1. [AP34–AP36: residual и causal Hedge](output/pdf/ivan_after_publication_ap36_effective.pdf) —
-   актуальный after-publication scorecard и объяснение, почему AP33 остался лидером.
+1. [AP37–AP39: mature precision](output/pdf/ivan_after_publication_ap39_effective.pdf) —
+   актуальный scorecard, новый strict leader и цена фильтрации слабого core.
 2. [Текущее решение](docs/05-tekushchee-reshenie.md) — актуальная короткая
    техническая и продуктовая картина.
 3. [Round 7: прямые пары и виджет](output/pdf/ivan_direct_pairs_and_widget_report.pdf) —
@@ -649,11 +677,11 @@ XGBoost на macOS может потребовать `brew install libomp`.
 
 ## Текущий статус
 
-Ветка разработки — `ivan-experiments`. AP33 даёт лучший strict point,
-AP26 остаётся accuracy core, AP23 и AP32 — замороженные prospective controls;
-AP34–AP36 сохранены как проверенные отрицательные направления.
+Ветка разработки — `ivan-experiments`. AP37 даёт лучший strict point,
+AP26 остаётся accuracy core, AP33 — основной frozen control; AP38/AP39
+сохранены как проверенная accuracy/cadence граница.
 Точечные различия между лидерами нельзя считать доказанными из-за многократно
 открытого периода и пересекающих ноль paired CI. Ближайший шаг — frozen
-live/prospective shadow без изменения порогов и один заранее зарегистрированный
-disagreement-tail uncertainty/veto вместо усреднения всех scores; отдельно нужно подтвердить
+live/prospective shadow без изменения порогов и одна заранее зарегистрированная
+causal weekly optimal-stopping модель вместо дальнейшего tuning precision/runway; отдельно нужно подтвердить
 фактический timestamp получения курса и исполняемый банковский курс.

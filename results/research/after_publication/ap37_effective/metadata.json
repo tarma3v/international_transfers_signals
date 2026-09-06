@@ -1,0 +1,31 @@
+{
+  "packet": "AP37-E",
+  "n_rows": 5755,
+  "experts": [
+    "ap26_y20",
+    "ridge_survival",
+    "distributional_cat"
+  ],
+  "n_fresh_policies": 1,
+  "n_frozen_controls": 8,
+  "selection_horizons": [
+    3,
+    5,
+    10,
+    20
+  ],
+  "selected": "ap26_core_mature_precision_calendar_fallback_cap2",
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap36_effective/metadata.json": "9df8d5fa55e78eba04fd35e6797fc091b8876aa56b10a95a21948d0d79ab2777",
+    "results/research/after_publication/ap36_effective/outputs.npz": "f2764d945daa8f7042e6352fab4a16376354c287ff4a66eeca91dca3127a3ea3",
+    "results/research/after_publication/ap33_effective/metadata.json": "4388f87053e4b87e79b3617243bc34521be0b97c912cae136dc9658a0bd1b64a",
+    "results/research/after_publication/ap33_effective/outputs.npz": "98bdf248c98b66c333f78c9c3a91017e9da1473ed0737d0e23c2b735d7e660ee",
+    "research/after_publication_ap37_effective_registered.md": "d71d83fd1fa176f22ca4a9fbbef48f9d7ac83909070eedfb4e4204f80de9970b"
+  }
+}

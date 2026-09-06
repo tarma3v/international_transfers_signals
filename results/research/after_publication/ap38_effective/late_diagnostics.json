@@ -1,0 +1,22 @@
+{
+  "selected_early": "ap26_core_mature_precision_calendar_fallback_cap2",
+  "fresh_early_joint_pass": false,
+  "late_min_lift": 2.4315550566702986,
+  "late_mean_lift": 2.5088564309062993,
+  "late_min_rate": 0.955240174672489,
+  "late_max_weekly_signals": 2,
+  "late_strict_success": false,
+  "late_core_veto_count": 36,
+  "late_reason_counts": {
+    "none": 2623,
+    "quality_core": 354,
+    "precision_late_week": 1,
+    "silence10": 24,
+    "rate_guard_core": 283
+  },
+  "late_decision_changes_vs_ap37": {
+    "same_selected": 659,
+    "removed_from_ap37": 36,
+    "added_vs_ap37": 3
+  }
+}

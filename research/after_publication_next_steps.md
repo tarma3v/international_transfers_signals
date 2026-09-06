@@ -1,6 +1,6 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP36-E complete. The user made after-publication research the
+Updated 2026-09-06, AP39-E complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
@@ -18,6 +18,40 @@ Do NOT claim that rescore of old AP3 signals proves knowledge is harmful.
 Models must be retrained to the SAME effective target in with/without ablations.
 TЗ note updated: initial announced-reference choice was our conservative team
 interpretation, not an organizer ruling. Bank execution still NOT validated.
+
+## Latest completed AP37-E/AP39-E: mature precision and guarded regimes
+
+AP37 registered exactly one disagreement-tail policy before late scoring. Three
+frozen causal OOS ranks (AP26 y20,AP34 residual,AP35 distributional) define
+support count0..3 at the existing top30 boundary. Expanding precision uses strict
+min(y3,y5,y10,y20), only publication-h20 mature history with2day embargo, and
+hierarchical shrinkage40 overall->stratum->currency. AP26 core stays exact;
+AP23 late-week fallback requires local stratum precision>=causal overall, while
+silence10 rescue remains unconditional.
+
+AP37 passed early and all late strict point gates. Late h3/5/10/20=
+2.428674/2.509188/2.479316/2.524987,minlift2.428674,meanlift2.485541,
+minrate1.008734,zeroempty,max2/week. H5 has695 decisions,rate1.038420,
+currency1.02348..1.06083,sym74.5514,fwd133.7337. It keeps693 AP33 decisions,
+removes11 and adds2; reasons673 core/1 precision lateweek/21 silence10. Lift
+deltas vsAP33=.0082/.0192/.0084/.0087; every20/50date CI crosses0. AP37 is the
+new frozen strict point leader, not an independent holdout winner.
+
+AP38 registered one core-regime veto using a separately matured core precision
+pool; low-quality core may be skipped only when current trailing365 rate>=1.
+It failed early cadence and late minrate=.955240, but is a useful accuracy upper
+bound: h3/5/10/20=2.431555/2.520964/2.485514/2.597393. H20 delta vsAP37=.0724
+has20date CI[.0065,.1543], while50date crosses0. Do not promote.
+
+AP39 registered one product-derived repair, not a grid: weak core veto only when
+n/(elapsedweeks+1)>=1. It still failed early and late cadence. Late h3/5/10/20=
+2.434597/2.508938/2.478471/2.572246,average h5rate=.999573 but mincurrencyh5
+=.978655 and all-h minrate=.970524. Do not tune2/3/4week runway on opened data.
+
+All AP37-AP39 audits rebuild targets, three ranks, both maturity pools, support,
+counts/shrinkage, rate/silence/reasons/veto/runway/cap, early selection and
+future expert/label/source corruption prefix invariance. Full suite:289 tests.
+Current report: output/pdf/ivan_after_publication_ap39_effective.pdf.
 
 ## Latest completed AP34-E/AP36-E: residual survival, distributional CDF, Hedge
 
@@ -334,23 +368,23 @@ AP12audit rebuilt source hashes,5755targets,17masks,85logs,compactsubset,
 local/class counts, all scores/signals, veto/prefix/weeklycap. PDF
 output/pdf/ivan_after_publication_ap12_effective.pdf rendered4pages and checked.
 
-## NEXT bounded AP37-E: disagreement-tail uncertainty, not another broad blend
+## NEXT bounded AP40-E: causal weekly optimal stopping
 
-1. Freeze AP23, AP26, AP33, AP34, AP35 and AP36 exactly; do not tune AP33
-   warmup/silence/weekdays or AP34-AP36 alpha, offsets, temperature, half-lives
-   on opened 2024-2026.
-2. Register exactly one causal disagreement-tail policy before scoring. Preserve
-   AP26/AP33 core and modify only rare fallback decisions where experts disagree.
-   Preferred genuinely new mechanism: mature-only conformal lower confidence or
-   precision veto estimated from comparable past disagreement cases.
-3. Preserve quarterly chronological OOS fits, publication-h20 maturity cap,
-   2-day embargo, known-down veto, causal ranks/state and sequential max2/week.
-4. Do not repeat broad score averaging, average Brier Hedge, continuous residual
-   pace, synthetic-anchor CDF, hierarchical weight4, factorized survival or
-   calendar threshold search; prior rounds preserve that evidence.
+1. Freeze AP37 as strict shadow leader and AP38 as accuracy-only diagnostic. Do
+   not tune support=.70, shrinkage40, silence10 or runway on opened2024-2026.
+2. Register exactly one classical optimal-stopping model before scoring. Train
+   only on fully mature past weeks to estimate whether accepting the current
+   opportunity dominates preserving one weekly slot for a later day. Use weekday,
+   causal expert ranks, known change and current within-week state; no future row.
+3. Preserve AP26 core unless the stopping model explicitly predicts wait and a
+   causal cadence bank exists. Friday and silence rescue stay hard. Compare to
+   frozen AP37 under identical today-effective target and availability.
+4. Preserve chronological OOS fits, publication-h20 maturity cap,2day embargo,
+   known-down veto, causal state and sequential max2/week. One architecture and
+   one policy only; no weekday/threshold/window grid.
 5. Acceptance remains minlift>2.4 on h3/5/10/20,min currency rate>=1,zeroempty,
    max2/week with paired uncertainty. Final product validation additionally needs
-   actual receipt timestamps and an executable bank price, not only official CBR.
+   actual receipt timestamps and executable bank price,not only official CBR.
 
 ## Latest completed AP10-E: strong matched information gain, simple rule selected
 

@@ -8,7 +8,47 @@
 Для внутренней оптимизации сохраняется
 `h=5`, официальный scorecard теперь считается сразу на `h=1/3/5/10/20`.
 
-## Последние AP34-E/AP36-E: residual-модели и Hedge не обошли AP33
+## Последние AP37-E/AP39-E: mature precision даёт новый strict point
+
+[PDF](output/pdf/ivan_after_publication_ap39_effective.pdf) ·
+[отчёт](research/after_publication_ap39_effective_report.md) ·
+[AP37 protocol](research/after_publication_ap37_effective_registered.md) ·
+[AP38 protocol](research/after_publication_ap38_effective_registered.md) ·
+[AP39 protocol](research/after_publication_ap39_effective_registered.md).
+
+AP37 сохранил frozen AP26 core и изменил только редкий AP23 calendar fallback.
+Три causal OOS rank - AP26 y20, AP34 residual survival и AP35 distributional
+CatBoost - образуют support stratum 0..3 по существующей границе top30. Для
+каждого stratum expanding precision строгого `min(y3,y5,y10,y20)` оценивается
+только на publication-h20-mature прошлом с двухдневным embargo и трёхуровневым
+shrinkage global/stratum/currency. Late-week fallback проходит при local
+precision не хуже causal overall; silence10 rescue не блокируется.
+
+AP37 прошёл ранние и поздние strict gates. Late h3/h5/h10/h20=
+**2,428674/2,509188/2,479316/2,524987**, min rate **1,008734**, zero empty
+months,max2/week. H5:695 сигналов,rate1,038,currency1,023–1,061,
+symmetric74,55б.п.,future-only133,73б.п. Он сохранил693 решения AP33, удалил11
+и добавил2; итог —673 core,1 precision late-week,21 silence fallback. Deltas
+lift к AP33 +.0082/+.0192/+.0084/+.0087, но все 20/50-date CI пересекают ноль.
+Это новый frozen strict point leader, не fresh production winner.
+
+AP38 применил ту же зрелую precision к core и разрешил veto при текущей
+trailing rate>=1. Accuracy выросла до h5 **2,520964**, h20 **2,597393**;
+h20 delta к AP37 +.0724 имеет 20-date CI **[+.0065;+.1543]**. Но min rate
+упала до **0,955240**, ранний selector дал minrate.856 и два пустых месяца.
+AP38 - только accuracy upper bound.
+
+AP39 заранее задал один week runway: veto только если частота останется>=1 при
+добавлении недели к знаменателю. Late **2,434597/2,508938/2,478471/2,572246**,
+средняя h5 rate.9996, но min currency h5.9787 и all-h minrate.9705. Ранний
+cadence также провален. Дальше подбирать runway по открытому scorecard нельзя.
+
+Все AP37-AP39 audits восстановили maturity, support, precision, shrinkage,
+rate/silence/veto/runway/cap и future-corruption prefix. Полный набор -
+**289 тестов**. Следующий новый класс: одна preregistered causal weekly
+optimal-stopping модель, а не настройка support/shrinkage/runway.
+
+## AP34-E/AP36-E: residual-модели и Hedge не обошли AP33
 
 [PDF](output/pdf/ivan_after_publication_ap36_effective.pdf) ·
 [отчёт](research/after_publication_ap36_effective_report.md) ·
