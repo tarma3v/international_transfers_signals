@@ -1,10 +1,33 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, T14 complete. The user made after-publication research the
+Updated 2026-09-06, T16 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
+
+## LATEST COMPLETED CHECKPOINT: T16 EVENING BENEFIT ROUTER
+
+T15 preregistered completed perpetual prefixes at 20:00/21:00/22:00/23:00 and
+tested CNY-only logit, dual CNYRUBF+USDRUBF logit, dual HGB and a dual residual
+Ridge against frozen T7B. Selection used 2024 only and required both 20-date and
+50-date block-bootstrap upper bounds below zero. Physical dual availability is
+100% in 2024, 2025 and 2026.
+
+No new probability candidate passed at any clock or horizon, so T16 keeps all
+T7B probabilities exact. The benefit Ridge passed for 20:00 h3 and for h3/h5 at
+21:00, 22:00 and 23:00. Screen-2024 MAE at 23:00 is 53.14/80.85 versus
+58.08/87.88 bp for h3/h5. Opened 2025-2026 diagnostics are directionally
+smaller and are not a new independent holdout.
+
+T16 adds 9,855 evening rows and brings the artifact to 60,370 snapshots. The
+API now carries independent probability and benefit timestamp/age/freshness/
+source fields. A 21:15 response may cite 20:00 spot for probability and
+20:59:59 perpetual for h5 benefit. H10/h20, all push decisions and all earlier
+snapshots remain exact. Independent audits rebuild selection, outputs and
+router and verify source_at<=valid_from, future-prefix corruption, weekend
+stale behavior and unchanged AP37 counts.
+The full repository suite contains 328 tests after T16; all passed.
 
 ## LATEST COMPLETED CHECKPOINT: T14 HORIZON-AWARE 09:00 ROUTER
 

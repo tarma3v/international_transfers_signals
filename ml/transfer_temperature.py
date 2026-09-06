@@ -86,7 +86,7 @@ def load_temperature_artifact(folder):
 
 def _snapshot_freshness(age_minutes, source_kind):
     if source_kind in {'moex_perpetual_prefix', 'moex_early_prefix', 'moex_prefix',
-                       'post_window_market'}:
+                       'post_window_market', 'post_receipt_perpetual'}:
         fresh, aging = 90., 4 * 60.
     elif source_kind == 'cbr_history':
         fresh, aging = 36 * 60., 72 * 60.
@@ -166,23 +166,40 @@ def score_snapshot_as_of(snapshots, currency, as_of, horizon=5):
     freshness = _snapshot_freshness(age, source_kind)
     confidence = str(_horizon_provenance(
         row, 'confidence', horizon, row.get('confidence', 'limited')))
+    phase = str(_horizon_provenance(row, 'phase', horizon, row.phase))
+    availability_evidence = str(_horizon_provenance(
+        row, 'availability_evidence', horizon,
+        row.get('availability_evidence', 'unknown')))
     probability = float(probability_values.iloc[i])
     expected_key = 'expected_future_bps_h' + str(horizon)
     expected = None
     if expected_key in frame and np.isfinite(pd.to_numeric(
             pd.Series([frame.iloc[i][expected_key]]), errors='coerce').iloc[0]):
         expected = float(frame.iloc[i][expected_key])
+    benefit_source_at = pd.to_datetime(_horizon_provenance(
+        row, 'benefit_source_at', horizon, source_at), utc=True)
+    if benefit_source_at > as_utc:
+        raise AssertionError('future benefit source selected')
+    benefit_source_kind = str(_horizon_provenance(
+        row, 'benefit_source_kind', horizon, source_kind))
+    benefit_age = max((as_utc - benefit_source_at).total_seconds() / 60., 0.)
+    benefit_freshness = _snapshot_freshness(
+        benefit_age, benefit_source_kind)
+    benefit_availability = str(_horizon_provenance(
+        row, 'benefit_availability_evidence', horizon,
+        availability_evidence))
     temperature = 100. * probability
-    phase = str(_horizon_provenance(row, 'phase', horizon, row.phase))
-    availability_evidence = str(_horizon_provenance(
-        row, 'availability_evidence', horizon,
-        row.get('availability_evidence', 'unknown')))
     return {
         'currency': currency,
         'horizon_publications': horizon,
         'temperature_0_100': temperature,
         'probability_now_best_h': probability,
         'expected_future_cbr_bps_h': expected,
+        'benefit_last_source_at': benefit_source_at.tz_convert(MOSCOW).isoformat(),
+        'benefit_age_minutes': benefit_age,
+        'benefit_freshness': benefit_freshness,
+        'benefit_source_kind': benefit_source_kind,
+        'benefit_availability_evidence': benefit_availability,
         'label': _temperature_label(temperature, freshness, confidence),
         'score_as_of': as_of.isoformat(),
         'last_source_at': source_at.tz_convert(MOSCOW).isoformat(),

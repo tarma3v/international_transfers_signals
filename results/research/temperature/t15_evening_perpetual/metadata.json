@@ -1,0 +1,33 @@
+{
+  "packet": "temperature-T15",
+  "clocks": [
+    "20:00:00",
+    "21:00:00",
+    "22:00:00",
+    "23:00:00"
+  ],
+  "probability_candidates": [
+    "perp_cny_logit",
+    "perp_dual_logit",
+    "perp_dual_hgb"
+  ],
+  "benefit_candidate": "perp_dual_ridge",
+  "control": "T7B 20:00 state carried forward",
+  "screen": "2024 only",
+  "opened_diagnostic": "2025-2026",
+  "h1_is_known_not_forecast": true,
+  "historical_exchange_availability_certified": false,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "payload_sha256": "3dcba9b0169242ffcfad5b690a386ae331813125526d9b3dcd861265888feea4",
+  "source_sha256": {
+    "data/moex_perpetual_fx_hourly_2022_2026.json": "8415ed4ccdc1a607d28b46dfcf3e53f3b91992bfdce67cb43c467e45519285e1",
+    "results/research/after_publication/ap51_benefit/metadata.json": "e6bbeb1a45c262118064cfcf888bd4c24ac3b7b580b102cecd6edc93e8eb00c5",
+    "results/research/after_publication/ap51_benefit/outputs.npz": "18ffa0498c8d801e549c1908463581f293c29fd3242566f2c5a3189264996529",
+    "results/research/temperature/t7b_after_decision_market/metadata.json": "45fd09997b3219d602e5b9c987bdebfdfe8be3844bb82a9e8e41fc3a6ded54b3",
+    "results/research/temperature/t7b_after_decision_market/outputs.npz": "c173670c5d5bd54fe9b5f993cf69612890b2be0ff44393b09894bbe36ec647bb",
+    "research/temperature_t15_evening_perpetual_registered.md": "c48fc0019a1b38d3e4f7241fa774e6e70480f035cfb9647059e9cec4c4a89363",
+    "research/temperature_t15_evening_perpetual.py": "04f90401fe2175f171161700d6d66afa9428cbd9672c29e9fb04e5c2000901b7",
+    "research/temperature_t15_evening_perpetual_models.py": "4b850ab62e827a084920a5a233be5465edc7fbce735666dab4f5accbc6ce87ec"
+  }
+}

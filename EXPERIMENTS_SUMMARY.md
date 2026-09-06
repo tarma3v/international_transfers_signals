@@ -8,13 +8,13 @@
 Для внутренней оптимизации сохраняется
 `h=5`, официальный scorecard теперь считается сразу на `h=1/3/5/10/20`.
 
-## T3-T14: непрерывная температура и честное раннее обновление
+## T3-T16: непрерывная температура от утра до 23:00
 
 Презентация из основной ветки формулирует продукт как экранный индикатор плюс
-отдельное редкое уведомление. T14 причинно объединил фазовые модели в один
+отдельное редкое уведомление. T16 причинно объединил фазовые модели в один
 API-контракт: `temperature_0_100`, вероятности h=1/3/5/10/20, ожидаемые
 future-only б.п. ЦБ, `last_source_at`, freshness, phase, confidence и
-`push_now`. Ретроспективный пакет содержит **50 515** уникальных временных
+`push_now`. Ретроспективный пакет содержит **60 370** уникальных временных
 снимков и позволяет получить последнее допустимое состояние по каждой из пяти
 валют в любой календарный день. На выходных значение удерживается, но явно
 становится stale; future-snapshot corruption не меняет прошлые ответы.
@@ -75,11 +75,27 @@ AMD/KGS/KZT/TJS/UZS = **142/139/138/139/137** сигналов за весь о�
 период — примерно один на валюту в неделю. Это не означает, что вся высокая
 температура порождает уведомление.
 
+T15 проверил вечерние completed-prefix 20:00/21:00/22:00/23:00 по
+CNYRUBF и USDRUBF. Физическое dual-покрытие составляет 100% в 2024, 2025 и
+2026. Ни `perp_cny_logit`, ни `perp_dual_logit`, ни `perp_dual_hgb` не прошли
+оба 20/50-date screen-Brier gate против T7B, поэтому новые probability-heads не
+приняты. Это фиксирует честный отрицательный результат: новая свеча не обязана
+двигать температуру.
+
+Для expected benefit dual residual Ridge прошёл оба screen-MAE gate в семи
+комбинациях: 20:00 h3, а в 21:00/22:00/23:00 h3 и h5. На screen-2024 в 23:00
+MAE стал **53,14 / 80,85** против **58,08 / 87,88** б.п. На открытом
+2025–2026 эффект меньше, но обычно того же знака. T16 добавил 9 855 вечерних
+снимков и отдельные `benefit_last_source_at`, age, freshness и source kind.
+Все probability и push-решения сохранены точно; h10/h20 остаются на control.
+
 [Контракт интерфейса](research/interface_prediction_contract.md) ·
-[T14 protocol](research/temperature_t14_perpetual_router_registered.md) ·
-[T14 audit](results/research/temperature/t14_perpetual_router/audit_checks.json) ·
-[PDF checkpoint](output/pdf/ivan_continuous_temperature_checkpoint.pdf).
-Финальный T14-прогон и полный набор из **326 тестов** прошли.
+[T16 protocol](research/temperature_t16_evening_router_registered.md) ·
+[T16 audit](results/research/temperature/t16_evening_router/audit_checks.json) ·
+[финальный алгоритм простыми словами](output/pdf/ivan_final_anytime_algorithm_for_everyone.pdf) ·
+[PDF any-time checkpoint](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
+[финальная презентация с интерфейсом](output/presentation/international_transfers_final_with_interface_2026-09-06_v2.pptx).
+Финальный T16-прогон и полный набор из **328 тестов** прошли.
 
 ## Последние AP37-E/AP39-E: mature precision даёт новый strict point
 

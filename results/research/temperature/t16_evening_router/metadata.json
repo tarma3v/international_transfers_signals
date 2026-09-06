@@ -1,0 +1,37 @@
+{
+  "packet": "temperature-T16",
+  "snapshot_rows": 60370,
+  "new_evening_rows": 9855,
+  "probability_replacements": 0,
+  "benefit_replacements": {
+    "2000": [
+      3
+    ],
+    "2100": [
+      3,
+      5
+    ],
+    "2200": [
+      3,
+      5
+    ],
+    "2300": [
+      3,
+      5
+    ]
+  },
+  "separate_probability_benefit_provenance": true,
+  "historical_exchange_availability_certified": false,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "source_sha256": {
+    "results/research/temperature/t14_perpetual_router/metadata.json": "1a7f90904f25374c8e472aba18512da6d0a03fbbbe7c7cd342151b11890f3284",
+    "results/research/temperature/t14_perpetual_router/snapshots.csv.gz": "e5b39c700e8d4a91e9fcce959f32cc4955c432b6eeffd77f5f0847d7b003ea60",
+    "results/research/temperature/t15_evening_perpetual/metadata.json": "03fa0a4a8f59790095e2936d6727ee0d3e2e98aea61db6aa307d88ac30cee3a6",
+    "results/research/temperature/t15_evening_perpetual/outputs.npz": "c2a17a6630e35af5fc684fe3b64785b05282a0304365c4d4b3e54755b4dadce5",
+    "results/research/temperature/t15_evening_perpetual/selection.csv": "73a207bc06447b295811c75abafaedebb80b0782e408409814679ac289127bdc",
+    "research/temperature_t16_evening_router_registered.md": "1f9a0ab6734ffb73ec31a5a171954efeee5f3a07985e8e455aa7eff2ea9dd236",
+    "research/temperature_t16_evening_router.py": "2e2514a72f5a02fc6b8771d34e9d4a48f81f588fed4261ec3054fbb4eff4d4c1",
+    "ml/transfer_temperature.py": "a84a580b5c5ef0e0e8c0c75a3d6385352061e7acc66af3399088cd19acfbe48c"
+  }
+}

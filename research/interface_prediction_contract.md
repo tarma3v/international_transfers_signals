@@ -51,8 +51,11 @@ candle physically exists; otherwise the earlier admissible state remains.
 During the later market session it moves through completed-candle experts.
 Between 15:30 and the actual CBR receipt it uses the frozen market anchor plus a
 validated post-window correction. After receipt it can use the newly announced
-rate. Weekends and missing feeds retain the latest score with explicit aging or
-stale status.
+rate. At 19:00/20:00 T7B can use new completed spot candles. From 20:00 through
+23:00 T16 may use completed CNYRUBF/USDRUBF prefixes to update only expected
+benefit h3/h5; the evening probability candidates failed their screen gates and
+therefore do not replace T7B. Weekends and missing feeds retain the latest score
+with explicit aging or stale status.
 
 Every snapshot has `valid_from` and optional `valid_until`. This prevents an
 after-receipt forecast anchored to yesterday's effective rate from being shown
@@ -63,6 +66,13 @@ Provenance may differ by horizon. Optional `source_at_h*`, `source_kind_h*`,
 `phase_h*`, `confidence_h*` and `availability_evidence_h*` override row-level
 fields. For example, at 09:15 h1/h3 may be fresh CNYRUBF estimates while h5,
 h10 and h20 remain CBR-history estimates with limited confidence.
+
+Probability provenance and expected-benefit provenance are also independent.
+The response therefore includes `benefit_last_source_at`,
+`benefit_age_minutes`, `benefit_freshness`, `benefit_source_kind` and
+`benefit_availability_evidence`. At 21:15, for example, probability may still
+cite the 20:00 spot snapshot while h5 expected benefit cites a completed
+perpetual prefix at 20:59:59. Neither timestamp may exceed `as_of`.
 
 Therefore the widget is queryable on every calendar day for AMD, KGS, KZT, TJS
 and UZS. “Any day” does not mean equally fresh information: during a weekend or
