@@ -73,6 +73,18 @@ T28 разнёс выбор веса по Q3 и validation по Q4. Слабый
 calibration loss, но нарушал AUC gate на Q4, поэтому не включён. Это сохраняет
 строгость chronological OOS и не меняет `PARTIAL`.
 
+T29 проверил следующий заранее названный вариант: фиксировать correction на
+весь месяц или квартал. Q3 выбрал месячный w30, однако на независимом Q4 он
+потерял 0,04486 AUC при лимите 0,005. Итог снова равен T25. Значит, проблему
+h20-temperature нельзя объявить решённой даже после более медленного update;
+нужен prospective shadow, а не новый post-hoc selector.
+
+Повторная сверка 06.09 проведена непосредственно по текущей авторизованной
+странице кейса, обеим Q&A-сводкам (04.09 и 05.09) и PDF-презентации из `main`.
+Ключевое уточнение страницы: курс на завтра допустим после публикации, потому
+что сигнал T может использовать всё, реально доступное в T; production обязан
+переключаться по фактическому receipt, а не по условному часу 18:30.
+
 ## Что именно требует ТЗ
 
 ### Сигнальный слой
@@ -141,7 +153,7 @@ proxy направления, но не исполнимая банковска�
 | Защита от будущего | PASS для артефактов и runtime gate | corruption-prefix, независимые audit scripts; T18 не активирует same-day after-publication строки без verified receipt и сдвигает поздний receipt | production ingestion должен сохранить фактическое событие и payload id |
 | Стабильность OOT | PARTIAL | отбор на 2023, разрезы 2024/2025/2026 и по валютам положительные | `fresh_holdout=false`; заморозить AP37/T17 и запустить prospective shadow |
 | Произвольная дата/время | PASS | `signals_as_of(T)` причинно режет дневной ряд; `score_snapshot_as_of` выбирает последний допустимый снимок; `case_output_table_as_of` и `run_case_output.py` выдают все валюты | — |
-| Any-time calibration | PARTIAL | T22 6/6 after receipt; T25 early map AUC 0,563/Brier 0,11825; T27/T28 отвергли w250 и daily weak-w30 | T22/T25 держать shadow; coarse-period или prospective calibration |
+| Any-time calibration | PARTIAL | T22 6/6 after receipt; T25 early map AUC 0,563/Brier 0,11825; T27–T29 отвергли w250, daily weak-w30 и coarse-period update | T22/T25 держать shadow; нужен prospective calibration |
 | Обязательная схема строки | PASS | `case_output_as_of` возвращает date/corridor/indicator/direction/strength/speed/scenario и полный audit payload; сохранён демонстрационный CSV | — |
 | Fast vs slow | PASS как CBR-proxy | на общем support h5 adjusted lift 2,134 → 2,677; Δ +0,525 CI [+0,193; +0,934]; future-only Δ +21,79 б.п. [+3,35; +42,92] | реальную цену ожидания по bank quote можно измерить только в пилоте |
 | Комбинирование/конфликты | PASS | AP37: core AP26, fallback AP23, mature-precision gate, cooldown/cap | перевести reason codes 1/2/3 в человекочитаемые сценарии |
@@ -190,6 +202,17 @@ CI разницы пересекают ноль, а поздний период 
 > Официальную `±h` метрику показываем, future-only используем как дополнительную
 > продуктовую диагностику, реальную экономику доказываем только на банковских
 > котировках и holdout.
+
+Q&A от 05.09 прямо задаёт приоритет защиты: 60–70% продукта и 30–40% ML,
+2–3 метрики вместо каталога результатов, клиентский путь целиком, явный тайминг
+источника/пуша и 3–5 основных слайдов примерно по минуте. Поэтому 29 отрицательных
+temperature-итераций не надо рассказывать подряд. На защите достаточно показать:
+
+1. боль клиента и ценность редкой коммуникации;
+2. путь push → актуально пересчитанный экран, включая stale-сценарий;
+3. AP37 и три числа: worst-corridor lift, `±h`-выгода, cadence;
+4. разрешённые тексты, receipt/timezone/staleness;
+5. пилот: incremental net volume, user-level holdout и guardrails.
 
 ## Как оптимизировать бизнес-метрики
 

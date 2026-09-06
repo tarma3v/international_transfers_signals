@@ -68,6 +68,12 @@ Q4 rejected it because AUC dropped 0.03794; even 10% exceeded the rank-loss
 allowance. Daily delayed levels are not rank-neutral across dates. Retain T25;
 the next defensible update must be frozen for a coarse period or prospective.
 
+T29 froze the update for a month or quarter. Q3 selected a full monthly w30
+correction, but disjoint Q4 lost 0.04486 AUC despite better proper scores.
+Coarse updates therefore do not solve cross-period rank drift. Retain T25 and
+move this calibration question to a genuinely prospective shadow; do not keep
+searching weights on the opened history.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -130,9 +136,9 @@ and weekends produce an explicit stale state, not imputed current prices.
 
 1. Keep frozen AP49/T17 probability as the anchor, T22 after verified receipt
    and T25 before receipt as shadow ranks. T26's delayed selector is rejected;
-   T27 rejects w250 and T28 rejects a daily weak w30 blend. If level adaptation
-   is tested again, estimate it only at a month/quarter boundary and hold it
-   fixed inside the period, or wait for prospective outcomes.
+   T27 rejects w250, T28 rejects a daily weak w30 blend and T29 rejects the
+   month/quarter-held correction. Freeze these choices and wait for prospective
+   outcomes before reconsidering level adaptation.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.
 3. Implement `score_as_of(currency, timestamp, horizon)` that selects the latest

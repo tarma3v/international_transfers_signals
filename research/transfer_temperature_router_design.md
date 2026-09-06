@@ -130,3 +130,7 @@ caused the change.
 14. T28 nested Q3 selection and Q4 validation for weak w30 doses. Q4 rejected
     the selected beta on AUC. Daily intercept updates alter cross-day rank; a
     future test must hold level fixed over a coarser period.
+15. T29 held the intercept fixed inside each month or quarter. Q3 selected a
+    monthly w30 full correction, but disjoint Q4 lost 0.04486 AUC against the
+    frozen T25 anchor. The candidate is rejected. Slow base-rate correction is
+    not stable enough to promote without a prospective shadow period.
