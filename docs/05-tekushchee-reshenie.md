@@ -93,7 +93,11 @@ Brier 2023–2024 на −0,00113, но screen 2019–2022 всё равно у�
 как самый чужой режим и уменьшил screen Brier-вред T40 с +0,00654 до
 +0,00262, но всё равно прошёл 0/9 local groups. Validation 2023–2024 была
 лучше prior в точке, однако CI/gates не прошли; model metrics 2025–2026 не
-открывались.
+открывались. T43 затем заменил linear logit одним frozen
+HistGradientBoosting на тех же данных. Screen AUC delta выросла до +0,03895,
+а Brier-вред снизился до +0,00203, но ECE ухудшилась на +0,01672 и все 0/9
+local groups опять провалены. Поэтому более гибкая nonlinear capacity также
+не открыла 2025–2026 и не изменила T37.
 
 ## Что соответствует ТЗ
 
@@ -137,13 +141,15 @@ future-only нужно сохранить как оговорку, а не де�
 - [`../output/pdf/описание_подробное.pdf`](../output/pdf/описание_подробное.pdf) —
   AP37 простыми словами, 30 страниц;
 - [`../output/pdf/ivan_continuous_temperature_anytime.pdf`](../output/pdf/ivan_continuous_temperature_anytime.pdf) —
-  полный 49-страничный any-time отчёт;
+  полный 50-страничный any-time отчёт;
 - [`../research/tz_compliance_and_business_direction_2026-09-06.md`](../research/tz_compliance_and_business_direction_2026-09-06.md) —
   строгая матрица ТЗ и бизнес-направление;
 - [`../research/temperature_t40_long_rolling_history_report.md`](../research/temperature_t40_long_rolling_history_report.md) —
   независимый long-history отрицательный тест;
 - [`../research/temperature_t42_ood_history_shrink_report.md`](../research/temperature_t42_ood_history_shrink_report.md) —
   проверка label-free OOD-предохранителя на длинной истории;
+- [`../research/temperature_t43_nonlinear_history_report.md`](../research/temperature_t43_nonlinear_history_report.md) —
+  проверка нелинейных state interactions на том же annual replay;
 - [`../submission/12-final-case-metric-matrix.md`](../submission/12-final-case-metric-matrix.md) —
   обе цели, пять горизонтов и пять валют;
 - [`../EXPERIMENTS_SUMMARY.md`](../EXPERIMENTS_SUMMARY.md) — полная история.

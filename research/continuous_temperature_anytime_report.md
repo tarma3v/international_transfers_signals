@@ -1235,7 +1235,35 @@ T37 не изменён; следующий challenger должен различ
 режима, а не только расстояние от прошлого.
 
 ---page---
-# 47. Строгая сверка с ТЗ
+# 47. T43: nonlinear rank лучше, probability всё ещё хуже
+
+## Более гибкая модель не устранила смену зависимости
+
+T43 заменил linear logit T40 одним заранее заданным
+`HistGradientBoostingClassifier` на тех же 41 признаках и тех же annual
+rolling-origin masks. Previous-year Platt, causal prior и 50/50 log-odds blend
+оставлены прежними. Ни model grid, ни ручной флаг СВО, ни выбор на 2025–2026
+не использовались.
+
+| Стадия | Brier delta | Log-loss delta | ECE delta | AUC delta | Local pass |
+|---|---:|---:|---:|---:|---:|
+| 2019–2022 screen | **+0,00203** | **+0,00935** | **+0,01672** | **+0,03895** | **0 / 9** |
+| 2023–2024 validation | −0,00143 | −0,00582 | −0,00048 | +0,09820 | 5 / 7 |
+
+Screen AUC стала лучшей среди T40–T43, а Brier-вред T40 уменьшился более чем
+втрое. Но оба Brier CI целиком выше нуля: candidate доказанно хуже causal
+prior как probability. В 2020 AUC delta +0,22247 соседствует с ухудшением
+Brier/ECE, а в 2022 AUC delta −0,04390. Нелинейность умеет извлекать rank в
+отдельных режимах, но не делает feature→target связь стабильной.
+
+Дополнительная диагностика: previous-year Platt slope отрицателен перед 2019,
+2022 и 2024. Это причинно доступный признак ненадёжного направления, но T43 не
+использовал его как gate. Подбирать правило по увиденному результату нельзя;
+следующий тест должен заранее отделить fit/calibration/gate и разрешать expert
+только по disjoint mature evidence. 2025–2026 не открывались, T37 не изменён.
+
+---page---
+# 48. Строгая сверка с ТЗ
 
 ## Что закрыто и что остаётся открытым
 
@@ -1252,7 +1280,7 @@ T37 не изменён; следующий challenger должен различ
 | Fast vs slow | PASS proxy | цена ожидания посчитана на ЦБ |
 | Тексты и конфликты | PASS | past/present-only, AP37 router |
 | Реальный receipt ЦБ | PARTIAL | production gate готов, история timestamp неполна |
-| h20 any-time | PARTIAL, сильный pooled/year shadow | T37 40/40 pooled state; T38 619/680 local; T39/T41/T42 repair отклонены; T40 long-history gate провален до открытия 2025–2026 |
+| h20 any-time | PARTIAL, сильный pooled/year shadow | T37 40/40 pooled state; T38 619/680 local; T39/T41/T42/T43 repair отклонены; T40 long-history gate провален до открытия 2025–2026 |
 | Fresh independent holdout | GAP | нужен prospective shadow |
 | Реальная банковская экономика | GAP за рамками хакатона | нужен пилот с quote и клиентским holdout |
 
@@ -1265,10 +1293,11 @@ T40 дополнительно показал, что хороший 2023–2024
 2019–2022: длинная OOS-история важнее красивого позднего среднего. T41 показал,
 что причинная квартальная усадка по mature feedback смягчает, но не устраняет
 этот regime failure. T42 показал то же для label-free OOD-усадки: 2022
-распознаётся как необычный, но screen остаётся хуже causal prior.
+распознаётся как необычный, но screen остаётся хуже causal prior. T43 улучшил
+rank нелинейными interactions, но не proper score и локальную калибровку.
 
 ---page---
-# 48. Итоговая схема решения
+# 49. Итоговая схема решения
 
 ## Что делает система в production
 
@@ -1299,9 +1328,10 @@ T40 затем провёл annual replay 2019–2024 и остановился 
 screen 2019–2022 провален, хотя 2023–2024 выглядел лучше. T41 причинно
 адаптировал вес T40 по mature квартальной ошибке, но также не прошёл screen и
 не открыл поздние model metrics. T42 распознал covariate shift без target и
-сократил вред, но screen всё равно проиграл prior. Следующий доказательный
-шаг - новые prospective outcomes и observable state-aware challenger,
-различающий механизм режима, а не настройка ещё одного веса на открытом
+сократил вред, но screen всё равно проиграл prior. T43 добавил нелинейные
+state interactions и улучшил AUC, но Brier/ECE остались хуже prior. Следующий
+доказательный шаг - новые prospective outcomes или заранее замороженный
+disjoint mature quality gate, а не настройка ещё одного веса на открытом
 интервале.
 Главный следующий бизнес-шаг: заморозить систему, подключить реальные bank
 quotes и запустить user-level prospective pilot.

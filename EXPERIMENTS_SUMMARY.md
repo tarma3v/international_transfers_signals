@@ -2240,3 +2240,27 @@ future-prefix corruption. `production_promoted=false`; T37 остаётся froz
 shadow. Вывод: covariate novelty помогает ограничить вред, но не сообщает,
 какой эксперт прав после изменения зависимости feature→target. Результаты:
 `results/research/temperature/t42_ood_history_shrink/`.
+
+## T43: nonlinear annual expert улучшает rank, но не proper score
+
+T43 заранее заморозил ровно один `HistGradientBoostingClassifier` на точных
+41 T40-признаках и annual train/calibration/query masks. Параметры capacity
+унаследованы от AP1; сетки и ручного regime/SVO-флага нет. Previous-year Platt,
+causal prior и 50/50 log-odds blend оставлены как в T40, чтобы проверить только
+эффект нелинейных feature interactions.
+
+Screen 2019–2022 дал лучший ранний rank среди T40–T43: AUC delta **+0,03895**,
+а Brier-вред к prior уменьшился до **+0,00203**. Но Brier CI целиком выше
+нуля, log-loss delta +0,00935, ECE delta +0,01672 и только **0/9** local
+non-inferiority. В 2020 AUC выросла на +0,22247 при ухудшении Brier/ECE; в
+2022 AUC упала на −0,04390. Validation 2023–2024 дала Brier −0,00143 и AUC
++0,09820, но CI пересекают ноль, 2024 и KZT не проходят local gate.
+
+Platt slope, причинно доступный из предыдущего года, оказался отрицательным
+перед 2019, 2022 и 2024. Это объясняет нестабильное направление raw rank и
+задаёт следующий preregistered тест: независимый mature calibration gate,
+а не ещё большую capacity. Frozen historical gate не пройден, model metrics
+2025–2026 не открывались. Аудит воспроизвёл восемь annual fits, фиксированные
+160 итераций, probabilities, bootstrap/gates, maturity/embargo и
+future-prefix corruption. `production_promoted=false`; T37 неизменён.
+Результаты: `results/research/temperature/t43_nonlinear_history/`.

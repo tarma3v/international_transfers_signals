@@ -215,6 +215,13 @@
 > AUC +0,10370, однако frozen CI/gates не прошли. Метрики 2025–2026 не
 > открывались, T37 не изменён.
 >
+> T43 проверил одну нелинейную HistGradientBoosting-модель на тех же 41
+> признаках и annual masks. Она дала лучший ранний rank среди T40–T43:
+> screen AUC delta **+0,03895**, Brier-вред снизился до **+0,00203**. Но
+> proper score всё ещё доказанно хуже prior, ECE delta +0,01672 и **0/9**
+> local pass. Validation 2023–2024 снова лучше в точке, но CI/gates не прошли;
+> 2025–2026 не открывались и T37 не изменён.
+>
 > Новый T15/T16 закрывает вечер до 23:00 завершёнными perpetual-свечами
 > CNYRUBF и USDRUBF. Ни один новый probability-кандидат не улучшил сильный
 > T7B-control на screen-2024, поэтому вечерняя температура не меняется только
@@ -297,6 +304,7 @@
 [T40: длинная rolling-origin история отклоняет единый эксперт](research/temperature_t40_long_rolling_history_report.md) ·
 [T41: причинный квартальный вес не спас history-эксперт](research/temperature_t41_mature_quarterly_shrink_report.md) ·
 [T42: OOD-усадка распознала режим, но не спасла history-эксперт](research/temperature_t42_ood_history_shrink_report.md) ·
+[T43: нелинейный history-эксперт улучшил rank, но не probability](research/temperature_t43_nonlinear_history_report.md) ·
 [пример обязательной таблицы ТЗ](output/signals_example_2026-09-01_2115_h5.csv) ·
 [пример до receipt](output/signals_example_2026-09-01_1845_no_receipt_h5.csv) ·
 [пример после verified receipt](output/signals_example_2026-09-01_1845_verified_receipt_h5.csv) ·
@@ -305,7 +313,7 @@
 [парное fast-vs-slow сравнение](research/fast_slow_paired_report.md) ·
 [вечерний роутер T16](research/temperature_t16_evening_router_registered.md) ·
 [финальный алгоритм простыми словами, PDF](output/pdf/ivan_final_anytime_algorithm_for_everyone.pdf) ·
-[подробный any-time отчёт, 49 страниц](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
+[подробный any-time отчёт, 50 страниц](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
 [финальная презентация с интерфейсом](output/presentation/international_transfers_final_with_interface_2026-09-06_v2.pptx) ·
 [та же презентация в PDF](output/pdf/international_transfers_final_with_interface_2026-09-06_v2.pdf) ·
 [самый эффективный подход: подробное объяснение на 30 страниц](output/pdf/описание_подробное.pdf) ·
@@ -1023,7 +1031,10 @@ production. T41 затем проверил closed-form квартальную �
 feedback, но она также провалила исторический screen и не открыла 2025–2026.
 T42 затем проверил label-free OOD-усадку: она распознала 2022 и уменьшила вред
 T40, но всё равно проиграла causal prior на screen и прошла 0/9 local groups.
+T43 дал нелинейной модели те же 41 признаки: AUC вырос сильнее, но Brier/ECE и
+локальные gates опять отклонили кандидат до открытия 2025–2026.
 Следующий шаг - genuinely prospective shadow и наблюдаемый state-aware replay,
-который различает механизм режима, без настройки по 2025–2026.
+либо заранее зарегистрированный gate на disjoint mature calibration evidence,
+без настройки по 2025–2026.
 Отдельно нужно подтвердить фактический timestamp получения курса и исполняемый
 банковский курс.

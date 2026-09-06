@@ -1,0 +1,13 @@
+{
+  "source_hashes_match": true,
+  "annual_fits_rebuilt": true,
+  "publication_predictions_rebuilt": true,
+  "historical_outputs_rebuilt": true,
+  "fixed_model_parameters_passed": true,
+  "maturity_embargo_passed": true,
+  "future_prefix_corruption_passed": true,
+  "historical_gate_passed": false,
+  "open_evaluated": false,
+  "open_outputs_rebuilt": false,
+  "production_promoted": false
+}
