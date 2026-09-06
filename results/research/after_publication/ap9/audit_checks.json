@@ -1,0 +1,13 @@
+{
+  "source_hashes_verified": true,
+  "fit_records_independently_rebuilt": 408,
+  "observed_prefix_snapshots_rebuilt": 51,
+  "record_hashes_all_match": true,
+  "same_features_outcomes_support": true,
+  "all_label_receipts_before_origin_embargo": true,
+  "all_controls_exact": true,
+  "all_scores_and_signals_rebuilt": true,
+  "all_survival_curves_valid": true,
+  "all_censoring_counts_and_failures_rebuilt": true,
+  "historical_receipts_certified": false
+}

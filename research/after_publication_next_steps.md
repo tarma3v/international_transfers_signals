@@ -1,12 +1,79 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP8 complete. The user made after-publication research the
+Updated 2026-09-06, AP9 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
 
-## Latest completed AP8: PROGRESS, later simple alternative but no superiority
+## Latest completed AP9: resolved partial feedback did not improve lift
+
+Previous pushed commit d8373c7 (AP8). AP9 actually fit 12 variants, 34 policies:
+quarterly17/monthly51 origins, direct full20/mature5, coarse5-bin full20/partial,
+fine20-step full20/partial. Same133 features,18:30/20min delay,5755 events and
+old early/later target/support. Calendar-assumed CBR receipts, NOT certified.
+RawX for direct, AP4 CSVroundtripX for hazards: quarterly full controls EXACT.
+Hist160/.05/15leaves/minleaf40/L2=5, noearlystopping, originalX+intervalonehot.
+
+Observed prefix uses only receipts effective_date-1calday <origin-2days.
+Directh5 waits5 even afterknownfailure. Coarse incompletebin omitted for BOTH
+failures and survivors, completedbins only. Fine each observedstep until first
+strictlycheaper rate or censoring. No unknownzeros/futureexposure inputs. Full20
+controls require20known but riskrows stop atfailure. Independent censoring is
+not proved by temporal correctness; read Suresh/Severn/Ghosh2022 primarypaper.
+
+11earlypasses,4oldcontrol/copyrows,7new. Selected
+cny50_quarter_fine_full20_urgent_cap2: earlyminlift1.349995,benefitLB11.806261,
+fwd-ratiomin.999124. h1/3/5/10/20=1.478110/1.511114/1.612490/1.566265/1.571702.
+h5=908/3260,2024-01-09..2026-08-25,rate1.356670,sym36.818448,fwd55.765918.
+Maxgap18,max2/week,noemptyfullmonth,7.2–10.9%emptyweeks. KZT2026h1=1.226804.
+Lift deltaAP3 CI[-.077732,.031199],AP4[-.065825,.027325], NO confirmedliftgain.
+SymdeltaAP3+3.424830 CI[.270638,6.545539],50date[.482541,6.148716]; forwarddelta
+.858725 CI[-3.382141,5.073589]. Does not establish superiorityoverAP4sym.
+AllpooledliftLB>1.3/symLB>0 at20/50blocks; fwdh20=53.942428 CI[-12.991694,
+113.060969],50[-21.504837,131.412069]. No freshholdout/searchadjustedintervals.
+
+Rawh5 full20->fresh: quarterdirect1.657377->1.602630,coarse1.615691->1.617500,
+fine1.628703->1.631006; monthdirect1.632152->1.605050,coarse1.607110->1.647068,
+fine1.643376->1.672724. AllpairedCIs cross0. Quarter->month full20 tooallcross0.
+NO computedh5pair lowerCI>0, allablations. Late monthfinepartial1.672724 fails
+earlyminlift1.194231/fwd-ratio.787236, notpromoted. Brier improved monthfine
+.189396->.181083,quarterfine.191501->.185162, notbetterrankingproof.
+
+Jan2025 training full20=3610,lastinitialDec2; mature5=3685,lastDec23;
+observed>=1=3705,lastDec27. 95extra currencydayrows,83observedfailures/12censored
+survivors; not95independentdates. Fine risk23671->23933/fail2871->2954;
+coarse9125->9275/fail2871->2948. LastnewlabelreceiptDec28<cutoffDec30.
+All195tests passed (9new), collectcount195. Independentaudit408fitrecords,
+51prefixsnapshots, ALLriskrowhashes/counts/maxreceipts reconstructed. Tests
+futureprice/featurecorruption,coarsefull20compatibility,likelihoodproduct,
+100k independentcensoring geom.2 syntheticrecovery, immaturefailureinclusion.
+Results results/research/after_publication/ap9; 4pagePDF allpagesrendered and
+visually checked, verification.json records finalhashes. No live processes.
+AP3 main/AP4 alternative retained; goal ACTIVE, no hourlyautomation.
+
+## NEXT bounded AP10: unused completed-candle volume and turnover
+
+1. Sourceprobe without targets saved inAP9/next_source_probe.json. Frozen
+   data/moex_spot_fx_10min_2022_2026.json CNYRUB_TOM74442 bars contain
+   open/close/high/low/value/volume/begin/end. Current round6 CNYloader drops
+   value/volume; AP2–AP9 features ignorethem. Direct KZT55357 hasboth too.
+   These are available unused raw fields, not evidence of predictivegain.
+2. Verify primary ISS unit/normalization docs and zero/invalid handling first,
+   sourcehashes, price/value/volume relationships with facevalues. Do NOT call
+   volume-weightedclose actualVWAP without validation. USD2026 excluded asbefore.
+3. Separate fullrawloader preserving olddefaults/results. Freeze compactpacket
+   at18:30 with20mindelay, sameCBRreference/support and quarterlymature20.
+   Completedbar volume/turnover weights, recentvolume shares, pastsession norms,
+   pricepath reliability; distinguish price-only addedpathcontrol fromvolume
+   addition. Priornormalizers onlyknownpast/samecutoff; nofuturewhole-daytotals.
+   Price*volume is an activity/direction proxy, NOT observed aggressororderflow.
+4. Compare simplevolumeweightedbasis/quality vsCNYlast and fixedHist/survival;
+   avoid hugeweightgrid. Freeze earlyselector, nolateclock/regimeselection.
+   Source/units/futurebarcorruption tests, independentdeadline/featureaudit,
+   allh/cadence/sym/fwd/blockCI/PDF/summary/checkpush ownbranch. Goalactive.
+
+## Historical AP8: later simple alternative but no superiority
 
 Previous turn pushed AP7 as244f3b1. This turn fit fixed directHist/survivalHist
 at18:10/18:30/18:50/19:30, same133 features and20min feed delay. Generalized
@@ -59,7 +126,7 @@ frozen/policyprefix, actualHist/survivalfuture/immaturelabelcorruption.
 3pagePDF output/pdf/ivan_after_publication_ap8.pdf allpagesrendered/checked;
 verification.json recordschecks. No live model/test/audit remains.
 
-## NEXT bounded AP9: use already resolved partial outcomes, not unknown futures
+## Completed AP9 starting plan: use already resolved partial outcomes
 
 1. Current requirement fullmature20 for everytrainingevent is conservative but
    delays available short-horizon feedback. Investigate incremental outcome

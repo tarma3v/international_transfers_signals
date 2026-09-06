@@ -1,0 +1,19 @@
+{
+  "packet": "AP9",
+  "n_rows": 5755,
+  "n_models": 12,
+  "n_policies": 34,
+  "decision": "18:30 MSK",
+  "market_delay_minutes": 20,
+  "calendar_assumed": true,
+  "reference": "latest announced CBR",
+  "fresh_holdout": false,
+  "bank_execution_validated": false,
+  "compatibility_full20_quarter_max_error": 0.0,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap8/metadata.json": "3c86fb877a8b3b72d774d51c51013a6b3d356418cf8dc4a26d3ba7b45f2d55a4",
+    "results/research/after_publication/ap8/outputs.npz": "4bfc8def051b2305d0cbc77c81311897ab59d07f98688b9edb770fc3db443bf3",
+    "research/after_publication_ap9_registered.md": "e6d3704a9426665d21a36239c9d3ae8c712ed3f21623e6b7c0d1de1a47b518e9"
+  }
+}

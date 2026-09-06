@@ -1,0 +1,16 @@
+{
+  "checked_on": "2026-09-06",
+  "targets_inspected_for_probe": false,
+  "archive": "data/moex_spot_fx_10min_2022_2026.json",
+  "cny_rows": 74442,
+  "raw_columns": ["open", "close", "high", "low", "value", "volume", "begin", "end"],
+  "current_cny_loader": "research/round6_moex_spot_1530_features.py::load_spot_1530_history",
+  "loader_retains": ["begin", "end", "open", "close", "high", "low"],
+  "loader_drops": ["value", "volume"],
+  "direct_kzt_archive": "data/moex_direct_pairs/KZTRUB_TOM.json",
+  "direct_kzt_rows": 55357,
+  "direct_kzt_has_value_volume": true,
+  "inference": "Volume and turnover exist in frozen sources but are not used by current after-publication market snapshots. Unit definitions, zero-volume behavior and point-in-time availability need checking before a new packet.",
+  "proposed_next_packet": "Completed-candle volume/turnover and price-path reliability features at fixed18:30 with price-only controls; no claim that this improves targets yet.",
+  "usd_2026_not_in_scope": true
+}
