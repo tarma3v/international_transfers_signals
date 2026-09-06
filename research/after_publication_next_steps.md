@@ -1,6 +1,6 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP10-E complete. The user made after-publication research the
+Updated 2026-09-06, AP12-E complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
@@ -18,6 +18,74 @@ Do NOT claim that rescore of old AP3 signals proves knowledge is harmful.
 Models must be retrained to the SAME effective target in with/without ablations.
 TЗ note updated: initial announced-reference choice was our conservative team
 interpretation, not an organizer ruling. Bank execution still NOT validated.
+
+## Latest completed AP11-E/AP12-E: conditional remainder and strong ExtraTrees
+
+AP11 protocol/model/audit/results now preserved locally. Same5755 rows,
+17quarterly origins, early2023/later2024-2026, publication-h20 shared maturity
+cap, today-effective target,18:30/20min market delay. Train conditional models
+only when announced>=current; known-down veto; h1known and excluded from learned
+unknown labels. Eight model families/25policies. Early selector mistakenly but
+pre-registered ranked minallh includingknownh1; selected margin-ridge-local-mean
+late h5=2.066759. Do not retrospectively replace it.
+
+AP11 conditional hazard Hist h5 late h1/3/5/10/20=
+1.938584/2.109131/2.135019/2.179477/2.192754,rate1.328282,sym60.146795,
+fwd90.379656. h5delta vsAP10 knownz CI[.024340,.144939], allunknown-h mean
+deltaCI[.024549,.118186]. This is a preserved significant point challenger,
+not AP11-selected winner. AP1 exact matched h5=2.259851,maxweekly4; AP1cap2
+h5=2.300704,rate.998079 but earlyrate.834862 and benefitLBnegative.
+
+AP12 protocol frozen before fits and corrects selection horizons to h3/5/10/20;
+h1 validity only. Five fresh scores: full ExtraTrees400/depth8/leaf25/maxfeat.6;
+compact59-feature Hist and ExtraTrees; per-currency compactHist shrunk global
+n/(n+150); multiclass first failure.16fresh policies prior250 strict rank30,
+warmup40,known-down veto,max2/ISOweek plusgap variants; eight frozen controls.
+85fit logs=17x5. Early3pass; selected BEFORE late:
+local_hist_h5_r30_nogap_cap2. Late h3/5/10/20=
+2.249813/2.268181/2.305287/2.270683; h5rate1.020491,currency.933831..1.075774,
+sym67.713089,fwd115.912842. DeltaAP10 h5CI[.063612,.388060],50date
+[.048893,.387239]; vsAP11hazardCI[-.018206,.290788], not proven.
+
+Full ExtraTrees policy was early-pass but not early-selected. Late h1/3/5/10/20=
+1.929562/2.385630/2.475228/2.350489/2.418814. h5=649/3260,hit.734977,
+base.294479,rate.969691,currency.948773..993597,sym66.581498,fwd134.674142.
+H5 liftCI[2.130341,2.839284]; delta vsAP10 [.205703,.636313], vsAP11hazard
+[.138520,.545055], vsAP1exact[.051474,.370064], vsAP1cap2[-.010171,.335440].
+50date deltaAP10[.188165,.680708]. Best late Brier .211861. Max2/week,
+maxgap43days, oneemptyfullmonth. Strongest new next-period challenger, NOT a
+freshholdoutselectedrecord; lateperiod repeatedly opened and CI search-unadjusted.
+
+Known70/hazard30 r275 late h3/5/10/20=2.320842/2.382949/2.364561/2.395898,
+rate1.177375h5 but early rates.77-.81 so fails early gate. It is a useful
+practical diagnostic, not winner. Long causal-rank controller alone moves
+known-z to2.318213h5, showing controller contributes strongly.
+
+AP12audit rebuilt source hashes,5755targets,17masks,85logs,compactsubset,
+local/class counts, all scores/signals, veto/prefix/weeklycap. PDF
+output/pdf/ivan_after_publication_ap12_effective.pdf rendered4pages and checked.
+
+## NEXT bounded AP13-E: preserve 2.4 while repairing cadence/regime shift
+
+1. Freeze before fitting. Keep AP12 fullExtra as primary strong challenger,
+   localHist early-selected, AP11hazard, knownz and AP1 exact/cap as controls.
+   Do not reselect AP12 by its now-open late score.
+2. New model families: rolling2y/3y and deterministic recency-weighted
+   ExtraTrees (if weights supported, otherwise weighted bootstrap with fixed
+   seed); ExtraTrees trained on post-2022 prefixes only already is expanding,
+   so compare fixed recent windows. Consider balanced/local shrink only as
+   prespecified variants, no broad depth grid.
+3. New causal regime controller must update only after h5 resolves. Candidate:
+   trailing252-day performance router between fullExtra/localHist/hazard, with
+   fixed shrink/minhistory; and a fixed feature-gated regime classifier trained
+   only on matured prior rows. No use of future year identity or late winner.
+4. Repair frequency with an online reserve/fallback: primary top30 Extra score,
+   then causal known70/hazard score only after a fixed silence threshold, while
+   respecting max2/week. Target mincurrency rate>=1 and no empty complete month;
+   report any lift cost. Never rank future days within a week.
+5. Early selection must excludeh1 and use unknownh3/5/10/20; allh reporting,
+   paired20/50dateCI,cadence/year/currency/audit/tests/PDF/push ownbranch. No
+   freshholdout claim; next truly independent evidence must be live shadow data.
 
 ## Latest completed AP10-E: strong matched information gain, simple rule selected
 

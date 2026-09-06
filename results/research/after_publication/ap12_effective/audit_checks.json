@@ -1,0 +1,15 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "quarterly_origins_checked": 17,
+  "training_log_rows_checked": 85,
+  "same_shared_maturity_cap": true,
+  "conditional_training_only_on_known_non_down": true,
+  "compact_feature_subset_rebuilt": true,
+  "local_and_first_failure_counts_rebuilt": true,
+  "all_scores_and_signals_rebuilt": true,
+  "all_non_exact_controls_veto_known_down": true,
+  "h1_excluded_from_selection": true,
+  "historical_receipts_certified": false,
+  "fresh_holdout": false
+}

@@ -1,0 +1,27 @@
+{
+  "packet": "AP12-E",
+  "n_rows": 5755,
+  "n_fresh_scores": 5,
+  "n_fresh_policies": 16,
+  "n_total_policies": 24,
+  "compact_feature_count": 59,
+  "reference": "today-effective CBR",
+  "selection_horizons": [
+    3,
+    5,
+    10,
+    20
+  ],
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap11_effective/metadata.json": "3fbaeb849082801d05ebb07a0e52f5bd8ae041d8764e1dd75a1b4ebd2c1ad1c4",
+    "results/research/after_publication/ap11_effective/outputs.npz": "069cb85ead0bfba00b5d73f6f1392b7f525de44d45d35db81e3d7460f5fb4203",
+    "results/research/after_publication/ap10_effective_extended/metadata.json": "7819c485183bfe12abf49ece95a7d2cf7e6c508a2cac939d3c57b39765c1e5ee",
+    "results/research/after_publication/ap10_effective_extended/outputs.npz": "c47f628f1b4628ac9d18fe16987a39b16a2a11f68f9d76151aea4dedfd8e6697",
+    "research/after_publication_ap12_effective_registered.md": "e6fd965944972142b23c4c7c290a8115ce3caa4c87b7d9f1096ef7868dbe61f0"
+  }
+}

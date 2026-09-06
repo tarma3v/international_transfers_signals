@@ -1,0 +1,14 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "fit_log_rows_checked": 136,
+  "quarterly_origins_checked": 17,
+  "conditional_training_excludes_step1": true,
+  "all_masks_risk_rows_failures_and_local_counts_match": true,
+  "all_old_controls_and_signals_exact": true,
+  "all_scores_and_signals_rebuilt": true,
+  "all_classifier_curves_valid_and_gated": true,
+  "margin_targets_and_scores_rebuilt": true,
+  "historical_receipts_certified": false,
+  "fresh_holdout": false
+}

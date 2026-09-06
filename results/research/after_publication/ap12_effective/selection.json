@@ -1,0 +1,17 @@
+{
+  "selected": "local_hist_h5_r30_nogap_cap2",
+  "selected_simple": "known_next_not_lower_cd3",
+  "fresh_candidates": 16,
+  "fresh_joint_early_pass_count": 3,
+  "selection_year": 2023,
+  "selected_before_later_scorecard": true,
+  "selection_horizons": [
+    3,
+    5,
+    10,
+    20
+  ],
+  "h1_is_known_validity_check_only": true,
+  "reference": "today-effective CBR",
+  "fresh_holdout": false
+}

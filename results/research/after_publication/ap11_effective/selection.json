@@ -1,0 +1,12 @@
+{
+  "selected": "margin_ridge_local_mean_urgent_cap2",
+  "selected_simple": "known_next_not_lower_cd3",
+  "incumbent": "known_change_z_urgent_cap2",
+  "old_exact": "ap1_change_z_r25_exact",
+  "selection_year": 2023,
+  "joint_early_pass_count": 19,
+  "selected_before_later_scorecard": true,
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "fresh_holdout": false
+}
