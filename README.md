@@ -78,6 +78,7 @@
 [подробный any-time отчёт](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
 [финальная презентация с интерфейсом](output/presentation/international_transfers_final_with_interface_2026-09-06_v2.pptx) ·
 [та же презентация в PDF](output/pdf/international_transfers_final_with_interface_2026-09-06_v2.pdf) ·
+[самый эффективный подход: подробное объяснение на 30 страниц](output/pdf/описание_подробное.pdf) ·
 [решение 15:30 подробно](docs/05-tekushchee-reshenie.md) ·
 [новый PDF: подробные итоги AP40-AP45](output/pdf/ivan_after_publication_ap45_effective.pdf) ·
 [лучший подход простыми словами](output/pdf/ivan_after_publication_best_simple_explained.pdf) ·
