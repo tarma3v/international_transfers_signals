@@ -1,0 +1,15 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "all_quarter_count_maps_exact": true,
+  "all_specialists_experts_ranks_weights_and_scores_exact": true,
+  "all_policy_states_rebuilt": true,
+  "future_score_count_corruption_prefix_invariant": true,
+  "five_fresh_early_joint_passes_confirmed": true,
+  "late_accuracy_rate_tradeoff_confirmed": true,
+  "known_down_veto": true,
+  "h1_excluded_from_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false
+}

@@ -1,0 +1,15 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "all_five_inputs_and_twenty_ranks_exact": true,
+  "all_five_policy_states_and_reasons_rebuilt": true,
+  "backstop_rate_rank_reserve_and_silence_gates_checked": true,
+  "future_all_input_corruption_prefix_invariant": true,
+  "five_fresh_early_joint_passes_confirmed": true,
+  "one_strict_late_success_confirmed": true,
+  "known_down_veto": true,
+  "h1_excluded_from_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false
+}

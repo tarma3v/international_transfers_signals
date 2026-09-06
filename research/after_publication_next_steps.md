@@ -1,6 +1,6 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP22-E complete. The user made after-publication research the
+Updated 2026-09-06, AP27-E complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
@@ -18,6 +18,43 @@ Do NOT claim that rescore of old AP3 signals proves knowledge is harmful.
 Models must be retrained to the SAME effective target in with/without ablations.
 TЗ note updated: initial announced-reference choice was our conservative team
 interpretation, not an organizer ruling. Bank execution still NOT validated.
+
+## Latest completed AP23-E/AP27-E: adaptive pace and low-data specialists
+
+AP23 estimated expert competence only from matured past top30 decisions on
+mean(y3,y5,y10,y20). Global precision shrinks to .5 with strength40; currency
+precision shrinks to global with strength40. Updating the primary expert hurt.
+The useful design updates pace only: `soft730_pace_competence_dual_month24_cap2`
+late h3/5/10/20=2.406634/2.466054/2.464507/2.472062,minlift2.406634,
+minrate1.039301,zeroempty,max2/week,h5sym73.8195,fwd131.0136. It did not pass
+early cadence (.9847), so preserve as best strict late point, not selected/fresh
+winner. Deltas vs AP21 are +.0045/+.0198/+.0355/+.0610; all 20/50-date CIs cross0.
+
+AP24 tested five direct grouped CatBoostRankers with85 quarterly OOS mature-only
+fits. The early-selected ranker-primary transported badly: late minlift2.232731,
+h5=2.289234. YetiRank pace recovered min2.397212,h5=2.463666 but remained below
+AP23. Do not promote or repeat direct ranker as primary without regime transport.
+
+AP25 trained five models only on an outcome-free hard cadence pool. Best y20
+specialist reached minlift2.403196,h5=2.473910,fwd136.4492 but minrate.939956.
+The pool is genuinely sparse: 0 rows until2023Q2,74 by2024-01,409 by2026-07.
+AP26 fixed cold start by pre-specified n/(n+k) shrinkage to global CatBoost.
+`y20_shrink200` gives h3/5/10/20=2.417356/2.483314/2.445996/2.495087,
+minlift2.417356,h5rate1.007044,sym74.4532,fwd135.3075, but all-h min currency
+rate=.970524. Preserve as the best accuracy anchor, not a strict product policy.
+
+AP27 added CatBoost backstop only after specialist pace fails and causal
+rate/silence deficit is present. Early-selected r70 late minrate=.985808 fails.
+The sole strict late policy `s200_cat95_r60_backstop_month24_cap2` gives
+h3/5/10/20=2.405426/2.464633/2.444496/2.467493,minlift2.405426,
+minrate1.001092,zeroempty,max2/week. H5 has691 signals,rate1.032444,sym73.6733,
+fwd131.7880; reasons613 primary/46 pace/26 backstop/6 month. Deltas vs AP21 are
++.0033/+.0184/+.0155/+.0564 and all paired lift CIs cross0. H5 symmetric vs AP17
+is +4.9258bp with positive20-date CI, but lift/future are not significant.
+
+All AP23-AP27 audits independently reconstruct maturity, scores/counts/ranks,
+state/reasons, policies and future-prefix corruption. Full suite:271 tests.
+Current report: output/pdf/ivan_after_publication_ap27_effective.pdf.
 
 ## Latest completed AP18-E/AP22-E: CatBoost and dual-expert strict challenger
 
@@ -205,20 +242,20 @@ AP12audit rebuilt source hashes,5755targets,17masks,85logs,compactsubset,
 local/class counts, all scores/signals, veto/prefix/weeklycap. PDF
 output/pdf/ivan_after_publication_ap12_effective.pdf rendered4pages and checked.
 
-## NEXT bounded AP23-E: causal competence router and prospective freeze
+## NEXT bounded AP28-E: prospective freeze and one low-data hierarchy
 
-1. Freeze AP21 `roll_cat_dual_pace_month24_cap2` exactly as the prospective
-   challenger; do not tune its thresholds on opened 2024-2026.
-2. Test one compact competence router. Weights may use only matured past top-rank
-   precision for rolling ExtraTrees and CatBoost utility. Current/future labels
-   cannot enter the weight, rank or regime decision.
-3. Preserve AP17/AP18/AP21 controls, quarterly chronological OOS fits,
-   publication-h20 maturity cap,2-day embargo,known-down veto and max2/week.
-4. Do not repeat residual Hist/Ridge stacks or outcome-free rank consensus:
-   AP18-AP22 already show these directions do not improve the strict frontier.
-5. Acceptance: minlift>2.4 on h3/5/10/20,min currency rate>=1,zeroempty,
-   max2/week and paired uncertainty. Final validation requires frozen live shadow
-   and confirmation of actual receipt timing plus bank execution.
+1. Freeze AP21 control, AP23 best strict point and AP27 r60 exactly for a
+   prospective shadow; do not move thresholds on opened 2024-2026.
+2. In parallel test exactly one pre-specified low-data specialist based on
+   hierarchical pooling or Bayesian shrinkage. No new threshold grid and no
+   selector trained on the late interval.
+3. Preserve quarterly chronological OOS fits, publication-h20 maturity cap,
+   2-day embargo, known-down veto, causal ranks/state and max2/week.
+4. Do not repeat direct ranker-primary, residual Hist/Ridge stacks or outcome-free
+   rank consensus. AP18-AP24 already give clear negative transport evidence.
+5. Acceptance remains minlift>2.4 on h3/5/10/20,min currency rate>=1,zeroempty,
+   max2/week with paired uncertainty. Final product validation additionally needs
+   actual receipt timestamps and an executable bank price, not only official CBR.
 
 ## Latest completed AP10-E: strong matched information gain, simple rule selected
 

@@ -1,0 +1,9 @@
+{
+  "selected_early": "rank_qtr_mean_full_pair_primary_ranker_dual_month24_cap2",
+  "selected_late_min_lift": 2.2327308605871092,
+  "selected_transport_failure": true,
+  "best_later_fresh": "rank_qtr_mean_full_yeti_pace_ranker_dual_month24_cap2",
+  "best_later_fresh_min_lift": 2.3972115541676473,
+  "strict_later_successes": [],
+  "ranker_is_safer_as_pace_than_primary": true
+}

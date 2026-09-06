@@ -1,0 +1,9 @@
+{
+  "selected_control_after_no_fresh_early_pass": "roll_cat_dual_pace_month24_cap2",
+  "fresh_early_pass_count": 0,
+  "best_later_min_lift": "pace_cat_y20_gate_full_specialist_dual_month24_cap2",
+  "best_later_min_lift_value": 2.403195968678118,
+  "best_h5_specialist": "pace_cat_future5_gate_full_specialist_dual_month24_cap2",
+  "strict_later_successes": [],
+  "specialists_improve_accuracy_but_miss_rate_floor": true
+}

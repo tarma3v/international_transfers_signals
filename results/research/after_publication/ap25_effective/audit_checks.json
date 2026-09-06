@@ -1,0 +1,16 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "hard_pool_and_both_causal_ranks_exact": true,
+  "all_85_specialist_fits_rebuilt": true,
+  "all_masks_clipping_and_scores_exact": true,
+  "all_policy_states_rebuilt": true,
+  "future_feature_label_benefit_corruption_prefix_invariant": true,
+  "no_fresh_early_joint_pass_confirmed": true,
+  "specialist_accuracy_rate_tradeoff_confirmed": true,
+  "known_down_veto": true,
+  "h1_excluded_from_training_and_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false
+}

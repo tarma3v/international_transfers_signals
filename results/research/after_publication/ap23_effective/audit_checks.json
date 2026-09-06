@@ -1,0 +1,17 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "all_four_experts_exact": true,
+  "all_unknown_utility_and_maturity_inputs_rebuilt": true,
+  "all_eight_competence_streams_and_counts_exact": true,
+  "all_six_weights_and_five_pairings_exact": true,
+  "all_policy_states_rebuilt": true,
+  "primary_pace_reserve_thresholds_checked": true,
+  "future_and_unmatured_expert_target_corruption_prefix_invariant": true,
+  "no_fresh_early_joint_pass_confirmed": true,
+  "known_down_veto": true,
+  "h1_excluded_from_router_and_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false
+}

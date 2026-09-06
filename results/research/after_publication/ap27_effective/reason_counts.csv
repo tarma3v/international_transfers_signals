@@ -1,0 +1,11 @@
+candidate,period,primary,pace,backstop,month
+s200_cat95_r70_backstop_month24_cap2,early,244,19,0,0
+s200_cat95_r70_backstop_month24_cap2,later,613,49,18,6
+s200_cat100_r70_backstop_month24_cap2,early,244,19,0,0
+s200_cat100_r70_backstop_month24_cap2,later,616,43,24,6
+s200_cat95_r60_backstop_month24_cap2,early,244,19,0,0
+s200_cat95_r60_backstop_month24_cap2,later,613,46,26,6
+s100_cat95_r70_backstop_month24_cap2,early,244,19,0,0
+s100_cat95_r70_backstop_month24_cap2,later,613,39,27,6
+s200_cat_silence14_r70_backstop_month24_cap2,early,244,19,0,0
+s200_cat_silence14_r70_backstop_month24_cap2,later,613,53,14,2

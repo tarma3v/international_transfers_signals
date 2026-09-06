@@ -8,6 +8,59 @@
 Для внутренней оптимизации сохраняется
 `h=5`, официальный scorecard теперь считается сразу на `h=1/3/5/10/20`.
 
+## Последние AP23-E/AP27-E: mature competence, specialists и causal backstop
+
+[PDF](output/pdf/ivan_after_publication_ap27_effective.pdf) ·
+[отчёт](research/after_publication_ap27_effective_report.md) ·
+[AP23 protocol](research/after_publication_ap23_effective_registered.md) ·
+[AP27 protocol](research/after_publication_ap27_effective_registered.md) ·
+[AP27 results](results/research/after_publication/ap27_effective).
+
+AP23 проверил пять заранее зарегистрированных competence-router: веса экспертов
+оцениваются по top30 precision на mean(y3,y5,y10,y20), но только по строкам, чей
+h20 полностью созрел раньше текущей даты минимум на два дня. Global precision
+стягивается к 0,5, currency precision — к global; primary и state AP21 остаются
+неизменными. Главный результат: адаптация primary ухудшает min lift до 2,33–2,35,
+а адаптация только pace полезна. Лучший строгий late point `soft730_pace`:
+**2,406634/2,466054/2,464507/2,472062** на h3/5/h10/h20, min rate
+**1,039301**, zero empty months, max2/week; h5 symmetric **73,82 б.п.**,
+future-only **131,01 б.п.**. Он не прошёл early cadence (0,985) и потому является
+late challenger, не early-selected winner. Все paired lift-CI против AP21
+пересекают ноль.
+
+AP24 сменил постановку на direct grouped ranking: пять CatBoostRanker вариантов
+PairLogit/YetiRankPairwise выбирали день внутри currency-quarter/month, 85 fits
+были quarterly OOS и mature-only. Ранний selector честно выбрал ranker-primary,
+но late min lift упал до **2,232731**: сильный transport failure. YetiRank полезен
+только как pace (h5 **2,463666**, min lift **2,397212**) и не обошёл AP23.
+
+AP25 выделил outcome-free hard cadence pool: известное завтра не ниже текущего,
+rolling rank не выше top30%, reserve rank выше top30%. На нём отдельно обучены
+Cat mean utility, y20 classifier, future5 benefit regressor, rolling Cat и
+ExtraTrees. Y20 specialist дал h5 **2,473910**, future-only **136,45 б.п.**, но
+min rate всего **0,939956**. Причина — cold start: до 2024 causal hard-pool train
+содержит меньше 100 зрелых строк.
+
+AP26 заранее задал shrinkage specialist к global Cat по числу доступных train
+rows. Лучший accuracy-frontier `y20_shrink200` получил h3/5/10/20=
+**2,417356/2,483314/2,445996/2,495087**, h5 symmetric **74,45 б.п.**,
+future-only **135,31 б.п.** Это сильнее AP21 по каждой точечной метрике, но min
+currency rate по неизвестным горизонтам **0,970524**, поэтому strict gate не пройден.
+
+AP27 добавил редкий причинный Cat backstop только если specialist pace не сработал
+и прошлый rate/silence показывает дефицит; reserve, known-down veto, month rescue
+и max2/week сохранены. Early selector выбрал r70, но late min rate **0,985808**.
+Единственный строгий late вариант r60 добавил 26 backstop-решений и дал
+**2,405426/2,464633/2,444496/2,467493**, min rate **1,001092**, zero empty
+months, max2/week. H5: 691 сигнал, rate1,032, symmetric73,67, future131,79.
+Против AP21 все lift-CI пересекают ноль; symmetric h5 против AP17 выше на
+4,93 б.п. с положительным 20-date CI, но это не доказывает новый общий winner.
+
+Итог frontier: AP23 — лучший strict point, AP26 — лучший accuracy result,
+AP27 r60 — specialist с literal strict cadence. Ни один не является fresh
+independent holdout winner. Все AP23–AP27 audits прошли; полный набор —
+**271 тест**.
+
 ## Последние AP18-E/AP22-E: CatBoost и разделение ролей экспертов
 
 [PDF](output/pdf/ivan_after_publication_ap22_effective.pdf) ·

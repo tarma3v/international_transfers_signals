@@ -1,0 +1,9 @@
+{
+  "selected_early": "y20_hard100_coldstart_dual_month24_cap2",
+  "selected_late_min_lift": 2.395814626235465,
+  "best_later_fresh": "y20_shrink200_coldstart_dual_month24_cap2",
+  "best_later_min_lift": 2.4173560445718696,
+  "best_later_min_rate": 0.9705240174672488,
+  "strict_later_successes": [],
+  "cold_start_improves_accuracy_but_still_misses_rate": true
+}

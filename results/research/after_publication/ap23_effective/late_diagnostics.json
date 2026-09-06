@@ -1,0 +1,11 @@
+{
+  "selected_control_after_no_fresh_early_pass": "roll_cat_dual_pace_month24_cap2",
+  "fresh_early_pass_count": 0,
+  "best_later_fresh": "soft730_pace_competence_dual_month24_cap2",
+  "best_later_fresh_min_lift": 2.4066344859475715,
+  "best_later_fresh_h5_lift": 2.4660540982240726,
+  "strict_later_successes": [
+    "soft730_pace_competence_dual_month24_cap2"
+  ],
+  "late_success_is_not_early_selected_or_fresh_holdout": true
+}

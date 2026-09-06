@@ -4,18 +4,20 @@
 выгоднее переводить рубли в **AMD, KGS, KZT, TJS или UZS**, и сформировать не
 больше нескольких полезных сигналов в неделю.
 
-> **Уточнённая задача AP10-E/AP22-E:** после получения завтрашнего курса считаем lift
+> **Уточнённая задача AP10-E/AP27-E:** после получения завтрашнего курса считаем lift
 > от **действующего сегодня ЦБ**. Знание нового курса — вход, а не новая опора.
-> Лучший новый строгий challenger AP21 `roll_cat_dual_pace_month24_cap2`:
-> **h3/5/10/20 = 2,402 / 2,446 / 2,429 / 2,411**, min rate по валютам и
-> горизонтам **1,009**, zero empty months и max2/week. Он впервые пересёк
-> точечный барьер min lift 2,4, но найден как заранее зарегистрированный поздний
-> diagnostic, а не выбран ранним selector; прирост к AP17 статистически не доказан.
+> Лучший строгий point-result — AP23 mature-only competence pace:
+> **h3/5/10/20 = 2,407 / 2,466 / 2,465 / 2,472**, min rate **1,039**,
+> zero empty months и max2/week. Лучший accuracy-frontier — AP26 y20 specialist
+> со shrinkage: min lift **2,417**, h5 **2,483**, но min rate **0,971**.
+> AP27 вернул specialist к строгой частоте: **2,405 / 2,465 / 2,444 / 2,467**,
+> min rate **1,001**. Все три — ретроспективные challengers, не fresh winners;
+> приросты к AP21 по lift пока статистически не доказаны.
 > Период h5: **09.01.2024–25.08.2026**.
 > Исторические receipts условные, не новый закрытый тест и не банковская экономия.
 > На h1 ответ после публикации уже известен; h3/5/10/20 ещё содержат неизвестное.
 > Старые AP3/AP4 **1,630** относятся к другой, новой опубликованной опоре.
-> Исследование активно, без почасовой автоматизации; **257 тестов** прошли.
+> Исследование активно, без почасовой автоматизации; **271 тест** прошёл.
 
 > **Сохранённый ориентир до публикации:** причинный `availability_route` на
 > срезе 15:30. На ретроспективе 2025–2026 он даёт adjusted lift **2,053** при
@@ -25,8 +27,40 @@
 
 [Краткая история всех экспериментов](EXPERIMENTS_SUMMARY.md) ·
 [решение 15:30 подробно](docs/05-tekushchee-reshenie.md) ·
-[новый PDF: AP18–AP22 и dual-expert AP21](output/pdf/ivan_after_publication_ap22_effective.pdf) ·
+[новый PDF: AP23–AP27, adaptive pace и specialist](output/pdf/ivan_after_publication_ap27_effective.pdf) ·
 [активный исследовательский checkpoint](research/after_publication_next_steps.md)
+
+## Последние AP23-E/AP27-E: adaptive pace и specialist-модели
+
+AP23 впервые разрешил менять вес pace-эксперта по его прошлой точности. Для
+каждого эксперта берутся только уже созревшие ошибки: полный h20 должен быть
+известен минимум за два дня до текущего решения. Rolling ExtraTrees остаётся
+primary, а mature-only competence выбирает между AP18 blend и CatBoost utility
+только для добора темпа. Лучший строгий point-result:
+
+| Кандидат | h3 | h5 | h10 | h20 | Min rate | Статус |
+|---|---:|---:|---:|---:|---:|---|
+| AP23 adaptive pace | **2,407** | **2,466** | **2,465** | **2,472** | **1,039** | лучший strict point |
+| AP26 y20 shrink200 | **2,417** | **2,483** | **2,446** | **2,495** | 0,971 | accuracy-frontier |
+| AP27 specialist strict | **2,405** | **2,465** | **2,444** | **2,467** | **1,001** | late strict challenger |
+
+AP24 показал важный отрицательный результат: direct CatBoost ranking хорошо
+работает как редкий pace-эксперт, но ранне выбранный primary не перенёсся с 2023
+на 2024–2026 (min lift упал до **2,233**). AP25 обучил отдельную модель только
+на заранее определённом hard cadence pool; y20 specialist поднял h5 до **2,474**,
+но из-за малого causal train не добрал частоту. AP26 исправил cold start заранее
+заданным shrinkage к global CatBoost и получил лучший новый accuracy-frontier.
+
+AP27 добавляет CatBoost-backstop только при причинном дефиците частоты. Строгий
+вариант добавил всего 26 late решений и сохранил min lift **2,405** при min rate
+**1,001**. Его h5 symmetric benefit выше AP17 на **4,93 б.п.** с положительным
+20-date CI, но улучшение lift/future-only отдельно не доказано. Поэтому AP23,
+AP26 и AP27 сохраняются как разные границы качества, а не объявляются production.
+
+[Отчёт AP23–AP27](research/after_publication_ap27_effective_report.md) ·
+[результаты AP23](results/research/after_publication/ap23_effective) ·
+[результаты AP27](results/research/after_publication/ap27_effective).
+Все новые раунды прошли независимые maturity/refit/state/future-prefix audits.
 
 ## Последние AP18-E/AP22-E: CatBoost и dual-expert выше 2,4
 
@@ -492,7 +526,7 @@ PYTHONPATH=. .venv/bin/python -m research.round7_audit
 PYTHONPATH=. .venv/bin/python -m research.build_round7_report
 ```
 
-Полный набор содержит **257 тестов**. Повторная загрузка данных MOEX требует
+Полный набор содержит **271 тест**. Повторная загрузка данных MOEX требует
 сети: `PYTHONPATH=. .venv/bin/python -m research.round7_direct_pairs_data`.
 XGBoost на macOS может потребовать `brew install libomp`.
 
@@ -511,8 +545,8 @@ XGBoost на macOS может потребовать `brew install libomp`.
 
 ## Что читать
 
-1. [AP18–AP22: лучший строгий dual-expert challenger](output/pdf/ivan_after_publication_ap22_effective.pdf) —
-   актуальный after-publication scorecard, ограничения и следующие шаги.
+1. [AP23–AP27: adaptive pace и specialist-модели](output/pdf/ivan_after_publication_ap27_effective.pdf) —
+   актуальный after-publication scorecard, честные статусы и следующие шаги.
 2. [Текущее решение](docs/05-tekushchee-reshenie.md) — актуальная короткая
    техническая и продуктовая картина.
 3. [Round 7: прямые пары и виджет](output/pdf/ivan_direct_pairs_and_widget_report.pdf) —
@@ -524,9 +558,10 @@ XGBoost на macOS может потребовать `brew install libomp`.
 
 ## Текущий статус
 
-Ветка разработки — `ivan-experiments`. AP17/AP18 остаются замороженными строгими
-контролями, а AP21 `roll_cat_dual_pace_month24_cap2` — главным prospective
-challenger. Его точечный min lift **2,402** ещё нельзя считать доказанным
-улучшением из-за многократно открытого периода. Ближайший шаг — заморозить этот
-вариант для live/prospective shadow и проверить причинный competence-router,
-который учится только на уже созревших прошлых исходах.
+Ветка разработки — `ivan-experiments`. AP21 остаётся замороженным строгим
+контролем; AP23 и строгий AP27 — prospective challengers, AP26 — accuracy anchor.
+Их точечные результаты ещё нельзя считать доказанным улучшением из-за многократно
+открытого периода. Ближайший шаг — frozen live/prospective shadow без изменения
+порогов и один заранее заданный low-data specialist с hierarchical/Bayesian
+shrinkage; отдельно нужно подтвердить реальный timestamp получения курса и
+исполняемый банковский курс.

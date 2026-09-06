@@ -1,0 +1,11 @@
+{
+  "selected_early": "s200_cat95_r70_backstop_month24_cap2",
+  "selected_late_min_lift": 2.412916655481756,
+  "selected_late_min_rate": 0.9858078602620088,
+  "strict_later_successes": [
+    "s200_cat95_r60_backstop_month24_cap2"
+  ],
+  "strict_late_min_lift": 2.4054256728491867,
+  "strict_late_min_rate": 1.0010917030567683,
+  "strict_is_registered_late_challenger_not_early_selected": true
+}

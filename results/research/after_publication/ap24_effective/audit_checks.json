@@ -1,0 +1,16 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "all_85_ranker_fits_rebuilt": true,
+  "all_group_masks_counts_and_targets_exact": true,
+  "all_predictions_pairings_and_policy_states_exact": true,
+  "future_feature_label_corruption_prefix_invariant": true,
+  "four_fresh_early_joint_passes_confirmed": true,
+  "selected_transport_failure_confirmed": true,
+  "no_fresh_strict_late_improvement_over_ap23": true,
+  "known_down_veto": true,
+  "h1_excluded_from_training_and_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false
+}
