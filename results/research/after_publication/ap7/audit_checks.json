@@ -1,0 +1,13 @@
+{
+  "source_hashes_verified": true,
+  "train_log_rows_rebuilt": 306,
+  "monthly_origins": 51,
+  "neighbor_queries_independently_rebuilt": 10340,
+  "forest_monthly_samples_rebuilt": 51,
+  "all_paths_and_outcomes_rebuilt": true,
+  "max_path_utility_error_bps": 7.105427357601002e-12,
+  "same_controls_and_support": true,
+  "all_survival_curves_monotone": true,
+  "all_scenario_weights_checked": true,
+  "total_clipped_log_ratios": 0
+}

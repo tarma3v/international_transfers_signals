@@ -1,12 +1,91 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP6 complete. The user made after-publication research the
+Updated 2026-09-06, AP7 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
 
-## Latest completed AP6: PROGRESS, new feasible candidate but no superiority
+## Latest completed AP7: PROGRESS, trajectory distributions did not improve
+
+Previous turn pushed AP6 as71fcd0e. This turn implemented eleven path-distribution
+families and70signal policies, fit/replayed all, 177 tests passed (9new), audited
+and wrote4page PDF output/pdf/ivan_after_publication_ap7.pdf. All pages rendered
+and visually checked. Active goal NOT complete; no live model/audit remains.
+
+Same5755 publication events, AP2-D20 clock and old support. Paths are next20
+cumulative log ratios / known own vol20 (floor1bp), multiplied by query known
+vol. Only fullmature20<monthorigin-2d library, startsJan2022; unlike AP6 no base
+OOS score required, library is legitimately larger. Queries July2022 onward.
+Core7 (asinh CNY/fallback,knownchange,ret5z/ret20z,logvol,CNYlate,quality), wide24
+source-only from AP6, no expert/disagreement scores. KNN train-only scaling.
+
+Families global64/global128/wide128/local32/shrink nlocal/(nlocal+200), recent730
+global128, unconditionaluniform, temporal-split32trees, conditionalRidge empirical
+residuals, Gaussianresiduals, localRidge empirical. Structure first60%distinct
+past library dates with own mature cutoff before boundary-2d; remaining40%
+estimate leaf/residual distribution. No refit on calibration, no in-sample noise.
+Gaussian256 fixedantithetic draws,.5cov+.5diag, no futures. Utilities computed
+per scenario then averaged, NOT from meanpath. Numerical logguard20 neverused.
+
+70policies=11*6 +4exactcontrols(AP3/AP4/AP5equal/AP6selected). p5,pmean,forward25,
+symmetric25,CNY50,AP4anchor75. Existing urgent controller unchanged. Sixearly
+joint passes,3new. Selected path_ridge_empirical_forward25_urgent_cap2:
+earlyminlift1.349646,benefitLB.051056,forwardratio1.093564,rate1.177..1.284.
+Later h1/3/5/10/20=1.393736/1.416979/1.496597/1.480243/1.401400.
+h5=900/3260,2024-01-09..2026-08-25,rate1.344717,sym17.470702,fwd44.150352.
+Gap28,max2/week,noemptyfullmonths. h5vsAP4 CI[-.276536,-.000990],vsAP3
+[-.283005,.004014]; symdeltaAP3 -15.922917 CI[-24.393278,-8.479045].
+h20liftCI[1.196815,1.602749],forward41.677513 CI[-27.070968,104.180656];
+50dateh20lift[1.194735,1.611091],fwd[-41.662934,125.128986]. No all-h stability.
+Weak cells2025AMD/KGS/TJS/UZS,2026KZT; TJS2025 allfiveh<1.3. AP3 main/AP4
+alternative retained; candidate NOT promoted. No new h5CI superior toAP4.
+
+Rawh5: global64 1.481954/global128 1.514931/wide1.337097/local1.493180/
+shrink1.505898/recent1.534230/forest1.534410/Ridgeemp1.516829/Gauss1.506027/
+localRidge1.495745. Widevscore7 CI[-.307840,-.059895] worse; recent/local/shrink/
+forestvsglobal128 allCIs cross0. Unconditional.775899,rate.657417,gap238.
+AP4+forest25 diagnostic1.661308,rate1.356670,sym34.599480,fwd54.414551;
+vsAP4CI[-.032555,.087022], earlybenefitLB-7.407589, fails. No late selection.
+Ridgeemp/Gauss Brierlate .188321/.209505, localRidge.187932, global128.189007.
+
+Audit all paths/targets/knownpast, maxutilityreconstructionerror7.1e-12bps;
+306fitlogs,51origins,56870scenariologs,10340 exact global128/local32 neighbors
+andweights/predictions rebuilt,51 monthly forest examples rebuilt. Cached NPZ
+arrays to avoid repeated decompression; reran final audit successfully. No
+clipping; allweights valid, allsurvival monotone; futurepath/featurecorruption
+tests passed, fourcontrols exact. Results results/research/after_publication/ap7.
+Jan2025 library3610,lastprediction2024-12-02,lastmaturity2024-12-28;
+split2023-10-05,structure2055(estmaturitymax2023-10-02),estimation1445.
+All late+early dates repeatedly inspected, nofreshholdout/searchadjustedCIs.
+
+## NEXT bounded stage AP8: marginal value of completed evening market data
+
+1. Several new model families failed. Re-focus on available information, whose
+   earlier AP2 ablation was the largest gain. User explicitly wants AFTER the
+   fixing publication; comparison of later decision clocks is in scope but
+   MUST NOT be advertised as improvement at18:30 or executable bank savings.
+2. Predeclare a small timing packet18:10/18:30/18:50/19:30, same announced CBR
+   reference and20min marketdelay. Rebuild raw bars point-in-time at each clock;
+   no futureclose, samebarend+delay<cutoff AND begin+10+delay<=cutoff. CBR actual
+   receipt still unverified, so earliestclock conditional on actual receipt.
+3. Read sourceprobe saved inAP7: CNY2026-09-02 has55bars09:50..18:59:59;
+   KZT25bars10:00..18:59:59; CNY archive maxbeginhour2022=23,2023..25=18,2026=19.
+   These are archive observations, not session rules. load_market_frames in
+   after_publication_ap2_features.py has full-day bars, session_state accepts
+   cutoff but market_features hardcodes CUTOFF18:30. Generalize optionalcutoff
+   while preserving default and exact18:30 output; never mutate priorresults.
+4. Compare fixed simpleCNY, fixed CNY+Hist50 and fixed CNY+survivalHist50 with
+   causal quarterly training/mature20 and same urgentpolicy, maybe small fixed
+   closing-range/late-momentum features. Separate addedinformation from larger
+   search. Same date/target support, earlyjointselector frozen, later retrospective.
+   Add stale/frozen18:30 feed control to identify gains actually due tonewbars.
+5. Analyze information-age/coverage and source availability, not just lift.
+   More time before prediction is a real product tradeoff, report waitingminutes
+   explicitly, no phantom postclose updates. Testsforcutoff futurebars,default
+   compatibility; audit/PDF/summary/tests/checkpushownbranch. Goal staysactive.
+
+## Historical AP6: new feasible candidate but no superiority
 
 Previous goal turn pushed AP5 c66f4b0. This turn actually trained sixteen OOS
 meta models and evaluated 51 policies. 168 tests passed, nine new. Registered
@@ -60,7 +139,7 @@ their issued OOS values. All results results/research/after_publication/ap6.
 PDF output/pdf/ivan_after_publication_ap6.pdf (4 pages), all pages rendered and
 visually checked. verification.json records checks. No background job remains.
 
-## NEXT bounded stage AP7: conditional trajectory distributions / analogs
+## Completed AP7 starting plan
 
 1. Stop adding weight grids to the same six experts. Investigate a genuinely
    different forecast representation: complete normalized future paths of

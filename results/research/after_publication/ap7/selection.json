@@ -1,0 +1,11 @@
+{
+  "selected": "path_ridge_empirical_forward25_urgent_cap2",
+  "selected_simple": "cny_hist50_urgent_cap2",
+  "incumbent": "cny_hist50_urgent_cap2",
+  "selection_year": 2023,
+  "allh_mature_before": "2024-01-01",
+  "joint_early_pass_count": 6,
+  "selected_before_later_scorecard": true,
+  "historical_receipts_certified": false,
+  "fresh_holdout": false
+}

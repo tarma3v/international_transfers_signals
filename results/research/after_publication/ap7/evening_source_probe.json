@@ -1,0 +1,14 @@
+{
+  "checked_on": "2026-09-06",
+  "purpose": "Read-only raw archive coverage check for the next timing experiment; no targets used",
+  "day": "2026-09-02",
+  "source_loader": "research.after_publication_ap2_features.load_market_frames",
+  "observations": {
+    "CNYRUB_TOM": {"bars": 55, "first_begin": "2026-09-02 09:50:00", "last_end": "2026-09-02 18:59:59"},
+    "KZTRUB_TOM": {"bars": 25, "first_begin": "2026-09-02 10:00:00", "last_end": "2026-09-02 18:59:59"}
+  },
+  "cny_archive_max_begin_hour_by_year": {"2022": 23, "2023": 18, "2024": 18, "2025": 18, "2026": 19},
+  "official_session_hours_established": false,
+  "actual_receipt_timestamps_established": false,
+  "note": "Bar end is not sufficient availability: completion plus feed delay still applies. No late-clock model was fit in AP7."
+}
