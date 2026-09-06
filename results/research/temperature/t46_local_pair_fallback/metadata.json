@@ -1,0 +1,30 @@
+{
+  "packet": "temperature-T46",
+  "feature_names": [
+    "cny_basis_1530",
+    "cny_past_rank_1530",
+    "direct_mean_basis",
+    "direct_last_basis",
+    "direct_previous_basis",
+    "direct_intraday_return",
+    "direct_range_bps",
+    "direct_log_count",
+    "direct_age_hours",
+    "direct_quality",
+    "direct_log_tom_count",
+    "direct_log_tod_count"
+  ],
+  "minimum_train_rows": 150,
+  "minimum_train_date": "2022-02-24",
+  "embargo_days": 2,
+  "open_horizons": [
+    3
+  ],
+  "production_promoted": false,
+  "tomorrow_cbr_used": false,
+  "source_sha256": {
+    "results/research/temperature/t5_market_grid/outputs.npz": "3e558ec2158f6d87c4fb9112b6b205abba08c416cd75458130ab5baa66e08d40",
+    "results/research/round7/direct_pairs/direct_market_panel.csv": "4dd66f95937777fd30480f2b1549dbb273e9761b4e6e7c892a7831a61d25ba7e",
+    "research/temperature_t46_local_pair_fallback_registered.md": "da1242fc4d00f14316a610821732e4460646fe533fbc548675e0263b218e0a11"
+  }
+}

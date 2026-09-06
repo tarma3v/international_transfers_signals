@@ -1,0 +1,20 @@
+{
+  "candidate": "ap26_core_mature_precision_calendar_fallback_cap2",
+  "period": "AP37 later 2024-2026",
+  "future_only_adjusted_lift": {
+    "1": 1.9435228980650257,
+    "3": 2.428673730515981,
+    "5": 2.5091882251629154,
+    "10": 2.479315705615442,
+    "20": 2.5249873834516006
+  },
+  "symmetric_local_min_adjusted_lift": {
+    "1": 2.166921917188113,
+    "3": 2.843715791767918,
+    "5": 3.115702566636863,
+    "10": 3.168964917436915,
+    "20": 3.463847121211467
+  },
+  "model_or_policy_changed": false,
+  "selection_changed": false
+}

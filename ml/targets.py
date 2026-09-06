@@ -23,6 +23,22 @@ def target_now_favourable(values: np.ndarray, i: int, h: int) -> float | None:
     return 1.0 if values[i] <= values[i + 1 : i + h + 1].min() else 0.0
 
 
+def target_symmetric_local_minimum(
+    values: np.ndarray, i: int, h: int
+) -> float | None:
+    """Alternative literal reading: current value is a minimum in ``+-h``.
+
+    This is intentionally separate from :func:`target_now_favourable`.  The
+    case-owner Q&A defines send-now lift with the future-only hit, while the
+    case statement also mentions a surrounding local-minimum window.  Keeping
+    both targets explicit prevents one score from being silently relabelled as
+    the other.
+    """
+    if i - h < 0 or i + h >= len(values):
+        return None
+    return 1.0 if values[i] <= values[i - h : i + h + 1].min() else 0.0
+
+
 def target_window_closing(values: np.ndarray, i: int, h: int) -> float | None:
     """«Окно закрывается»: через h публикаций курс окажется выше сегодняшнего."""
     if i + h >= len(values):

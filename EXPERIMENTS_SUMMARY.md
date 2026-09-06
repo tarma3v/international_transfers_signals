@@ -8,6 +8,52 @@
 Для внутренней оптимизации сохраняется
 `h=5`, официальный scorecard теперь считается сразу на `h=1/3/5/10/20`.
 
+## M1: спор `future-only` против бинарного `+/-h` закрыт пересчётом
+
+[Протокол](research/tz_metric_m1_symmetric_lift_registered.md) ·
+[отчёт](research/tz_metric_m1_symmetric_lift_report.md) ·
+[результаты](results/research/tz_metric/m1_symmetric_lift).
+
+На тех же 695 поздних решениях frozen AP37, без переобучения и выбора, основной
+future-only adjusted lift h1/3/5/10/20 равен
+**1,944/2,429/2,509/2,479/2,525**. Альтернативный бинарный target «текущий
+курс — минимум окна `+/-h`» даёт **2,167/2,844/3,116/3,169/3,464**. Все
+объединённые 20/50-date CI выше 1,3, но в частичном 2026 local-min h20 равен
+0,959. Это sensitivity к неоднозначной первой фразе ТЗ, не новая модель и не
+замена Q&A: hit-rate lift там future-only, а `+/-h` — отдельная выгода момента.
+
+## T45: direct pair помогает expected future bps
+
+[Протокол](research/temperature_t45_direct_pair_benefit_registered.md) ·
+[отчёт](research/temperature_t45_direct_pair_benefit_report.md) ·
+[результаты](results/research/temperature/t45_direct_pair_benefit).
+
+Global quarterly Ridge прогнозирует остаток future-only bps поверх T6 и
+включается только при hard-quality собственной MOEX/RUB-пары. H3/h5/h10 прошли
+screen-2023 и validation-2024. На открытых 2025-2026 h5 снизил MAE
+**104,20 -> 102,86 б.п.**, оба paired CI ниже нуля; hard-quality KZT выиграл
+6,88 б.п., AMD 2,31. Это shadow численного magnitude: AP37, probabilities,
+temperature и runtime не изменены.
+
+## T46: per-currency probability с fallback на CNY отклонена
+
+[Протокол](research/temperature_t46_local_pair_fallback_registered.md) ·
+[отчёт](research/temperature_t46_local_pair_fallback_report.md) ·
+[результаты](results/research/temperature/t46_local_pair_fallback) ·
+[итоговая схема по страницам](output/pdf/ivan_final_temperature_model_explained.pdf).
+
+Отдельная L2-логистика по каждой валюте видит общий CNY basis/rank и 10
+признаков собственной пары. Она активируется только при >=6 завершённых свечах,
+age<=60 минут и >=150 mature same-currency train-строк; иначе prediction
+побитово равен T5. Фактически local heads появились только у AMD/KZT.
+
+H3 прошёл screen-2023 и validation-2024: Brier улучшился на -0,00579 и -0,00571,
+AUC на +0,0204 и +0,0156. Однако открытый 2025 дал режимный провал KZT:
+active Brier delta +0,03496, pooled +0,00518; на 2025-2026 pooled delta
++0,00315 и AUC delta -0,0063. T46 не входит в итоговую probability. CNY остаётся
+стабильным общим factor/fallback; direct pair используется только в T45 для
+expected-bps h5, где он прошёл отдельные MAE-gates.
+
 ## T3-T16: непрерывная температура от утра до 23:00
 
 Презентация из основной ветки формулирует продукт как экранный индикатор плюс

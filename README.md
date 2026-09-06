@@ -232,6 +232,23 @@
 > безопасного равенства baseline. Gate не ослаблен; 2025–2026 model metrics не
 > открывались, T37 остаётся неизменным.
 >
+> T45 вернул прямые пары AMD/RUB и KZT/RUB не в sparse push, а в отдельную
+> модель размера future-only выгоды. Quality-gated global Ridge корректирует
+> T6 только при >=6 завершённых к 15:30 свечах и возрасте последней <=60 минут.
+> H3/h5/h10 прошли screen-2023 и validation-2024; на открытых 2025–2026 только
+> h5 сохранил оба paired CI ниже нуля: MAE **104,20 -> 102,86 б.п.**. На
+> hard-quality KZT строках выигрыш h5 равен **6,88 б.п.**, AMD — **2,31**.
+> Это prospective magnitude shadow; probability, AP37 push и runtime не
+> изменены.
+>
+> T46 проверил буквальный per-currency probability router с fallback на CNY.
+> Для AMD/KZT отдельная L2-логистика на 12 признаках собственной пары прошла
+> h3 gates в 2023/2024, но на открытом 2025 KZT сменил режим: pooled Brier стал
+> **0,16847 против 0,16329** у CNY, а KZT active delta **+0,03496**. Поэтому
+> local probability отклонена. Итоговая температура остаётся на более
+> стабильном CNY-факторе; собственная пара допускается только в T45 magnitude
+> h5 shadow, где доказана другая функция потерь.
+>
 > Новый T15/T16 закрывает вечер до 23:00 завершёнными perpetual-свечами
 > CNYRUBF и USDRUBF. Ни один новый probability-кандидат не улучшил сильный
 > T7B-control на screen-2024, поэтому вечерняя температура не меняется только
@@ -276,8 +293,15 @@
 > Новый nonlinear AP44 дал h20 **2,560**, но также потерял cadence. AP45
 > формально проходит gates, однако это AP37 плюс 2 сигнала без доказанного
 > улучшения. Основным остаётся более простой AP37.
-> Исследование активно, без почасовой автоматизации; после T44 полный набор из
-> **421 теста** проходит.
+> M1 дополнительно пересчитал тот же замороженный AP37 по альтернативному
+> бинарному таргету «локальный минимум `+/-h`»: adjusted lift
+> **2,167 / 2,844 / 3,116 / 3,169 / 3,464** для h1/3/5/10/20. Это
+> sensitivity к чтению первой фразы ТЗ, а не новый model result: Q&A определяет
+> основной lift через future-only hit, а `+/-h` — через отдельную выгоду
+> момента. В частичном 2026 local-min h20 падает до 0,959, поэтому pooled
+> симметричную цифру нельзя выдавать за устойчивый headline.
+> Исследование активно, без почасовой автоматизации; после T46 полный набор из
+> **428 тестов** проходит.
 
 > **Сохранённый ориентир до публикации:** причинный `availability_route` на
 > срезе 15:30. На ретроспективе 2025–2026 он даёт adjusted lift **2,053** при
@@ -286,6 +310,10 @@
 > не заменена.
 
 [Краткая история всех экспериментов](EXPERIMENTS_SUMMARY.md) ·
+[сверка future-only и `+/-h` lift](research/tz_metric_m1_symmetric_lift_report.md) ·
+[T45: direct-pair expected bps](research/temperature_t45_direct_pair_benefit_report.md) ·
+[T46: direct probability с CNY fallback](research/temperature_t46_local_pair_fallback_report.md) ·
+[итоговая модель по кускам, PDF](output/pdf/ivan_final_temperature_model_explained.pdf) ·
 [контракт прогноза для интерфейса](research/interface_prediction_contract.md) ·
 [строгая сверка с ТЗ и бизнес-направление](research/tz_compliance_and_business_direction_2026-09-06.md) ·
 [ремонт доступности T17](research/temperature_t17_spot_availability_repair_registered.md) ·

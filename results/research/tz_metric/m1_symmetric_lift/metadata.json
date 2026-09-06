@@ -1,0 +1,15 @@
+{
+  "packet": "M1",
+  "candidate": "ap26_core_mature_precision_calendar_fallback_cap2",
+  "draws": 500,
+  "blocks": [
+    20,
+    50
+  ],
+  "source_sha256": {
+    "results/research/after_publication/ap37_effective/outputs.npz": "0051a46660dbb2dfa29c1c0bdc4ff8e5d257f5ed9bb80b593cff58554bbea6a3",
+    "results/research/after_publication/ap37_effective/announcement_panel.csv": "313d0ef75b7e942210189e6491f011b0675f7fd92ad549b30ac8b6820a71a786",
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "research/tz_metric_m1_symmetric_lift_registered.md": "f2da6f5e7d9c3a00173985a0636031646ff74ddc08428ca9c1d52bd113e819c1"
+  }
+}

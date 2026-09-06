@@ -1,0 +1,32 @@
+{
+  "packet": "temperature-T45",
+  "baseline": "T6 cutoff_1530 future-only expected CBR bps",
+  "horizons": [
+    1,
+    3,
+    5,
+    10,
+    20
+  ],
+  "open_horizons": [
+    3,
+    5,
+    10
+  ],
+  "screen_period": "2023",
+  "validation_period": "2024",
+  "open_period": "2025-2026 conditional only",
+  "quality_gate": "count>=6 and age_minutes<=60",
+  "soft_quality_formula": "min(count/24,1)*exp(-age_minutes/120)",
+  "production_promoted": false,
+  "push_changed": false,
+  "probability_changed": false,
+  "runtime_changed": false,
+  "bank_execution_validated": false,
+  "source_sha256": {
+    "results/research/temperature/t6_pre_receipt_benefit/outputs.npz": "6e9c830e419763ab84b21ab074b3c89e7e4ed0734a517ffd77d96f2ade716c6c",
+    "results/research/round7/direct_pairs/direct_market_panel.csv": "4dd66f95937777fd30480f2b1549dbb273e9761b4e6e7c892a7831a61d25ba7e",
+    "research/temperature_t45_direct_pair_benefit_registered.md": "8923b4a6e080a0e3164fe21e5f0a5b3d1a162ea0703f7261e3618f44e6c1e5a0",
+    "research/temperature_t45_direct_pair_benefit.py": "dd3f730768c711cb1b55f0dff7d9a0caedb455e5bfa54d157acb42ae4f8b970e"
+  }
+}

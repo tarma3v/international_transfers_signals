@@ -283,3 +283,27 @@ correction and validation.
 Push and widget can therefore improve independently: the push takes only a few
 top opportunities to maximize lift, while the widget remains defined and
 honestly qualified for every `as_of`.
+
+## Latest evidence: T45 magnitude and M1 metric sensitivity
+
+T45 tested direct AMD/RUB and KZT/RUB information in the appropriate output:
+expected future-only basis-point magnitude rather than sparse push rank. A
+global quarterly residual Ridge passed the pre-registered 2023 and 2024 gates
+for h3/h5/h10. On the opened 2025-2026 period only h5 retained both 20/50-date
+paired intervals below zero, improving MAE from 104.20 to 102.86 bps. It remains
+a prospective shadow and does not change the runtime until new outcomes arrive.
+
+M1 froze AP37 and audited the alternative binary reading of the case's
+surrounding `+/-h` phrase. Future-only adjusted lift remains
+1.944/2.429/2.509/2.479/2.525 for h1/3/5/10/20; symmetric-local-min lift is
+2.167/2.844/3.116/3.169/3.464. This does not alter the objective: the owner Q&A
+defines send-now hit rate with the following h observations and uses `+/-h`
+for moment benefit. Both must be reported explicitly so that a larger number
+cannot silently change the target after evaluation.
+
+T46 then implemented a compact per-currency probability hierarchy at 15:30:
+an AMD/KZT local L2 head on hard-quality own-pair candles and exact T5 CNY
+fallback everywhere else. H3 passed 2023 and 2024, but KZT reversed in opened
+2025 and worsened pooled Brier. The local probability is rejected. This keeps
+the final system simple: CNY remains the stable probability factor, while T45
+may use direct KZT/AMD only for h5 magnitude under its separate MAE evidence.

@@ -1,0 +1,11 @@
+period,h,all_mae_better,all_rmse_noninferior,all_spearman_noninferior,hard_mae_better,dense_currency_supported,bootstrap_upper_nonpositive,stage_pass
+screen_2023,1,True,True,True,True,True,False,False
+screen_2023,3,True,True,True,True,True,True,True
+screen_2023,5,True,True,True,True,True,True,True
+screen_2023,10,True,True,True,True,True,True,True
+screen_2023,20,False,False,False,False,False,False,False
+validation_2024,1,True,True,True,True,True,True,True
+validation_2024,3,True,True,True,True,True,True,True
+validation_2024,5,True,True,True,True,True,True,True
+validation_2024,10,True,True,True,True,True,True,True
+validation_2024,20,True,True,True,True,True,True,True

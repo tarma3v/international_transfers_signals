@@ -1,0 +1,16 @@
+{
+  "source_hashes_match": true,
+  "quarterly_predictions_rebuilt": true,
+  "historical_metrics_and_gates_rebuilt": true,
+  "paired_bootstrap_rebuilt": true,
+  "hard_gate_and_quality_formula_rebuilt": true,
+  "ineligible_rows_equal_t6_exactly": true,
+  "maturity_and_embargo_verified": true,
+  "future_prefix_corruption_passed": true,
+  "open_horizons": [
+    3,
+    5,
+    10
+  ],
+  "production_promoted": false
+}

@@ -1,0 +1,14 @@
+{
+  "source_hashes_match": true,
+  "features_and_quarterly_predictions_rebuilt": true,
+  "historical_metrics_and_gates_rebuilt": true,
+  "fallback_rows_equal_t5_exactly": true,
+  "local_head_requires_hard_quality": true,
+  "only_amd_kzt_heads_activated": true,
+  "maturity_and_embargo_verified": true,
+  "future_feature_label_quality_corruption_prefix_passed": true,
+  "open_horizons": [
+    3
+  ],
+  "production_promoted": false
+}

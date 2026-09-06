@@ -1,0 +1,8 @@
+{
+  "frozen_ap37_signal_used": true,
+  "frozen_scopes_and_groups_used": true,
+  "future_only_scorecard_reproduced_exactly": true,
+  "symmetric_target_rebuilt_from_raw_cbr_and_current_index": true,
+  "symmetric_success_is_subset_of_future_success": true,
+  "no_selection_or_model_change": true
+}
