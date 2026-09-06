@@ -1,0 +1,17 @@
+{
+  "selected": "extra_ap12_pace365_p55_r70_month24_cap2",
+  "selected_simple": "known_next_not_lower_cd3",
+  "fresh_candidates": 1,
+  "fresh_joint_early_pass_count": 1,
+  "selection_year": 2023,
+  "selection_horizons": [
+    3,
+    5,
+    10,
+    20
+  ],
+  "selected_before_later_scorecard": true,
+  "h1_known_validity_only": true,
+  "reference": "today-effective CBR",
+  "fresh_holdout": false
+}

@@ -8,6 +8,39 @@
 Для внутренней оптимизации сохраняется
 `h=5`, официальный scorecard теперь считается сразу на `h=1/3/5/10/20`.
 
+## Последние AP15-E/AP17-E: deficit pacing закрывает строгий cadence
+
+[PDF](output/pdf/ivan_after_publication_ap17_effective.pdf) ·
+[отчёт](research/after_publication_ap17_effective_report.md) ·
+[AP17 protocol](research/after_publication_ap17_effective_registered.md) ·
+[AP17 results](results/research/after_publication/ap17_effective).
+
+AP15 проверил5 заранее заданных узких порогов/adaptive/month rescue. Early
+selector выбрал Extra silence14+month24; поздний h5 **2,475700**,rate1,005550,
+zero empty months, но mincurrency0,986126. Ни одна AP15 policy не прошла late
+strict h5/all-h cadence. Вывод: calendar gap и corridor deficit - разные задачи.
+
+AP16 зарегистрировал5 causal pacing controllers. Early selector выбрал
+`pace365_p55_r70`: дополнительная точка только если past365 decision rate<1,
+Extra rank>.55 и reserve rank>.70. Late h3/5/10/20=
+2,383619/**2,446617**/2,403340/2,480249; minrate1,031659,h5currency
+1,045891-1,075774. Он доказанно выше strict top35 на h5:+0,071788,
+CI[0,020143;0,121321], и reserve7:+0,106379,CI[0,008863;0,200504].
+Но два currency-month остаются пустыми.
+
+AP17 зарегистрировал один вариант: тот же выбранный pacing+month24 rescue.
+Late h3/5/10/20 **2,375650/2,437423/2,392312/2,465753**; minlift2,375650,
+minrate1,031659,h5rate1,065315,currency1,045891-1,075774,zero empty months,
+max2/week,sym68,747499,future130,172438. Против AP12 h5 delta-0,037805,
+CI[-0,113234;0,022645], потери не доказано; против top35 +0,062594,
+CI**[0,010720;0,110466]**; против reserve7 +0,097185,
+CI**[0,006393;0,186485]**. 50-date sensitivity сохраняет оба положительных знака.
+
+AP17 добавил к AP16 две month-rescue точки, одна заменила pacing decision:net+1.
+Аудит подтвердил365-day rate,ranks,reasons,month-first,veto,cap и future-prefix.
+Полный набор из **242 тестов прошёл**. Период открыт; AP17 - новый strict
+retrospective control, не independent winner.
+
 ## Последний AP14-E: восстановление частоты почти без потери lift
 
 [PDF](output/pdf/ivan_after_publication_ap14_effective.pdf) ·

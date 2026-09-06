@@ -1,0 +1,14 @@
+{
+  "early_selected": "extra_ap12_pace365_p55_r70_cap2",
+  "strict_all_unknown_h_successes": [],
+  "strict_h5_successes": [
+    "extra_ap12_pace365_p60_month24_cap2",
+    "extra_ap12_adaptive105_month24_cap2"
+  ],
+  "selected_h5_lift": 2.4466168471986873,
+  "selected_h5_rate": 1.0638207043756671,
+  "selected_h5_currency_rate_min": 1.045891141942369,
+  "selected_min_unknown_h_lift": 2.3836187913050253,
+  "selected_min_unknown_h_rate": 1.031659388646288,
+  "selected_empty_complete_months": 2
+}

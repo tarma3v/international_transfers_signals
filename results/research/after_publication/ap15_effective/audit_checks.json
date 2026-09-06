@@ -1,0 +1,15 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "frozen_ap12_score_unchanged": true,
+  "all_five_signals_and_controller_state_rebuilt": true,
+  "month_rescue_first_in_currency_month": true,
+  "future_score_prefix_invariance_all_five": true,
+  "known_down_veto_all_policies": true,
+  "early_selection_rebuilt": "extra_ap12_silence14_month24_cap2",
+  "h1_excluded_from_selection": true,
+  "strict_all_unknown_h_success_count": 0,
+  "strict_h5_success_count": 0,
+  "historical_receipts_certified": false,
+  "fresh_holdout": false
+}

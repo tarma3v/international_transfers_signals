@@ -1,0 +1,7 @@
+candidate,baseline,period,baseline_signals,signals,added,removed,net,primary_reason,pace_reason,month_reason
+extra_ap12_pace365_p55_r70_month24_cap2,ap16_selected,early,259,259,0,0,0,244,15,0
+extra_ap12_pace365_p55_r70_month24_cap2,ap16_selected,later,714,715,2,1,1,637,76,2
+extra_ap12_pace365_p55_r70_month24_cap2,ap14_near,early,250,259,11,2,9,244,15,0
+extra_ap12_pace365_p55_r70_month24_cap2,ap14_near,later,674,715,64,23,41,637,76,2
+extra_ap12_pace365_p55_r70_month24_cap2,ap12_top30,early,251,259,16,8,8,244,15,0
+extra_ap12_pace365_p55_r70_month24_cap2,ap12_top30,later,651,715,77,13,64,637,76,2

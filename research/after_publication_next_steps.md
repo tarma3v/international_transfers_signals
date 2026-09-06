@@ -1,6 +1,6 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP14-E complete. The user made after-publication research the
+Updated 2026-09-06, AP17-E complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
@@ -18,6 +18,36 @@ Do NOT claim that rescore of old AP3 signals proves knowledge is harmful.
 Models must be retrained to the SAME effective target in with/without ablations.
 TЗ note updated: initial announced-reference choice was our conservative team
 interpretation, not an organizer ruling. Bank execution still NOT validated.
+
+## Latest completed AP15-E/AP17-E: strict cadence with deficit pacing
+
+AP15 froze5 Extra policies: top31.25,narrow adaptive,silence14+month and their
+month variants. All passed early. Selected silence14_month24 late h5=2.475700,
+rate1.005550,zero empty months,mincurrency.986126. No AP15 fresh policy passes
+late strict h5/all-h: month rescue fixes gaps,not corridor rate. Negative saved.
+
+AP16 froze5 new pacing controllers. Early selected pace365_p55_r70: primary
+top30; after84days and only while trailing365 decision rate<1, allow Extra
+rank>.55 jointly with reserve rank>.70. Late h3/5/10/20=
+2.383619/2.446617/2.403340/2.480249,minlift2.383619; minrate1.031659,h5rate
+1.063821,currency1.045891..1.075774. Sym68.7693,fwd130.5701. It beats strict
+top35 +.071788 CI[.020143,.121321] and reserve7 +.106379 CI[.008863,.200504],
+but leaves2 empty currency-months.
+
+AP17 protocol then froze EXACTLY ONE candidate before scoring: selected AP16
+pacing plus month24/reserve70 when current currency-month is empty. It passes
+early and late. Late h3/5/10/20=2.375650/2.437423/2.392312/2.465753;
+minunknownlift2.375650,minrate1.031659,h5rate1.065315,currency
+1.045891..1.075774,zero empty months,max2/week. Sym68.7475 CI[55.4998,84.1933],
+future130.1724 CI[106.0713,152.9061]. h5 delta vsAP12=-.037805
+CI[-.113234,.022645], no proven loss; vs top35 +.062594 CI[.010720,.110466];
+vs reserve7 +.097185 CI[.006393,.186485]. 50date keeps positive signs.
+
+AP17 changes AP16 by2 month rescues/1 displaced pace/net+1. It closes all strict
+gates without global threshold widening. Full audits rebuildtargets,score,
+ranks,365rate,reasons,month-first,veto,weeklycap,prefix corruption,selection and
+paired20/50date uncertainty. Report output/pdf/ivan_after_publication_ap17_effective.pdf.
+Full242tests passed.
 
 ## Latest completed AP14-E: light cadence repair preserves 2.48
 
@@ -143,21 +173,20 @@ AP12audit rebuilt source hashes,5755targets,17masks,85logs,compactsubset,
 local/class counts, all scores/signals, veto/prefix/weeklycap. PDF
 output/pdf/ivan_after_publication_ap12_effective.pdf rendered4pages and checked.
 
-## NEXT bounded AP15-E: close the last two-signal and one-month gap
+## NEXT bounded AP18-E: improve predictor under frozen AP17 policy
 
-1. Freeze before scoring. Keep AP12 top30, AP14 near-cadence/strict/adaptive and
-   AP14 honest-selected as controls. Do not call a later diagnostic validated.
-2. Use only AP12 Extra score. Test a compact policy family derived from counts,
-   not late lift: silence14/r80 plus a single month-end high-rank rescue when a
-   month is still empty; one narrow adaptive controller that lowers threshold
-   only to.675; and one fixed approximately top31-32% threshold computed from
-   the number of missing decisions. No broad micro-grid.
-3. Target: each-currency decision rate>=1 on h5 and ideally all unknown-h scopes,
-   zero empty complete month,max2/week,min unknown-h lift>2.35. Primary objective
-   is to preserve near-cadence h52.48, not maximize an opened-period point.
-4. Early selection remains2023 h3/h5/h10/h20 with mature labels and benefits.
-   Audit exact net additions,monthly rescue state,prefix corruption and paired
-   CIs. Final evidence remains future live shadow with actual receipt/execution.
+1. Freeze AP17 controller and all thresholds. Separate predictor quality from
+   cadence: every new score must pass through the same causal AP17 state machine.
+2. Return to genuinely new classical predictors,compact and prespecified:
+   calibrated Hist/Extra residual over known-fixing margin; global+currency
+   partial pooling; one regime-stable recent/full shrink; optionally a monotone
+   score blend. No broad hyperparameter grid and no route selection on late.
+3. Use quarterly chronological OOS fits with publication-h20 maturity cap and
+   2-day embargo. Select only early2023 on h3/h5/h10/h20. Preserve same-information
+   AP17/AP12/AP13 controls and all benefit/cadence gates.
+4. Target minunknownlift>2.4 with minrate>=1,zeroempty,max2/week. Report
+   probability calibration,feature families,residual contribution and paired
+   20/50dateCIs. Opened2024-2026 remains retrospective; live shadow is required.
 
 ## Latest completed AP10-E: strong matched information gain, simple rule selected
 

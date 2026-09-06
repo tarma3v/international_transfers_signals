@@ -1,0 +1,16 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "frozen_ap12_score_unchanged": true,
+  "single_policy_state_rebuilt": true,
+  "pace_threshold_rate_and_reserve_checked": true,
+  "month_rescue_first_in_currency_month": true,
+  "future_score_prefix_invariance": true,
+  "known_down_veto": true,
+  "weekly_cap_checked": true,
+  "early_selection_rebuilt": "extra_ap12_pace365_p55_r70_month24_cap2",
+  "h1_excluded_from_selection": true,
+  "strict_all_unknown_h_success": true,
+  "historical_receipts_certified": false,
+  "fresh_holdout": false
+}
