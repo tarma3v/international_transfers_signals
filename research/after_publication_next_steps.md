@@ -1,10 +1,26 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, T20 complete. The user made after-publication research the
+Updated 2026-09-06, T25 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user’s explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
+
+## LATEST COMPLETED CHECKPOINT: T25 ANCHOR-PRESERVING PREMARKET MAP
+
+T25 froze all maps before opening evaluation: T24 compact logistic fit before
+2024, mapping reference on mature 2024-H1, selection on mature 2024-H2 and
+diagnostic evaluation on 2025--2026. The selector chose `residual_a040`, adding
+40% of standardized compact residual rank to the frozen h20 logit.
+
+Evaluation AUC improves 0.374 to 0.563, AP 0.102 to 0.209, Brier 0.12429 to
+0.11825 and log-loss 0.42016 to 0.40454. The AUC gain has positive 20/50-date
+paired intervals, but Brier upper bounds are +0.00088/+0.00244, so the frozen
+gate returns `passed=false`. Keep T25 as a premarket shadow only. The 2025/2026
+split shows base-rate drift; do not infer a manual year/SVO switch. Next work
+may preregister a slow delayed intercept correction using only mature labels,
+while leaving the T24 rank and T22 verified-receipt branch frozen. Full outputs:
+`results/research/temperature/t25_anchor_preserving_map/`.
 
 ## LATEST COMPLETED CHECKPOINT: T20 HIERARCHICAL CALIBRATION
 
@@ -1481,3 +1497,13 @@ evaluation result. Freeze compact logit as a premarket rank shadow and test one
 predeclared anchor-preserving mapping; no post-2022 switch or weight may be
 chosen on 2025--2026. Full outputs:
 `results/research/temperature/t24_history_h20_anchor/`.
+
+## T25: anchor-preserving h20 map improves points, misses uncertainty gate
+
+The predeclared map selected a 0.40 residual-logit blend on 2024-H2 without
+seeing 2025--2026. Open evaluation AUC rises 0.374 to 0.563 and Brier falls
+0.12429 to 0.11825. However, both 20/50-date Brier intervals cross zero, and
+2026 calibration underpredicts the higher event rate. Preserve the packet as a
+premarket shadow, not a user-facing promotion. Do not choose a post-2022 switch
+from the open period; the only defensible next candidate is a preregistered,
+delayed mature-label base-rate correction.

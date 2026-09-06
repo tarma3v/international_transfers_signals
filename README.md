@@ -81,6 +81,13 @@
 > calibration, поэтому зарегистрированный primary остался identity. Compact
 > сохранён как prospective rank-challenger, не как готовая температура.
 >
+> T25 заранее зафиксировал семь способов перенести этот rank, не выбирая ничего
+> по 2025–2026. На 2024-H2 выбран residual blend `α=0,40`. На открытом
+> 2025–2026 он поднял AUC **0,374→0,563**, AP **0,102→0,209** и улучшил
+> Brier **0,12429→0,11825**, но верхние 95% block-CI Brier delta равны
+> +0,00088/+0,00244. Поэтому строгий gate не пройден: это новый premarket
+> shadow-candidate, а не production temperature.
+>
 > Новый T15/T16 закрывает вечер до 23:00 завершёнными perpetual-свечами
 > CNYRUBF и USDRUBF. Ни один новый probability-кандидат не улучшил сильный
 > T7B-control на screen-2024, поэтому вечерняя температура не меняется только
@@ -126,7 +133,7 @@
 > формально проходит gates, однако это AP37 плюс 2 сигнала без доказанного
 > улучшения. Основным остаётся более простой AP37.
 > Исследование активно, без почасовой автоматизации; после T18 полный набор из
-> **365 тестов** проходит.
+> **367 тестов** проходит.
 
 > **Сохранённый ориентир до публикации:** причинный `availability_route` на
 > срезе 15:30. На ретроспективе 2025–2026 он даёт adjusted lift **2,053** при
@@ -145,6 +152,7 @@
 [T22: h20-поправка полезна только после receipt](research/temperature_t22_h20_rank_correction_report.md) ·
 [T23: delayed online calibration не прошла](research/temperature_t23_h20_delayed_online_report.md) ·
 [T24: сильный history-only h20 rank](research/temperature_t24_history_h20_anchor_report.md) ·
+[T25: anchor-preserving map и строгий отказ promotion](research/temperature_t25_anchor_preserving_map_report.md) ·
 [пример обязательной таблицы ТЗ](output/signals_example_2026-09-01_2115_h5.csv) ·
 [пример до receipt](output/signals_example_2026-09-01_1845_no_receipt_h5.csv) ·
 [пример после verified receipt](output/signals_example_2026-09-01_1845_verified_receipt_h5.csv) ·
@@ -153,7 +161,7 @@
 [парное fast-vs-slow сравнение](research/fast_slow_paired_report.md) ·
 [вечерний роутер T16](research/temperature_t16_evening_router_registered.md) ·
 [финальный алгоритм простыми словами, PDF](output/pdf/ivan_final_anytime_algorithm_for_everyone.pdf) ·
-[подробный any-time отчёт, 31 страница](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
+[подробный any-time отчёт, 32 страницы](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
 [финальная презентация с интерфейсом](output/presentation/international_transfers_final_with_interface_2026-09-06_v2.pptx) ·
 [та же презентация в PDF](output/pdf/international_transfers_final_with_interface_2026-09-06_v2.pdf) ·
 [самый эффективный подход: подробное объяснение на 30 страниц](output/pdf/описание_подробное.pdf) ·
@@ -812,7 +820,7 @@ PYTHONPATH=. .venv/bin/python -m research.after_publication_ap37_effective_audit
 PYTHONPATH=. .venv/bin/python -m research.build_after_publication_ap39_effective_report
 ```
 
-Полный набор содержит **289 тестов**. Повторная загрузка данных MOEX требует
+Полный набор содержит **367 тестов**. Повторная загрузка данных MOEX требует
 сети: `PYTHONPATH=. .venv/bin/python -m research.round7_direct_pairs_data`.
 XGBoost на macOS может потребовать `brew install libomp`.
 
@@ -826,6 +834,7 @@ XGBoost на macOS может потребовать `brew install libomp`.
 | `research/after_publication_ap33_*` | лидер calendar-router, протокол и аудит |
 | `research/after_publication_ap34_*`–`ap36_*` | residual, distributional и causal Hedge |
 | `research/after_publication_ap37_*`–`ap39_*` | mature precision, core veto и runway |
+| `research/temperature_t24_*`–`temperature_t25_*` | premarket h20 rank и anchor-preserving mapping |
 | `data/moex_direct_pairs/` | архив прямых CETS-пар с SHA-256 и FACEVALUE |
 | `results/research/round7/` | полные результаты последнего раунда |
 | `results/research/after_publication/ap33_effective/` | scorecards и аудит AP33 |
@@ -855,6 +864,8 @@ AP26 остаётся accuracy core, AP33 — основной frozen control; A
 сохранены как проверенная accuracy/cadence граница.
 Точечные различия между лидерами нельзя считать доказанными из-за многократно
 открытого периода и пересекающих ноль paired CI. Ближайший шаг — frozen
-live/prospective shadow без изменения порогов и одна заранее зарегистрированная
-causal weekly optimal-stopping модель вместо дальнейшего tuning precision/runway; отдельно нужно подтвердить
-фактический timestamp получения курса и исполняемый банковский курс.
+live/prospective shadow без изменения порогов. Для any-time h20 T22 остаётся
+receipt-only shadow, а T25 — premarket shadow с улучшенным rank, но не прошедшей
+неопределённостью Brier. Следующая калибровка может быть только заранее
+зафиксированным delayed base-rate update; отдельно нужно подтвердить фактический
+timestamp получения курса и исполняемый банковский курс.

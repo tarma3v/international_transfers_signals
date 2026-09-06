@@ -1872,3 +1872,24 @@ production temperature: formal primary не прошёл, а 2026 local calibrat
 дрейфует. Compact сохраняется как frozen rank shadow; следующий mapping должен
 быть зарегистрирован без подбора по открытому evaluation. Результаты:
 `results/research/temperature/t24_history_h20_anchor/`.
+
+## T25: anchor-preserving blend улучшает rank, но не проходит Brier-CI
+
+T25 был зарегистрирован до расчёта результатов. Компактная T24-logistic снова
+обучена только до 2024; 2024-H1 использован для карты, 2024-H2 — для выбора из
+фиксированных residual/copula/permutation-кандидатов, 2025–2026 — только
+открытая диагностика. Selector выбрал `residual_a040`: 40% стандартизованного
+добавочного rank-сигнала в logit старой h20 temperature.
+
+На 2 910 строках 2025–2026 AUC вырос 0,374→0,563, average precision
+0,102→0,209, Brier улучшился 0,12429→0,11825, log-loss 0,42016→0,40454 и ECE
+0,03608→0,03326. AUC-delta устойчиво положительна при 20/50-date bootstrap, но
+верхние границы Brier-delta равны +0,00088/+0,00244. Формальный `passed=false`:
+нельзя ослаблять заранее заданный gate после просмотра результата.
+
+Global copula сохранила полный AUC 0,702, но дала ECE 0,122; daily permutation
+точно сохранила набор пяти дневных вероятностей, однако дала лишь AUC 0,393.
+В 2025 residual blend улучшает calibration, в 2026 недооценивает новый base
+rate. Вывод: rank полезен, а абсолютная вероятность режимно дрейфует. T25
+сохранён как premarket shadow, production temperature не изменена. Результаты:
+`results/research/temperature/t25_anchor_preserving_map/`.

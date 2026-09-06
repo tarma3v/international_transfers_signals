@@ -44,6 +44,12 @@ failed Brier/ECE, so identity correctly remains the user-facing temperature.
 Freeze the compact rank separately and test only a predeclared mapping that
 preserves the anchor's probability level.
 
+T25 tested that predeclared anchor-preserving family. A 40% residual-logit
+blend selected on 2024-H2 improves open AUC 0.374 to 0.563 and Brier 0.12429 to
+0.11825, but the 20/50-date Brier intervals cross zero. It remains a premarket
+shadow. The divergence between 2025 and 2026 says the missing component is a
+slow, causally delayed base-rate level, not more retrospective rank tuning.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -104,9 +110,10 @@ and weekends produce an explicit stale state, not imputed current prices.
 
 ## Model plan
 
-1. Keep frozen AP49/T17 probability as the anchor. Test a preregistered small
-   cross-horizon rank correction and delayed calibration using only mature
-   prior rows; do not select its strength on opened 2024--2026.
+1. Keep frozen AP49/T17 probability as the anchor, T22 after verified receipt
+   and T25 before receipt as shadow ranks. Test only a preregistered slow
+   base-rate/intercept correction using mature prior rows; do not select its
+   strength on opened 2024--2026.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.
 3. Implement `score_as_of(currency, timestamp, horizon)` that selects the latest

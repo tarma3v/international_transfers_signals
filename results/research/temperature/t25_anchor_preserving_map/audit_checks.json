@@ -1,0 +1,16 @@
+{
+  "source_hashes_match": true,
+  "prediction_rows": 2910,
+  "evaluation_dates": 582,
+  "selected_model": "residual_a040",
+  "passed": false,
+  "all_sources_no_later_than_query": true,
+  "publication_mapping_causal": true,
+  "mapping_reference_and_selection_mature": true,
+  "selection_rebuilt": true,
+  "selected_prediction_rebuilt": true,
+  "probabilities_finite_and_bounded": true,
+  "daily_permute_max_multiset_error": 0.0,
+  "paired_bootstrap_grid_complete": true,
+  "selection_on_open_period": false
+}

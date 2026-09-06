@@ -115,6 +115,9 @@ caused the change.
    opened 2025--2026 AUC 0.702 versus 0.374 early identity. It was not selected
    because its selection-period probability calibration failed; keep it as a
    rank-only shadow, not a temperature.
-10. Next: freeze T22 receipt-only and T24 premarket rank in shadow. Test one
-    predeclared mapping that preserves the frozen probability level; do not tune
-    it, a regime switch or a clock on opened 2024--2026.
+10. T25 tested that predeclared map. Selection-2024 chose a 0.40 residual-logit
+    blend; open AUC/Brier improve 0.374→0.563 and 0.12429→0.11825, but both
+    Brier block intervals cross zero. It remains a premarket shadow.
+11. Next: keep T22 receipt-only and T25 premarket shadows frozen. If attempted,
+    adapt only the probability intercept slowly from already mature outcomes;
+    do not select a post-2022 switch, weight or clock on opened 2025--2026.
