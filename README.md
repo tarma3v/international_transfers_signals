@@ -177,6 +177,15 @@
 > возник после открытого T36, поэтому `production_promoted=false`: только
 > frozen prospective shadow.
 >
+> T38 проверил, не скрывает ли pooled 40/40 локальные провалы. Модель не
+> менялась: добавлены currency/year/currency-year срезы и 20/50-date paired
+> bootstrap. Все **80/80** годовых clock-строк и **4/4** pooled year-группы
+> проходят; Brier улучшается во всех 680 local point-срезах, AUC - в 674/680.
+> Но строгий итог лишь **619/680** clock-строк и **25/34** pooled local групп:
+> TJS местами превышает ECE gate, а у малых currency-year групп интервалы
+> пересекают ноль. Поэтому T37 остаётся сильным pooled/year-stable shadow, но
+> не production-ready локальной калибровкой.
+>
 > Новый T15/T16 закрывает вечер до 23:00 завершёнными perpetual-свечами
 > CNYRUBF и USDRUBF. Ни один новый probability-кандидат не улучшил сильный
 > T7B-control на screen-2024, поэтому вечерняя температура не меняется только
@@ -254,6 +263,7 @@
 [T35: часовой h20-router и его отказ](research/temperature_t35_unified_h20_phase_router_report.md) ·
 [T36: source-driven route и ECE-проблема](research/temperature_t36_source_driven_h20_router_report.md) ·
 [T37: единый h20 shadow проходит gates](research/temperature_t37_source_driven_h20_shrink50_report.md) ·
+[T38: локальная устойчивость T37](research/temperature_t38_h20_local_stability_report.md) ·
 [пример обязательной таблицы ТЗ](output/signals_example_2026-09-01_2115_h5.csv) ·
 [пример до receipt](output/signals_example_2026-09-01_1845_no_receipt_h5.csv) ·
 [пример после verified receipt](output/signals_example_2026-09-01_1845_verified_receipt_h5.csv) ·
@@ -921,7 +931,7 @@ PYTHONPATH=. .venv/bin/python -m research.after_publication_ap37_effective_audit
 PYTHONPATH=. .venv/bin/python -m research.build_after_publication_ap39_effective_report
 ```
 
-Полный набор содержит **401 тест** причинности, реконструкции и метрик.
+Полный набор содержит **403 теста** причинности, реконструкции и метрик.
 Повторная загрузка данных MOEX требует
 сети: `PYTHONPATH=. .venv/bin/python -m research.round7_direct_pairs_data`.
 XGBoost на macOS может потребовать `brew install libomp`.
@@ -936,7 +946,7 @@ XGBoost на macOS может потребовать `brew install libomp`.
 | `research/after_publication_ap33_*` | лидер calendar-router, протокол и аудит |
 | `research/after_publication_ap34_*`–`ap36_*` | residual, distributional и causal Hedge |
 | `research/after_publication_ap37_*`–`ap39_*` | mature precision, core veto и runway |
-| `research/temperature_t24_*`–`temperature_t37_*` | h20 rank, regime controls и source-driven calibrated shadow |
+| `research/temperature_t24_*`–`temperature_t38_*` | h20 rank, source-driven shadow и local stability audit |
 | `data/moex_direct_pairs/` | архив прямых CETS-пар с SHA-256 и FACEVALUE |
 | `results/research/round7/` | полные результаты последнего раунда |
 | `results/research/after_publication/ap33_effective/` | scorecards и аудит AP33 |
@@ -968,9 +978,10 @@ AP26 остаётся accuracy core, AP33 — основной frozen control; A
 открытого периода и пересекающих ноль paired CI. Ближайший шаг — frozen
 live/prospective shadow без изменения порогов. Для any-time h20 T37 впервые
 объединяет T34 history, T19 market/hold и T22 after-receipt по реально
-доступному source state и проходит 40/40 открытых ретроспективных gates. Он всё
-равно не повышен в production: идея фиксированного 50% shrink появилась после
-просмотра T36, а нового независимого периода нет. Следующий доказательный шаг -
-заморозить T37 и проверить prospective; не подбирать ещё один вес по 2025–2026.
+доступному source state и проходит 40/40 pooled-state gates. T38 уточняет:
+годовые срезы устойчивы, но currency-local ECE и часть currency-year CI ещё не
+проходят. T37 не повышен в production; следующий шаг - pre-2025 OOS
+currency-phase shrinkage или genuinely prospective shadow, без настройки по
+2025–2026.
 Отдельно нужно подтвердить фактический timestamp получения курса и исполняемый
 банковский курс.

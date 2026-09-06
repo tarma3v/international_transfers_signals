@@ -2124,3 +2124,24 @@ log-loss на -0,01577, AUC на +0,13286 и ECE на -0,00722. Formal
 придуман после просмотра T36, а 2025-2026 уже открыт. Это frozen prospective
 shadow, а не свежий независимый победитель. Результаты:
 `results/research/temperature/t37_source_driven_h20_shrink50/`.
+
+## T38: pooled h20 устойчив по годам, но локальная калибровка ещё не доказана
+
+T38 не подбирал новую модель и не менял прогнозы T37. Он проверил тот же frozen
+output отдельно по валютам, годам и `валюта x год`, сохраняя целые даты в
+парном circular moving-block bootstrap с блоками 20/50 дат.
+
+Годовой результат полностью устойчив: **80/80** clock-строк и **4/4** pooled
+year-группы проходят. Brier улучшается во всех **680/680** локальных point-срезах,
+AUC - в **674/680**; оставшиеся шесть не нарушают допуск non-inferiority. Но
+строгий общий итог только **619/680** clock-строк и **25/34** pooled local
+групп. Основная причина - ECE у TJS до verified receipt; часть малых
+`currency x year` групп также имеет широкие Brier/AUC интервалы, пересекающие
+ноль. Поэтому `local_stability_passed=false`, `production_promoted=false`.
+
+Точная формулировка статуса T37 теперь: **сильный pooled/year-stable shadow,
+но currency-local calibration ещё не production-proven**. Нельзя задним числом
+дать TJS отдельный вес по открытому 2025-2026. Следующий допустимый шаг -
+валютно-фазовая shrinkage-карта только на disjoint pre-2025 OOS predictions или
+genuinely prospective shadow. Результаты:
+`results/research/temperature/t38_h20_local_stability/`.

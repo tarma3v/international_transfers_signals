@@ -120,9 +120,13 @@ T35-T37 довели это до единого h20-маршрута. T35 док
 T36 заменил часы наблюдаемым `snapshot_source_kind` и резко улучшил Brier/AUC,
 но не прошёл локальный ECE-gate. T37 одной заранее зарегистрированной 50%
 log-odds усадкой только history-компонента прошёл оба pooled bootstrap gate,
-оба component gate и 40/40 временных state gates. Это закрывает
-ретроспективный h20 calibration gap на открытом периоде, но не создаёт fresh
-holdout: `production_promoted=false`, следующий шаг только prospective shadow.
+оба component gate и 40/40 объединённых `scenario x clock` gates. T38 затем
+проверил тот же frozen output по валютам и годам. Все годовые срезы прошли, но
+полный локальный итог составил 619/680 clock-строк и 25/34 pooled групп:
+currency-local ECE у TJS и интервалы малых `currency x year` групп ещё не
+доказаны. Поэтому T37 закрывает pooled/year h20 calibration gap на открытом
+периоде, но не создаёт fresh holdout и не доказывает production-калибровку
+каждой валюты: `production_promoted=false`.
 
 Повторная сверка 06.09 проведена непосредственно по текущей авторизованной
 странице кейса, обеим Q&A-сводкам (04.09 и 05.09) и PDF-презентации из `main`.
@@ -198,7 +202,7 @@ proxy направления, но не исполнимая банковска�
 | Защита от будущего | PASS для артефактов и runtime gate | corruption-prefix, независимые audit scripts; T18 не активирует same-day after-publication строки без verified receipt и сдвигает поздний receipt | production ingestion должен сохранить фактическое событие и payload id |
 | Стабильность OOT | PARTIAL | отбор на 2023, разрезы 2024/2025/2026 и по валютам положительные | `fresh_holdout=false`; заморозить AP37/T17 и запустить prospective shadow |
 | Произвольная дата/время | PASS | `signals_as_of(T)` причинно режет дневной ряд; `score_snapshot_as_of` выбирает последний допустимый снимок; `case_output_table_as_of` и `run_case_output.py` выдают все валюты | — |
-| Any-time calibration | PARTIAL, сильный shadow | T37 source-driven h20 проходит 40/40 local gates и оба pooled bootstrap gate; h1/h3/h5 ранее закрыты T14/T19 | T37 заморозить без дальнейшего alpha-tuning и подтвердить на genuinely prospective outcomes |
+| Any-time calibration | PARTIAL, сильный pooled/year shadow | T37 проходит 40/40 объединённых scenario-clock gates; T38 подтверждает 80/80 year-clock и 4/4 pooled year, но только 619/680 clock-local и 25/34 pooled currency/year/currency-year групп | не подбирать валютные веса на 2025-2026; использовать disjoint pre-2025 OOS map или genuinely prospective outcomes |
 | Обязательная схема строки | PASS | `case_output_as_of` возвращает date/corridor/indicator/direction/strength/speed/scenario и полный audit payload; сохранён демонстрационный CSV | — |
 | Fast vs slow | PASS как CBR-proxy | на общем support h5 adjusted lift 2,134 → 2,677; Δ +0,525 CI [+0,193; +0,934]; future-only Δ +21,79 б.п. [+3,35; +42,92] | реальную цену ожидания по bank quote можно измерить только в пилоте |
 | Комбинирование/конфликты | PASS | AP37: core AP26, fallback AP23, mature-precision gate, cooldown/cap | перевести reason codes 1/2/3 в человекочитаемые сценарии |
@@ -337,12 +341,13 @@ CTR — только диагностическая метрика: хороши
 ## Ближайший порядок работ
 
 1. Заморозить AP37 sparse push и T37 h20 widget-shadow без новых настроек на
-   открытом 2025-2026; сохранить фактические source/receipt timestamps.
+   открытом 2025-2026; считать T38 обязательным локальным evidence packet и
+   сохранять фактические source/receipt timestamps.
 2. Перевести reason codes AP37 в человекочитаемые indicator/scenario в
    демонстрационном журнале решений.
 3. Обновить презентацию: сохранить продуктовую историю из `main`, но заменить
    устаревший тезис «lift и cadence вместе не выполняются» на AP37 и вынести
    только 2-3 decision metrics: worst-corridor lift, `±h` benefit, cadence.
 4. На слайде задачи со звёздочкой показать T37 как причинный source-driven
-   shadow и честно подписать `fresh_holdout=false`; не смешивать его Brier/AUC
-   с метриками sparse push.
+   pooled/year-stable shadow, рядом указать T38 `619/680` и `25/34`, а также
+   `fresh_holdout=false`; не смешивать его Brier/AUC с метриками sparse push.

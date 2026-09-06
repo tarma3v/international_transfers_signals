@@ -171,3 +171,10 @@ caused the change.
     verified receipt. It passes all 40 retrospective state gates and both
     pooled block-bootstrap gates. Freeze it for prospective shadow; do not
     promote or tune another alpha on the opened 2025-2026 period.
+24. T38 keeps every T37 prediction frozen and audits currency, year, and
+    currency-year stability. All year slices pass, but 61/680 clock-local rows
+    and 9/34 pooled local groups fail the full frozen gate, mainly because of
+    TJS ECE before receipt and weak power in small currency-year cells. Treat
+    T37 as pooled/year-stable, not production-calibrated for every currency.
+    Any repair must come from disjoint pre-2025 OOS data or new prospective
+    outcomes, never another open-period currency weight.

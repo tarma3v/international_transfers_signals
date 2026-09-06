@@ -1,0 +1,14 @@
+{
+  "source_hashes_match": true,
+  "t37_predictions_used_without_model_change": true,
+  "clock_local_metrics_rebuilt": true,
+  "pooled_local_metrics_rebuilt": true,
+  "date_block_bootstrap_rebuilt": true,
+  "expected_grids_complete": true,
+  "bootstrap_draws_and_blocks_match": true,
+  "decision_recomputed": true,
+  "local_stability_passed": false,
+  "production_promoted": false,
+  "selection_on_open_2025_2026": false,
+  "fresh_independent_holdout": false
+}

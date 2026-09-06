@@ -1,0 +1,38 @@
+{
+  "packet": "temperature-T38",
+  "candidate": "source_driven_h20_shrink50_shadow",
+  "evaluation_period": "open 2025-2026 retrospective",
+  "evaluation_rows": 116400,
+  "local_slices": [
+    "currency",
+    "year",
+    "currency_year"
+  ],
+  "bootstrap_draws": 500,
+  "bootstrap_blocks": [
+    20,
+    50
+  ],
+  "clock_local_rows": 680,
+  "clock_local_noninferior": 619,
+  "pooled_local_groups": 34,
+  "pooled_local_passes": 25,
+  "local_stability_passed": false,
+  "production_promoted": false,
+  "model_changed": false,
+  "runtime_changed": false,
+  "push_changed": false,
+  "selection_on_open_2025_2026": false,
+  "open_point_slices_inspected_before_registration": true,
+  "local_bootstrap_inspected_before_registration": false,
+  "fresh_independent_holdout": false,
+  "source_sha256": {
+    "research/temperature_t38_h20_local_stability_registered.md": "2dfd6bc8dae02fefdba5781f794eb1f6af942039602bb8ed11a99a4a54e75c5a",
+    "research/temperature_t38_h20_local_stability.py": "259e5e6213083691173589d047addff87c8e83e3fa7035ae9f062ef213c66e71",
+    "research/temperature_t38_h20_local_stability_audit.py": "4bff4063964744cda5786de05134190468dc2dc56c9cff30ce6ff7af9094f642",
+    "results/research/temperature/t37_source_driven_h20_shrink50/metadata.json": "497d4987216b3ae60e1a9edcc67d73248ff1c26b242729071b007bfd16430d39",
+    "results/research/temperature/t37_source_driven_h20_shrink50/predictions.csv.gz": "907f635504c8b0740f2b414eddb03fd09385e6e2883aee18f7afcdc5bff686a3",
+    "results/research/temperature/t37_source_driven_h20_shrink50/metrics.csv": "8dc88fb999f8e628a91e213bf0443168bec2a2543a79e47369321515f18bec5b",
+    "results/research/temperature/t37_source_driven_h20_shrink50/paired_bootstrap.csv": "09b56a9cec7c74e984df3bd53080b00115e78a1521fafaf9b3b1f2bd27d8e24f"
+  }
+}

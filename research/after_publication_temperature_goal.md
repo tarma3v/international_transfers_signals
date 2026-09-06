@@ -130,6 +130,18 @@ scenarios. Because this repair follows inspection of T36 on already opened
 `production_promoted=false`. No further alpha tuning on the open period is
 allowed.
 
+T38 then audited the unchanged T37 output by currency, year, and currency-year.
+All 80 year-clock rows and all four pooled year groups pass, and every one of
+680 local point slices improves Brier. However, only 619/680 clock-local rows
+and 25/34 pooled local groups pass the full frozen gate. The main failure is
+currency-local ECE for TJS before a verified receipt; several small
+currency-year groups also have Brier or AUC intervals that cross zero. This
+does not invalidate the pooled signal, but it narrows the claim: T37 is a
+pooled and year-stable shadow, not production-proven per-currency calibration.
+Do not repair TJS on the opened 2025-2026 evaluation. Any currency-phase
+shrinkage must be learned on disjoint pre-2025 OOS predictions or evaluated
+prospectively.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -201,9 +213,10 @@ and weekends produce an explicit stale state, not imputed current prices.
    T32 rejects disjoint recent-data warm-up, T33 supports quarterly-frozen
    stacking, and T34 proves that missing mature feedback must retain identity
    instead of activating an arbitrary equal mixture. Freeze T37 as the routed
-   challenger, retain T25/T30/T31/T33/T34 only as diagnostic controls, and wait
-   for prospective outcomes before reconsidering level adaptation or changing
-   the 50% weight.
+   challenger, retain T25/T30/T31/T33/T34 only as diagnostic controls, and use
+   T38 as its local-stability evidence packet. The next change may use only a
+   disjoint pre-2025 OOS currency-phase map or genuinely prospective outcomes;
+   do not reconsider the 50% weight on the opened 2025-2026 period.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.
 3. Implement `score_as_of(currency, timestamp, horizon)` that selects the latest

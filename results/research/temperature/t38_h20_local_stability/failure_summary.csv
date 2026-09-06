@@ -1,0 +1,4 @@
+slice,clock_rows,clock_noninferior,clock_failures,clock_ece_failures,clock_auc_failures,pooled_groups,pooled_passes,pooled_failures
+currency,200,169,31,31,0,10,9,1
+year,80,80,0,0,0,4,4,0
+currency_year,400,370,30,30,0,20,12,8
