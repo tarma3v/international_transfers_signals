@@ -1,0 +1,14 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "all_17_ridge_residual_survival_fits_refit_exact": true,
+  "train_only_clipping_local_state_and_empirical_cdf_exact": true,
+  "nested_source_and_calendar_policy_state_exact": true,
+  "future_feature_label_and_source_corruption_prefix_invariant": true,
+  "early_selection_rebuilt": true,
+  "known_down_veto_inherited_and_checked": true,
+  "h1_excluded_from_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false
+}

@@ -1,0 +1,23 @@
+{
+  "selected_early": "mature_brier_hedge_core_calendar_fallback_cap2",
+  "fresh_early_joint_pass": true,
+  "late_min_lift": 2.401056821180294,
+  "late_mean_lift": 2.4261368570288733,
+  "late_min_rate": 1.031659388646288,
+  "late_max_weekly_signals": 2,
+  "late_strict_success": true,
+  "late_reason_counts": {
+    "final": {
+      "none": 2573,
+      "hedge_core": 691,
+      "ap23_late_week": 14,
+      "ap23_silence10": 7
+    },
+    "source": {
+      "none": 2594,
+      "rolling_primary": 612,
+      "hedge_pace": 72,
+      "month_rescue": 7
+    }
+  }
+}

@@ -8,7 +8,45 @@
 Для внутренней оптимизации сохраняется
 `h=5`, официальный scorecard теперь считается сразу на `h=1/3/5/10/20`.
 
-## Последний AP33-E: календарный fallback улучшает strict frontier
+## Последние AP34-E/AP36-E: residual-модели и Hedge не обошли AP33
+
+[PDF](output/pdf/ivan_after_publication_ap36_effective.pdf) ·
+[отчёт](research/after_publication_ap36_effective_report.md) ·
+[AP34 protocol](research/after_publication_ap34_effective_registered.md) ·
+[AP35 protocol](research/after_publication_ap35_effective_registered.md) ·
+[AP36 protocol](research/after_publication_ap36_effective_registered.md).
+
+AP34 заменил бинарный direct y20 на continuous residual survival. Target равен
+минимальной будущей effective-просадке за вычетом уже известного объявленного
+изменения. В каждом из 17 quarterly OOS fit standardized Ridge обучается только
+на зрелом прошлом; train-only residual CDF и причинный per-currency error-state
+превращают прогноз в survival score. Late h3/h5/h10/h20=
+**2,411500/2,468417/2,427785/2,432848**, min rate **1,046943**, zero empty
+months, max2/week. AP34 проходит strict point-gates, но уступает AP33 на каждом
+горизонте; все delta CI пересекают ноль.
+
+AP35 проверил принципиально другую постановку: monotone distributional CatBoost.
+Каждая зрелая train-строка расширена на пять заранее заданных anchor-порогов
+−200/−100/0/+100/+200 б.п.; классификатор учит условную CDF residual floor, а
+positive monotonic constraint делает score согласованным с запасом. Late
+**2,391461/2,449391/2,414259/2,402068**, min rate **1,039301**. H3 gate
+провален; потеря h20 к AP33 −0,114 имеет 20-date CI **[−0,252; −0,021]**.
+
+AP36 объединил AP26 direct y20, AP34 survival и AP35 distributional score через
+causal mature-only Hedge. Same-currency ranks считаются до текущей строки, а
+trailing-730 Brier loss видит только y20, полностью созревшие не менее двух дней
+назад. Средние late weights: AP26 **58,8%**, AP34 **32,1%**, AP35 **9,1%**.
+Late **2,401057/2,448897/2,436977/2,417616**, min rate **1,031659**. Strict
+point-gates пройдены, но h5 и h20 статистически хуже AP33: delta CI
+**[−0,098; −0,004]** и **[−0,207; −0,026]**.
+
+Вывод: знание завтрашнего курса действительно полезно, но узкое место уже не
+средняя calibration. AP26 выигрывает редким точным decision-tail, а continuous
+floor, synthetic CDF и average Brier добавляют слишком много средних pace-точек.
+AP33 остаётся frozen strict leader. Все независимые fit/maturity/state/
+monotonicity/weight/future-prefix audits прошли; полный набор — **284 теста**.
+
+## AP33-E: календарный fallback улучшает strict frontier
 
 [PDF](output/pdf/ivan_after_publication_ap33_effective.pdf) ·
 [отчёт](research/after_publication_ap33_effective_report.md) ·

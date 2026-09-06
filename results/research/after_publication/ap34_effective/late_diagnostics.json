@@ -1,0 +1,23 @@
+{
+  "selected_early": "residual_survival_core_calendar_fallback_cap2",
+  "fresh_early_joint_pass": true,
+  "late_min_lift": 2.411500311163575,
+  "late_mean_lift": 2.435137566129348,
+  "late_min_rate": 1.046943231441048,
+  "late_max_weekly_signals": 2,
+  "late_strict_success": true,
+  "late_reason_counts": {
+    "final": {
+      "none": 2567,
+      "new_core": 707,
+      "ap23_late_week": 5,
+      "ap23_silence10": 6
+    },
+    "source": {
+      "none": 2578,
+      "rolling_primary": 615,
+      "residual_pace": 86,
+      "month_rescue": 6
+    }
+  }
+}

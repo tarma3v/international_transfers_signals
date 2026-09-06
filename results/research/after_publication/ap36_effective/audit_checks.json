@@ -1,0 +1,14 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "three_expert_causal_ranks_exact": true,
+  "all_mature_brier_losses_counts_and_weights_exact": true,
+  "nested_source_and_calendar_policy_state_exact": true,
+  "future_expert_label_and_source_corruption_prefix_invariant": true,
+  "early_selection_rebuilt": true,
+  "known_down_veto_inherited_and_checked": true,
+  "h1_excluded_from_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false
+}

@@ -1,6 +1,6 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP33-E complete. The user made after-publication research the
+Updated 2026-09-06, AP36-E complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
@@ -19,7 +19,39 @@ Models must be retrained to the SAME effective target in with/without ablations.
 TЗ note updated: initial announced-reference choice was our conservative team
 interpretation, not an organizer ruling. Bank execution still NOT validated.
 
-## Latest completed AP33-E: calendar-aware decision fallback
+## Latest completed AP34-E/AP36-E: residual survival, distributional CDF, Hedge
+
+AP34 registered one continuous-residual architecture before fit. The target is
+effective_floor20-known_change. Seventeen quarterly OOS standardized Ridge fits
+use only publication-h20-mature rows, a two-day embargo and train-only 1/99%
+winsorization. A causal per-currency error state and train-only residual CDF turn
+the estimate into survival probability. It passed early and late strict point
+gates: h3/5/10/20=2.411500/2.468417/2.427785/2.432848,minlift2.411500,
+minrate1.046943,zeroempty,max2/week. H5 has718 decisions,sym72.9311,fwd130.3284.
+It is below AP33 at every horizon; all paired lift delta CIs cross0.
+
+AP35 registered one monotone distributional CatBoost. Every mature train row is
+expanded across five fixed anchor offsets -200/-100/0/+100/+200bp; a positive
+anchor constraint learns a coherent residual-floor CDF. It passed early but late
+h3 failed: 2.391461/2.449391/2.414259/2.402068,minrate1.039301. H20 is
+significantly worse than AP33: delta-.114,20-date CI[-.252,-.021]. Do not repeat
+synthetic-anchor distributional smoothing as a broad pace expert.
+
+AP36 registered a causal mature-only Brier Hedge across frozen AP26,AP34,AP35
+scores. Same-currency ranks exclude the current row; trailing730 losses use only
+y20 outcomes mature at least two days earlier, with global/currency shrinkage and
+fixed softmax temperature25. Average late weights=.5883/.3208/.0909. It passes
+strict point gates at 2.401057/2.448897/2.436977/2.417616,minrate1.031659,
+zeroempty,max2/week, but is significantly worse than AP33 on h5 and h20:
+CI[-.0978,-.0039] and[-.2069,-.0258]. Average Brier competence is not rare-tail
+decision competence.
+
+All AP34-AP36 audits reconstruct 17 fits, targets, maturity, clipping, CDF,
+monotonicity probes, ranks, mature losses/counts/weights, nested controller state
+and future-corruption prefix invariance. Full suite:284 tests. Current report:
+output/pdf/ivan_after_publication_ap36_effective.pdf. AP33 remains frozen leader.
+
+## Latest leader AP33-E: calendar-aware decision fallback
 
 AP33 froze exactly one policy before scoring. AP26 y20-shrink200 decisions keep
 priority. AP23 fallback requires the combined stream's prior trailing365 rate<1,
@@ -39,8 +71,8 @@ Early AP33,AP32,AP26 and several controls are identical, so early pass validates
 the gate but does not independently validate calendar-filter superiority. AP33
 is the new best strict point and frozen challenger, not an independent holdout
 winner. Audit rebuilt inputs,targets,rate,warmup,silence,week,reasons,cap and
-future-source prefix invariance. Full suite:279 tests. Current report:
-output/pdf/ivan_after_publication_ap33_effective.pdf.
+future-source prefix invariance. At the AP33 checkpoint the suite had279 tests;
+its report remains output/pdf/ivan_after_publication_ap33_effective.pdf.
 
 ## Latest completed AP28-E/AP32-E: hierarchy, survival and decision routing
 
@@ -302,18 +334,20 @@ AP12audit rebuilt source hashes,5755targets,17masks,85logs,compactsubset,
 local/class counts, all scores/signals, veto/prefix/weeklycap. PDF
 output/pdf/ivan_after_publication_ap12_effective.pdf rendered4pages and checked.
 
-## NEXT bounded AP34-E: freeze AP33 and test one genuinely new predictor
+## NEXT bounded AP37-E: disagreement-tail uncertainty, not another broad blend
 
-1. Freeze AP23, AP26, AP32 and AP33 exactly for prospective shadow; do not tune
-   AP33 warmup, silence or weekdays on opened 2024-2026.
-2. Test one genuinely new mature-only predictor, not another router threshold.
-   Preferred direction: a simple per-currency state-space/residual probability
-   anchored on the already announced change, pooled globally only for residuals.
-   Register one architecture and one policy before any scorecard.
+1. Freeze AP23, AP26, AP33, AP34, AP35 and AP36 exactly; do not tune AP33
+   warmup/silence/weekdays or AP34-AP36 alpha, offsets, temperature, half-lives
+   on opened 2024-2026.
+2. Register exactly one causal disagreement-tail policy before scoring. Preserve
+   AP26/AP33 core and modify only rare fallback decisions where experts disagree.
+   Preferred genuinely new mechanism: mature-only conformal lower confidence or
+   precision veto estimated from comparable past disagreement cases.
 3. Preserve quarterly chronological OOS fits, publication-h20 maturity cap,
-   2-day embargo, known-down veto, causal ranks/state and max2/week.
-4. Do not repeat hierarchical weight4, competence backstop, fixed rank blends,
-   factorized y3/y20 or calendar threshold search; AP28-AP33 preserve evidence.
+   2-day embargo, known-down veto, causal ranks/state and sequential max2/week.
+4. Do not repeat broad score averaging, average Brier Hedge, continuous residual
+   pace, synthetic-anchor CDF, hierarchical weight4, factorized survival or
+   calendar threshold search; prior rounds preserve that evidence.
 5. Acceptance remains minlift>2.4 on h3/5/10/20,min currency rate>=1,zeroempty,
    max2/week with paired uncertainty. Final product validation additionally needs
    actual receipt timestamps and an executable bank price, not only official CBR.

@@ -1,0 +1,23 @@
+{
+  "selected_early": "distributional_cat_core_calendar_fallback_cap2",
+  "fresh_early_joint_pass": true,
+  "late_min_lift": 2.391461472297153,
+  "late_mean_lift": 2.414294833136804,
+  "late_min_rate": 1.039301310043668,
+  "late_max_weekly_signals": 2,
+  "late_strict_success": false,
+  "late_reason_counts": {
+    "final": {
+      "none": 2567,
+      "new_core": 715,
+      "ap23_late_week": 2,
+      "ap23_silence10": 1
+    },
+    "source": {
+      "none": 2570,
+      "rolling_primary": 616,
+      "distributional_pace": 94,
+      "month_rescue": 5
+    }
+  }
+}
