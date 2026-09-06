@@ -2215,3 +2215,28 @@ maturity/embargo и future-prefix corruption. `historical_gate_passed=false`,
 `open_evaluated=false`, `production_promoted=false`; T37 остаётся frozen
 shadow. Результаты:
 `results/research/temperature/t41_mature_quarterly_shrink/`.
+
+## T42: observable OOD shrink распознаёт 2022, но не спасает history-эксперт
+
+T42 заменил запаздывающую оценку ошибок T41 полностью label-free состоянием.
+Для каждого annual OOS года по точной training mask T40 обучается только
+`StandardScaler` на тех же 41 CBR-признаках. Средняя квадратичная
+стандартизованная удалённость query-строки задаёт единственный вес
+`alpha=min(1, 1/energy)` между causal prior и вероятностью T40. Сетки,
+calendar/SVO-флага, исходов query-периода и выбора на 2025–2026 нет.
+
+OOD-сигнал содержателен: средняя energy 2022 равна **3,219** против примерно
+0,55–0,90 в 2019–2021, а средний вес T40 падает до **0,619**. Screen-вред
+T40 по Brier уменьшается с +0,00654 до **+0,00262**. Но это всё ещё
+статистически значимое ухудшение к prior: log-loss +0,01205, ECE +0,01514,
+только **0/9** local non-inferiority. Validation 2023–2024 даёт Brier
+−0,00218 и AUC +0,10370, но pooled Brier CI и 50-day AUC CI пересекают ноль,
+а проходят только 5/7 local groups.
+
+Frozen historical gate не пройден, поэтому target/model metrics 2025–2026 не
+открывались. Аудит пересобрал annual scaler states, predictions, метрики,
+bootstrap и gate, подтвердил maturity/embargo, формулу alpha и
+future-prefix corruption. `production_promoted=false`; T37 остаётся frozen
+shadow. Вывод: covariate novelty помогает ограничить вред, но не сообщает,
+какой эксперт прав после изменения зависимости feature→target. Результаты:
+`results/research/temperature/t42_ood_history_shrink/`.

@@ -1,0 +1,43 @@
+{
+  "packet": "temperature-T42",
+  "candidate": "ood_shrunk_annual_history_h20_shadow",
+  "source": "t40_annual_probability",
+  "distance": "mean squared StandardScaler coordinate",
+  "alpha_formula": "min(1, 1 / max(energy, 1e-12))",
+  "historical_screen": "2019-2022",
+  "historical_validation": "2023-2024",
+  "open_diagnostic": "2025-2026 only after historical pass",
+  "annual_states": 8,
+  "historical_gate_passed": false,
+  "open_evaluated": false,
+  "open_repair_passed": false,
+  "production_promoted": false,
+  "selection_on_open_2025_2026": false,
+  "fresh_independent_holdout": false,
+  "changes_push_policy": false,
+  "changes_expected_future_bps": false,
+  "changes_runtime_router": false,
+  "checks": {
+    "single_label_free_candidate": true,
+    "feature_count_exact_t24": true,
+    "annual_state_unique": true,
+    "training_embargo_respected": true,
+    "energy_positive": true,
+    "alpha_bounded": true,
+    "publication_key_unique": true,
+    "probability_bounded": true,
+    "open_not_evaluated_if_historical_failed": true
+  },
+  "source_sha256": {
+    "research/temperature_t42_ood_history_shrink_registered.md": "8479ad29e9a0eca1c28f366b248f92ce497949201fd5f496373a3d7d635866e0",
+    "research/temperature_t42_ood_history_shrink.py": "6b12dde5147f8d017042956fe6f84544e3307e3327c0bc3d9c00f50cdb2dca06",
+    "research/temperature_t42_ood_history_shrink_audit.py": "70c76c4d4094fff0ae4799c8d41458f28dc340074b46c145c296aee58c06e468",
+    "research/cache/extended_features_2010_2026.npz": "9e8c412684ab679b92a2267091a99b7ba75b420db85d299d05a4eb61db9ec66f",
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/temperature/t40_long_rolling_history/metadata.json": "ecdf24569d921b5cedbd33b3cfcf29d3c30407c9d5dd57846fda9f43a2beab19",
+    "results/research/temperature/t40_long_rolling_history/publication_predictions.csv.gz": "3c0d2d264a3059e2cc8df7ac7cd20dc53b3c1c613b5222b484139ed3bdd6797b",
+    "results/research/temperature/t40_long_rolling_history/annual_fit_log.csv": "55dda39d360b123334cdedb80dca0807ccddb0cf13fd76f0993066a384117286",
+    "results/research/temperature/t40_long_rolling_history/historical_gates.csv": "e918918a02ae5d585b910be8083e1a9ca41dce55f9e3c3d3f40c9ff83babc94f",
+    "results/research/temperature/t40_long_rolling_history/audit_checks.json": "67dd22b0ed2d436a5bcf5e15946268d3fc07671a1a015b73b64f443d1eb59f7b"
+  }
+}

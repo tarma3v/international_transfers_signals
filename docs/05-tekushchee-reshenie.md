@@ -88,7 +88,12 @@ local групп прошли, при 4/4 годовых группах. T39 п�
 квартальным closed-form весом только по mature feedback. Он улучшил point
 Brier 2023–2024 на −0,00113, но screen 2019–2022 всё равно ухудшил Brier на
 +0,00425 и прошёл лишь 2/9 local групп. Open 2025–2026 не оценивался; T37 не
-изменён.
+изменён. T42 вместо запаздывающего feedback измерил только наблюдаемую
+удалённость 41 текущего признака от training distribution. Он распознал 2022
+как самый чужой режим и уменьшил screen Brier-вред T40 с +0,00654 до
++0,00262, но всё равно прошёл 0/9 local groups. Validation 2023–2024 была
+лучше prior в точке, однако CI/gates не прошли; model metrics 2025–2026 не
+открывались.
 
 ## Что соответствует ТЗ
 
@@ -132,11 +137,13 @@ future-only нужно сохранить как оговорку, а не де�
 - [`../output/pdf/описание_подробное.pdf`](../output/pdf/описание_подробное.pdf) —
   AP37 простыми словами, 30 страниц;
 - [`../output/pdf/ivan_continuous_temperature_anytime.pdf`](../output/pdf/ivan_continuous_temperature_anytime.pdf) —
-  полный 47-страничный any-time отчёт;
+  полный 49-страничный any-time отчёт;
 - [`../research/tz_compliance_and_business_direction_2026-09-06.md`](../research/tz_compliance_and_business_direction_2026-09-06.md) —
   строгая матрица ТЗ и бизнес-направление;
 - [`../research/temperature_t40_long_rolling_history_report.md`](../research/temperature_t40_long_rolling_history_report.md) —
   независимый long-history отрицательный тест;
+- [`../research/temperature_t42_ood_history_shrink_report.md`](../research/temperature_t42_ood_history_shrink_report.md) —
+  проверка label-free OOD-предохранителя на длинной истории;
 - [`../submission/12-final-case-metric-matrix.md`](../submission/12-final-case-metric-matrix.md) —
   обе цели, пять горизонтов и пять валют;
 - [`../EXPERIMENTS_SUMMARY.md`](../EXPERIMENTS_SUMMARY.md) — полная история.
