@@ -8,6 +8,8 @@ from zoneinfo import ZoneInfo
 import numpy as np
 import pandas as pd
 
+from ml.data import CORRIDORS
+
 
 MOSCOW = ZoneInfo('Europe/Moscow')
 HORIZONS = (1, 3, 5, 10, 20)
@@ -101,18 +103,56 @@ def _snapshot_freshness(age_minutes, source_kind):
 
 def _temperature_label(temperature, freshness, confidence):
     if freshness == 'stale' or confidence == 'limited':
-        qualifier = 'оценка с ограниченной уверенностью'
+        qualifier = 'исторических данных для уверенного вывода пока недостаточно'
     else:
         qualifier = None
     if temperature >= 70:
-        label = 'момент выглядит выгоднее обычного'
+        label = 'похожие исторические условия чаще совпадали с удачным моментом'
     elif temperature >= 58:
-        label = 'скорее выгодный момент'
+        label = 'похожие исторические условия немного чаще совпадали с удачным моментом'
     elif temperature >= 38:
-        label = 'нейтральный момент'
+        label = 'исторические данные не дают выраженного сигнала'
     else:
-        label = 'вероятно, лучше подождать'
+        label = 'похожие исторические условия редко совпадали с удачным моментом'
     return f'{label}; {qualifier}' if qualifier else label
+
+
+def _indicator_speed(source_kind, freshness):
+    if freshness == 'stale':
+        return 'held_stale'
+    if source_kind in {
+        'moex_perpetual_prefix', 'moex_early_prefix', 'moex_prefix',
+        'post_window_market', 'post_receipt_perpetual',
+        'post_receipt_market',
+    }:
+        return 'fast_intraday'
+    if source_kind == 'cbr_receipt':
+        return 'slow_daily_publication'
+    return 'slow_history'
+
+
+def _case_direction(probability, expected_bps):
+    """Machine-readable direction without turning it into customer advice."""
+    if expected_bps is None or not np.isfinite(expected_bps):
+        if probability >= .58:
+            return 'supports_current_moment'
+        if probability <= .38:
+            return 'weak_support_for_current_moment'
+        return 'neutral'
+    if expected_bps > 0 and probability >= .58:
+        return 'supports_current_moment'
+    if expected_bps < 0 and probability <= .42:
+        return 'weak_support_for_current_moment'
+    return 'mixed_or_neutral'
+
+
+def _recommended_scenario(result):
+    """Product route, not a promise about the future exchange rate."""
+    if result['freshness'] == 'stale' or result['confidence'] == 'limited':
+        return 'widget_historical_context_only'
+    if result['push_now']:
+        return 'sparse_push_and_fresh_widget'
+    return 'fresh_widget_only'
 
 
 def _horizon_provenance(row, field, horizon, default):
@@ -211,3 +251,37 @@ def score_snapshot_as_of(snapshots, currency, as_of, horizon=5):
         'availability_evidence': availability_evidence,
         'push_now': bool(row.get('push_now', False)),
     }
+
+
+def case_output_as_of(snapshots, currency, as_of, horizon=5):
+    """Return the mandatory case schema plus the full auditable model payload.
+
+    The required `direction` and `recommended_scenario` fields are deliberately
+    machine-readable. Customer-facing copy remains a historical statement in
+    `label`; it contains neither a future promise nor an instruction to wait.
+    """
+    result = score_snapshot_as_of(snapshots, currency, as_of, horizon)
+    if result is None:
+        return None
+    required = {
+        'date': pd.Timestamp(as_of).date().isoformat(),
+        'corridor': currency,
+        'indicator': 'calibrated_transfer_temperature:' + result['source_kind'],
+        'direction': _case_direction(
+            result['probability_now_best_h'],
+            result['expected_future_cbr_bps_h'],
+        ),
+        'strength': result['temperature_0_100'],
+        'indicator_speed': _indicator_speed(
+            result['source_kind'], result['freshness']),
+        'recommended_scenario': _recommended_scenario(result),
+    }
+    return {**required, **result}
+
+
+def case_output_table_as_of(snapshots, as_of, horizon=5,
+                            corridors=CORRIDORS):
+    """One mandatory-schema row per available corridor at an arbitrary time."""
+    rows = [case_output_as_of(snapshots, currency, as_of, horizon)
+            for currency in corridors]
+    return pd.DataFrame([row for row in rows if row is not None])

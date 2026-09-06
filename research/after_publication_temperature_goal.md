@@ -20,10 +20,11 @@ that could really have been computed by then:
 - `confidence`: enough mature history / limited history / unavailable;
 - `push_now`: a separate sparse binary decision from the frozen push policy.
 
-The widget may say "момент выглядит выгоднее обычного". It must not say that a
-future course is guaranteed, and it must not translate CBR basis points into
-rubles saved at the bank until executable customer quotes, fees, limits and
-quote validity are present.
+The widget may say "похожие исторические условия чаще совпадали с удачным
+моментом". It must not say "лучше подождать", promise a future course, or turn
+the probability into a customer instruction. It must not translate CBR basis
+points into rubles saved at the bank until executable customer quotes, fees,
+limits and quote validity are present.
 
 ## Meaning of temperature
 

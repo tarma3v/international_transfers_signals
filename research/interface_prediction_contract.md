@@ -23,10 +23,14 @@ the other selects rare statistically strong moments.
 ## On-screen indicator
 
 For the selected corridor and horizon, show `temperature_0_100` and one cautious
-label: “момент выглядит выгоднее обычного”, “скорее выгодный момент”,
-“нейтральный момент” or “вероятно, лучше подождать”. Also show `last_source_at`,
-`freshness`, `phase`, `confidence` and the information source. The colour reflects
-the calibrated forward probability, not merely the rate's historical range.
+past/present-only label: “похожие исторические условия чаще совпадали с удачным
+моментом”, “похожие исторические условия немного чаще совпадали с удачным
+моментом”, “исторические данные не дают выраженного сигнала” or “похожие
+исторические условия редко совпадали с удачным моментом”. The customer copy
+must not say “лучше подождать” or otherwise turn the model into a promise or a
+future instruction. Also show `last_source_at`, `freshness`, `phase`,
+`confidence` and the information source. The colour reflects the calibrated
+forward probability, not merely the rate's historical range.
 
 The detail view exposes P(current effective CBR is no higher than the next h
 publications) for h=1/3/5/10/20 and expected future-only CBR basis points. It
@@ -78,3 +82,12 @@ Therefore the widget is queryable on every calendar day for AMD, KGS, KZT, TJS
 and UZS. “Any day” does not mean equally fresh information: during a weekend or
 a feed gap the interface keeps the last admissible score, labels it aging or
 stale and suppresses claims of a newly observed market move.
+
+## Mandatory case output
+
+`ml.transfer_temperature.case_output_as_of` adds the exact submission-facing
+fields `date`, `corridor`, `indicator`, `direction`, `strength`,
+`indicator_speed` and `recommended_scenario` to the full auditable temperature
+payload. `case_output_table_as_of` returns one available row per corridor for an
+arbitrary timezone-aware timestamp. Direction and scenario are machine-readable
+policy states; customer-facing `label` remains historical and non-prescriptive.

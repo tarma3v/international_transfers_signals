@@ -1,0 +1,26 @@
+{
+  "missing_spot_hold_h5": {
+    "currency": "AMD",
+    "horizon_publications": 5,
+    "temperature_0_100": 37.86370608315768,
+    "probability_now_best_h": 0.3786370608315768,
+    "expected_future_cbr_bps_h": 5.709017078165631,
+    "benefit_last_source_at": "2024-01-13T00:00:00+03:00",
+    "benefit_age_minutes": 631.0,
+    "benefit_freshness": "fresh",
+    "benefit_source_kind": "cbr_history",
+    "benefit_availability_evidence": "calendar_assumed",
+    "label": "похожие исторические условия редко совпадали с удачным моментом; исторических данных для уверенного вывода пока недостаточно",
+    "score_as_of": "2024-01-13T10:31:00+03:00",
+    "last_source_at": "2024-01-13T00:00:00+03:00",
+    "age_minutes": 631.0,
+    "freshness": "fresh",
+    "phase": "premarket",
+    "confidence": "limited",
+    "source_kind": "cbr_history",
+    "availability_evidence": "calendar_assumed",
+    "push_now": false
+  },
+  "missing_spot_planned_clock": "10:30",
+  "missing_spot_local_date": "2024-01-13"
+}

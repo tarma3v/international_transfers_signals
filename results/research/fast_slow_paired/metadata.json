@@ -1,0 +1,21 @@
+{
+  "packet": "fast-slow-paired",
+  "common_rows": 1600,
+  "common_dates": 320,
+  "years": [
+    2025,
+    2026
+  ],
+  "fast": "15:30 availability_route",
+  "slow": "after-receipt AP37",
+  "targets_exact_on_common_support": true,
+  "official_cbr_intraday_waiting_cost": "not identifiable: same today-effective reference at both clocks",
+  "market_waiting_proxy": "CNYRUB_TOM 15:30 to 18:10 completed closes",
+  "bank_execution_validated": false,
+  "source_sha256": {
+    "results/research/round6/fixing_availability_router/outputs.pkl": "62b9b918e09f8ad03a60680b8f40b674af06277f0cef0e90b4496f2ee894bc36",
+    "results/research/after_publication/ap37_effective/outputs.npz": "0051a46660dbb2dfa29c1c0bdc4ff8e5d257f5ed9bb80b593cff58554bbea6a3",
+    "results/research/after_publication/ap37_effective/announcement_panel.csv": "313d0ef75b7e942210189e6491f011b0675f7fd92ad549b30ac8b6820a71a786",
+    "research/fast_slow_paired_registered.md": "bef3b768dedf79bdf93b11a8983f1bb9a873693e115336987ab42d62bca2e3d8"
+  }
+}

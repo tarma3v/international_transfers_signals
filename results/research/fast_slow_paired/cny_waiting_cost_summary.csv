@@ -1,0 +1,4 @@
+scope,n_dates,mean_signed_bps,median_signed_bps,mean_absolute_bps,p90_absolute_bps,positive_move_share,meaning
+all_common_dates,320,-5.792379413308406,-5.347208429359873,31.396849544433575,72.32384638605782,0.409375,positive = CNY cost more RUB by 18:10 than at 15:30
+at_least_one_fast_signal,93,-7.398394937311349,-9.85398190450737,33.11341111635669,73.0772310165526,0.3763440860215054,positive = CNY cost more RUB by 18:10 than at 15:30
+at_least_one_slow_signal,104,2.1019855933488936,1.2239729451868353,32.314324392705174,73.47104218838686,0.5096153846153846,positive = CNY cost more RUB by 18:10 than at 15:30

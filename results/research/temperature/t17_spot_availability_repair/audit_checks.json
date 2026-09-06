@@ -1,0 +1,23 @@
+{
+  "source_hashes_verified": true,
+  "snapshot_artifact_exactly_rebuilt": true,
+  "base_rows": 60370,
+  "snapshot_rows": 53570,
+  "planned_spot_rows": 39420,
+  "observed_spot_rows": 32620,
+  "dropped_synthetic_spot_rows": 6800,
+  "kept_predictions_benefits_push_exact": true,
+  "observed_source_at_strictly_before_valid_from": true,
+  "missing_weekend_uses_held_nonspot_source": true,
+  "sampled_any_day_queries_available": true,
+  "future_spot_deletion_prefix_invariant": true,
+  "push_counts_unchanged": {
+    "AMD": 142,
+    "KGS": 139,
+    "KZT": 138,
+    "TJS": 139,
+    "UZS": 137
+  },
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false
+}

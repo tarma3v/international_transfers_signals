@@ -1,0 +1,24 @@
+{
+  "packet": "temperature-T17",
+  "base_rows": 60370,
+  "snapshot_rows": 53570,
+  "planned_spot_rows": 39420,
+  "observed_spot_rows": 32620,
+  "dropped_synthetic_spot_rows": 6800,
+  "dropped_unique_currency_dates": 680,
+  "actual_spot_source_timestamps": true,
+  "probabilities_expected_bps_push_unchanged_on_kept_rows": true,
+  "repair_selected_by_metrics": false,
+  "open_diagnostics_only": true,
+  "payload_sha256": "3c890a3160f0a3dd27d680b39793f8f3a6005bcc3b4e8bd5ff107725cf6a2a68",
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "source_sha256": {
+    "results/research/temperature/t16_evening_router/metadata.json": "6c5de2b31a63025f408a0682d2cee425c3ddbfae5a3b57edb843d09f45e99761",
+    "results/research/temperature/t16_evening_router/snapshots.csv.gz": "4298015045a0275326483a109a8ed89a3b866038b8285210eee5055f017251ec",
+    "data/moex_spot_fx_10min_2022_2026.json": "7f20d7e90bc79d44431de37c96102ad018ae9d5ec90d0ea1097f0d042c020e28",
+    "research/temperature_t17_spot_availability_repair_registered.md": "2010f627565d1630ca7dc996f1d3a7b39b68bd77d6714f7a484c4bbb9ed778e4",
+    "research/temperature_t17_spot_availability_repair.py": "13229d33be64d76f792b787593ba79d01573d5e624fbf61a7d1de6e65c61d58e",
+    "ml/transfer_temperature.py": "63a81d456b4e516a56023ecb4f23e6e6dfacfb155833ad6acbb1fff7ecf4856c"
+  }
+}
