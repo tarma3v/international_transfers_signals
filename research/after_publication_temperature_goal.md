@@ -112,6 +112,24 @@ Because the repair was proposed after inspecting T33 and later periods are
 already open, T34 is a frozen retrospective shadow with
 `production_promoted=false`, not a fresh runtime promotion.
 
+T35 then combined T34 and T22 with fixed clock rules. The pooled metrics
+improved, but both 10:15 states failed because many dates already had a market
+prefix by that clock. T35 therefore establishes that phase cannot be inferred
+from a clock alone: `retrospective_route_passed=false`.
+
+T36 routed by the actual h20 source kind. It improved pooled AUC to about 0.702
+and Brier to about 0.1135 in both receipt scenarios, but raw T34 probabilities
+worsened ECE by more than the frozen +0.01 allowance at 12 of 40 local states.
+The route mechanism is supported; the probability displacement was too large.
+
+T37 applied one preregistered 50% log-odds shrink only to the `cbr_history`
+component. It passes both pooled paired-bootstrap gates, both component gates,
+and all 40 local non-inferiority gates; pooled ECE also improves in both
+scenarios. Because this repair follows inspection of T36 on already opened
+2025-2026, it remains a frozen prospective shadow with
+`production_promoted=false`. No further alpha tuning on the open period is
+allowed.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -172,16 +190,20 @@ and weekends produce an explicit stale state, not imputed current prices.
 
 ## Model plan
 
-1. Keep frozen AP49/T17 probability as the anchor, T22 after verified receipt
-   and T25 before receipt as shadow ranks. T26's delayed selector is rejected;
+1. Keep frozen AP49/T17 probability as the anchor and preserve AP37 as the
+   separate sparse push. For h20, freeze T37 as the unified prospective shadow:
+   a 50% T34 log-odds correction only while the actual source is `cbr_history`,
+   exact T19 on market/hold sources, and exact T22 only after verified receipt.
+   T26's delayed selector is rejected;
    T27 rejects w250, T28 rejects a daily weak w30 blend, T29 rejects the
    month/quarter-held correction, T30 rejects the retrospective regime selector
    T31 rejects promotion of a mature-only Hedge on its frozen 2023 screen, and
    T32 rejects disjoint recent-data warm-up, T33 supports quarterly-frozen
    stacking, and T34 proves that missing mature feedback must retain identity
-   instead of activating an arbitrary equal mixture. Freeze T25 plus the
-   declared T30/T31/T33/T34 controls and wait for prospective
-   outcomes before reconsidering level adaptation.
+   instead of activating an arbitrary equal mixture. Freeze T37 as the routed
+   challenger, retain T25/T30/T31/T33/T34 only as diagnostic controls, and wait
+   for prospective outcomes before reconsidering level adaptation or changing
+   the 50% weight.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.
 3. Implement `score_as_of(currency, timestamp, horizon)` that selects the latest

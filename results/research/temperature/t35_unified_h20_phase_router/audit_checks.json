@@ -1,0 +1,19 @@
+{
+  "source_hashes_match": true,
+  "route_predictions_rebuilt": true,
+  "t34_backward_join_causal": true,
+  "t34_used_only_at_registered_early_clocks": true,
+  "t22_used_only_in_after_receipt_replay": true,
+  "no_receipt_never_uses_t22": true,
+  "market_and_hold_states_unchanged": true,
+  "target_corruption_invariant": true,
+  "future_t34_prefix_corruption_invariant": true,
+  "query_keys_unique_and_complete": true,
+  "probabilities_finite_and_bounded": true,
+  "state_metric_reliability_bootstrap_grids_complete": true,
+  "pooled_metric_bootstrap_grids_complete": true,
+  "retrospective_route_passed": false,
+  "production_promoted": false,
+  "selection_on_open_2025_2026": false,
+  "fresh_independent_holdout": false
+}

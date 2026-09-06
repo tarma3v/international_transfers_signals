@@ -77,7 +77,7 @@
     "bank_execution_validated": false
   },
   "source_sha256": {
-    "research/temperature_t34_cold_start_identity_gate_registered.md": "3d445a63ff681be063c6edc3ac66659aae580c79eb5905cd983e8d6c3eddd883",
+    "research/temperature_t34_cold_start_identity_gate_registered.md": "c9082c7d185e0bf719223748e2d5c367bc08b437fdc638f14985213f1d9ed4fe",
     "research/temperature_t34_cold_start_identity_gate.py": "2e4614bfc485a3514e22d7478ec93e18142b867d2e2f3768dcf19bcb8068c866",
     "research/temperature_t34_cold_start_identity_gate_audit.py": "f8a681bfe3c3a8268aef5f237c5c22918a4c7ca82bd5776eb69bfd012b726b81",
     "results/research/temperature/t33_quarterly_stacking/metadata.json": "4fe7cbada25b5a0986825ea06e1b8fa6ba949974ef597eb2f5b07aafd0ee2599",

@@ -2079,3 +2079,48 @@ identity, но пересекают ноль против T25. `historical_proto
 `production_promoted=false`: идея сформирована после T33, а все поздние годы
 уже открыты. Это frozen retrospective shadow, не fresh winner. Результаты:
 `results/research/temperature/t34_cold_start_identity_gate/`.
+
+## T35: фиксированные часы оказались неправильной границей
+
+T35 собрал единый h20 shadow из T34 в 00:15/06:00/09:15/10:15, неизменного
+T19 внутри дня и T22 после assumed receipt. Pooled результат улучшился в обоих
+сценариях: calendar Brier 0,11903→0,11562 и AUC 0,5659→0,6426; no-receipt
+Brier 0,11754→0,11617 и AUC 0,6005→0,6336.
+
+Однако 10:15 провалил gate в обоих сценариях: upper Brier CI пересёк ноль,
+AUC CI пересёк ноль, ECE delta составила +0,01054. Причина - часть дат уже
+имела market prefix, а T35 всё равно подменял его T34 по часам. Прошли 38/40
+состояний, формально `retrospective_route_passed=false`. Результаты:
+`results/research/temperature/t35_unified_h20_phase_router/`.
+
+## T36: source-driven route резко улучшил rank, но ухудшил локальную ECE
+
+T36 маршрутизировал по фактическому `snapshot_source_kind`: T34 только на
+`cbr_history`, T22 только на receipt-dependent replay, остальные строки
+побитово равны identity. Pooled AUC достиг 0,7018/0,7024, Brier снизился до
+0,11345/0,11347; paired Brier и AUC интервалы прошли в обоих сценариях. Оба
+компонента по отдельности также прошли point gates.
+
+Но raw T34 probability оказалась переуверенной в смешанных дневных состояниях:
+12 из 40 строк нарушили заранее заданный ECE delta ≤ +0,01. Порог не ослаблен,
+`retrospective_route_passed=false`. Это отделило две гипотезы: source routing
+верен, сила probability correction слишком велика. Результаты:
+`results/research/temperature/t36_source_driven_h20_router/`.
+
+## T37: 50% history shrink проходит 40/40 state gates
+
+T37 зарегистрировал одну формулу без alpha-grid: на `cbr_history` смешать
+identity и T34 поровну в log-odds; T22 после receipt и T19 на остальных
+источниках не менять. В calendar replay pooled Brier/log-loss/AUC/ECE стали
+0,11511/0,38586/0,6568/0,03355 против
+0,11903/0,39993/0,5659/0,03492. В no-receipt -
+0,11525/0,38580/0,6541/0,03068 против
+0,11754/0,39395/0,6005/0,03196.
+
+Оба pooled bootstrap gate, оба source-component gate и все 40 local
+non-inferiority gates прошли. History-component улучшил Brier на -0,00442,
+log-loss на -0,01577, AUC на +0,13286 и ECE на -0,00722. Formal
+`retrospective_route_passed=true`, но `production_promoted=false`: T37 был
+придуман после просмотра T36, а 2025-2026 уже открыт. Это frozen prospective
+shadow, а не свежий независимый победитель. Результаты:
+`results/research/temperature/t37_source_driven_h20_shrink50/`.

@@ -1,0 +1,54 @@
+{
+  "packet": "temperature-T35",
+  "candidate": "unified_h20_phase_shadow",
+  "early_clocks": [
+    "00:15",
+    "06:00",
+    "09:15",
+    "10:15"
+  ],
+  "after_receipt_replay_clocks": [
+    "18:45",
+    "19:15",
+    "20:15",
+    "21:15",
+    "22:15",
+    "23:15"
+  ],
+  "evaluation_period": "open 2025-2026 retrospective",
+  "evaluation_rows": 116400,
+  "state_rows": 40,
+  "modified_states": 14,
+  "passing_modified_states": 12,
+  "passing_unchanged_states": 26,
+  "retrospective_route_passed": false,
+  "production_promoted": false,
+  "selection_on_open_2025_2026": false,
+  "open_period_previously_inspected": true,
+  "fresh_independent_holdout": false,
+  "historical_receipts_certified": false,
+  "production_requires_verified_receipt_at": true,
+  "changes_push_policy": false,
+  "changes_runtime_router": false,
+  "checks": {
+    "one_candidate_no_grid": true,
+    "t34_backward_join_only": true,
+    "source_no_later_than_query": true,
+    "no_receipt_never_uses_t22": true,
+    "only_registered_early_clocks_use_t34": true,
+    "only_assumed_after_receipt_states_use_t22": true,
+    "probability_bounded": true,
+    "expected_future_bps_unchanged": true,
+    "push_policy_unchanged": true
+  },
+  "source_sha256": {
+    "research/temperature_t35_unified_h20_phase_router_registered.md": "5b8fbdbbad80742c269501f5b851a49a640493910ced9be7d4611c73c85ded3c",
+    "research/temperature_t35_unified_h20_phase_router.py": "1ec35c43a53168d308e72ec04b9a8dd37caa567a085061da564b1e11311d408c",
+    "research/temperature_t35_unified_h20_phase_router_audit.py": "ba2fec5f5afcc13ca69ec3967946e5e651480ca879bd126adc308e27f621534f",
+    "results/research/temperature/t22_h20_rank_correction/metadata.json": "fa5b588989e482a466ec6e753df1ed6da7a2d58a68c8095c2b4e6d9577e54b82",
+    "results/research/temperature/t22_h20_rank_correction/predictions.csv.gz": "8e90c437dacb548eaf41f272c67e07529e455923e6b2ca7c3ebd333a34c89a00",
+    "results/research/temperature/t34_cold_start_identity_gate/metadata.json": "39a36a81f2623b3b5b38f874f94cdc06145d329f43b12365921c91da72a7f42c",
+    "results/research/temperature/t34_cold_start_identity_gate/development_predictions.csv.gz": "0678bb659998199a15ad171a5712f08a64cbe9035d56d07fac2b112e8fc24da4",
+    "results/research/temperature/t34_cold_start_identity_gate/predictions.csv.gz": "59ab826630ae948b08b377611d67b76490ba40972625fa8e36995ed9335eecfe"
+  }
+}

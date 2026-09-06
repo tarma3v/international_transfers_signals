@@ -160,3 +160,14 @@ caused the change.
     cold-start semantics, but the idea follows inspection of T33 and all later
     periods are open, so keep it as a frozen retrospective shadow. Production
     routing still requires genuinely prospective confirmation.
+21. T35 combined T34/T19/T22 by fixed clocks. It improved pooled results but
+    failed both 10:15 states because market availability differs by date. A
+    clock is not a valid substitute for observable source state.
+22. T36 routed by the actual h20 source kind and lifted pooled AUC to about
+    0.702 in both scenarios. Raw T34 was too confident in 12 local states, so
+    the unchanged ECE gate rejected it despite better Brier and rank.
+23. T37 uses the same source-driven route with one fixed 50% log-odds shrink
+    for `cbr_history`, exact T19 for market/hold, and exact T22 only after a
+    verified receipt. It passes all 40 retrospective state gates and both
+    pooled block-bootstrap gates. Freeze it for prospective shadow; do not
+    promote or tune another alpha on the opened 2025-2026 period.
