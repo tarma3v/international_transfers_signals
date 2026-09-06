@@ -199,6 +199,14 @@
 > зафиксированному gate 2025–2026 не открывались. T37 снова сохранён без
 > изменения; длинная история не поддерживает одну стационарную формулу.
 >
+> T41 проверил, можно ли причинно включать T40 только тогда, когда он помогал
+> на последних 125 уже созревших публикационных датах. Один closed-form вес
+> замораживался на квартал без grid search. Механизм смягчил поздний период,
+> но screen 2019–2022 всё равно провален: Brier delta **+0,00425**, ECE delta
+> **+0,01671**, только **2/9** local pass. Validation 2023–2024 дала Brier
+> delta −0,00113 и AUC delta +0,07815, однако paired CI пересекли ноль. Поэтому
+> 2025–2026 снова не открывались, T37 не изменён.
+>
 > Новый T15/T16 закрывает вечер до 23:00 завершёнными perpetual-свечами
 > CNYRUBF и USDRUBF. Ни один новый probability-кандидат не улучшил сильный
 > T7B-control на screen-2024, поэтому вечерняя температура не меняется только
@@ -279,6 +287,7 @@
 [T38: локальная устойчивость T37](research/temperature_t38_h20_local_stability_report.md) ·
 [T39: pre-2025 валютная усадка отклонена](research/temperature_t39_pre2025_currency_shrink_report.md) ·
 [T40: длинная rolling-origin история отклоняет единый эксперт](research/temperature_t40_long_rolling_history_report.md) ·
+[T41: причинный квартальный вес не спас history-эксперт](research/temperature_t41_mature_quarterly_shrink_report.md) ·
 [пример обязательной таблицы ТЗ](output/signals_example_2026-09-01_2115_h5.csv) ·
 [пример до receipt](output/signals_example_2026-09-01_1845_no_receipt_h5.csv) ·
 [пример после verified receipt](output/signals_example_2026-09-01_1845_verified_receipt_h5.csv) ·
@@ -1001,7 +1010,9 @@ live/prospective shadow без изменения порогов. Для any-tim
 стал лучше, но local pass-count снизился. T40 затем провалил заранее
 зарегистрированный screen 2019–2022 и поэтому не открыл модельные метрики
 2025–2026, несмотря на сильную 2023–2024 validation. T37 не повышен в
-production; следующий шаг - genuinely prospective shadow и наблюдаемый
-state-aware replay, без настройки по 2025–2026.
+production. T41 затем проверил closed-form квартальную усадку по mature
+feedback, но она также провалила исторический screen и не открыла 2025–2026.
+Следующий шаг - genuinely prospective shadow и наблюдаемый state-aware replay,
+без настройки по 2025–2026.
 Отдельно нужно подтвердить фактический timestamp получения курса и исполняемый
 банковский курс.

@@ -2193,3 +2193,25 @@ bootstrap пересёк ноль по Brier и AUC. По frozen протоко�
 Вывод: длинная CBR-история без наблюдаемого state router не решает h20
 калибровку; хороший 2023–2024 режим нельзя экстраполировать назад или вперёд.
 Результаты: `results/research/temperature/t40_long_rolling_history/`.
+
+## T41: mature quarterly shrink смягчает поздний период, но не проходит историю
+
+T41 заранее зафиксировал один параметр-free механизм поверх T40. В начале
+каждого квартала по последним 125 полностью созревшим publication-date batches
+закрытой Brier-формулой вычислялся общий `alpha` между causal prior и T40.
+Веса не искались сеткой, использовали одинаково для пяти валют и замораживали
+на квартал; при менее чем 20 feedback batches включался безопасный prior.
+
+Screen 2019–2022 на 4 920 строках провален: Brier delta **+0,00425**,
+log-loss **+0,01279**, ECE **+0,01671**, AUC delta +0,01264 и только **2/9**
+local non-inferiority. Brier bootstrap CI при блоках 20 и 50 дат целиком выше
+нуля. Validation 2023–2024 улучшила point Brier на −0,00113, log-loss на
+−0,00425, ECE на −0,01166 и AUC на +0,07815; прошли 6/7 local групп, но
+Brier/AUC CI всё ещё пересекают ноль.
+
+По frozen gate 2025–2026 model metrics не открывались. Аудит полностью
+пересобрал состояния, predictions, metrics, bootstrap и решение, подтвердил
+maturity/embargo и future-prefix corruption. `historical_gate_passed=false`,
+`open_evaluated=false`, `production_promoted=false`; T37 остаётся frozen
+shadow. Результаты:
+`results/research/temperature/t41_mature_quarterly_shrink/`.
