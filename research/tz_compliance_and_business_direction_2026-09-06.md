@@ -19,6 +19,13 @@ T17. Но весь сдаваемый комплект пока нельзя н�
    открытая ретроспектива, но нет нового независимого holdout. Нужна заморозка и
    prospective shadow.
 
+После первичной сверки T19 дополнительно проверил any-time слой на 193 400
+запросах. Он подтвердил причинную доступность и сильные h1/h3/h5 состояния, но
+не дал права считать h20 и локальную калибровку одинаково надёжными: h20 не
+проходит ни один строгий state gate, а ECE > 0,08 в 1 629 из 3 000 узких
+currency-year срезов. Это ограничение интерфейсной задачи со звёздочкой; оно
+не отменяет AP37 scorecard основной сигнальной задачи.
+
 ## Что именно требует ТЗ
 
 ### Сигнальный слой
@@ -87,6 +94,7 @@ proxy направления, но не исполнимая банковска�
 | Защита от будущего | PASS для артефактов и runtime gate | corruption-prefix, независимые audit scripts; T18 не активирует same-day after-publication строки без verified receipt и сдвигает поздний receipt | production ingestion должен сохранить фактическое событие и payload id |
 | Стабильность OOT | PARTIAL | отбор на 2023, разрезы 2024/2025/2026 и по валютам положительные | `fresh_holdout=false`; заморозить AP37/T17 и запустить prospective shadow |
 | Произвольная дата/время | PASS | `signals_as_of(T)` причинно режет дневной ряд; `score_snapshot_as_of` выбирает последний допустимый снимок; `case_output_table_as_of` и `run_case_output.py` выдают все валюты | — |
+| Any-time calibration | PARTIAL | T19: 193 400 запросов; 111/200 probability и 119/200 benefit state gates проходят | h20 0/40; нужна иерархическая causal recalibration локальных срезов |
 | Обязательная схема строки | PASS | `case_output_as_of` возвращает date/corridor/indicator/direction/strength/speed/scenario и полный audit payload; сохранён демонстрационный CSV | — |
 | Fast vs slow | PASS как CBR-proxy | на общем support h5 adjusted lift 2,134 → 2,677; Δ +0,525 CI [+0,193; +0,934]; future-only Δ +21,79 б.п. [+3,35; +42,92] | реальную цену ожидания по bank quote можно измерить только в пилоте |
 | Комбинирование/конфликты | PASS | AP37: core AP26, fallback AP23, mature-precision gate, cooldown/cap | перевести reason codes 1/2/3 в человекочитаемые сценарии |

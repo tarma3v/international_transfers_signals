@@ -35,6 +35,17 @@
 > позволяет им появиться раньше входных данных. Старое календарное допущение
 > доступно только отдельным research-флагом.
 >
+> T19 проверил уже не отдельные контрольные часы, а весь итоговый any-time
+> контур: **193 400** запросов = 967 дней × 20 моментов × 5 валют × 2
+> receipt-сценария. Каждый snapshot и оба provenance timestamp не позже
+> `as_of`. Для h5 строгий paired gate начинает устойчиво проходить примерно
+> с 11:45; к 17:45 Brier/AUC/MAE future-only равны **0,1868 / 0,701 /
+> 103,41 б.п.**, а после research-only assumed receipt в 18:45 — **0,1801 /
+> 0,719 / 91,70 б.п.**. При этом h20 не прошёл gate ни в одном из 40
+> состояний, а 1 629 из 3 000 узких currency-year срезов имеют ECE > 0,08.
+> Поэтому h20 и ранние history-only состояния маркируются как limited
+> confidence; post-hoc перенастройки по открытому 2024–2026 не делались.
+>
 > Новый T15/T16 закрывает вечер до 23:00 завершёнными perpetual-свечами
 > CNYRUBF и USDRUBF. Ни один новый probability-кандидат не улучшил сильный
 > T7B-control на screen-2024, поэтому вечерняя температура не меняется только
@@ -80,7 +91,7 @@
 > формально проходит gates, однако это AP37 плюс 2 сигнала без доказанного
 > улучшения. Основным остаётся более простой AP37.
 > Исследование активно, без почасовой автоматизации; после T18 полный набор из
-> **352 тестов** проходит.
+> **355 тестов** проходит.
 
 > **Сохранённый ориентир до публикации:** причинный `availability_route` на
 > срезе 15:30. На ретроспективе 2025–2026 он даёт adjusted lift **2,053** при
@@ -93,6 +104,7 @@
 [строгая сверка с ТЗ и бизнес-направление](research/tz_compliance_and_business_direction_2026-09-06.md) ·
 [ремонт доступности T17](research/temperature_t17_spot_availability_repair_registered.md) ·
 [T18: verified receipt gate](research/temperature_t18_verified_receipt_gate_report.md) ·
+[T19: единый аудит качества в любое время](research/temperature_t19_anytime_quality_audit_report.md) ·
 [пример обязательной таблицы ТЗ](output/signals_example_2026-09-01_2115_h5.csv) ·
 [пример до receipt](output/signals_example_2026-09-01_1845_no_receipt_h5.csv) ·
 [пример после verified receipt](output/signals_example_2026-09-01_1845_verified_receipt_h5.csv) ·
@@ -101,7 +113,7 @@
 [парное fast-vs-slow сравнение](research/fast_slow_paired_report.md) ·
 [вечерний роутер T16](research/temperature_t16_evening_router_registered.md) ·
 [финальный алгоритм простыми словами, PDF](output/pdf/ivan_final_anytime_algorithm_for_everyone.pdf) ·
-[подробный any-time отчёт](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
+[подробный any-time отчёт, 26 страниц](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
 [финальная презентация с интерфейсом](output/presentation/international_transfers_final_with_interface_2026-09-06_v2.pptx) ·
 [та же презентация в PDF](output/pdf/international_transfers_final_with_interface_2026-09-06_v2.pdf) ·
 [самый эффективный подход: подробное объяснение на 30 страниц](output/pdf/описание_подробное.pdf) ·

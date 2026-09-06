@@ -4,6 +4,13 @@ Registered 2026-09-06 as a persistent addition to the after-publication CBR
 research. This document is a product/evaluation contract, not evidence that the
 full intraday widget is already validated.
 
+T19 now supplies the first unified evidence against this contract: 193,400
+causal queries across 20 clocks, five currencies and two receipt scenarios.
+The route is available everywhere and h5 becomes stably useful during the
+market day, but h20 fails every strict paired gate and local currency-year ECE
+is not yet production-grade. Availability is implemented; equal quality at
+every horizon and regime is not claimed.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score

@@ -1,12 +1,35 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, T18 complete. The user made after-publication research the
+Updated 2026-09-06, T19 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user’s explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
 
-## LATEST COMPLETED CHECKPOINT: T18 VERIFIED RECEIPT GATE
+## LATEST COMPLETED CHECKPOINT: T19 ANY-TIME QUALITY AUDIT
+
+T19 evaluates the final T17/T18 route on one common grid instead of quoting
+incomparable experiments at a few clocks. It covers 967 calendar dates,
+20 Moscow query times, five currencies and two receipt scenarios: 193,400
+queries in total, with all h=1/3/5/10/20 heads. Every selected snapshot,
+probability source and benefit source is no later than the request timestamp.
+
+Against a strictly past, mature-only constant baseline, 111/200
+`receipt scenario × clock × h` probability states and 119/200 benefit states
+pass both 20-date and 50-date paired moving-block bootstrap gates. H1/h3 become
+strong early, h5 is stably useful from about 11:45, while h20 passes neither
+gate in any of 40 states. Pooled ECE stays below about .050, but 1,629/3,000
+currency-year-clock-h rows exceed .08, exposing local drift hidden by the
+aggregate calibration.
+
+This is an open 2024--2026 diagnostic, not a new selector. Do not refit from
+these failures. The next registered model experiment should learn hierarchical
+`global -> currency -> regime` recalibration and horizon-aware h10/h20 anchors
+on earlier mature data, then apply the frozen mapping to the open period.
+Prospective shadow remains the only fresh independent verdict. The full suite
+now contains 355 passing tests.
+
+## PREVIOUS CHECKPOINT: T18 VERIFIED RECEIPT GATE
 
 T17 first removed 6,800 planned spot snapshots for which no completed same-day
 CNYRUB_TOM candle physically existed and replaced 32,620 retained spot source
@@ -27,7 +50,7 @@ T18 does not refit predictions, change AP37 decisions or claim a new lift. Its
 independent audit exactly rebuilds saved outputs, verifies source hashes,
 checks future-row corruption and confirms all selected sources are no later
 than `as_of`. Historical receipt timestamps and executable bank quotes remain
-uncertified. The full suite now contains 352 tests and passes.
+uncertified. The full suite contained 352 tests at that checkpoint and passed.
 
 ## PREVIOUS CHECKPOINT: T16 EVENING BENEFIT ROUTER
 

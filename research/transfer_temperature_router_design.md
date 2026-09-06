@@ -95,6 +95,9 @@ caused the change.
 2. T8B--T17 assembled latest-valid routing, early/perpetual coverage, separate
    probability/benefit provenance and physical spot availability.
 3. T18 now gates every same-day receipt-dependent output on an observed event.
-4. Next: run a unified clock/currency/year reliability audit on the final T18
-   production path. Any recalibration candidate must be frozen using only
-   earlier mature data; 2024--2026 remains an open diagnostic period.
+4. T19 completed the unified 20-clock/currency/year audit over 193,400 queries.
+   It confirms strong h1/h3 and daytime h5 states, but no h20 state passes the
+   strict paired gate and local currency-year calibration drifts materially.
+5. Next: preregister hierarchical `global -> currency -> regime` calibration
+   and a horizon-aware h10/h20 anchor using earlier mature data only.
+   2024--2026 remains an open diagnostic period.
