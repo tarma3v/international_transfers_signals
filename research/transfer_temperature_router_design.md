@@ -134,3 +134,8 @@ caused the change.
     monthly w30 full correction, but disjoint Q4 lost 0.04486 AUC against the
     frozen T25 anchor. The candidate is rejected. Slow base-rate correction is
     not stable enough to promote without a prospective shadow period.
+16. T30 trained rank only before 2022, mapped its level on fixed post-SVO 2022,
+    screened on 2023 and validated on 2024. Nothing passed 2023, although the
+    all-history family later reached open AUC 0.750. Keep `all_platt_b050` as a
+    frozen prospective control only; a calendar switch learned from hindsight
+    is not an admissible information-state router.

@@ -1970,3 +1970,30 @@ w60_b050 имеет AUC 0,57926 и Brier 0,11758 против 0,56259/0,11825 у
 source hashes, maturity, disjoint Q3/Q4, постоянный period-delta и отсутствие
 выбора по 2025–2026. Результаты:
 `results/research/temperature/t29_coarse_intercept/`.
+
+## T30: pre-SVO rank и post-SVO map дают режимный разворот
+
+T30 перестал адаптировать T25 и построил независимую хронологию. Три
+логистических rank-модели обучены только до 2022: на всей истории, 2018–2021 и
+2020–2021. Их положительно-монотонные Platt-карты обучены на фиксированном
+post-SVO окне апрель–ноябрь 2022. Из 15 raw/blend-кандидатов выбирал только
+2023; 2024 был отдельной validation, 2025–2026 — открытая диагностика.
+
+Screen 2023 не выбрал ничего. Full-history family улучшала Brier
+0,22651→0,20723 и log-loss 0,64313→0,62931, но AUC падал 0,58840→0,49044.
+Recent2y имела AUC 0,63125, однако log-loss оставался хуже baseline. Поэтому
+`screen_selected=identity_early`, `validation_passed=false`, итог не меняет
+router.
+
+Режимный разворот особенно важен: уже на 2024 невыбранная full-history модель
+дала AUC 0,62445 и Brier 0,15446 против 0,50086/0,16496 baseline. На открытых
+2025–2026 `all_platt_b100` получила AUC 0,74954, AP 0,37744, Brier 0,11827 и
+log-loss 0,38896 против 0,56054/0,21742/0,12932/0,43650 у T25. Половинная
+карта дала Brier 0,11881 и ECE 0,03357. Повышать их нельзя: в заранее выбранном
+2023 screen та же rank-family была хуже случайного порядка.
+
+Практический результат — конкретный prospective challenger
+`all_platt_b050`, замороженный без права менять параметры, рядом с T25. Все
+карты монотонны, source/maturity/anchor/selection audits и future-target
+corruption прошли. Результаты:
+`results/research/temperature/t30_presvo_rank_postsvo_map/`.

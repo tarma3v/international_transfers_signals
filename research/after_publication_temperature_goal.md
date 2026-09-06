@@ -74,6 +74,13 @@ Coarse updates therefore do not solve cross-period rank drift. Retain T25 and
 move this calibration question to a genuinely prospective shadow; do not keep
 searching weights on the opened history.
 
+T30 rebuilt rank before 2022 and fitted only a probability map on a fixed
+post-SVO 2022 window. The 2023 screen rejected every candidate, while the same
+all-history family became very strong in 2024--2026 (open AUC 0.750, Brier
+0.11827). This is evidence of a regime reversal, not a selectable winner.
+Freeze `all_platt_b050` only as a prospective challenger; production remains
+unchanged until new outcomes arrive.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -136,8 +143,9 @@ and weekends produce an explicit stale state, not imputed current prices.
 
 1. Keep frozen AP49/T17 probability as the anchor, T22 after verified receipt
    and T25 before receipt as shadow ranks. T26's delayed selector is rejected;
-   T27 rejects w250, T28 rejects a daily weak w30 blend and T29 rejects the
-   month/quarter-held correction. Freeze these choices and wait for prospective
+   T27 rejects w250, T28 rejects a daily weak w30 blend, T29 rejects the
+   month/quarter-held correction and T30 rejects the retrospective regime
+   selector. Freeze T25 plus the declared T30 control and wait for prospective
    outcomes before reconsidering level adaptation.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.

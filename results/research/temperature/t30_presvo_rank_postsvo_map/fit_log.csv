@@ -1,0 +1,4 @@
+family,training_start,training_end_exclusive,cutoff_ord,training_rows,latest_training_date,latest_training_maturity_ord
+all,2011-01-13,2022-01-01,738154,13461,2021-12-01,738153
+recent4y,2018-01-10,2022-01-01,738154,4810,2021-12-01,738153
+recent2y,2020-01-01,2022-01-01,738154,2345,2021-12-01,738153
