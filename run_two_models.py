@@ -268,7 +268,7 @@ def main() -> None:
     if mask.sum() > 100:
         print(f"\n  AUC модели A по метрике кейса: {roc_auc_score(y_case[mask], score_A[mask]):.3f}")
         rule5 = BASELINES["простое правило: верх диапазона"](X[:, :-1], names[:-1]).astype(bool) & oos
-        print(f"  Средний процентиль в момент срабатывания модели A: "
+        print(f"  Средний перцентиль в момент срабатывания модели A: "
               f"{pct90_all[fA].mean():.0f} % "
               f"(у правила «верхние 5 %» — {pct90_all[rule5].mean():.0f} %)")
 
@@ -444,7 +444,7 @@ def monotonicity_on_dev(X, names, y_case, dates) -> None:
     pct = X[:, names.index("pct_range_90")]
     base = float(y_case[dev].mean())
     print(f"Базовая ставка на периоде разработки: {base * 100:.1f} %, строк {int(dev.sum())}\n")
-    print(f"{'бакет процентиля':<22}{'строк':>8}{'попадание':>12}{'lift':>8}")
+    print(f"{'бакет перцентиля':<22}{'строк':>8}{'попадание':>12}{'lift':>8}")
     edges = [(0, 10), (10, 50), (50, 90), (90, 95), (95, 100.01)]
     for lo, hi in edges:
         m = dev & (pct >= lo) & (pct < hi)

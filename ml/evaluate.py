@@ -136,5 +136,5 @@ def bootstrap_ci(
         pick = rng.integers(0, n, size=n)
         means[b] = np.concatenate([groups[k] for k in pick]).mean()
     means = np.sort(means)
-    # индексация от B-1: means[int(0.975*B)] при B=2000 — это 97,55-й процентиль
+    # индексация от B-1: means[int(0.975*B)] при B=2000 — это 97,55-й перцентиль
     return float(means[int(0.025 * (B - 1))]), float(means[int(0.975 * (B - 1))])
