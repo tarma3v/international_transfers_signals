@@ -1,0 +1,13 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "all_34_stage_fits_refit_exact": true,
+  "factorization_and_policy_state_exact": true,
+  "future_feature_both_label_corruption_prefix_invariant": true,
+  "early_selection_rebuilt": true,
+  "known_down_veto": true,
+  "h1_excluded_from_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false
+}

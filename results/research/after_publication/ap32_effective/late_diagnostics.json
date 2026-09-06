@@ -1,0 +1,13 @@
+{
+  "selected_early": "ap26_core_ap23_deficit_decision_cap2",
+  "fresh_early_joint_pass": true,
+  "late_min_lift": 2.4031426596839087,
+  "late_mean_lift": 2.4542170773506675,
+  "late_min_rate": 1.039301310043668,
+  "late_strict_success": true,
+  "late_reason_counts": {
+    "none": 2565,
+    "ap26_core": 673,
+    "ap23_fallback": 47
+  }
+}

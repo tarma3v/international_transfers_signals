@@ -1,0 +1,14 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "hard_pool_and_regime_features_exact": true,
+  "all_17_hierarchical_fits_refit_exact": true,
+  "all_policy_states_rebuilt": true,
+  "future_feature_label_regime_corruption_prefix_invariant": true,
+  "early_selection_rebuilt": true,
+  "known_down_veto": true,
+  "h1_excluded_from_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false
+}

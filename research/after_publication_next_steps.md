@@ -1,6 +1,6 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP27-E complete. The user made after-publication research the
+Updated 2026-09-06, AP32-E complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
@@ -18,6 +18,43 @@ Do NOT claim that rescore of old AP3 signals proves knowledge is harmful.
 Models must be retrained to the SAME effective target in with/without ablations.
 TЗ note updated: initial announced-reference choice was our conservative team
 interpretation, not an organizer ruling. Bank execution still NOT validated.
+
+## Latest completed AP28-E/AP32-E: hierarchy, survival and decision routing
+
+AP28 tested exactly one hierarchical pooled y20 CatBoost: all mature eligible
+rows weight1, hard-pool rows weight4, plus causal rolling/reserve ranks and
+hard-pool flag. Common prior removed cold start but diluted the sparse signal.
+No early pass; late h3/5/10/20=2.408359/2.457002/2.411398/2.377662,
+minlift2.377662,minrate.978166,h5=2.457002,693 signals,sym74.1154,fwd131.2186.
+
+AP29 used AP23 soft730 mature-competence only as a backstop to the AP26
+y20-shrink200 core, with the AP27 r60 state. It passed early, but late
+h3/5/10/20=2.397969/2.456970/2.444863/2.463840,minlift2.397969,
+minrate1.001092: strict h3 failed. AP30 fixed a causal rank blend
+.75*AP26+.25*AP23 under the exact AP21 policy. It did not pass early and late
+minlift=2.397866,h5=2.441546,minrate1.008734. Fixed blending dilutes the core.
+
+AP31 tested a new factorized survival CatBoost score P(y3)*P(y20|y3=1), with
+34 quarterly OOS mature-only fits. It passed early selection, but late
+h3/5/10/20=2.386219/2.433696/2.388902/2.333349,minlift2.333349,
+minrate.993450. The two stages compound calibration errors; direct AP26 y20 is
+stronger.
+
+AP32 froze exactly one decision-level router, without mixing scores. AP26
+y20-shrink200 decisions have priority. Only when core does not fire and the
+meta-router's own trailing365 rate is below1 may an AP23 decision fire; a new
+sequential max2/week is then applied. It passed early selection and all late
+strict gates. Late h3/5/10/20=2.403143/2.468871/2.455698/2.489157,
+minlift2.403143,meanlift2.454217,minrate1.039301,zeroempty,max2/week. H5 has
+720 signals,rate1.075774,currency1.05336..1.09072,sym73.4633,fwd130.1380;
+reasons673 AP26 core/47 AP23 fallback. Deltas vs AP23 are
+-.00349/+.00282/-.00881/+.01710 and all20/50-date CIs cross0. AP23 remains best
+strict minimum; AP26 remains accuracy frontier with rate failure; AP32 is the
+new early-selected strict Pareto challenger, not a statistically proven winner.
+
+All AP28-AP32 audits independently rebuild fits/features, maturity, policy state,
+reasons, cap and future-prefix corruption invariance. Full suite:277 tests.
+Current report: output/pdf/ivan_after_publication_ap32_effective.pdf.
 
 ## Latest completed AP23-E/AP27-E: adaptive pace and low-data specialists
 
@@ -242,17 +279,17 @@ AP12audit rebuilt source hashes,5755targets,17masks,85logs,compactsubset,
 local/class counts, all scores/signals, veto/prefix/weeklycap. PDF
 output/pdf/ivan_after_publication_ap12_effective.pdf rendered4pages and checked.
 
-## NEXT bounded AP28-E: prospective freeze and one low-data hierarchy
+## NEXT bounded AP33-E: freeze frontier and one calendar-aware fallback
 
-1. Freeze AP21 control, AP23 best strict point and AP27 r60 exactly for a
-   prospective shadow; do not move thresholds on opened 2024-2026.
-2. In parallel test exactly one pre-specified low-data specialist based on
-   hierarchical pooling or Bayesian shrinkage. No new threshold grid and no
-   selector trained on the late interval.
+1. Freeze AP23, AP27 and AP32 exactly for prospective shadow; do not move their
+   thresholds on opened 2024-2026. Keep AP26 only as the accuracy anchor.
+2. Test exactly one pre-specified calendar-aware decision fallback: AP26 core
+   retains priority, while AP23 fallback is allowed only in a late ISO-week slot
+   or after causal silence. No threshold grid and no late selector.
 3. Preserve quarterly chronological OOS fits, publication-h20 maturity cap,
    2-day embargo, known-down veto, causal ranks/state and max2/week.
-4. Do not repeat direct ranker-primary, residual Hist/Ridge stacks or outcome-free
-   rank consensus. AP18-AP24 already give clear negative transport evidence.
+4. Do not repeat hierarchical weight4, competence backstop, fixed rank blends or
+   factorized y3/y20; AP28-AP31 already preserve those negative results.
 5. Acceptance remains minlift>2.4 on h3/5/10/20,min currency rate>=1,zeroempty,
    max2/week with paired uncertainty. Final product validation additionally needs
    actual receipt timestamps and an executable bank price, not only official CBR.

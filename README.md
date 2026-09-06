@@ -4,20 +4,23 @@
 выгоднее переводить рубли в **AMD, KGS, KZT, TJS или UZS**, и сформировать не
 больше нескольких полезных сигналов в неделю.
 
-> **Уточнённая задача AP10-E/AP27-E:** после получения завтрашнего курса считаем lift
+> **Уточнённая задача AP10-E/AP32-E:** после получения завтрашнего курса считаем lift
 > от **действующего сегодня ЦБ**. Знание нового курса — вход, а не новая опора.
 > Лучший строгий point-result — AP23 mature-only competence pace:
 > **h3/5/10/20 = 2,407 / 2,466 / 2,465 / 2,472**, min rate **1,039**,
 > zero empty months и max2/week. Лучший accuracy-frontier — AP26 y20 specialist
 > со shrinkage: min lift **2,417**, h5 **2,483**, но min rate **0,971**.
-> AP27 вернул specialist к строгой частоте: **2,405 / 2,465 / 2,444 / 2,467**,
-> min rate **1,001**. Все три — ретроспективные challengers, не fresh winners;
+> Новый early-selected AP32 decision-router получил **2,403 / 2,469 / 2,456 /
+> 2,489**, min rate **1,039**, zero empty months и max2/week. Это первый новый
+> зарегистрированный вариант, который прошёл ранний selector и поздние строгие
+> gates, но все сравнения с AP23 пока имеют CI, пересекающие ноль.
+> AP23/AP26/AP32 — ретроспективные challengers, не fresh winners;
 > приросты к AP21 по lift пока статистически не доказаны.
 > Период h5: **09.01.2024–25.08.2026**.
 > Исторические receipts условные, не новый закрытый тест и не банковская экономия.
 > На h1 ответ после публикации уже известен; h3/5/10/20 ещё содержат неизвестное.
 > Старые AP3/AP4 **1,630** относятся к другой, новой опубликованной опоре.
-> Исследование активно, без почасовой автоматизации; **271 тест** прошёл.
+> Исследование активно, без почасовой автоматизации; **277 тестов** прошли.
 
 > **Сохранённый ориентир до публикации:** причинный `availability_route` на
 > срезе 15:30. На ретроспективе 2025–2026 он даёт adjusted lift **2,053** при
@@ -27,8 +30,40 @@
 
 [Краткая история всех экспериментов](EXPERIMENTS_SUMMARY.md) ·
 [решение 15:30 подробно](docs/05-tekushchee-reshenie.md) ·
-[новый PDF: AP23–AP27, adaptive pace и specialist](output/pdf/ivan_after_publication_ap27_effective.pdf) ·
+[новый PDF: AP28–AP32, decision-router](output/pdf/ivan_after_publication_ap32_effective.pdf) ·
 [активный исследовательский checkpoint](research/after_publication_next_steps.md)
+
+## Последние AP28-E/AP32-E: decision-router проходит строгие gates
+
+После AP26 были проверены четыре новых способа сохранить его точность и вернуть
+частоту. Иерархический pooled y20 (AP28) размыл редкий hard-pool сигнал:
+min lift **2,378**, min rate **0,978**. Competence-backstop AP29 почти прошёл,
+но h3 остался **2,398**. Фиксированный rank-blend AP30 также дал только
+**2,398** по худшему горизонту. Факторизация AP31 на `P(y3) × P(y20|y3)`
+компаундировала ошибки калибровки и снизила min lift до **2,333**.
+
+AP32 сменил уровень ансамблирования: он не смешивает несовместимые scores.
+AP26 получает приоритет как точный core; только когда core молчит и собственный
+trailing-365 rate router ниже 1, допускается уже причинное решение AP23. Затем
+последовательно применяется новый cap2/week. Политика была зафиксирована одной
+конфигурацией до fit и прошла ранний selector.
+
+| Кандидат | h3 | h5 | h10 | h20 | Min rate | Статус |
+|---|---:|---:|---:|---:|---:|---|
+| AP23 adaptive pace | **2,407** | 2,466 | 2,465 | 2,472 | **1,039** | лучший strict minimum |
+| AP26 y20 shrink200 | **2,417** | **2,483** | 2,446 | **2,495** | 0,971 | accuracy-frontier |
+| AP32 decision-router | 2,403 | **2,469** | 2,456 | **2,489** | **1,039** | early-selected strict |
+
+AP32 дал 720 поздних сигналов: 673 от AP26 core и 47 fallback AP23. На h5
+rate=**1,076**, symmetric benefit **73,46 б.п.**, future-only **130,14 б.п.**;
+по валютам rate=1,053–1,091. По сравнению с AP23 он лучше на h5/h20 и по
+среднему lift, но хуже на h3/h10; все paired date-CI пересекают ноль. Поэтому
+это сильный prospective challenger, а не доказанный новый победитель.
+
+[Отчёт AP28–AP32](research/after_publication_ap32_effective_report.md) ·
+[результаты AP32](results/research/after_publication/ap32_effective) ·
+[предрегистрация AP32](research/after_publication_ap32_effective_registered.md).
+Все AP28–AP32 maturity/refit/state/future-prefix audits прошли.
 
 ## Последние AP23-E/AP27-E: adaptive pace и specialist-модели
 
@@ -510,7 +545,8 @@ rate(t) <= min(rate(t+1), ..., rate(t+h))
 - 2025–2026 всегда помечается как уже исследованная ретроспектива.
 
 Политика описана в [`research/case_qa_20260905_notes.md`](research/case_qa_20260905_notes.md),
-текущий протокол — в [`research/round7_protocol.md`](research/round7_protocol.md).
+активный протокол — в
+[`research/after_publication_next_steps.md`](research/after_publication_next_steps.md).
 
 ## Быстрый старт
 
@@ -519,14 +555,13 @@ python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 PYTHONPATH=. .venv/bin/pytest -q
 
-# Воспроизвести последний локальный раунд на сохранённых данных
-PYTHONPATH=. .venv/bin/python -m research.round7_direct_pairs
-PYTHONPATH=. .venv/bin/python -m research.round7_residual_floor
-PYTHONPATH=. .venv/bin/python -m research.round7_audit
-PYTHONPATH=. .venv/bin/python -m research.build_round7_report
+# Воспроизвести последний after-publication раунд на сохранённых данных
+PYTHONPATH=. .venv/bin/python -m research.after_publication_ap32_effective
+PYTHONPATH=. .venv/bin/python -m research.after_publication_ap32_effective_audit
+PYTHONPATH=. .venv/bin/python -m research.build_after_publication_ap32_effective_report
 ```
 
-Полный набор содержит **271 тест**. Повторная загрузка данных MOEX требует
+Полный набор содержит **277 тестов**. Повторная загрузка данных MOEX требует
 сети: `PYTHONPATH=. .venv/bin/python -m research.round7_direct_pairs_data`.
 XGBoost на macOS может потребовать `brew install libomp`.
 
@@ -537,15 +572,17 @@ XGBoost на macOS может потребовать `brew install libomp`.
 | `ml/` | базовые признаки, targets, модели, walk-forward и as-of API |
 | `research/round6_*` | поиск и аудит текущего CNY availability-router |
 | `research/round7_*` | прямые пары, residual-модели, аудит и виджет |
+| `research/after_publication_ap32_*` | актуальный decision-router, протокол и аудит |
 | `data/moex_direct_pairs/` | архив прямых CETS-пар с SHA-256 и FACEVALUE |
 | `results/research/round7/` | полные результаты последнего раунда |
+| `results/research/after_publication/ap32_effective/` | scorecards и аудит AP32 |
 | `tests/` | проверки корректности и отсутствия утечек |
 | `docs/` | продуктовые документы и интерпретация результатов |
 | `output/pdf/` | отчёты для чтения и защиты |
 
 ## Что читать
 
-1. [AP23–AP27: adaptive pace и specialist-модели](output/pdf/ivan_after_publication_ap27_effective.pdf) —
+1. [AP28–AP32: decision-router](output/pdf/ivan_after_publication_ap32_effective.pdf) —
    актуальный after-publication scorecard, честные статусы и следующие шаги.
 2. [Текущее решение](docs/05-tekushchee-reshenie.md) — актуальная короткая
    техническая и продуктовая картина.
@@ -558,10 +595,10 @@ XGBoost на macOS может потребовать `brew install libomp`.
 
 ## Текущий статус
 
-Ветка разработки — `ivan-experiments`. AP21 остаётся замороженным строгим
-контролем; AP23 и строгий AP27 — prospective challengers, AP26 — accuracy anchor.
-Их точечные результаты ещё нельзя считать доказанным улучшением из-за многократно
-открытого периода. Ближайший шаг — frozen live/prospective shadow без изменения
-порогов и один заранее заданный low-data specialist с hierarchical/Bayesian
-shrinkage; отдельно нужно подтвердить реальный timestamp получения курса и
-исполняемый банковский курс.
+Ветка разработки — `ivan-experiments`. AP23 остаётся лучшим strict minimum,
+AP26 — accuracy anchor, AP27 и early-selected AP32 — prospective challengers.
+Точечные различия между лидерами нельзя считать доказанными из-за многократно
+открытого периода и пересекающих ноль paired CI. Ближайший шаг — frozen
+live/prospective shadow без изменения порогов и один заранее заданный
+calendar-aware fallback; отдельно нужно подтвердить фактический timestamp
+получения курса и исполняемый банковский курс.

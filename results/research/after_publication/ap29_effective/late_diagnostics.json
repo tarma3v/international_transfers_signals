@@ -1,0 +1,14 @@
+{
+  "selected_early": "s200_comp95_r60_backstop_month24_cap2",
+  "fresh_early_joint_pass": true,
+  "late_min_lift": 2.3979685871770564,
+  "late_min_rate": 1.0010917030567683,
+  "late_strict_success": false,
+  "late_reason_counts": {
+    "none": 2591,
+    "primary": 615,
+    "pace": 43,
+    "backstop": 30,
+    "month": 6
+  }
+}

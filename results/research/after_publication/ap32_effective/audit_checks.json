@@ -1,0 +1,13 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "both_causal_source_decisions_exact": true,
+  "meta_trailing_rate_reason_and_weekly_cap_rebuilt": true,
+  "future_both_source_signal_corruption_prefix_invariant": true,
+  "early_selection_rebuilt": true,
+  "known_down_veto_inherited_and_checked": true,
+  "h1_excluded_from_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false
+}

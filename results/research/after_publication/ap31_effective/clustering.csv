@@ -1,0 +1,11 @@
+candidate,currency,n_signals,empty_complete_months,weekly_max,weekly_zero_share,calendar_gap_max
+cat_factor_y3_y20_dual_month24_cap2,AMD,142,0,2,0.3115942028985507,31
+cat_factor_y3_y20_dual_month24_cap2,KGS,135,0,2,0.34057971014492755,31
+cat_factor_y3_y20_dual_month24_cap2,KZT,145,0,2,0.2898550724637681,39
+cat_factor_y3_y20_dual_month24_cap2,TJS,139,0,2,0.32608695652173914,30
+cat_factor_y3_y20_dual_month24_cap2,UZS,139,0,2,0.34057971014492755,43
+known_next_not_lower_cd3,AMD,193,0,2,0.036231884057971016,13
+known_next_not_lower_cd3,KGS,188,0,2,0.057971014492753624,18
+known_next_not_lower_cd3,KZT,193,0,2,0.028985507246376812,18
+known_next_not_lower_cd3,TJS,197,0,2,0.050724637681159424,17
+known_next_not_lower_cd3,UZS,186,0,2,0.050724637681159424,17

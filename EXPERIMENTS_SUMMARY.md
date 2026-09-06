@@ -8,6 +8,44 @@
 Для внутренней оптимизации сохраняется
 `h=5`, официальный scorecard теперь считается сразу на `h=1/3/5/10/20`.
 
+## Последние AP28-E/AP32-E: ансамбль на уровне решений
+
+[PDF](output/pdf/ivan_after_publication_ap32_effective.pdf) ·
+[отчёт](research/after_publication_ap32_effective_report.md) ·
+[AP32 protocol](research/after_publication_ap32_effective_registered.md) ·
+[AP32 results](results/research/after_publication/ap32_effective).
+
+AP28 проверил один заранее заданный hierarchical pooled y20 CatBoost: все
+зрелые строки получили вес1, а outcome-free hard-pool — вес4. Общий prior убрал
+cold start, но размыл редкий сигнал: late h3/5/10/20=
+**2,408359/2,457002/2,411398/2,377662**, min rate **0,978166**. Ранний gate
+не пройден.
+
+AP29 добавлял AP23 только как mature-competence backstop к AP26 core. Частота
+восстановилась до min rate **1,001092**, но h3=**2,397969**, поэтому строгий
+lift-gate не пройден. AP30 смешивал AP26/AP23 только в причинном rank-space
+75/25; это также размыло core: min lift **2,397866**, h5 **2,441546**.
+AP31 разложил событие на `P(y3) × P(y20|y3=1)` через 34 quarterly OOS
+CatBoost fits. Интерпретируемая survival-факторизация прошла ранний selector,
+но compounded calibration error дала min lift **2,333349**, min rate **0,993450**.
+
+AP32 впервые ансамблирует только бинарные решения. AP26 y20-shrink200 имеет
+приоритет; если он молчит и собственный trailing365 rate meta-router ниже1,
+разрешается AP23 soft730 decision, после чего применяется новый sequential
+max2/week. Это одна заранее зарегистрированная политика без позднего grid.
+Она прошла ранний selector и поздние strict gates: h3/5/10/20=
+**2,403143/2,468871/2,455698/2,489157**, min lift **2,403143**, mean lift
+**2,454217**, min currency rate **1,039301**, zero empty months, max2/week.
+На h5:720 сигналов,rate1,075774,currency1,05336–1,09072,symmetric73,46б.п.,
+future-only130,14б.п.; причины —673 AP26 core и47 AP23 fallback.
+
+Относительно AP23 изменения h3/h5/h10/h20 равны
+−0,00349/+0,00282/−0,00881/+0,01710; все 20/50-date CI пересекают ноль.
+Поэтому AP23 сохраняет лучший strict minimum **2,406634**, AP26 — accuracy
+frontier **2,417356** с провалом rate, а AP32 становится новым early-selected
+strict Pareto challenger, но не fresh independent winner. Все AP28–AP32 audits
+прошли; полный набор — **277 тестов**.
+
 ## Последние AP23-E/AP27-E: mature competence, specialists и causal backstop
 
 [PDF](output/pdf/ivan_after_publication_ap27_effective.pdf) ·
