@@ -1997,3 +1997,25 @@ log-loss 0,38896 против 0,56054/0,21742/0,12932/0,43650 у T25. Полов
 карты монотонны, source/maturity/anchor/selection audits и future-target
 corruption прошли. Результаты:
 `results/research/temperature/t30_presvo_rank_postsvo_map/`.
+
+## T31: mature-only Online Hedge причинно видит поздний режим
+
+T31 проверил ансамбль трёх frozen T30-экспертов без календарного switch. Перед
+каждой публикацией вес менялся только по предыдущим датам, чей h20-target уже
+полностью созрел до `query - 2 дня`. Проверены 16 заранее зарегистрированных
+пар `eta × fixed-share gamma`; 2023 выбирал одну строку, 2024 мог лишь
+подтвердить её, 2025–2026 ничего не выбирал.
+
+На screen-2023 лучший компромисс `eta=0,25, gamma=0,10` улучшил Brier
+0,22651→0,19114, log-loss 0,64313→0,56730, ECE 0,18576→0,03006 и AUC
+0,58840→0,60411. Однако заранее требовалось AUC-delta не меньше +0,02, а
+получено +0,01571. Feasible-кандидатов не было; selector сохранил identity и
+formal `passed=false`.
+
+Поздняя диагностика подтверждает сам механизм: `eta=2, gamma=0` на открытых
+2025–2026 имеет AUC 0,74951, AP 0,37744, Brier 0,11881, log-loss 0,38862 и
+ECE 0,03357 против 0,56054/0,21742/0,12932/0,43650/0,04677 у T25. Но
+выбирать эту строку после просмотра запрещено. Она заморожена только как
+prospective shadow. Аудит восстановил все смеси, maturity/publication cutoffs,
+selection/fallback и future-target invariance. Результаты:
+`results/research/temperature/t31_mature_fixed_share/`.

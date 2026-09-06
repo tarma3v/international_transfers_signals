@@ -139,3 +139,8 @@ caused the change.
     all-history family later reached open AUC 0.750. Keep `all_platt_b050` as a
     frozen prospective control only; a calendar switch learned from hindsight
     is not an admissible information-state router.
+17. T31 mixed identity, all-history and recent2y experts with mature-only
+    fixed-share Hedge updates. Nothing passed the pre-registered 2023 screen.
+    The unselected `eta=2, gamma=0` line later reached open AUC 0.750 and Brier
+    0.11881, showing a causal regime-adaptation mechanism but not a fresh
+    winner. Keep it as a prospective shadow; do not change the runtime router.

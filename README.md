@@ -117,6 +117,15 @@
 > но в 2023 её AUC был **0,490**. Это сильная prospective-гипотеза и наглядный
 > режимный разворот, а не основание переписать screen задним числом.
 >
+> T31 проверил причинный Online Hedge: веса трёх frozen h20-экспертов меняются
+> только после полного созревания h20-outcome и двухдневного embargo. Ни один
+> из 16 вариантов не прошёл заранее заданный 2023 screen; лучший недобрал
+> AUC-gate на 0,00429, поэтому selector сохранил baseline. Невыбранный
+> `eta=2, gamma=0` затем дал на открытых 2025–2026 AUC **0,750**, Brier
+> **0,11881**, log-loss **0,38862** и ECE **0,03357** против
+> **0,561 / 0,12932 / 0,43650 / 0,04677** у T25. Это объяснимый механизм
+> причинной смены режима и frozen prospective control, но не новый winner.
+>
 > Новый T15/T16 закрывает вечер до 23:00 завершёнными perpetual-свечами
 > CNYRUBF и USDRUBF. Ни один новый probability-кандидат не улучшил сильный
 > T7B-control на screen-2024, поэтому вечерняя температура не меняется только
@@ -162,7 +171,7 @@
 > формально проходит gates, однако это AP37 плюс 2 сигнала без доказанного
 > улучшения. Основным остаётся более простой AP37.
 > Исследование активно, без почасовой автоматизации; после T18 полный набор из
-> **380 тестов** проходят.
+> **383 теста** проходят.
 
 > **Сохранённый ориентир до публикации:** причинный `availability_route` на
 > срезе 15:30. На ретроспективе 2025–2026 он даёт adjusted lift **2,053** при
@@ -187,6 +196,7 @@
 [T28: weak w30-blend не прошёл Q4](research/temperature_t28_weak_w30_blend_report.md) ·
 [T29: крупнопериодная калибровка не перенеслась](research/temperature_t29_coarse_intercept_report.md) ·
 [T30: pre-SVO rank и post-SVO map](research/temperature_t30_presvo_rank_postsvo_map_report.md) ·
+[T31: mature-only Online Hedge](research/temperature_t31_mature_fixed_share_report.md) ·
 [пример обязательной таблицы ТЗ](output/signals_example_2026-09-01_2115_h5.csv) ·
 [пример до receipt](output/signals_example_2026-09-01_1845_no_receipt_h5.csv) ·
 [пример после verified receipt](output/signals_example_2026-09-01_1845_verified_receipt_h5.csv) ·
@@ -195,7 +205,7 @@
 [парное fast-vs-slow сравнение](research/fast_slow_paired_report.md) ·
 [вечерний роутер T16](research/temperature_t16_evening_router_registered.md) ·
 [финальный алгоритм простыми словами, PDF](output/pdf/ivan_final_anytime_algorithm_for_everyone.pdf) ·
-[подробный any-time отчёт, 37 страниц](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
+[подробный any-time отчёт, 38 страниц](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
 [финальная презентация с интерфейсом](output/presentation/international_transfers_final_with_interface_2026-09-06_v2.pptx) ·
 [та же презентация в PDF](output/pdf/international_transfers_final_with_interface_2026-09-06_v2.pdf) ·
 [самый эффективный подход: подробное объяснение на 30 страниц](output/pdf/описание_подробное.pdf) ·
@@ -854,7 +864,7 @@ PYTHONPATH=. .venv/bin/python -m research.after_publication_ap37_effective_audit
 PYTHONPATH=. .venv/bin/python -m research.build_after_publication_ap39_effective_report
 ```
 
-Полный набор содержит **380 тестов**. Повторная загрузка данных MOEX требует
+Полный набор содержит **383 теста**. Повторная загрузка данных MOEX требует
 сети: `PYTHONPATH=. .venv/bin/python -m research.round7_direct_pairs_data`.
 XGBoost на macOS может потребовать `brew install libomp`.
 

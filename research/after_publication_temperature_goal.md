@@ -81,6 +81,15 @@ all-history family became very strong in 2024--2026 (open AUC 0.750, Brier
 Freeze `all_platt_b050` only as a prospective challenger; production remains
 unchanged until new outcomes arrive.
 
+T31 tested whether delayed mature feedback can identify that reversal without
+a calendar switch. A fixed-share Hedge mixed three frozen T30 experts and used
+only h20 outcomes mature before each query minus embargo. No setting passed the
+pre-registered 2023 screen, so the selected output remains identity. An
+unselected no-share fast learner later reaches open AUC 0.750, Brier 0.11881
+and ECE 0.03357, but this is now a frozen prospective control, not a promoted
+temperature. The causal mechanism is promising; the current evidence is not a
+fresh holdout.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -144,8 +153,9 @@ and weekends produce an explicit stale state, not imputed current prices.
 1. Keep frozen AP49/T17 probability as the anchor, T22 after verified receipt
    and T25 before receipt as shadow ranks. T26's delayed selector is rejected;
    T27 rejects w250, T28 rejects a daily weak w30 blend, T29 rejects the
-   month/quarter-held correction and T30 rejects the retrospective regime
-   selector. Freeze T25 plus the declared T30 control and wait for prospective
+   month/quarter-held correction, T30 rejects the retrospective regime selector
+   and T31 rejects promotion of a mature-only Hedge on its frozen 2023 screen.
+   Freeze T25 plus the declared T30/T31 controls and wait for prospective
    outcomes before reconsidering level adaptation.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.

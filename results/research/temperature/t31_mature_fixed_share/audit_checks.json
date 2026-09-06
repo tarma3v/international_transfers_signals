@@ -1,0 +1,17 @@
+{
+  "source_hashes_match": true,
+  "candidate_grid_complete": true,
+  "screen_selected": "identity_early",
+  "validation_passed": false,
+  "selected_model": "identity_early",
+  "passed": false,
+  "feedback_strictly_mature_and_prior": true,
+  "weights_finite_nonnegative_and_normalized": true,
+  "all_candidate_mixtures_rebuilt": true,
+  "selected_predictions_rebuilt": true,
+  "publication_keys_unique": true,
+  "probabilities_finite_and_bounded": true,
+  "paired_interval_grid_complete": true,
+  "selection_on_open_2025_2026": false,
+  "fresh_independent_holdout": false
+}
