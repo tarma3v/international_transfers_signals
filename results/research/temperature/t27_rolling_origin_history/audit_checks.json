@@ -1,0 +1,18 @@
+{
+  "source_hashes_match": true,
+  "prediction_rows": 2910,
+  "evaluation_dates": 582,
+  "historical_rows": 1235,
+  "historical_dates": 247,
+  "historical_quarterly_fits_causal": true,
+  "historical_feedback_unique": true,
+  "feedback_trace_causal": true,
+  "selected_model": "t25_base",
+  "passed": false,
+  "selection_rebuilt": true,
+  "selected_prediction_rebuilt": true,
+  "probabilities_finite_and_bounded": true,
+  "paired_interval_grid_complete": true,
+  "selection_on_open_period": false,
+  "fresh_independent_holdout": false
+}

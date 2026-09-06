@@ -1,10 +1,24 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, T26 complete. The user made after-publication research the
+Updated 2026-09-06, T27 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user’s explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
+
+## LATEST COMPLETED CHECKPOINT: T27 PRE-2025 ROLLING-ORIGIN HISTORY
+
+T27 added 247 unique 2023 publication dates using true quarterly OOS T4 anchor
+probabilities and four causal quarterly compact fits. This made w250 distinct
+from expanding before 2025. It failed sharply on 2024-H2: Brier 0.22728 and ECE
+0.20406 versus 0.17693/0.07575 for T25. The selector again retains T25.
+
+The known open-period w250 AUC/Brier remain attractive, but T27 proves that
+window was not stable in the preceding regime and cannot be promoted. w30 is
+the only repeatable pre-2025 direction: it improves AUC/Brier but exceeds the
+ECE allowance. A next packet may preregister weak fixed logit blends toward w30
+and select only on 2024-H2. Full outputs:
+`results/research/temperature/t27_rolling_origin_history/`.
 
 ## LATEST COMPLETED CHECKPOINT: T26 DELAYED BASE-RATE UPDATE
 
@@ -1531,3 +1545,10 @@ On 2024-H2 no candidate satisfies Brier/log-loss/ECE/AUC jointly, so the saved
 primary is exactly T25. The open-period w250 diagnostic is strong but post-hoc;
 do not promote or tune around it. Build earlier rolling-origin history before
 another selector, otherwise wait for prospective outcomes.
+
+## T27: earlier OOS history rejects w250
+
+With 247 causal 2023 publication dates, w250 is distinguishable before 2025 and
+performs much worse than T25 on the 2024-H2 screen. The known 2025--2026 gain is
+therefore regime-specific hindsight, not a robust window. Retain T25. Only a
+small preregistered shrink toward w30 remains justified by pre-2025 evidence.

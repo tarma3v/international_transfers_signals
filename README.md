@@ -94,6 +94,11 @@
 > сильно (AUC **0,638**, Brier **0,11326**), но его отдельное преимущество стало
 > видно только после 2025, поэтому это post-hoc гипотеза, не новый winner.
 >
+> T27 добавил 247 настоящих OOS-публикационных дат 2023, чтобы w250 стал
+> различим до 2025. Гипотеза не подтвердилась: на selection-2024-H2 w250 дал
+> Brier **0,22728** и ECE **0,20406** против 0,17693/0,07575 у T25. Красивый
+> open AUC 0,644 признан режимным post-hoc эффектом; selector снова оставил T25.
+>
 > Новый T15/T16 закрывает вечер до 23:00 завершёнными perpetual-свечами
 > CNYRUBF и USDRUBF. Ни один новый probability-кандидат не улучшил сильный
 > T7B-control на screen-2024, поэтому вечерняя температура не меняется только
@@ -139,7 +144,7 @@
 > формально проходит gates, однако это AP37 плюс 2 сигнала без доказанного
 > улучшения. Основным остаётся более простой AP37.
 > Исследование активно, без почасовой автоматизации; после T18 полный набор из
-> **370 тестов** проходит.
+> **372 теста** проходят.
 
 > **Сохранённый ориентир до публикации:** причинный `availability_route` на
 > срезе 15:30. На ретроспективе 2025–2026 он даёт adjusted lift **2,053** при
@@ -160,6 +165,7 @@
 [T24: сильный history-only h20 rank](research/temperature_t24_history_h20_anchor_report.md) ·
 [T25: anchor-preserving map и строгий отказ promotion](research/temperature_t25_anchor_preserving_map_report.md) ·
 [T26: delayed base-rate update и post-hoc w250](research/temperature_t26_delayed_base_rate_report.md) ·
+[T27: rolling-origin история опровергает w250](research/temperature_t27_rolling_origin_history_report.md) ·
 [пример обязательной таблицы ТЗ](output/signals_example_2026-09-01_2115_h5.csv) ·
 [пример до receipt](output/signals_example_2026-09-01_1845_no_receipt_h5.csv) ·
 [пример после verified receipt](output/signals_example_2026-09-01_1845_verified_receipt_h5.csv) ·
@@ -168,7 +174,7 @@
 [парное fast-vs-slow сравнение](research/fast_slow_paired_report.md) ·
 [вечерний роутер T16](research/temperature_t16_evening_router_registered.md) ·
 [финальный алгоритм простыми словами, PDF](output/pdf/ivan_final_anytime_algorithm_for_everyone.pdf) ·
-[подробный any-time отчёт, 33 страницы](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
+[подробный any-time отчёт, 34 страницы](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
 [финальная презентация с интерфейсом](output/presentation/international_transfers_final_with_interface_2026-09-06_v2.pptx) ·
 [та же презентация в PDF](output/pdf/international_transfers_final_with_interface_2026-09-06_v2.pdf) ·
 [самый эффективный подход: подробное объяснение на 30 страниц](output/pdf/описание_подробное.pdf) ·
@@ -827,7 +833,7 @@ PYTHONPATH=. .venv/bin/python -m research.after_publication_ap37_effective_audit
 PYTHONPATH=. .venv/bin/python -m research.build_after_publication_ap39_effective_report
 ```
 
-Полный набор содержит **370 тестов**. Повторная загрузка данных MOEX требует
+Полный набор содержит **372 теста**. Повторная загрузка данных MOEX требует
 сети: `PYTHONPATH=. .venv/bin/python -m research.round7_direct_pairs_data`.
 XGBoost на macOS может потребовать `brew install libomp`.
 
@@ -841,7 +847,7 @@ XGBoost на macOS может потребовать `brew install libomp`.
 | `research/after_publication_ap33_*` | лидер calendar-router, протокол и аудит |
 | `research/after_publication_ap34_*`–`ap36_*` | residual, distributional и causal Hedge |
 | `research/after_publication_ap37_*`–`ap39_*` | mature precision, core veto и runway |
-| `research/temperature_t24_*`–`temperature_t26_*` | premarket h20 rank, anchor mapping и delayed calibration |
+| `research/temperature_t24_*`–`temperature_t27_*` | premarket h20 rank, anchor mapping и delayed calibration |
 | `data/moex_direct_pairs/` | архив прямых CETS-пар с SHA-256 и FACEVALUE |
 | `results/research/round7/` | полные результаты последнего раунда |
 | `results/research/after_publication/ap33_effective/` | scorecards и аудит AP33 |
@@ -873,7 +879,8 @@ AP26 остаётся accuracy core, AP33 — основной frozen control; A
 открытого периода и пересекающих ноль paired CI. Ближайший шаг — frozen
 live/prospective shadow без изменения порогов. Для any-time h20 T22 остаётся
 receipt-only shadow, а T25 — premarket shadow с улучшенным rank, но не прошедшей
-неопределённостью Brier. T26 отклонил первый delayed update и сохранил w250
-только как post-hoc гипотезу. Следующий честный шаг — historical rolling-origin
-история до 2025 либо prospective shadow; отдельно нужно подтвердить фактический
-timestamp получения курса и исполняемый банковский курс.
+неопределённостью Brier. T26/T27 отклонили delayed update и опровергли w250 на
+добавленной pre-2025 OOS-истории. Следующий кандидат — заранее заданный слабый
+shrink к w30, единственному варианту с лучшими selection Brier/AUC, либо
+prospective shadow; отдельно нужно подтвердить фактический timestamp получения
+курса и исполняемый банковский курс.

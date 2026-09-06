@@ -1913,3 +1913,21 @@ expanding: длина 250 стала различимой только на от
 зафиксирован как post-hoc гипотеза, не выбранная модель. Нужна rolling-origin
 история до 2025 или prospective shadow. Результаты:
 `results/research/temperature/t26_delayed_base_rate/`.
+
+## T27: 2023 rolling-origin история опровергает w250
+
+T27 восстановил 1 235 строк / 247 publication dates 2023. Frozen anchor взят
+из квартальных OOS-выходов T4; compact rank заново обучен четырьмя quarterly
+fits только на прежних mature labels с embargo. Это позволило различить
+w125/w250/expanding до 2025, не используя открытый период для selector.
+
+w250 провалился на 2024-H2: AUC 0,699, Brier 0,22728, log-loss 0,73115 и ECE
+0,20406 против 0,716/0,17693/0,53047/0,07575 у T25. Ни один candidate не
+прошёл gate; selector оставил T25. Open w250 всё ещё выглядит сильно
+(AUC 0,644, Brier 0,11303), но теперь показано, что он не переносится назад и
+является режимным post-hoc эффектом.
+
+w30 второй раз улучшил pre-2025 AUC/Brier до 0,767/0,17479, но ECE delta
++0,01058 не прошла лимит +0,005. Следующий допустимый тест — заранее заданный
+слабый logit-shrink к w30, выбранный только на 2024-H2; w250 исключён.
+Результаты: `results/research/temperature/t27_rolling_origin_history/`.

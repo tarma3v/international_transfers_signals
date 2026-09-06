@@ -57,6 +57,12 @@ could not be distinguished from expanding before 2025 and is therefore not a
 selected temperature. The next experiment must create earlier rolling-origin
 probability history or move to prospective shadow.
 
+T27 built that earlier history from 247 quarterly OOS T4/compact publication
+dates in 2023. It rejected w250 decisively on 2024-H2, proving the open-period
+gain is not a stable preselected rule. w30 remains the only direction that
+improves pre-2025 Brier/AUC, but full strength fails ECE; only a preregistered
+weak blend is a defensible next calibration experiment.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -119,8 +125,8 @@ and weekends produce an explicit stale state, not imputed current prices.
 
 1. Keep frozen AP49/T17 probability as the anchor, T22 after verified receipt
    and T25 before receipt as shadow ranks. T26's delayed selector is rejected;
-   build an earlier rolling-origin history before comparing long windows, or
-   wait for prospective outcomes. Do not select w250 on opened 2024--2026.
+   T27's earlier rolling-origin history rejects w250. Test only a fixed weak
+   blend toward w30 on 2024-H2, or wait for prospective outcomes.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.
 3. Implement `score_as_of(currency, timestamp, horizon)` that selects the latest

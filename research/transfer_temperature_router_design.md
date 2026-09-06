@@ -124,3 +124,6 @@ caused the change.
 12. T26 tested that delayed intercept. No candidate passed the 2024-H2 joint
     screen; T25 remains primary. Open-period w250 is only a post-hoc hypothesis.
     The next selector needs earlier rolling-origin history or prospective data.
+13. T27 supplied 247 OOS publication dates from 2023 and rejected w250 on the
+    pre-2025 screen. T25 remains primary; a weak preregistered shrink toward
+    w30 is the only remaining delayed-calibration direction supported there.
