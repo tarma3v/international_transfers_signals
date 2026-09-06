@@ -2019,3 +2019,24 @@ ECE 0,03357 против 0,56054/0,21742/0,12932/0,43650/0,04677 у T25. Но
 prospective shadow. Аудит восстановил все смеси, maturity/publication cutoffs,
 selection/fallback и future-target invariance. Результаты:
 `results/research/temperature/t31_mature_fixed_share/`.
+
+## T32: OOS warm-up не решает режимный разворот
+
+T32 проверил, был ли провал T31 на 2023 следствием cold start. Rank снова
+обучен до 2022, отдельная probability-map - на 410 созревших строках каждой
+семьи апреля-июля 2022. После двухмесячного gap T4-compatible HGB-anchor
+обучен один раз на 01.10.2022 по 640 mature rows, а 325 строк Q4 стали OOS
+warm-up. К первой screen-дате Hedge уже потребил 42 mature feedback batches.
+
+Warm-up ухудшил 2023: максимум AUC среди 16 строк 0,55223 против 0,58840 у
+identity; cold-start T31 на том же screen доходил до 0,60411. Быстрый no-share
+Hedge уже к концу 2022 отдал 99,61% веса recent2y и почти не оставил себе
+возможности сменить режим. Feasible-строк нет, formal result равен identity.
+
+На 2024 все строки снова проходят gates; невыбранный e2/g0.01 имеет AUC
+0,63158 и Brier 0,15332. На open лучший warm control даёт AUC 0,67532 и Brier
+0,12363 против 0,56054/0,12932 у T25, но слабее cold-start T31. Это доказывает,
+что соседний успешный период может закрепить неправильного эксперта. Слепой
+recent-data weighting исключён; следующий адаптер должен стабилизировать
+междневной rank или использовать observable state. Результаты:
+`results/research/temperature/t32_oos_warm_hedge/`.

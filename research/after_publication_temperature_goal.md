@@ -90,6 +90,12 @@ and ECE 0.03357, but this is now a frozen prospective control, not a promoted
 temperature. The causal mechanism is promising; the current evidence is not a
 fresh holdout.
 
+T32 removed T31's cold start with a disjoint Q4-2022 OOS warm-up. It made the
+2023 screen worse, not better: maximum candidate AUC fell to 0.552 versus
+0.588 identity and 0.604 in T31. Mature Q4 feedback concentrated weight on the
+recent2y expert just before the regime changed again. Reject warm-start
+promotion; recent outcomes alone are not a stable regime state.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -154,8 +160,9 @@ and weekends produce an explicit stale state, not imputed current prices.
    and T25 before receipt as shadow ranks. T26's delayed selector is rejected;
    T27 rejects w250, T28 rejects a daily weak w30 blend, T29 rejects the
    month/quarter-held correction, T30 rejects the retrospective regime selector
-   and T31 rejects promotion of a mature-only Hedge on its frozen 2023 screen.
-   Freeze T25 plus the declared T30/T31 controls and wait for prospective
+   T31 rejects promotion of a mature-only Hedge on its frozen 2023 screen, and
+   T32 rejects disjoint recent-data warm-up. Freeze T25 plus the declared
+   T30/T31 controls and wait for prospective
    outcomes before reconsidering level adaptation.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.

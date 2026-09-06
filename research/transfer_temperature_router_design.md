@@ -144,3 +144,7 @@ caused the change.
     The unselected `eta=2, gamma=0` line later reached open AUC 0.750 and Brier
     0.11881, showing a causal regime-adaptation mechanism but not a fresh
     winner. Keep it as a prospective shadow; do not change the runtime router.
+18. T32 gave the same family a disjoint OOS Q4-2022 warm-up. It concentrated
+    weight on recent2y and reduced 2023 screen AUC to 0.552 versus 0.588
+    identity. Reject blind recent-data warm starts. The next adapter must hold
+    cross-date rank stable or route on an observable information state.
