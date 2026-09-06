@@ -1,12 +1,90 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP5 complete. The user made after-publication research the
+Updated 2026-09-06, AP6 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
 
-## Latest completed AP5: PROGRESS, no new early-feasible policy
+## Latest completed AP6: PROGRESS, new feasible candidate but no superiority
+
+Previous goal turn pushed AP5 c66f4b0. This turn actually trained sixteen OOS
+meta models and evaluated 51 policies. 168 tests passed, nine new. Registered
+protocol after_publication_ap6_registered.md was frozen before fitting. Same
+5755 events, AP2-D20 clock and publication reference, exact early/later support.
+
+Six raw h5 experts from AP3/AP4; 24 available context covariates +2 current
+expert-disagreement features. Source-only controls omit both disagreement
+features. Monthly origins July2022..Sept2026 (51), strict mature20<origin-2d,
+train-only standardization. 969 fit-log rows. All masks, scalers and pairs were
+rebuilt by audit. Optimizers succeeded; positive coefficients bounded at zero.
+
+Models: positive logistic expanding/rolling730, ordinary global expert logit,
+joint-context logit expanding/730, separate local logit, local/global shrink
+n/(n+250), small HistGB expert/joint/joint730, multi-h mean regression, pairwise
+same-currency positive/negative within60d up to8 nearest negatives, global
+correction of AP5 issued equal probabilities, global correction of own local
+meta OOS probabilities, source-only logit/Hist. 16*3 policies +3 old controls.
+Same urgent controller; extra variants CNY50 and AP4 anchor75/metaCDF25.
+
+8 early passes (6 new). Selected ap4_w25_stack_local_residual_urgent_cap2:
+early minlift1.343717, benefitLB2.543740, forwardratio.942752. Later
+h1/3/5/10/20=1.480635/1.507989/1.613434/1.543365/1.541725.
+h5=900/3260,2024-01-09..2026-08-25,rate1.344717,sym33.594912,fwd54.666086.
+Gap16, max2/week, noemptyfullmonths. Versus AP4 h5deltaCI[-.065564,.023436];
+versus AP3[-.069507,.033499]. No new h5 policy CI superior to AP4.
+AP3 stays main, AP4 alternative, not a record or replacement. All pooled lift
+LB>1.3 and symLB>0 at20/50date blocks, but KZT2026 ALL h<1.3 (h5=1.257437).
+Fwdh20=49.560763 CI[-16.853770,107.543957],50dates[-24.685692,128.291476].
+At50date h3 lift delta vsAP3[-.085454,-.000267] barely negative. Conditional,
+notsearch-adjusted, early2023 also repeatedly used, nofreshholdout.
+
+Useful negatives: local meta1.645280 + globalOOS correction1.582839,
+pairedCI[-.149828,.008082]. EqualAP5 1.664972 +correction1.560373, deltaCI
+[-.213226,-.006224] negative. Global expertlogit1.642884 ->context1.575806;
+Hist experts1.631272 ->context1.584234, no significantgain. Sourceonly Hist
+1.528725 ->joint1.584234 CI[-.006845,.115482]. Pairwise1.289286,rate1.072785,
+gap69,4emptyfullmonths maxpercurrency,sym45.915180/fwd25.248185.
+
+Positive730 diagnostic1.656174,rate1.355176,Brier.178859 vsAP5equal.186302;
+early minlift1.278336, minbenefitLB-20.209331, fails. Actualmeanpred.294717
+vsrate.294479 later. Positive2023 fit coefficient means CNY.644027,Hist.283870,
+localSurv.193918,globalSurv.002283,Extra/SurvHist0. Coefficients are not percent
+weights or causal importance. 2023 descriptive sign regimes documented only,
+notnew filters: CNYscore-/ownchange- n194 hit.113402, +/+ n406 hit.605911.
+
+Jan2025 fit uses3025 rows, lastprediction2024-12-02,lastmaturity2024-12-28,
+lastlocalorigin2024-12-01,8664pairs. Future corruption of labels/features and
+residuals tested; current local training predictions never substituted for
+their issued OOS values. All results results/research/after_publication/ap6.
+PDF output/pdf/ivan_after_publication_ap6.pdf (4 pages), all pages rendered and
+visually checked. verification.json records checks. No background job remains.
+
+## NEXT bounded stage AP7: conditional trajectory distributions / analogs
+
+1. Stop adding weight grids to the same six experts. Investigate a genuinely
+   different forecast representation: complete normalized future paths of
+   comparable past days, from which all-h survival and expected benefit are
+   derived jointly. No retraining or choosing formulas on already opened2026.
+2. Predeclare a bounded packet: simple nearest-neighbor analogs with available
+   CNY basis, known own change, volatility and causal trend context; local
+   same-currency versus global normalized-path transfer and shrinkage. Consider
+   honest distributional forests or a small conditional Gaussian/path baseline
+   as a different comparator, not only another point classifier.
+3. Train/reference library includes ONLY fully mature20 paths before origin-2d.
+   Scale each archived path by that event's available vol; unscale using current
+   known vol. Distance standardization and weights use training only. Future
+   realized calendar dates/gaps cannot be query features; only schedule facts
+   actually known at decision are allowed. No test-neighbor outcomes.
+4. Compare first-cheaper probabilities, expected future benefit and symmetric
+   benefit reconstructed with knownpast, using unchanged signal policy and
+   AP3/AP4 controls. Keep fixed earlyjoint/futureguard, later retrospective.
+   Test library cutoff/future corruption, label/path consistency, same support.
+5. Preserve all experiments, audit/summary/PDF/tests, checked push ownbranch.
+   Historicalreceipt/prospective gaps remain limitations, not a reason to stop
+   experiments or redo finished bank/legality audits. Goal stays active.
+
+## Historical AP5: no new early-feasible policy
 
 Previous goal turn AP4 pushedcb69c08. This turn actually fit monthly OOS
 calibrators and replayed delayed weights:66policies,6experts,5calibrationmodes,
@@ -55,7 +133,7 @@ default oldbehavior preserved, no priorresult overwritten. PDF
 output/pdf/ivan_after_publication_ap5.pdf, source after_publication_ap5_report.md.
 Verification.json has finalPDF/source/time/test evidence. Goal remains active.
 
-## NEXT bounded stage AP6: OOS stacking / conditional errors, not just Brier
+## Completed AP6 starting plan
 
 1. Preserve AP3/AP4 controls and all negatives. AP5 scalar Brier weighting did
    not beat equal/frozen; avoid anotherlarge eta/half-lifegrid. Its meanloss
