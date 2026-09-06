@@ -1,0 +1,17 @@
+{
+  "source_hashes_match": true,
+  "prediction_rows": 2910,
+  "evaluation_dates": 582,
+  "selected_model": "t25_base",
+  "passed": false,
+  "t25_base_rebuilt": true,
+  "selection_rebuilt": true,
+  "selected_prediction_rebuilt": true,
+  "all_sources_no_later_than_query": true,
+  "publication_mapping_causal": true,
+  "feedback_trace_causal": true,
+  "event_feedback_unique": true,
+  "probabilities_finite_and_bounded": true,
+  "paired_interval_grid_complete": true,
+  "selection_on_open_period": false
+}

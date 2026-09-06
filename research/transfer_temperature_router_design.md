@@ -121,3 +121,6 @@ caused the change.
 11. Next: keep T22 receipt-only and T25 premarket shadows frozen. If attempted,
     adapt only the probability intercept slowly from already mature outcomes;
     do not select a post-2022 switch, weight or clock on opened 2025--2026.
+12. T26 tested that delayed intercept. No candidate passed the 2024-H2 joint
+    screen; T25 remains primary. Open-period w250 is only a post-hoc hypothesis.
+    The next selector needs earlier rolling-origin history or prospective data.

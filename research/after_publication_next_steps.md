@@ -1,10 +1,26 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, T25 complete. The user made after-publication research the
+Updated 2026-09-06, T26 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user’s explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
+
+## LATEST COMPLETED CHECKPOINT: T26 DELAYED BASE-RATE UPDATE
+
+T26 froze T25 and tested global intercept updates from unique mature h20 CBR
+events only. The 2024-H2 selector retained `t25_base`: w30 improved Brier and
+AUC but exceeded the ECE allowance; longer and hierarchical variants failed
+the joint screen. The production route therefore remains unchanged.
+
+Opened 2025--2026 shows a strong diagnostic w250 (AUC 0.638, Brier 0.11326,
+log-loss 0.38634), improving both years and all currencies. It is not a winner:
+before 2025 there were too few eligible dates to distinguish w250 from
+expanding, and its advantage was discovered only on open evaluation. Preserve
+it as a hypothesis. The next defensible route is a historical rolling-origin
+probability/error reconstruction before 2025, or prospective shadow; never
+relabel w250 as preselected. Full outputs:
+`results/research/temperature/t26_delayed_base_rate/`.
 
 ## LATEST COMPLETED CHECKPOINT: T25 ANCHOR-PRESERVING PREMARKET MAP
 
@@ -1507,3 +1523,11 @@ seeing 2025--2026. Open evaluation AUC rises 0.374 to 0.563 and Brier falls
 premarket shadow, not a user-facing promotion. Do not choose a post-2022 switch
 from the open period; the only defensible next candidate is a preregistered,
 delayed mature-label base-rate correction.
+
+## T26: first delayed base-rate selector retains T25
+
+Only unique publication events with mature h20 outcomes update the intercept.
+On 2024-H2 no candidate satisfies Brier/log-loss/ECE/AUC jointly, so the saved
+primary is exactly T25. The open-period w250 diagnostic is strong but post-hoc;
+do not promote or tune around it. Build earlier rolling-origin history before
+another selector, otherwise wait for prospective outcomes.

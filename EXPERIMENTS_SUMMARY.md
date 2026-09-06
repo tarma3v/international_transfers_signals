@@ -1893,3 +1893,23 @@ Global copula сохранила полный AUC 0,702, но дала ECE 0,122
 rate. Вывод: rank полезен, а абсолютная вероятность режимно дрейфует. T25
 сохранён как premarket shadow, production temperature не изменена. Результаты:
 `results/research/temperature/t25_anchor_preserving_map/`.
+
+## T26: causal delayed intercept не выбран
+
+T26 обновлял только общий logit-intercept T25 по уникальным CBR-событиям,
+h20-outcome которых полностью созрел до текущего дня минус embargo. В
+пререгистрации заморожены окна 30/60/125/250/expanding, ridge/clipping и один
+hierarchical control. Календарные holds и выходные feedback не размножали.
+
+На selection-2024-H2 w30 улучшил Brier 0,17693→0,17479 и AUC 0,716→0,767, но
+ECE ухудшился на +0,01058 при gate +0,005. Остальные варианты не прошли
+совместный Brier/log-loss/ECE/AUC gate. Selector оставил T25; formal
+`passed=false`.
+
+На открытом 2025–2026 w250 диагностически дал AUC 0,638, AP 0,302, Brier
+0,11326 и log-loss 0,38634 против 0,563/0,209/0,11825/0,40454 у T25. Он
+улучшает Brier в обоих годах и пяти валютах, но до 2025 практически совпадал с
+expanding: длина 250 стала различимой только на открытом периоде. Поэтому w250
+зафиксирован как post-hoc гипотеза, не выбранная модель. Нужна rolling-origin
+история до 2025 или prospective shadow. Результаты:
+`results/research/temperature/t26_delayed_base_rate/`.

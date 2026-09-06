@@ -50,6 +50,13 @@ blend selected on 2024-H2 improves open AUC 0.374 to 0.563 and Brier 0.12429 to
 shadow. The divergence between 2025 and 2026 says the missing component is a
 slow, causally delayed base-rate level, not more retrospective rank tuning.
 
+T26 tested the first such delayed update and retained T25. A 30-date window
+improved 2024-H2 Brier/AUC but failed ECE; all other candidates failed the joint
+screen. A 250-date rolling diagnostic is attractive on opened 2025--2026, but
+could not be distinguished from expanding before 2025 and is therefore not a
+selected temperature. The next experiment must create earlier rolling-origin
+probability history or move to prospective shadow.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -111,9 +118,9 @@ and weekends produce an explicit stale state, not imputed current prices.
 ## Model plan
 
 1. Keep frozen AP49/T17 probability as the anchor, T22 after verified receipt
-   and T25 before receipt as shadow ranks. Test only a preregistered slow
-   base-rate/intercept correction using mature prior rows; do not select its
-   strength on opened 2024--2026.
+   and T25 before receipt as shadow ranks. T26's delayed selector is rejected;
+   build an earlier rolling-origin history before comparing long windows, or
+   wait for prospective outcomes. Do not select w250 on opened 2024--2026.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.
 3. Implement `score_as_of(currency, timestamp, horizon)` that selects the latest
