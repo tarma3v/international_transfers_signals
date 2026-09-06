@@ -4,17 +4,18 @@
 выгоднее переводить рубли в **AMD, KGS, KZT, TJS или UZS**, и сформировать не
 больше нескольких полезных сигналов в неделю.
 
-> **Уточнённая задача AP10-E/AP17-E:** после получения завтрашнего курса считаем lift
+> **Уточнённая задача AP10-E/AP22-E:** после получения завтрашнего курса считаем lift
 > от **действующего сегодня ЦБ**. Знание нового курса — вход, а не новая опора.
-> AP17 впервые совместил строгий cadence и высокую точность: **h5 lift 2,437**,
-> rate **1,065**, min валюты **1,046**, zero empty months и max2/week.
-> Минимум lift по неизвестным h3/5/10/20 — **2,376**. Против прежнего строгого
-> top35 прирост +0,063, paired CI **[+0,011;+0,110]**.
+> Лучший новый строгий challenger AP21 `roll_cat_dual_pace_month24_cap2`:
+> **h3/5/10/20 = 2,402 / 2,446 / 2,429 / 2,411**, min rate по валютам и
+> горизонтам **1,009**, zero empty months и max2/week. Он впервые пересёк
+> точечный барьер min lift 2,4, но найден как заранее зарегистрированный поздний
+> diagnostic, а не выбран ранним selector; прирост к AP17 статистически не доказан.
 > Период h5: **09.01.2024–25.08.2026**.
 > Исторические receipts условные, не новый закрытый тест и не банковская экономия.
 > На h1 ответ после публикации уже известен; h3/5/10/20 ещё содержат неизвестное.
 > Старые AP3/AP4 **1,630** относятся к другой, новой опубликованной опоре.
-> Исследование активно, без почасовой автоматизации; **242 теста** прошли.
+> Исследование активно, без почасовой автоматизации; **257 тестов** прошли.
 
 > **Сохранённый ориентир до публикации:** причинный `availability_route` на
 > срезе 15:30. На ретроспективе 2025–2026 он даёт adjusted lift **2,053** при
@@ -24,8 +25,38 @@
 
 [Краткая история всех экспериментов](EXPERIMENTS_SUMMARY.md) ·
 [решение 15:30 подробно](docs/05-tekushchee-reshenie.md) ·
-[новый PDF: строгий cadence и deficit pacing AP17](output/pdf/ivan_after_publication_ap17_effective.pdf) ·
+[новый PDF: AP18–AP22 и dual-expert AP21](output/pdf/ivan_after_publication_ap22_effective.pdf) ·
 [активный исследовательский checkpoint](research/after_publication_next_steps.md)
+
+## Последние AP18-E/AP22-E: CatBoost и dual-expert выше 2,4
+
+AP18 пропустил фиксированный blend ExtraTrees через замороженный AP17-controller:
+лучший строгий результат дал 50/50 full/recent score — min lift **2,387** и h5
+**2,448**. AP19 добавил принципиально новый CatBoost, который напрямую оценивает
+среднюю полезность по h3/5/10/20. Сам по себе он дал **2,369 / 2,463 / 2,506 /
+2,466**: особенно силён на h10, но хуже AP18 на h3.
+
+AP21 разделил роли моделей. Rolling ExtraTrees выбирает редкие основные точки,
+а CatBoost разрешает только дополнительные pace-сигналы, когда валюта отстаёт
+от целевого темпа. Month24-rescue закрывает пустой месяц, known-down veto
+запрещает сигнал перед уже известным снижением, недельный cap остаётся равен 2.
+
+| AP21 strict challenger | h3 | h5 | h10 | h20 | Min rate | Пустых месяцев |
+|---|---:|---:|---:|---:|---:|---:|
+| `roll_cat_dual_pace_month24_cap2` | **2,402** | **2,446** | **2,429** | **2,411** | **1,009** | **0** |
+
+Это первый зарегистрированный вариант с точечным min lift выше 2,4 и строгой
+частотой, но он не был выбран на раннем 2023: статус — retrospective challenger
+для следующего prospective shadow, не новый production winner. Его разницы с
+AP17/AP18 имеют bootstrap-интервалы, пересекающие ноль. Более агрессивный local
+CatBoost показывает h5 **2,499** и min lift **2,431**, но min rate **0,971**,
+поэтому это только верхняя граница точности. AP22 causal-rank consensus оказался
+хуже: ни один свежий вариант не прошёл ранние совместные условия.
+
+[Отчёт AP18–AP22](research/after_publication_ap22_effective_report.md) ·
+[результаты AP21](results/research/after_publication/ap21_effective) ·
+[предрегистрация AP21](research/after_publication_ap21_effective_registered.md).
+Все новые модели прошли независимый refit и future-prefix corruption audits.
 
 ## Последние AP15-E/AP17-E: строгий продуктовый лидер
 
@@ -461,7 +492,7 @@ PYTHONPATH=. .venv/bin/python -m research.round7_audit
 PYTHONPATH=. .venv/bin/python -m research.build_round7_report
 ```
 
-Полный набор содержит **112 тестов**. Повторная загрузка данных MOEX требует
+Полный набор содержит **257 тестов**. Повторная загрузка данных MOEX требует
 сети: `PYTHONPATH=. .venv/bin/python -m research.round7_direct_pairs_data`.
 XGBoost на macOS может потребовать `brew install libomp`.
 
@@ -480,18 +511,22 @@ XGBoost на macOS может потребовать `brew install libomp`.
 
 ## Что читать
 
-1. [Текущее решение](docs/05-tekushchee-reshenie.md) — актуальная короткая
+1. [AP18–AP22: лучший строгий dual-expert challenger](output/pdf/ivan_after_publication_ap22_effective.pdf) —
+   актуальный after-publication scorecard, ограничения и следующие шаги.
+2. [Текущее решение](docs/05-tekushchee-reshenie.md) — актуальная короткая
    техническая и продуктовая картина.
-2. [Round 7: прямые пары и виджет](output/pdf/ivan_direct_pairs_and_widget_report.pdf) —
+3. [Round 7: прямые пары и виджет](output/pdf/ivan_direct_pairs_and_widget_report.pdf) —
    последний отчёт с графиками и весами.
-3. [Объяснение лучшего подхода простыми словами](output/pdf/ivan_best_approach_explained_simply.pdf).
-4. [Подробная история экспериментов](EXPERIMENTS_SUMMARY.md).
-5. Документы `docs/01`–`docs/04` — ранний продуктовый этап; они сохранены как
+4. [Объяснение лучшего подхода простыми словами](output/pdf/ivan_best_approach_explained_simply.pdf).
+5. [Подробная история экспериментов](EXPERIMENTS_SUMMARY.md).
+6. Документы `docs/01`–`docs/04` — ранний продуктовый этап; они сохранены как
    история и не являются текущим model scorecard.
 
 ## Текущий статус
 
-Ветка разработки — `ivan-experiments`. Основная модель заморожена как baseline;
-новые кандидаты продвигаются только после заранее заданного теста на ещё не
-использованных данных. Ближайший содержательный шаг — prospective shadow и
-исторический replay нескольких внутридневных срезов для виджета.
+Ветка разработки — `ivan-experiments`. AP17/AP18 остаются замороженными строгими
+контролями, а AP21 `roll_cat_dual_pace_month24_cap2` — главным prospective
+challenger. Его точечный min lift **2,402** ещё нельзя считать доказанным
+улучшением из-за многократно открытого периода. Ближайший шаг — заморозить этот
+вариант для live/prospective shadow и проверить причинный competence-router,
+который учится только на уже созревших прошлых исходах.

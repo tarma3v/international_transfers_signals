@@ -1,0 +1,16 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "quarterly_origins_checked": 17,
+  "fit_log_rows_checked": 102,
+  "independent_deterministic_refit": true,
+  "all_predictions_and_corrections_rebuilt": true,
+  "all_policy_states_rebuilt": true,
+  "future_feature_label_and_expert_corruption_prefix_invariant": true,
+  "all_predictions_bounded": true,
+  "known_down_veto": true,
+  "h1_excluded_from_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false
+}

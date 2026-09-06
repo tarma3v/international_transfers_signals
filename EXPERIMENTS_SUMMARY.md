@@ -8,6 +8,46 @@
 Для внутренней оптимизации сохраняется
 `h=5`, официальный scorecard теперь считается сразу на `h=1/3/5/10/20`.
 
+## Последние AP18-E/AP22-E: CatBoost и разделение ролей экспертов
+
+[PDF](output/pdf/ivan_after_publication_ap22_effective.pdf) ·
+[отчёт](research/after_publication_ap22_effective_report.md) ·
+[AP21 protocol](research/after_publication_ap21_effective_registered.md) ·
+[AP21 results](results/research/after_publication/ap21_effective).
+
+AP18 проверил шесть заранее заданных full/recent/pace blend через полностью
+замороженный AP17 controller. Early selector выбрал 50/50 full/recent:
+поздние h3/5/10/20 = **2,387024/2,447501/2,409138/2,468434**, min rate
+**1,016376**, zero empty months. Прирост h5 к AP17 +0,010078 имеет CI
+[-0,030982;0,054304]: это усиленный контроль, а не доказанный скачок.
+
+AP19 добавил новые multi-horizon ExtraTrees и CatBoost: четыре классификатора,
+регрессию средней полезности по неизвестным горизонтам и PairLogit. Лучший новый
+предиктор CatBoost mean utility дал **2,369258/2,463342/2,506324/2,466066** на
+h3/5/10/20, h5 symmetric +73,02 б.п. и future-only +127,82 б.п. Остаточные
+Hist/Ridge/logit stacks и fixed blends AP20 не дали устойчивого улучшения min lift.
+
+Главная находка AP21 — не смешивать scores одинаково для всех решений. Rolling
+ExtraTrees используется как primary expert, а CatBoost utility только как pace
+expert, когда trailing365 rate валюты ниже1. При exact AP17 thresholds и month24
+rescue зарегистрированный `roll_cat_dual_pace_month24_cap2` получил поздние
+h3/5/10/20 = **2,402124/2,446225/2,428982/2,411100**, min lift **2,402124**,
+min currency rate **1,008734**, zero empty months и max2/week. H5 symmetric
++72,90 б.п., future-only +130,24 б.п.
+
+Это первый зарегистрированный строгий вариант выше 2,4 по всем неизвестным
+горизонтам, но его нельзя выдавать за fresh winner: ранний selector выбрал другой
+вариант, а поздний период многократно открыт. Разницы к AP17 по h3/5/10/20
++0,026/+0,009/+0,037/-0,055 имеют 20-date CI, пересекающие ноль. Local-Cat
+dual pace показывает верхнюю границу h5 **2,498576** и min lift **2,431360**,
+но min rate **0,970524**, поэтому продуктовый cadence не проходит.
+
+AP22 проверил восемь causal rolling/local rank-consensus вариантов: ни один не
+прошёл ранние совместные условия, лучший поздний fresh min lift только **2,338042**.
+Вывод — outcome-free rank consensus размывает сигнал; следующий новый класс
+должен оценивать компетентность экспертов только по уже созревшим прошлым ответам.
+Все AP18–AP22 refit/prefix audits прошли; полный набор — **257 тестов**.
+
 ## Последние AP15-E/AP17-E: deficit pacing закрывает строгий cadence
 
 [PDF](output/pdf/ivan_after_publication_ap17_effective.pdf) ·

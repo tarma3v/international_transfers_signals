@@ -1,6 +1,6 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, AP17-E complete. The user made after-publication research the
+Updated 2026-09-06, AP22-E complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user's explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
@@ -18,6 +18,38 @@ Do NOT claim that rescore of old AP3 signals proves knowledge is harmful.
 Models must be retrained to the SAME effective target in with/without ablations.
 TЗ note updated: initial announced-reference choice was our conservative team
 interpretation, not an organizer ruling. Bank execution still NOT validated.
+
+## Latest completed AP18-E/AP22-E: CatBoost and dual-expert strict challenger
+
+AP18 froze six full/recent score blends under the exact AP17 controller. The
+early-selected 50/50 full/recent candidate reached late h3/5/10/20=
+2.387024/2.447501/2.409138/2.468434, minrate1.016376,zeroempty,max2/week.
+Its h5 delta vs AP17 is +.010078 CI[-.030982,.054304], not significant.
+
+AP19 added truly new multi-horizon ExtraTrees and CatBoost scores plus residual
+Hist/Ridge/PairLogit. CatBoost mean utility was the useful new expert:
+h3/5/10/20=2.369258/2.463342/2.506324/2.466066,sym73.0199,fwd127.8248.
+The residual stacks were worse. AP20 fixed raw and causal-rank AP18/Cat blends;
+the selected 25/75 candidate reached min2.363420 and did not improve the frontier.
+
+AP21's productive architecture separates roles. Rolling ExtraTrees is primary;
+CatBoost utility is used only for deficit pace decisions when trailing365
+currency rate<1, with AP17 p55/r70/month24/veto/cap2 state unchanged. The
+registered late diagnostic `roll_cat_dual_pace_month24_cap2` gives h3/5/10/20=
+2.402124/2.446225/2.428982/2.411100,minunknown2.402124,average rates
+1.042173/1.044397/1.037204/1.031659,min currency rates
+1.021299/1.023479/1.016129/1.008734,zeroempty,max2/week. h5 sym72.9005 and
+future130.2379. This is the first registered strict point result above2.4 across
+all unknown horizons, but it was NOT early-selected and is not a fresh winner.
+All h-wise deltas vs AP17 have 20-date CIs crossing zero. Freeze it only as the
+next prospective challenger. Local-Cat dual pace reaches h5=2.498576 and
+minlift2.431360 but minrate.970524, so it is accuracy upper-bound only.
+
+AP22 tested eight causal rolling/local rank-consensus primary scores with Cat/AP12
+pace. No fresh candidate passed early joint gates; best fresh late min2.338042.
+Do not repeat outcome-free rank consensus. All AP18-AP22 independent refit and
+future-prefix corruption audits passed. Full suite:257 tests. Current report:
+output/pdf/ivan_after_publication_ap22_effective.pdf.
 
 ## Latest completed AP15-E/AP17-E: strict cadence with deficit pacing
 
@@ -173,20 +205,20 @@ AP12audit rebuilt source hashes,5755targets,17masks,85logs,compactsubset,
 local/class counts, all scores/signals, veto/prefix/weeklycap. PDF
 output/pdf/ivan_after_publication_ap12_effective.pdf rendered4pages and checked.
 
-## NEXT bounded AP18-E: improve predictor under frozen AP17 policy
+## NEXT bounded AP23-E: causal competence router and prospective freeze
 
-1. Freeze AP17 controller and all thresholds. Separate predictor quality from
-   cadence: every new score must pass through the same causal AP17 state machine.
-2. Return to genuinely new classical predictors,compact and prespecified:
-   calibrated Hist/Extra residual over known-fixing margin; global+currency
-   partial pooling; one regime-stable recent/full shrink; optionally a monotone
-   score blend. No broad hyperparameter grid and no route selection on late.
-3. Use quarterly chronological OOS fits with publication-h20 maturity cap and
-   2-day embargo. Select only early2023 on h3/h5/h10/h20. Preserve same-information
-   AP17/AP12/AP13 controls and all benefit/cadence gates.
-4. Target minunknownlift>2.4 with minrate>=1,zeroempty,max2/week. Report
-   probability calibration,feature families,residual contribution and paired
-   20/50dateCIs. Opened2024-2026 remains retrospective; live shadow is required.
+1. Freeze AP21 `roll_cat_dual_pace_month24_cap2` exactly as the prospective
+   challenger; do not tune its thresholds on opened 2024-2026.
+2. Test one compact competence router. Weights may use only matured past top-rank
+   precision for rolling ExtraTrees and CatBoost utility. Current/future labels
+   cannot enter the weight, rank or regime decision.
+3. Preserve AP17/AP18/AP21 controls, quarterly chronological OOS fits,
+   publication-h20 maturity cap,2-day embargo,known-down veto and max2/week.
+4. Do not repeat residual Hist/Ridge stacks or outcome-free rank consensus:
+   AP18-AP22 already show these directions do not improve the strict frontier.
+5. Acceptance: minlift>2.4 on h3/5/10/20,min currency rate>=1,zeroempty,
+   max2/week and paired uncertainty. Final validation requires frozen live shadow
+   and confirmation of actual receipt timing plus bank execution.
 
 ## Latest completed AP10-E: strong matched information gain, simple rule selected
 

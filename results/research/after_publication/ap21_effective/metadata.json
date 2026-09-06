@@ -1,0 +1,32 @@
+{
+  "packet": "AP21-E",
+  "n_rows": 5755,
+  "n_fresh_pairings": 6,
+  "n_frozen_controls": 13,
+  "selection_horizons": [
+    3,
+    5,
+    10,
+    20
+  ],
+  "selected": "roll75local25_ap1850cat50_dual_pace_month24_cap2",
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap20_effective/metadata.json": "1e0c75a12829fa1deca0d8d66c34dc9216c66e98b01b92f5072bdc85fb013663",
+    "results/research/after_publication/ap20_effective/outputs.npz": "ff434729c34c36837356aaff105bb18eb9432324fba5c858133881c72cadb63a",
+    "results/research/after_publication/ap12_effective/metadata.json": "f2caf1b7ce4a067ade15bd94523ff20da699cc8a11a63d9bdbbd53baaf94f224",
+    "results/research/after_publication/ap12_effective/outputs.npz": "5b841967ef1d219e7f9ea8f48f0cf5cd503c9d17df183df4fcb6e1c08d26028f",
+    "results/research/after_publication/ap13_effective/metadata.json": "7d164b6bbb763561c0138c7fe187cdc23908bda21ad0f62d34755123eac52622",
+    "results/research/after_publication/ap13_effective/outputs.npz": "1f4e22984dcbc2f090fddb9ca03d878350f7adb9a882b55e9e1cb6ab973a519c",
+    "results/research/after_publication/ap18_effective/metadata.json": "74a86cdbdc75fe09c675dac8804a4594282b9ed2ef263f01ab019a8a6e8efb84",
+    "results/research/after_publication/ap18_effective/outputs.npz": "62d83837fdee7df38dc245ebe04fd4e31b45eaba3b0dfa5c0ef911ea1ac7ca36",
+    "results/research/after_publication/ap19_effective/metadata.json": "a2476141b4cfe7058fdd72f9f08ec0575ca866a03b280c40b073b6b0b9cb94cd",
+    "results/research/after_publication/ap19_effective/outputs.npz": "37aec1875dfba2a4fd2150e8ff076618ba4438b3584509410b73fd29cc7b39ab",
+    "research/after_publication_ap21_effective_registered.md": "f7f519f2a77a4a66c09d7c266712f7413d2767b811c9952c415d041fd4af164e"
+  }
+}

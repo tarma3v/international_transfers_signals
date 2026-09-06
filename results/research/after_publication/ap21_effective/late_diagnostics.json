@@ -1,0 +1,10 @@
+{
+  "selected_early": "roll75local25_ap1850cat50_dual_pace_month24_cap2",
+  "selected_min_unknown_h_lift": 2.400659757034463,
+  "strict_later_successes": [
+    "roll_cat_dual_pace_month24_cap2"
+  ],
+  "roll_cat_min_unknown_h_lift": 2.402123780364839,
+  "roll_cat_min_rate": 1.0087336244541485,
+  "local_cat_h5_is_diagnostic_only": true
+}

@@ -1,0 +1,9 @@
+{
+  "selected_early": "cat_multi_mean_pace365_p55_r70_month24_cap2",
+  "best_later_fresh_min": "cat_mean_utility_pace365_p55_r70_month24_cap2",
+  "best_later_fresh_mean": "cat_mean_utility_pace365_p55_r70_month24_cap2",
+  "selected_min_unknown_h_lift": 2.312324062758914,
+  "best_fresh_min_unknown_h_lift": 2.36925812500199,
+  "best_fresh_mean_unknown_h_lift": 2.451247418602131,
+  "strict_target_gt_2_4": false
+}

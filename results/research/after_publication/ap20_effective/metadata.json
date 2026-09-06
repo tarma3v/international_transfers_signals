@@ -1,0 +1,28 @@
+{
+  "packet": "AP20-E",
+  "n_rows": 5755,
+  "n_fresh_scores": 8,
+  "n_frozen_controls": 12,
+  "selection_horizons": [
+    3,
+    5,
+    10,
+    20
+  ],
+  "selected": "raw_ap18_25_cat75_pace365_p55_r70_month24_cap2",
+  "reference": "today-effective CBR",
+  "h1_known_after_receipt": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false,
+  "source_sha256": {
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2",
+    "results/research/after_publication/ap19_effective/metadata.json": "a2476141b4cfe7058fdd72f9f08ec0575ca866a03b280c40b073b6b0b9cb94cd",
+    "results/research/after_publication/ap19_effective/outputs.npz": "37aec1875dfba2a4fd2150e8ff076618ba4438b3584509410b73fd29cc7b39ab",
+    "results/research/after_publication/ap18_effective/metadata.json": "74a86cdbdc75fe09c675dac8804a4594282b9ed2ef263f01ab019a8a6e8efb84",
+    "results/research/after_publication/ap18_effective/outputs.npz": "62d83837fdee7df38dc245ebe04fd4e31b45eaba3b0dfa5c0ef911ea1ac7ca36",
+    "results/research/after_publication/ap12_effective/metadata.json": "f2caf1b7ce4a067ade15bd94523ff20da699cc8a11a63d9bdbbd53baaf94f224",
+    "results/research/after_publication/ap12_effective/outputs.npz": "5b841967ef1d219e7f9ea8f48f0cf5cd503c9d17df183df4fcb6e1c08d26028f",
+    "research/after_publication_ap20_effective_registered.md": "42f98a153e299f37a2d0dea6bfdb4b99dc13ca605b557f35069240abb4d6cfa4"
+  }
+}

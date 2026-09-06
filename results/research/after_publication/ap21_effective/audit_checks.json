@@ -1,0 +1,15 @@
+{
+  "source_hashes_verified": true,
+  "events_and_targets_rebuilt": 5755,
+  "all_five_experts_exact": true,
+  "all_six_pairings_exact": true,
+  "all_policy_states_rebuilt": true,
+  "primary_pace_reserve_thresholds_checked": true,
+  "month_rescue_first_in_currency_month": true,
+  "future_all_expert_corruption_prefix_invariant": true,
+  "known_down_veto": true,
+  "h1_excluded_from_selection": true,
+  "historical_receipts_certified": false,
+  "bank_execution_validated": false,
+  "fresh_holdout": false
+}
