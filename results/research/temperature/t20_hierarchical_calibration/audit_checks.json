@@ -1,0 +1,10 @@
+{
+  "source_hashes_match": true,
+  "prediction_rows": 356200,
+  "state_rows": 120,
+  "passing_states": 0,
+  "all_training_labels_mature": true,
+  "all_sources_no_later_than_query": true,
+  "identity_and_fixed_controls_rebuilt": true,
+  "probabilities_finite_and_bounded": true
+}

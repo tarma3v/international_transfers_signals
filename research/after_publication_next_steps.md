@@ -1,12 +1,31 @@
 # Active research checkpoint: already published next CBR fixing
 
-Updated 2026-09-06, T19 complete. The user made after-publication research the
+Updated 2026-09-06, T20 complete. The user made after-publication research the
 primary indefinite task. The hourly heartbeat `automation` was DELETED at the
 user’s explicit request. An ACTIVE TARGET drives continuous work in the same
 thread and ivan-experiments. Do not restart round7 as the main task, wait for a
 schedule, stop at another audit, or mark the goal complete after this checkpoint.
 
-## LATEST COMPLETED CHECKPOINT: T19 ANY-TIME QUALITY AUDIT
+## LATEST COMPLETED CHECKPOINT: T20 HIERARCHICAL CALIBRATION
+
+T20 froze a one-shot probability recalibration before results. Each
+`scenario × clock × h` fit uses only pre-2025 labels whose complete outcome
+matured before 2025-01-01 minus the two-day embargo. The primary penalized
+Beta map adds currency intercept/slopes and causal regime intercepts, then is
+evaluated once on opened 2025--2026 for h5/h10/h20.
+
+The candidate passes 0/120 strict state gates. Mean Brier deltas versus frozen
+identity are +.00591 / +.00394 / -.00030 for h5/h10/h20; the small h20 point
+gain is accompanied by worse log-loss and ECE and no paired-bootstrap pass.
+Currency-year-clock-h ECE>.08 rows increase from 789 to 816. Global Platt and
+fixed logit shrink controls do not provide a joint replacement either.
+
+Do not tune C or feature interactions on the open period. Frozen probability
+remains the route. The evidence says h20 needs a new discrimination model, not
+another post-hoc calibration map. A prospective online calibration challenger
+would need a fixed forgetting rule and minimum effective sample size.
+
+## PREVIOUS CHECKPOINT: T19 ANY-TIME QUALITY AUDIT
 
 T19 evaluates the final T17/T18 route on one common grid instead of quoting
 incomparable experiments at a few clocks. It covers 967 calendar dates,

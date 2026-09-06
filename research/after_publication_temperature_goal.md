@@ -11,6 +11,12 @@ market day, but h20 fails every strict paired gate and local currency-year ECE
 is not yet production-grade. Availability is implemented; equal quality at
 every horizon and regime is not claimed.
 
+T20 tested the first proposed repair and rejected it. A pre-2025 hierarchical
+Beta map passed 0/120 state gates on opened 2025--2026 and increased the number
+of high-ECE local slices. The frozen probability therefore remains the current
+product output; this negative result prevents a cosmetic recalibration from
+being mistaken for better forecasting.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score

@@ -98,6 +98,8 @@ caused the change.
 4. T19 completed the unified 20-clock/currency/year audit over 193,400 queries.
    It confirms strong h1/h3 and daytime h5 states, but no h20 state passes the
    strict paired gate and local currency-year calibration drifts materially.
-5. Next: preregister hierarchical `global -> currency -> regime` calibration
-   and a horizon-aware h10/h20 anchor using earlier mature data only.
-   2024--2026 remains an open diagnostic period.
+5. T20 preregistered and tested one-shot hierarchical calibration on mature
+   pre-2025 data. It passes 0/120 state gates and is not adopted.
+6. Next: build a genuinely new h20 discrimination head on earlier data, or
+   freeze a prospective online update with a fixed forgetting rule. Do not tune
+   another calibration map on opened 2024--2026.

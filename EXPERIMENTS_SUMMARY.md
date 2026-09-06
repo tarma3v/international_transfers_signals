@@ -1779,3 +1779,19 @@ receipt не получает ни одного same-day after-publication со�
 кандидат должен заранее зафиксировать иерархическую causal recalibration и
 отдельную long-horizon голову на ранних mature данных. Независимый rebuild-аудит
 и полный набор из 355 тестов проходят.
+
+## T20: one-shot иерархическая калибровка не переносится
+
+Primary `hierarchical_beta` был зарегистрирован до расчёта. Он обучается на
+созревшем 2024 с двухдневным embargo и один раз применяется к открытому
+2025–2026. Внутри каждого `scenario × clock × h` используются base probability,
+валюта и causal regime; AP37, benefit и availability route не меняются.
+
+Результат: 0 из 120 строгих state gates. На h5/h10 средний Brier ухудшается на
+0,00591/0,00394. На h20 Brier point-wise улучшается на 0,00030, но log-loss и
+ECE хуже, а 20/50-date bootstrap не проходит. Currency-year-clock-h строк с
+ECE > 0,08 становится 816 против 789 у frozen identity.
+
+Модель не продвигается. Это показывает, что h20 требует новой discrimination
+головы, а локальный drift нельзя вылечить единственным fit на 2024. Полные
+результаты: `results/research/temperature/t20_hierarchical_calibration/`.

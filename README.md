@@ -46,6 +46,14 @@
 > Поэтому h20 и ранние history-only состояния маркируются как limited
 > confidence; post-hoc перенастройки по открытому 2024–2026 не делались.
 >
+> T20 проверил следующий заранее зарегистрированный шаг: one-shot
+> иерархическую калибровку, обученную только на созревшем 2024 и применённую к
+> открытому 2025–2026. Primary не прошёл ни одного из 120 state gates: средний
+> Δ Brier h5/h10/h20 = **+0,00591 / +0,00394 / −0,00030**, но на h20
+> log-loss и ECE ухудшились, а bootstrap не прошёл. Локальных ECE > 0,08 стало
+> 816 вместо 789. Frozen probability сохранена; подбирать силу shrinkage по
+> открытому тесту запрещено.
+>
 > Новый T15/T16 закрывает вечер до 23:00 завершёнными perpetual-свечами
 > CNYRUBF и USDRUBF. Ни один новый probability-кандидат не улучшил сильный
 > T7B-control на screen-2024, поэтому вечерняя температура не меняется только
@@ -91,7 +99,7 @@
 > формально проходит gates, однако это AP37 плюс 2 сигнала без доказанного
 > улучшения. Основным остаётся более простой AP37.
 > Исследование активно, без почасовой автоматизации; после T18 полный набор из
-> **355 тестов** проходит.
+> **357 тестов** проходит.
 
 > **Сохранённый ориентир до публикации:** причинный `availability_route` на
 > срезе 15:30. На ретроспективе 2025–2026 он даёт adjusted lift **2,053** при
@@ -105,6 +113,7 @@
 [ремонт доступности T17](research/temperature_t17_spot_availability_repair_registered.md) ·
 [T18: verified receipt gate](research/temperature_t18_verified_receipt_gate_report.md) ·
 [T19: единый аудит качества в любое время](research/temperature_t19_anytime_quality_audit_report.md) ·
+[T20: отрицательный результат иерархической калибровки](research/temperature_t20_hierarchical_calibration_report.md) ·
 [пример обязательной таблицы ТЗ](output/signals_example_2026-09-01_2115_h5.csv) ·
 [пример до receipt](output/signals_example_2026-09-01_1845_no_receipt_h5.csv) ·
 [пример после verified receipt](output/signals_example_2026-09-01_1845_verified_receipt_h5.csv) ·
@@ -113,7 +122,7 @@
 [парное fast-vs-slow сравнение](research/fast_slow_paired_report.md) ·
 [вечерний роутер T16](research/temperature_t16_evening_router_registered.md) ·
 [финальный алгоритм простыми словами, PDF](output/pdf/ivan_final_anytime_algorithm_for_everyone.pdf) ·
-[подробный any-time отчёт, 26 страниц](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
+[подробный any-time отчёт, 27 страниц](output/pdf/ivan_continuous_temperature_anytime.pdf) ·
 [финальная презентация с интерфейсом](output/presentation/international_transfers_final_with_interface_2026-09-06_v2.pptx) ·
 [та же презентация в PDF](output/pdf/international_transfers_final_with_interface_2026-09-06_v2.pdf) ·
 [самый эффективный подход: подробное объяснение на 30 страниц](output/pdf/описание_подробное.pdf) ·

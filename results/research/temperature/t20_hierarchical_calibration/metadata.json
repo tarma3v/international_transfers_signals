@@ -1,0 +1,30 @@
+{
+  "packet": "temperature-T20",
+  "primary_candidate": "hierarchical_beta",
+  "selection_on_open_period": false,
+  "evaluation_rows": 356200,
+  "state_rows": 120,
+  "passing_states": 0,
+  "high_ece_currency_year_rows": {
+    "hierarchical_beta": 816,
+    "identity": 789
+  },
+  "checks": {
+    "fit_origin": "2025-01-01T00:00:00+03:00",
+    "fit_cutoff_ordinal": 739250,
+    "all_training_labels_mature_before_cutoff": true,
+    "all_sources_no_later_than_query": true,
+    "opened_evaluation_only": true,
+    "changes_push_policy": false,
+    "historical_receipts_certified": false,
+    "bank_execution_validated": false
+  },
+  "source_sha256": {
+    "research/temperature_t20_hierarchical_calibration_registered.md": "a6032f9fa589f6f5992bdf35a83e5a003e7352a3bfc15619950fc4b17eee3d2f",
+    "research/temperature_t20_hierarchical_calibration.py": "153bf8c0ed30cac88828202847420a127e705c4dd5eda91a09f63d12efef16a1",
+    "research/temperature_t19_anytime_quality_audit.py": "a37b1145d44d9ddf8b03c2dfa8d490ae04aab017f38719441c3731e88edf4ab4",
+    "results/research/temperature/t17_spot_availability_repair/metadata.json": "90b473b7642d543d8132264981afd5f03b1b639468cd682406e4fa01e991df99",
+    "results/research/temperature/t17_spot_availability_repair/snapshots.csv.gz": "2c22c3b9b94f30e4491345713ab8fbdb093f12f80abf6146201c1ab5d2287092",
+    "data/cbr_rates_2010_2026.json": "57240df1a64990ef3fa83e6f91eb8130c61fd3ad7203780e1248bae65bc728c2"
+  }
+}
