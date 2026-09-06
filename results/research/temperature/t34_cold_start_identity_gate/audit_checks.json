@@ -1,0 +1,17 @@
+{
+  "source_hashes_match": true,
+  "single_candidate_no_grid": true,
+  "cold_gate_rebuilt_from_feedback_availability": true,
+  "candidate_predictions_rebuilt": true,
+  "future_target_corruption_invariant": true,
+  "screen_passed": true,
+  "validation_passed": true,
+  "historical_protocol_passed": true,
+  "production_promoted": false,
+  "publication_keys_unique": true,
+  "probabilities_finite_and_bounded": true,
+  "stage_metric_grid_complete": true,
+  "paired_interval_grid_complete": true,
+  "selection_on_open_2025_2026": false,
+  "fresh_independent_holdout": false
+}

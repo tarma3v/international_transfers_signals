@@ -153,3 +153,10 @@ caused the change.
     `qstack_w125_r100` as a prospective control only. Do not tune around the
     near miss; the next experiment must be a distinct observable-state gate or
     a preregistered lower-frequency hold.
+20. T34 added the missing observable availability gate: fewer than 20 mature
+    feedback batches at a quarter origin means identity, not equal expert
+    weights. The single candidate passes 2023 screen and 2024 validation with
+    AUC 0.688/0.620 and Brier 0.18325/0.15645. This establishes the correct
+    cold-start semantics, but the idea follows inspection of T33 and all later
+    periods are open, so keep it as a frozen retrospective shadow. Production
+    routing still requires genuinely prospective confirmation.

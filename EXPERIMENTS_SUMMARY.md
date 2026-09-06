@@ -2059,3 +2059,23 @@ feasible-строк ноль и final равен identity; почти пройд
 вред daily rank-noise, но открытый период не выбирает окно/ridge. Freeze
 `w125/ridge1` только как prospective control. Результаты:
 `results/research/temperature/t33_quarterly_stacking/`.
+
+## T34: availability-safe cold start проходит screen и validation
+
+T34 проверил один смысловой gate без новой сетки. Если к границе квартала
+доступно меньше 20 полностью созревших h20 feedback-batches, выход равен
+`identity_early`; иначе используется прежний T33 `qstack_w125_r100`. Порог 20
+унаследован из минимального fit-правила T33 и не подбирался.
+
+На 2023 screen AUC вырос 0,58840→0,68834, Brier снизился
+0,22651→0,18325, log-loss 0,64313→0,54824, ECE 0,18576→0,06210. На disjoint
+2024 validation кандидат также прошёл все frozen gates: AUC 0,61988, Brier
+0,15645, log-loss 0,48794, ECE 0,01896. Улучшение AUC и proper scores против
+identity наблюдается во всех пяти валютах обоих периодов.
+
+На открытом 2025–2026 T34 даёт AUC 0,63975 и Brier 0,12548 против
+0,56054/0,12932 у T25. Paired date-block интервалы доказывают преимущество над
+identity, но пересекают ноль против T25. `historical_protocol_passed=true`,
+`production_promoted=false`: идея сформирована после T33, а все поздние годы
+уже открыты. Это frozen retrospective shadow, не fresh winner. Результаты:
+`results/research/temperature/t34_cold_start_identity_gate/`.

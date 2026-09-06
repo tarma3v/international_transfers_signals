@@ -102,6 +102,16 @@ strongly, but the frozen +0.02 AUC gate was missed by 0.00160. Do not relax the
 gate after inspection. Freeze `qstack_w125_r100` only as a prospective control;
 quarterly stabilization is supported as a mechanism, not promoted as runtime.
 
+T34 repaired the observable cold-start state without another parameter grid.
+Before 20 fully mature feedback publication batches exist at a quarter origin,
+the system now keeps identity instead of treating equal expert weights as
+knowledge. The single candidate passes both 2023 screen (AUC 0.688, Brier
+0.18325) and disjoint 2024 validation (AUC 0.620, Brier 0.15645). It also beats
+identity on the open period with paired intervals, but not T25 significantly.
+Because the repair was proposed after inspecting T33 and later periods are
+already open, T34 is a frozen retrospective shadow with
+`production_promoted=false`, not a fresh runtime promotion.
+
 ## User experience
 
 For every corridor and every requested `as_of` moment, return the latest score
@@ -167,9 +177,10 @@ and weekends produce an explicit stale state, not imputed current prices.
    T27 rejects w250, T28 rejects a daily weak w30 blend, T29 rejects the
    month/quarter-held correction, T30 rejects the retrospective regime selector
    T31 rejects promotion of a mature-only Hedge on its frozen 2023 screen, and
-   T32 rejects disjoint recent-data warm-up, while T33 supports but does not
-   promote quarterly-frozen stacking. Freeze T25 plus the declared T30/T31/T33
-   controls and wait for prospective
+   T32 rejects disjoint recent-data warm-up, T33 supports quarterly-frozen
+   stacking, and T34 proves that missing mature feedback must retain identity
+   instead of activating an arbitrary equal mixture. Freeze T25 plus the
+   declared T30/T31/T33/T34 controls and wait for prospective
    outcomes before reconsidering level adaptation.
 2. Fit a separate robust causal regressor for future-only basis-point benefit
    at each horizon. Report error and calibration by predicted-benefit bins.

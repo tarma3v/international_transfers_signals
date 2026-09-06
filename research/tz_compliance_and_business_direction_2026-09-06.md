@@ -106,6 +106,14 @@ screen-2023 AUC вырос до 0,6068 против 0,5884, proper scores улу
 selector оставил baseline. Это методически соответствует ТЗ: near miss нельзя
 выдавать за устойчивый OOT pass, даже если 2024 и open выглядят сильными.
 
+T34 устранил observable cold start без нового grid: если к квартальному origin
+нет 20 полностью созревших feedback-batches, система сохраняет identity вместо
+необоснованной равной смеси. Один кандидат прошёл 2023 screen и 2024
+validation: AUC 0,6883/0,6199, Brier 0,18325/0,15645. Это методически важное
+правило доступности данных и лучший объяснимый h20 retrospective shadow. Оно не
+меняет production, поскольку появилось после просмотра T33, а независимого
+нового периода пока нет.
+
 Повторная сверка 06.09 проведена непосредственно по текущей авторизованной
 странице кейса, обеим Q&A-сводкам (04.09 и 05.09) и PDF-презентации из `main`.
 Ключевое уточнение страницы: курс на завтра допустим после публикации, потому
@@ -180,7 +188,7 @@ proxy направления, но не исполнимая банковска�
 | Защита от будущего | PASS для артефактов и runtime gate | corruption-prefix, независимые audit scripts; T18 не активирует same-day after-publication строки без verified receipt и сдвигает поздний receipt | production ingestion должен сохранить фактическое событие и payload id |
 | Стабильность OOT | PARTIAL | отбор на 2023, разрезы 2024/2025/2026 и по валютам положительные | `fresh_holdout=false`; заморозить AP37/T17 и запустить prospective shadow |
 | Произвольная дата/время | PASS | `signals_as_of(T)` причинно режет дневной ряд; `score_snapshot_as_of` выбирает последний допустимый снимок; `case_output_table_as_of` и `run_case_output.py` выдают все валюты | — |
-| Any-time calibration | PARTIAL | T22 6/6 after receipt; T25 early map AUC 0,563/Brier 0,11825; T27–T33 не дали promotion delayed/regime updates | T22/T25 и T30/T31/T33 controls держать shadow; нужен prospective calibration |
+| Any-time calibration | PARTIAL | T22 6/6 after receipt; T34 safe cold start проходит 2023/2024 и имеет open AUC 0,640/Brier 0,12548 | T22/T25 и T30–T34 controls держать shadow; T34 требует prospective confirmation |
 | Обязательная схема строки | PASS | `case_output_as_of` возвращает date/corridor/indicator/direction/strength/speed/scenario и полный audit payload; сохранён демонстрационный CSV | — |
 | Fast vs slow | PASS как CBR-proxy | на общем support h5 adjusted lift 2,134 → 2,677; Δ +0,525 CI [+0,193; +0,934]; future-only Δ +21,79 б.п. [+3,35; +42,92] | реальную цену ожидания по bank quote можно измерить только в пилоте |
 | Комбинирование/конфликты | PASS | AP37: core AP26, fallback AP23, mature-precision gate, cooldown/cap | перевести reason codes 1/2/3 в человекочитаемые сценарии |
