@@ -1,0 +1,134 @@
+{
+  "package": "final-upload-2026-09-07",
+  "model_source_commit": "a3167cc",
+  "main_source_commit": "7cb9335",
+  "counts_excluding_instructions": {
+    "01-prezentaciya": 2,
+    "02-opisanie-proekta": 1,
+    "03-produktovye-materialy": 4,
+    "04-dopolnitelnye-materialy": 10
+  },
+  "platform_write_performed": false,
+  "files": [
+    {
+      "path": "01-prezentaciya/README.md",
+      "bytes": 587,
+      "sha256": "2f0b8328417ac8e195c7cc608b564ab99f36ee78809ff1679b42d5209bab5c92"
+    },
+    {
+      "path": "01-prezentaciya/prezentaciya-itogovaya-2026-09-07.pdf",
+      "bytes": 1154197,
+      "sha256": "6e8163eb67a434ec7a4894640b30e371ae0d0657d77a8ddb6e184cbdf6997019"
+    },
+    {
+      "path": "01-prezentaciya/prezentaciya-itogovaya-2026-09-07.pptx",
+      "bytes": 1093483,
+      "sha256": "1428b6b04e2886c15c73839ef221f7572036cc4b3ac55a7d363548a856e6ad9a"
+    },
+    {
+      "path": "02-opisanie-proekta/01-opisanie-proekta.md",
+      "bytes": 13315,
+      "sha256": "b6699a88154cbe9db70d61560082608378abac97d085d90e96ce50df541e56a8"
+    },
+    {
+      "path": "02-opisanie-proekta/README.md",
+      "bytes": 697,
+      "sha256": "3df08a018c747778cb8bcdc4949040ac12f60d76f41c51d5412759da72d58827"
+    },
+    {
+      "path": "03-produktovye-materialy/02-produktovoe-videnie.md",
+      "bytes": 4842,
+      "sha256": "7dda5c4de25367d369efd32de1095b640369122779b40a8e8b4324ccdb092bcf"
+    },
+    {
+      "path": "03-produktovye-materialy/03-zhurnal-dopushcheniy.md",
+      "bytes": 4886,
+      "sha256": "a1cb907d02d6955befae89bb0eed06e42d45d9486e331f5b80f561ec10ab3c4d"
+    },
+    {
+      "path": "03-produktovye-materialy/04-ai-product-i-tehnicheskaya-svyaz.md",
+      "bytes": 5176,
+      "sha256": "f7729b22701397a8b14a744ce7d16e3723f0f4438137dc6bab304f17c0e3140d"
+    },
+    {
+      "path": "03-produktovye-materialy/11-zapusk-pilot-ogranicheniya.md",
+      "bytes": 4586,
+      "sha256": "30910415b2d9a6f0935a793ce2519e9d9fe42e3e607a9f58b2f83d396f968411"
+    },
+    {
+      "path": "03-produktovye-materialy/README.md",
+      "bytes": 655,
+      "sha256": "395a938e78b68a13bee377a832e89a077c9be852f025d039a42523b2a1d099c9"
+    },
+    {
+      "path": "04-dopolnitelnye-materialy/00-opis-komplekta.md",
+      "bytes": 2558,
+      "sha256": "cead83596d3b5eba006d47a97017e948a873d05f5650834013c7dde9a4674c4a"
+    },
+    {
+      "path": "04-dopolnitelnye-materialy/05-tablica-rezultatov.md",
+      "bytes": 6110,
+      "sha256": "b92890e49ffd84c01697e280b6499511f73a47e3eed19222291eda687d383336"
+    },
+    {
+      "path": "04-dopolnitelnye-materialy/08-dve-metriki-dve-modeli.md",
+      "bytes": 4117,
+      "sha256": "3e4d3b2a3b62a89c6fad9cb2e8140328b2b2ed2aee1c38fe52646acc008af278"
+    },
+    {
+      "path": "04-dopolnitelnye-materialy/10-produktovye-chisla.md",
+      "bytes": 3481,
+      "sha256": "952842019c48761b0c5609bed51845d0c1554db76f290ab7a0087d6741f28faf"
+    },
+    {
+      "path": "04-dopolnitelnye-materialy/13-ustarevanie-signala.md",
+      "bytes": 4667,
+      "sha256": "304934749ed0efc33da09bb95f8280a85c8cd2f6f3eafdba46a541677af8541a"
+    },
+    {
+      "path": "04-dopolnitelnye-materialy/14-nezavisimaya-proverka-vetok.md",
+      "bytes": 3696,
+      "sha256": "b1e14a5e8331edb75054d283673d32c82df2e140000cef9575c5106191ab636f"
+    },
+    {
+      "path": "04-dopolnitelnye-materialy/15-itogovaya-model.md",
+      "bytes": 5913,
+      "sha256": "3b7e8f0f546fde16ab0d84ecb21420ee06f0bccee614ace51f1372fe70fbc8b5"
+    },
+    {
+      "path": "04-dopolnitelnye-materialy/16-primer-temperatury.pdf",
+      "bytes": 934468,
+      "sha256": "c3bfdcb16bdc2eb4a89545ce852341fb243d017c910ea896a98432d11746518b"
+    },
+    {
+      "path": "04-dopolnitelnye-materialy/17-makety-interfeysa.pdf",
+      "bytes": 934773,
+      "sha256": "b51213bdba3116d9441fc28c425c0ed5fa3ac1201242108bde04a0a77084170a"
+    },
+    {
+      "path": "04-dopolnitelnye-materialy/README.md",
+      "bytes": 740,
+      "sha256": "0b9f332262102708cdbf7af72a1cb747d15aa7d73a2e172c3e95a0e9bbda67ee"
+    },
+    {
+      "path": "04-dopolnitelnye-materialy/pushi-finalnye-shablony.md",
+      "bytes": 5488,
+      "sha256": "88a668dee456525e60349b272321f94ce9e310cbe1a349121590d1fccba2e8e1"
+    },
+    {
+      "path": "05-repozitoriy/README.md",
+      "bytes": 739,
+      "sha256": "29da4a1c02930f8d3af0359d48acd1d3d02b61c429688ecfa17d6d4e223a617f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3366,
+      "sha256": "9ef4c8b40f7aa24fe529f9a21bf5bfd76c3dc7c5e6a3e5c89540e2fba2629b86"
+    },
+    {
+      "path": "STATUS.md",
+      "bytes": 3639,
+      "sha256": "da70f0224815ad224068e53e2886ccc3973dbcca6cdfd6baae4f3ec61a4d58db"
+    }
+  ]
+}

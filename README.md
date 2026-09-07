@@ -4,6 +4,11 @@
 выгоднее переводить рубли в **AMD, KGS, KZT, TJS или UZS**, и сформировать не
 больше нескольких полезных сигналов в неделю.
 
+**Комплект для загрузки на платформу:** [ZIP по разделам](submission/final-upload-2026-09-07.zip),
+[распакованные файлы и инструкции](submission/final-upload-2026-09-07/README.md),
+[что уже загружено и что осталось](submission/final-upload-2026-09-07/STATUS.md).
+Вклад команды описан конкретными задачами, без процентного распределения.
+
 **Итоговая презентация, 7 сентября 2026:** [PDF](submission/prezentaciya-itogovaya-2026-09-07.pdf),
 [PowerPoint](submission/prezentaciya-itogovaya-2026-09-07.pptx),
 [навигация и пояснения к защите](submission/PREZENTACIYA-2026-09-07.md).
