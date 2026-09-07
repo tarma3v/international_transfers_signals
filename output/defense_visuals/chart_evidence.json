@@ -1,0 +1,160 @@
+{
+  "sources": {
+    "push_policy": "results/research/after_publication/ap37_effective/outputs.npz",
+    "temperature": "results/research/after_publication/ap50_temperature/outputs.npz"
+  },
+  "canonical_visuals": {
+    "temperature_example": "output/defense_visuals/temperature_example.png"
+  },
+  "overlay_window": {
+    "currency": "UZS",
+    "start": "2026-05-18",
+    "end": "2026-07-03",
+    "signals": 8,
+    "wins": 8
+  },
+  "temperature_overlay_crop": {
+    "currency": "UZS",
+    "start": "2026-05-18",
+    "end": "2026-06-23",
+    "signals": 6,
+    "wins": 6
+  },
+  "temperature_example_canonical": {
+    "currency": "UZS",
+    "start": "2026-05-18",
+    "end": "2026-06-23",
+    "signals": 6,
+    "wins": 6
+  },
+  "inverse_temperature_overlay_window": {
+    "currency": "UZS",
+    "start": "2026-05-18",
+    "end": "2026-07-03",
+    "signals": 8,
+    "wins": 8
+  },
+  "inverse_temperature_overlay_crop": {
+    "currency": "UZS",
+    "start": "2026-05-18",
+    "end": "2026-06-23",
+    "signals": 6,
+    "wins": 6
+  },
+  "best_fit_temperature_example": {
+    "currency": "KZT",
+    "start": "2026-06-25",
+    "end": "2026-07-14",
+    "signals": 4,
+    "wins": 4,
+    "temperature_vs_rate_quality_correlation": 0.8755188946069702
+  },
+  "illustrative_window": {
+    "currency": "UZS",
+    "start": "2026-05-18",
+    "end": "2026-07-03",
+    "signals": 8,
+    "wins": 8,
+    "mean_temperature_on_signals": 60.31506506246211
+  },
+  "horizon_scorecard": {
+    "3": {
+      "hit_rate": 0.8561151079136691,
+      "base_rate": 0.354434250764526,
+      "adjusted_lift": 2.428673730515981,
+      "signals": 695
+    },
+    "5": {
+      "hit_rate": 0.7338129496402878,
+      "base_rate": 0.294478527607362,
+      "adjusted_lift": 2.5091882251629154,
+      "signals": 695
+    },
+    "10": {
+      "hit_rate": 0.5591240875912409,
+      "base_rate": 0.228129829984544,
+      "adjusted_lift": 2.479315705615442,
+      "signals": 685
+    },
+    "20": {
+      "hit_rate": 0.4113263785394933,
+      "base_rate": 0.165149136577708,
+      "adjusted_lift": 2.524987383451601,
+      "signals": 671
+    }
+  },
+  "temperature_bands": [
+    {
+      "band": "0–20",
+      "n": 961,
+      "observed_success_rate": 0.09365244536940687,
+      "mean_temperature": 14.717764203919034
+    },
+    {
+      "band": "20–40",
+      "n": 1375,
+      "observed_success_rate": 0.2298181818181818,
+      "mean_temperature": 28.166007765975717
+    },
+    {
+      "band": "40–60",
+      "n": 548,
+      "observed_success_rate": 0.5218978102189781,
+      "mean_temperature": 48.89978545941296
+    },
+    {
+      "band": "60–80",
+      "n": 309,
+      "observed_success_rate": 0.6957928802588996,
+      "mean_temperature": 69.13290349528346
+    },
+    {
+      "band": "80–100",
+      "n": 67,
+      "observed_success_rate": 0.7910447761194029,
+      "mean_temperature": 84.84649915219626
+    }
+  ],
+  "currency_robustness": [
+    {
+      "currency": "AMD",
+      "signals": 142,
+      "hit_rate": 0.7464788732394366,
+      "base_rate": 0.2975460122699386,
+      "adjusted_lift": 2.521284444623991,
+      "frequency_per_week": 1.0608324439701171
+    },
+    {
+      "currency": "KGS",
+      "signals": 139,
+      "hit_rate": 0.7266187050359713,
+      "base_rate": 0.2929447852760736,
+      "adjusted_lift": 2.5102939698666225,
+      "frequency_per_week": 1.038420490928495
+    },
+    {
+      "currency": "KZT",
+      "signals": 138,
+      "hit_rate": 0.6811594202898551,
+      "base_rate": 0.2668711656441718,
+      "adjusted_lift": 2.560229709700735,
+      "frequency_per_week": 1.030949839914621
+    },
+    {
+      "currency": "TJS",
+      "signals": 139,
+      "hit_rate": 0.7482014388489209,
+      "base_rate": 0.3205521472392638,
+      "adjusted_lift": 2.346864025992397,
+      "frequency_per_week": 1.038420490928495
+    },
+    {
+      "currency": "UZS",
+      "signals": 137,
+      "hit_rate": 0.7664233576642335,
+      "base_rate": 0.294478527607362,
+      "adjusted_lift": 2.628503722505017,
+      "frequency_per_week": 1.023479188900747
+    }
+  ]
+}
