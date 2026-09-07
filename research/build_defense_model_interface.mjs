@@ -52,10 +52,11 @@ text('sh/hcvy14ne','Ансамбль с отбором сигналов, h=5, 09
 pos('sh/zutgvm94',{width:686.4});
 pos('sh/kv2h4rqp',{width:632.64});
 pos('sh/lwbyxwra',{width:632.64});
+text('sh/lwbyxwra','Температура от 0 до 100: оценка вероятности, что на выбранном горизонте более дешёвого дня не будет.\n\nОтдельно оцениваем размер изменения и свежесть источника. Для пуша используем собственный строгий фильтр.\n\nСообщение выбираем по самым важным подтверждённым сигналам из прошлого: изменению за неделю или редкому уровню курса.');
 mark('sh/ip4zel83').fill='none';
-text('sh/3qdg7qpo','Что видит клиент');
+text('sh/3qdg7qpo','');
 pos('sh/3qdg7qpo',{left:817.92,top:166.08,width:350.4,height:38.4});
-text('sh/fm1gzq5o','Сумма и сравнение с историей');
+text('sh/fm1gzq5o','');
 pos('sh/fm1gzq5o',{left:807.36,top:632.64,width:390.72,height:25.92});
 pos('sh/e1sf65o3',{width:686.4});
 text('sh/1ojy10ne','Понятный факт вместо прогноза');
@@ -63,13 +64,19 @@ pos('sh/1ojy10ne',{width:630.72});
 text('sh/gnax8v6t','«Лучшая за три месяца была 56 дней из девяноста».\nНа экране — сумма получателя и сравнение с прошлым. Температуру и обещание будущего не показываем.');
 pos('sh/gnax8v6t',{width:630.72,height:71.04});
 text('sh/nqlg3a5k','Макет команды: числа иллюстративные, по ЦБ. В пилоте используем актуальную котировку банка.');
+pos('sh/nqlg3a5k',{width:686.4});
 const phone=execFileSync(path.join(RT,'python/bin/python3'),['-c',"from zipfile import ZipFile; import sys; sys.stdout.buffer.write(ZipFile(sys.argv[1]).read('ppt/media/image3.png'))",source]);
-slide(11).images.add({blob:new Uint8Array(phone),contentType:'image/png',alt:'Исходный макет команды: сумма перевода и сравнение с прошлыми 90 днями',fit:'contain',position:{left:870.72,top:205.44,width:207.36,height:423.02}});
+// Crop away account details, preserving the source pixels and the screen's ratio.
+// This makes the factual message nearly twice as large as the previous full phone.
+const phoneCrop={left:0.05,top:0.34,right:0.05,bottom:0.03};
+slide(11).images.add({blob:new Uint8Array(phone),contentType:'image/png',alt:'Приближённый фрагмент исходного экрана: сумма перевода, историческая шкала и сообщение',fit:'cover',crop:phoneCrop,position:{left:815.04,top:141.12,width:369.71,height:528}});
 
-// Expand Ivan's role while retaining the colleagues' original text and font.
-text('sh/vy1sj694','AI Engineer. Разработка итоговой модели: дневной и вечерний прогноз, температура.\n\n100+ вариантов моделей, признаков и правил отбора. Эксперименты по валютам и периодам, контроль утечек.\n\nОтбор пушей, итоговые метрики и финализация презентации.');
+// User-confirmed responsibilities, with comparable detail for the two leads.
+text('sh/obyt0bel','AI Product. Продуктовая постановка, поиск и анализ продуктовых идей.\n\nКлиентский путь, макеты и тексты. MVP-модель и базовые индикаторы выгодного момента.\n\nПрезентация проекта и подготовка комплекта материалов.');
+text('sh/wza9cbqp','AI Engineer. Данные и признаки, независимая реализация version_b.\n\nОбучение моделей, контроль утечек и проверка расчётов.');
+text('sh/vy1sj694','AI Engineer. Разработка итоговой модели: дневной и вечерний прогноз, температура.\n\n100+ вариантов моделей, признаков и правил отбора. Эксперименты по валютам и периодам.\n\nОтбор пушей, итоговые метрики и финализация презентации.');
 for(const id of ['sh/29wby1wf','sh/fm5snmx4','sh/h0jalgra'])pos(id,{height:292.8});
-pos('sh/vy1sj694',{height:198.72});
+for(const id of ['sh/obyt0bel','sh/wza9cbqp','sh/vy1sj694'])pos(id,{height:198.72});
 pos('sh/8ba98bqt',{top:456,height:192});
 pos('sh/9cjahgry',{top:472.32});
 pos('sh/m98r618n',{top:511.68,height:120.96});
@@ -84,7 +91,7 @@ for(const r of rows.filter(r=>r.kind==='chart')){
 }
 const candidate=path.join(BUILD,'candidate.pptx'),preserved=path.join(BUILD,'preserved.pptx');
 await (await PresentationFile.exportPptx(p)).save(candidate);
-const manifest={shapeIndices:Object.fromEntries(Object.entries(changes).map(([n,v])=>[n,[...new Set(v)]])),newImage:{slide:11,sourcePart:'ppt/media/image3.png'},chartLabels};
+const manifest={shapeIndices:Object.fromEntries(Object.entries(changes).map(([n,v])=>[n,[...new Set(v)]])),newImage:{slide:11,sourcePart:'ppt/media/image3.png',crop:phoneCrop},chartLabels};
 await fs.writeFile(path.join(BUILD,'edits.json'),JSON.stringify(manifest,null,2));
 console.log(execFileSync(path.join(RT,'python/bin/python3'),[path.join(ROOT,'research/preserve_model_interface.py'),source,candidate,preserved,path.join(BUILD,'edits.json')],{encoding:'utf8'}));
 await fs.writeFile(path.join(BUILD,'after.ndjson'),(await p.inspect({kind:'slide,shape,textbox,image,chart,table',maxChars:1000000})).ndjson);

@@ -55,6 +55,18 @@ def main():
         draft_rels={r.get('Id'):target(news[n-1],r.get('Target')) for r in xml(draft.read(relpart(news[n-1])))}
         assert draft.read(draft_rels[old_embed])==src.read(edits['newImage']['sourcePart'])
         pic.find('p:blipFill/a:blip',NS).set('{'+R+'}embed',rid)
+        # The exporter replaces an explicitly authored crop with centred cover.
+        # Restore the author's crop coordinates without changing source pixels.
+        if edits['newImage'].get('crop'):
+            fill=pic.find('p:blipFill',NS)
+            crop=fill.find('a:srcRect',NS)
+            if crop is None:
+                crop=E.Element('{'+A+'}srcRect')
+                fill.insert(1,crop)
+            for attr,key in [('l','left'),('t','top'),('r','right'),('b','bottom')]:
+                value=edits['newImage']['crop'][key]
+                assert 0<=value<1
+                crop.set(attr,str(round(value*100000)))
         nextid=max(int(e.get('id')) for e in original.findall('.//p:cNvPr',NS))+1
         pic.find('p:nvPicPr/p:cNvPr',NS).set('id',str(nextid))
         original.find('p:cSld/p:spTree',NS).append(pic)
