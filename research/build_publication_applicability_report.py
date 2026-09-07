@@ -24,7 +24,13 @@ def inline(text):
     return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", text)
 
 
-def build(source=SOURCE, output=OUTPUT, title="Курс ЦБ на завтра: когда его можно использовать"):
+def build(
+    source=SOURCE,
+    output=OUTPUT,
+    title="Курс ЦБ на завтра: когда его можно использовать",
+    author="international_transfers_signals",
+    footer_label="проверка доступности и пользы",
+):
     register_fonts()
     styles = {
         "body": ParagraphStyle("body", fontName="Arial", fontSize=10, leading=14.1, textColor=NAVY, spaceAfter=7),
@@ -78,11 +84,11 @@ def build(source=SOURCE, output=OUTPUT, title="Курс ЦБ на завтра: 
         canvas.line(18*mm, 15*mm, 192*mm,15*mm)
         canvas.setFont("Arial",7.5)
         canvas.setFillColor(NAVY)
-        canvas.drawString(18*mm,10*mm,"international_transfers_signals | проверка доступности и пользы")
+        canvas.drawString(18*mm,10*mm,f"international_transfers_signals | {footer_label}")
         canvas.drawRightString(192*mm,10*mm,f"07.09.2026  •  {doc.page}")
         canvas.restoreState()
     output.parent.mkdir(parents=True,exist_ok=True)
-    doc = SimpleDocTemplate(str(output), pagesize=A4, leftMargin=18*mm, rightMargin=18*mm, topMargin=17*mm, bottomMargin=21*mm, title=title, author="international_transfers_signals")
+    doc = SimpleDocTemplate(str(output), pagesize=A4, leftMargin=18*mm, rightMargin=18*mm, topMargin=17*mm, bottomMargin=21*mm, title=title, author=author)
     doc.build(story,onFirstPage=footer,onLaterPages=footer)
     print(output)
 

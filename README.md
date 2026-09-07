@@ -330,6 +330,7 @@
 [манифест зафиксированной итоговой модели](model/final_temperature_model_v1.json) ·
 [единый исполняемый вход](run_final_temperature.py) ·
 [сценарий объяснения модели на защите](docs/final_model_defense_script.md) ·
+[короткое объяснение для защиты, 12 страниц](output/pdf/ivan_defense_model_short.pdf) ·
 [итоговая модель простыми словами, 27 страниц](output/pdf/ivan_final_model_plain_explained.pdf) ·
 [сверка future-only и `+/-h` lift](research/tz_metric_m1_symmetric_lift_report.md) ·
 [T45: direct-pair expected bps](research/temperature_t45_direct_pair_benefit_report.md) ·
