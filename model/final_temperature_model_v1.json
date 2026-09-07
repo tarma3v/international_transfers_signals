@@ -1,0 +1,110 @@
+{
+  "model_version": "final-temperature-v1-2026-09-07",
+  "status": "frozen_hackathon_candidate",
+  "runtime_mode": "historical_replay_artifact",
+  "live_inference_note": "The same feature and routing contracts must be wired to live feeds before deployment.",
+  "default_horizon": 5,
+  "horizons": [1, 3, 5, 10, 20],
+  "corridors": ["TJS", "UZS", "KGS", "AMD", "KZT"],
+  "target": {
+    "name": "future_only_send_now",
+    "definition": "v[t] <= min(v[t+1:t+h+1])",
+    "reference": "today-effective CBR",
+    "symmetric_plus_minus_h_role": "separate benefit and metric sensitivity"
+  },
+  "active_components": {
+    "runtime_router": "T17 snapshots with T18 verified-receipt gate",
+    "premarket_probability": "T4 history-only with limited confidence",
+    "early_probability": "T14 h1/h3 when completed perpetual exists",
+    "intraday_probability": "T5 completed CNY/RUB prefix with quarterly calibration",
+    "after_receipt_probability": "AP49 heads with AP50 quarterly calibration",
+    "expected_future_bps": "T6/T11 before receipt, AP51 after receipt, T16 evening h3/h5",
+    "sparse_push": "AP37 max-two-per-week router"
+  },
+  "shadow_components": {
+    "h20_probability": "T37 source-driven shrink50; passed retrospective gates, awaits prospective outcomes",
+    "direct_pair_h5_bps": "T45 AMD/KZT quality-gated residual; magnitude only"
+  },
+  "rejected_components": {
+    "direct_pair_probability": "T46; h3 passed 2023/2024 but failed KZT and pooled Brier in opened 2025"
+  },
+  "availability_contract": {
+    "receipt_gate": "verified_receipt_at required for same-day receipt-dependent rows",
+    "fixed_1800_boundary_forbidden": true,
+    "completed_candles_only": true,
+    "hold_without_new_source": true,
+    "stale_is_explicit": true
+  },
+  "artifacts": [
+    {
+      "role": "active_runtime_snapshots",
+      "path": "results/research/temperature/t17_spot_availability_repair/snapshots.csv.gz",
+      "sha256": "2c22c3b9b94f30e4491345713ab8fbdb093f12f80abf6146201c1ab5d2287092"
+    },
+    {
+      "role": "active_runtime_audit",
+      "path": "results/research/temperature/t17_spot_availability_repair/audit_checks.json",
+      "sha256": "3e68188ee95b853dc043f1efa937adf1a46448f10e61e28a139c0d90b6a3c68d"
+    },
+    {
+      "role": "active_push_evidence",
+      "path": "results/research/after_publication/ap37_effective/outputs.npz",
+      "sha256": "0051a46660dbb2dfa29c1c0bdc4ff8e5d257f5ed9bb80b593cff58554bbea6a3"
+    },
+    {
+      "role": "active_push_audit",
+      "path": "results/research/after_publication/ap37_effective/audit_checks.json",
+      "sha256": "a056a916339ec5ee625ff30a7b824f816743654624ef0a1ceacf1b018d2d733b"
+    },
+    {
+      "role": "after_receipt_probability_evidence",
+      "path": "results/research/after_publication/ap50_temperature/outputs.npz",
+      "sha256": "0b0e968a32aa9a969ad91667730e0aa9bea523ef153086e0d37961bda5f698f9"
+    },
+    {
+      "role": "after_receipt_probability_audit",
+      "path": "results/research/after_publication/ap50_temperature/audit_checks.json",
+      "sha256": "737b4adac64c2cd0df8a5841cccdd9196f75043422a86027c6a236c51fdc266a"
+    },
+    {
+      "role": "shadow_h20_metadata",
+      "path": "results/research/temperature/t37_source_driven_h20_shrink50/metadata.json",
+      "sha256": "497d4987216b3ae60e1a9edcc67d73248ff1c26b242729071b007bfd16430d39"
+    },
+    {
+      "role": "shadow_h20_audit",
+      "path": "results/research/temperature/t37_source_driven_h20_shrink50/audit_checks.json",
+      "sha256": "5ecc04f09f06a24e53a885f3c7ed796ce0568817e4fc5cd036e3c605e1c0d110"
+    },
+    {
+      "role": "shadow_direct_bps_metadata",
+      "path": "results/research/temperature/t45_direct_pair_benefit/metadata.json",
+      "sha256": "adca56ac17bafed2bb75587f4c778a65c758a36ac0158aa0b1e8faf1092146db"
+    },
+    {
+      "role": "shadow_direct_bps_audit",
+      "path": "results/research/temperature/t45_direct_pair_benefit/audit_checks.json",
+      "sha256": "1c26720159bbab284246e848fc5010c3d26cff81b0beb1e855348d42a48b72a8"
+    },
+    {
+      "role": "rejected_direct_probability_metadata",
+      "path": "results/research/temperature/t46_local_pair_fallback/metadata.json",
+      "sha256": "644e6a3c3257a301dd5d48b5b4a72587aa33798200d6e23cadb12487a3fd78b4"
+    },
+    {
+      "role": "rejected_direct_probability_audit",
+      "path": "results/research/temperature/t46_local_pair_fallback/audit_checks.json",
+      "sha256": "e90a25828326543c49d08d9061f8c6b34413f01cd0274e9aed0678fcdbe0b3fc"
+    },
+    {
+      "role": "metric_sensitivity_metadata",
+      "path": "results/research/tz_metric/m1_symmetric_lift/metadata.json",
+      "sha256": "df96060cb551c3c8f8700005e968d60832355208bb0650c63d4aaa1b7f11d2e9"
+    },
+    {
+      "role": "metric_sensitivity_audit",
+      "path": "results/research/tz_metric/m1_symmetric_lift/audit_checks.json",
+      "sha256": "e622989088ac8e8fc1181a288edd7850b31dfa6a4acf4f58b8182e77870851be"
+    }
+  ]
+}

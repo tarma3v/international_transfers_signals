@@ -18,6 +18,23 @@
 > статусом aging/stale. Историческое время получения курса пока календарно
 > предполагается, банковские исполнимые котировки не проверены.
 >
+> **Зафиксированная итоговая версия:** `final-temperature-v1-2026-09-07`.
+> Это один понятный production-style вход поверх уже проверенного T17/T18:
+> пять валют, пять горизонтов, фактический receipt-gate и ни одного
+> автоматически включённого shadow-эксперимента. Манифест хранит SHA-256 всех
+> опорных артефактов; прямые AMD/KZT-пары остаются только shadow для размера
+> выгоды, а не меняют вероятность. Сейчас вход исполняет сохранённый
+> исторический replay; для live-production те же контракты нужно подключить к
+> потокам MOEX и ЦБ. Проверка и пример запроса:
+>
+> ```bash
+> .venv/bin/python run_final_temperature.py \
+>   --as-of 2026-09-01T15:45:00+03:00 --currency KZT
+> .venv/bin/python run_final_temperature.py \
+>   --as-of 2026-09-01T18:45:00+03:00 --currency KZT \
+>   --verified-receipt-at 2026-09-01T18:42:00+03:00
+> ```
+>
 > T17 исправил доступность spot-рынка: из прежних 60 370 плановых снимков
 > удалены **6 800** строк, в которых на момент среза физически не было ни одной
 > завершённой CNYRUB_TOM-свечи. Для 32 620 реально наблюдавшихся spot-снимков
@@ -310,6 +327,9 @@
 > не заменена.
 
 [Краткая история всех экспериментов](EXPERIMENTS_SUMMARY.md) ·
+[манифест зафиксированной итоговой модели](model/final_temperature_model_v1.json) ·
+[единый исполняемый вход](run_final_temperature.py) ·
+[сценарий объяснения модели на защите](docs/final_model_defense_script.md) ·
 [сверка future-only и `+/-h` lift](research/tz_metric_m1_symmetric_lift_report.md) ·
 [T45: direct-pair expected bps](research/temperature_t45_direct_pair_benefit_report.md) ·
 [T46: direct probability с CNY fallback](research/temperature_t46_local_pair_fallback_report.md) ·
